@@ -1,5 +1,17 @@
 # 安装、更新与故障排查
 
+## 下载版安装
+
+1. 打开 [v0.1.0 Release](https://github.com/Gonghysin/ChordCue/releases/tag/v0.1.0)，下载 `ChordCue-v0.1.0-macos-arm64.zip` 和 `SHA256SUMS.txt`。此包仅支持 Apple Silicon（M 系列芯片）及 macOS 13+，不支持 Intel Mac 或 Windows。
+2. 可在下载目录执行 `shasum -a 256 -c SHA256SUMS.txt` 核对文件完整性。校验值用于比对发布文件，不代表 Apple 公证。
+3. 退出正在运行的 ChordCue，解压 ZIP，将 `ChordCue.app` 放到“应用程序”。若已有同名应用，替换会覆盖旧安装。
+4. 双击启动。如果系统提示无法验证开发者，确认文件来自本仓库且校验一致后，按 [Apple 官方说明](https://support.apple.com/zh-cn/102445) 在“系统设置 → 隐私与安全性”选择“仍要打开”，再确认“打开”。不要全局关闭 Gatekeeper。
+5. 点击“辅助功能授权”，允许已安装的 ChordCue，随后打开 Logic 工程并点“刷新 Logic 和弦”。
+
+该下载包使用 ad-hoc 临时签名，未经过 Apple Developer ID 签名或公证。如果使用过本地固定签名版，切换到此包后可能需要重新授权；后续下载更新也可能再次要求授权。固定签名开发版的更新方法见下文。
+
+运行下载版不需要 Xcode、Node.js、Python 或 Homebrew。包内包含原创演示和弦以及 MIT／第三方许可，不包含私人工程或商业歌曲快照。
+
 ## 构建环境
 
 - macOS 13 或更新版本。
@@ -99,4 +111,4 @@ ChordCue 读取 Logic UI，需辅助功能授权与可见的和弦轨。未连�
 
 ### 系统阻止运行下载版
 
-此仓库当前只提供源码构建流程，不提供 Apple 公证安装包。不要全局关闭 Gatekeeper 或删除其他应用权限；先确认来源并按 macOS 正常提示操作。
+Release 下载包尚未经过 Apple 公证。按上面的“下载版安装”核对来源与校验，再参考 Apple 官方提示操作。如果提示应用损坏，先重新下载并核验校验值；不要直接假定是权限问题。
