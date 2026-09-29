@@ -1,0 +1,9 @@
+c major 1 bars
+a minor 2 bars
+f major 3 bars
+g 7 4 bars
+c major 5 bars 1 beats
+a minor 5 bars 3 beats
+d minor 7 6 bars
+g 7 7 bars
+c major 8 bars

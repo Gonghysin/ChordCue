@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ChordCue · 局域网跟谱</title>
+<style>
+:root{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#202329;background:#f7f5ef;color-scheme:light}*{box-sizing:border-box}body{margin:0}header{position:sticky;top:0;z-index:2;background:#fff;border-bottom:1px solid #ddd;padding:14px 22px}.brand{color:#747c87;font-size:12px;letter-spacing:2px}.summary{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:8px 0}.current{font-size:clamp(38px,6vw,64px);font-weight:700;min-width:120px}.project{text-align:center;flex:1}.project strong{font-size:20px}.muted{color:#777f8a;font-size:13px;line-height:1.6}.position{font-variant-numeric:tabular-nums;white-space:nowrap}.controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center}select,button{border:1px solid #d7dce3;border-radius:8px;background:#f8f9fb;font:inherit;padding:7px 10px}label{font-size:14px}#status{margin-top:8px}#chart{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));margin:20px;max-width:1800px;border-left:1px solid #ddd;border-top:1px solid #ddd}.bar{position:relative;background:white;border-right:1px solid #ddd;border-bottom:1px solid #ddd;min-height:115px;padding:12px;overflow:hidden}.bar.active{background:#dfedff;outline:2px solid #1684ff;outline-offset:-2px}.barhead{font-size:12px;color:#818791;display:flex;gap:8px}.key{color:#0878ed}.slots{display:flex;height:64px;align-items:center;margin-top:8px}.slot{flex:1;min-width:0;text-align:center;padding:4px;border-left:1px solid #ddd;display:flex;flex-direction:column;justify-content:center;min-height:55px}.slot:first-child{border-left:0}.symbol{font-size:clamp(18px,2.3vw,26px);font-weight:600;overflow-wrap:anywhere}.onset{font-size:10px;color:#999;margin-top:3px}.carry{color:#9398a0}.slot.currentSlot{background:#c9e2ff;color:#0080ff}.cursor{position:absolute;bottom:8px;top:34px;width:2px;background:#0080ff;pointer-events:none;display:none}.bar.active .cursor{display:block}#empty{padding:30px;text-align:center;color:#888}footer{padding:0 22px 24px;font-size:12px;color:#8a9099}@media(min-width:1840px){#chart{margin-left:auto;margin-right:auto}}@media(max-width:520px){header{padding:12px}.summary{gap:8px}.project strong{font-size:16px}.position{font-size:12px}.current{min-width:75px}#chart{margin:10px;grid-template-columns:repeat(2,minmax(0,1fr))}.bar{padding:8px}.symbol{font-size:20px}.controls{font-size:13px}}
+</style>
+<style>
+[hidden]{display:none!important}.tabs{display:flex;gap:5px;margin:10px 0}.tabs button.selected{background:#087df1;color:white;border-color:#087df1}#metronome{max-width:880px;margin:24px auto;padding:22px}.metro-card{background:white;border:1px solid #e1e5eb;border-radius:18px;padding:24px;margin-bottom:16px}.metro-title{display:flex;align-items:center;justify-content:space-between;gap:12px}.metro-title h1{font-size:22px;margin:0}.metro-big{font-size:68px;font-weight:750;text-align:center;color:#147ce5;margin:14px}.metro-controls{display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin:18px 0}.beat-lights{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}.beat-light{width:42px;height:42px;border:1px solid #e0e4eb;border-radius:50%;display:grid;place-items:center;font-weight:700;color:#8994a2}.beat-light.lit{background:#0080ff;color:white;border-color:#0080ff}.pattern{display:grid;grid-template-columns:repeat(auto-fit,minmax(115px,1fr));gap:10px}.beat-edit{border:1px solid #e1e5eb;border-radius:12px;padding:12px}.beat-edit strong{display:block;margin-bottom:10px;font-size:13px}.beat-edit label{display:flex;align-items:center;justify-content:space-between;gap:4px;margin-top:6px}.beat-edit select{max-width:85px;padding:6px;font-size:13px}.primary{background:#087df1;color:white;border-color:#087df1}.calibration{width:100%;max-width:400px}.native header,.native #chart,.native #empty,.native footer{display:none!important}.native #metronome{margin:0 auto;width:100%}@media(max-width:520px){#metronome{padding:10px;margin:8px}.metro-card{padding:16px}.metro-big{font-size:56px}.pattern{grid-template-columns:repeat(3,minmax(0,1fr))}.beat-edit{padding:8px}.beat-edit label{flex-direction:column}}
+</style>
+<style>
+.pattern{display:flex;gap:10px;overflow-x:auto;padding:4px 1px 12px}
+.strength-column{flex:1 0 60px;min-width:0;display:flex;flex-direction:column;align-items:center;gap:10px;padding:12px 6px;border:1px solid #e1e5eb;border-radius:12px;background:#fafbfc}
+.strength-column.offbeat{background:#fff}.strength-column strong{font-size:17px}.strength-bars{display:flex;flex-direction:column;gap:5px;width:100%;max-width:64px}
+button.strength-cell{width:100%;height:30px;padding:0;border-radius:5px;background:#e9edf2;border:1px solid #dce1e8;cursor:pointer;touch-action:manipulation}
+button.strength-cell[aria-pressed=true]{background:#1785ed;border-color:#1785ed}
+button.strength-cell[data-level="3"][aria-pressed=true]{background:#e89426;border-color:#e89426}
+button.strength-cell:focus-visible{outline:3px solid #202329;outline-offset:2px}
+.strength-label{font-size:12px;color:#657181;white-space:nowrap}.strength-column select{width:100%;max-width:72px;padding:5px 2px;font-size:12px}
+button:disabled{opacity:.6;cursor:wait}
+@media(max-width:520px){.pattern{gap:6px}.strength-column{flex-basis:48px;padding:10px 4px;gap:8px}button.strength-cell{height:34px}}
+</style>
+<header>
+ <div class="brand">CHORD CUE · 局域网跟谱</div>
+ <nav class="tabs" aria-label="页面"><button id="chordTab" class="selected">和弦谱</button><button id="metroTab">节拍器</button><button id="headerAudio">开启节拍器</button></nav>
+ <div class="summary"><div id="current" class="current">—</div><div class="project"><strong id="name">等待工程</strong><div id="metadata" class="muted">—</div></div><div id="position" class="position">—</div></div>
+ <div class="controls"><label>谱面 <select id="notation"><option value="chords">和弦</option><option value="numbers">级数</option></select></label><label>显示调 <select id="key"><option value="track">轨道原样</option><option value="0">C 调</option><option value="1">C♯ 调</option><option value="2">D 调</option><option value="3">E♭ 调</option><option value="4">E 调</option><option value="5">F 调</option><option value="6">F♯ 调</option><option value="7">G 调</option><option value="8">A♭ 调</option><option value="9">A 调</option><option value="10">B♭ 调</option><option value="11">B 调</option></select></label><label><input id="follow" type="checkbox" checked> 跟随播放头</label><button id="fullscreen">全屏</button></div>
+ <div id="status" class="muted" role="status">正在连接主机…</div>
+</header>
+<div id="empty">等待主机的和弦谱…</div><main id="chart"></main>
+<main id="metronome" hidden>
+ <section class="metro-card">
+  <div class="metro-title"><h1>同步节拍器</h1><button id="audioEnable" class="primary">开启声音</button></div>
+  <div id="metroTempo" class="metro-big">— BPM</div><div id="beatLights" class="beat-lights"></div>
+  <div id="metroState" class="muted" role="status">声音未开启，设置只影响本设备。</div>
+  <div class="metro-controls"><label>音色 <select id="metroMode"><option value="classic">经典节拍器</option><option value="drums">鼓机节拍器</option></select></label><label>细分 <select id="metroSubdivision"><option value="quarter">按拍</option><option value="eighth">八分音符</option></select></label><label>音量 <input id="metroVolume" type="range" min="0" max="100" value="35" aria-label="节拍器音量"></label><button id="audioPreview">试听一拍</button></div>
+ </section>
+ <section class="metro-card"><div class="metro-title"><h1>拍点与重音</h1><button id="patternReset">恢复默认</button></div><p id="patternDescription" class="muted">拍号跟随 Logic；每柱三格，设置不响、轻拍、正常或重拍。</p><div id="beatPattern" class="pattern" aria-label="拍点强度"></div></section>
+ <section class="metro-card"><h1 style="font-size:18px">耳机延迟校准</h1><label>额外补偿 <input id="metroOffset" class="calibration" type="range" min="-150" max="150" step="5" value="0"><output id="metroOffsetLabel">0 ms</output></label><p class="muted">正值让声音更早，负值让声音更晚。先使用有线耳机；自动输出延迟补偿后，仍可对照主机节拍微调。切换耳机或声卡后需要重新校准。</p><div id="audioLatency" class="muted">声音由本设备生成，不包含歌曲音频。</div></section>
+</main>
+<footer>显示设置仅影响你的浏览器。工程和播放位置跟随主机。每个和弦下方标注 Logic 起拍；蓝线表示播放位置。网络往返和采样耗时不是总同步误差。</footer>
+<script>
+'use strict';
+const $=id=>document.getElementById(id), sharp=['C','C♯','D','D♯','E','F','F♯','G','G♯','A','A♯','B'],flat=['C','D♭','D','E♭','E','F','G♭','G','A♭','A','B♭','B'];
+let chart=null,sample=null,clockOffset=null,clockSamples=[],rtt=0,connected=false,lastReceived=0,lastBar=0,lastActive=null,cells=new Map(),sections=[],stream=null,clockBusy=false,session=null,clockController=null,page='chords';
+const mod=n=>(n%12+12)%12;
+function setting(id,fallback){try{return localStorage.getItem('chordcue-lan-'+id)||fallback}catch{return fallback}}
+function changePage(value){page=value;$('metronome').hidden=value!=='metronome';$('chart').hidden=value!=='chords';$('empty').hidden=value!=='chords'||!!chart?.events.length;document.querySelector('header .controls').hidden=value!=='chords';$('chordTab').classList.toggle('selected',value==='chords');$('metroTab').classList.toggle('selected',value==='metronome');}
+$('chordTab').addEventListener('click',()=>changePage('chords'));$('metroTab').addEventListener('click',()=>changePage('metronome'));
+$('notation').value=setting('notation','chords');if(!$('notation').value)$('notation').value='chords';
+$('key').value=setting('key','track');if(!$('key').value)$('key').value='track';
+for(const id of ['notation','key'])$(id).addEventListener('change',()=>{try{localStorage.setItem('chordcue-lan-'+id,$(id).value)}catch{}renderChart();lastActive=null});
+$('fullscreen').addEventListener('click',async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else await document.documentElement.requestFullscreen()}catch{}});
+function offset(p){return p.beat-1+(p.division-1)/4+p.tick/960}
+function compare(a,b){return a.bar-b.bar||offset(a)-offset(b)}
+function activeIndex(position){if(!chart)return -1;let lo=0,hi=chart.events.length;while(lo<hi){const mid=(lo+hi)>>1;if(compare(chart.events[mid],position)<=0)lo=mid+1;else hi=mid}return lo-1}
+function shift(){return !chart||$('key').value==='track'?0:Number($('key').value)-(sections[0]?.family||0)}
+function note(p){const target=mod((sections[0]?.family||0)+shift());return ([1,3,5,8,10].includes(target)?flat:sharp)[mod(p)]}
+function transpose(symbol){if(!shift()||symbol==='N.C.')return symbol;return symbol.split('/').map(part=>{const m=part.match(/^([A-G])([♯♭#b]?)(.*)$/);if(!m)return part;let pitch={C:0,D:2,E:4,F:5,G:7,A:9,B:11}[m[1]];pitch+=['♯','#'].includes(m[2])?1:['♭','b'].includes(m[2])?-1:0;return note(pitch+shift())+m[3]}).join('/')}
+function formatted(event){return $('notation').value==='numbers'?event.number:transpose(event.symbol).replaceAll('7','₇')}
+function keyLabel(section){let label='1='+note(section.family+shift());if(section.minor)label+=' · 6='+note(section.root+shift())+' 小调';return label}
+function renderChart(){
+ if(!chart)return;sections=chart.sections;$('name').textContent=chart.name;$('empty').hidden=page!=='chords'||chart.events.length>0;
+ const root=$('chart');root.replaceChildren();cells.clear();lastBar=0;
+ const count=Math.max(16,chart.events.at(-1)?.bar||1,sample?.bar||1);
+ let cursor=0,carry=null;
+ for(let bar=1;bar<=count;bar++){
+  const cell=document.createElement('section');cell.className='bar';const head=document.createElement('div');head.className='barhead';head.textContent=String(bar);
+  const section=sections.find(s=>s.bar===bar);if(section&&$('notation').value==='numbers'){const k=document.createElement('span');k.className='key';k.textContent=keyLabel(section);head.append(k)}cell.append(head);
+  const row=document.createElement('div');row.className='slots';const events=[];while(cursor<chart.events.length&&chart.events[cursor].bar===bar)events.push(chart.events[cursor++]);
+  const slots=[];
+  function slot(event,text,gray,start){const el=document.createElement('div');el.className='slot'+(gray?' carry':'');const title=document.createElement('div');title.className='symbol';title.textContent=text;el.append(title);if(start!==null){const beat=document.createElement('span');beat.className='onset';beat.textContent='第 '+(start+1).toFixed(2).replace(/\.00$/,'')+' 拍';el.append(beat)}row.append(el);slots.push({id:event?.id??null,el})}
+  if(!events.length)slot(carry,carry?'%':'·',true,null);
+  else{if(offset(events[0])>0.04)slot(carry,carry?'—':'·',true,0);for(const event of events)slot(event,formatted(event),false,offset(event));carry=events.at(-1)}
+  cell.append(row);const line=document.createElement('div');line.className='cursor';cell.append(line);root.append(cell);cells.set(bar,{cell,line,slots});
+ }
+}
+async function calibrate(){
+ if(clockBusy)return;clockBusy=true;
+ if(window.ChordCueNative){window.webkit.messageHandlers.clock.postMessage({t0:performance.now()});setTimeout(()=>{clockBusy=false},2500);return}
+ const controller=new AbortController();clockController=controller;const timeout=setTimeout(()=>controller.abort(),2500);
+ try{const t0=performance.now(),response=await fetch('clock',{cache:'no-store',signal:controller.signal});if(!response.ok)throw Error('clock');const data=await response.json(),t3=performance.now();
+  applyClock(data,t0,t3);
+ }catch{}finally{clearTimeout(timeout);clockController=null;clockBusy=false}
+}
+function applyClock(data,t0,t3){if(session&&session!==data.session){clockSamples=[];clockOffset=null;window.ChordCueMetronome?.cancel()}session=data.session;const latency=Math.max(0,t3-t0-(data.sent-data.received));clockSamples.push({time:t3,offset:((data.received-t0)+(data.sent-t3))/2,rtt:latency});clockSamples=clockSamples.filter(v=>t3-v.time<60000).slice(-20);const best=clockSamples.reduce((a,b)=>a.rtt<b.rtt?a:b);if(clockOffset!==null&&Math.abs(best.offset-clockOffset)>10)window.ChordCueMetronome?.cancel();clockOffset=best.offset;rtt=best.rtt;}
+window.acceptNativeClock=(data,t0)=>{applyClock(data,t0,performance.now());clockBusy=false};
+function acceptTransport(next){window.ChordCueMetronome?.transportChanged(sample,next);sample=next;lastReceived=performance.now();}
+window.acceptNativeState=value=>{if(!chart||chart.name!==value.name){window.ChordCueMetronome?.cancel();chart={revision:1,name:value.name,meter:value.transport.meter,events:[],sections:[]};$('name').textContent=value.name;}connected=true;acceptTransport(value.transport);if(typeof value.audioEnabled==='boolean')window.ChordCueMetronome?.setEnabled(value.audioEnabled);};
+function connect(){
+ stream=new EventSource('events');
+ stream.onopen=()=>{connected=true;calibrate()};
+ stream.onerror=()=>{connected=false;lastActive=null;$('current').textContent='—';window.ChordCueMetronome?.cancel()};
+ stream.addEventListener('chart',event=>{try{const next=JSON.parse(event.data);if(chart?.name!==next.name)window.ChordCueMetronome?.cancel();chart=next;lastActive=null;renderChart()}catch{}});
+ stream.addEventListener('transport',event=>{try{acceptTransport(JSON.parse(event.data))}catch{}});
+}
+function frame(){
+ const now=performance.now(),age=sample&&clockOffset!==null?Math.max(0,now+clockOffset-sample.sampleTime):Infinity;
+ const fresh=connected&&now-lastReceived<500&&sample?.valid&&sample?.revision===chart?.revision&&age<500;
+ const predicting=fresh&&sample.precise&&age<200&&clockOffset!==null;
+ if(sample){$('metadata').textContent=sample.meter+' · '+(sample.bpm>0?Number(sample.bpm.toFixed(2))+' BPM':'— BPM')}
+ if(fresh&&chart){
+  const beats=Number(sample.meter.split('/')[0])||4;
+  const predicted=Math.min(beats,offset(sample)+(predicting?sample.rate*Math.min(age,150)/1000:0));
+  const position={bar:sample.bar,beat:1,division:1,tick:predicted*960};
+  const index=activeIndex(position),event=chart.events[index];
+  if(index!==lastActive){$('current').textContent=event?formatted(event):'—';for(const {slots} of cells.values())for(const s of slots)s.el.classList.toggle('currentSlot',s.id!==null&&s.id===event?.id);lastActive=index}
+  if(lastBar!==sample.bar){cells.get(lastBar)?.cell.classList.remove('active');const current=cells.get(sample.bar);current?.cell.classList.add('active');if($('follow').checked&&current)current.cell.scrollIntoView({block:'center',behavior:'instant'});lastBar=sample.bar}
+  const cell=cells.get(sample.bar);if(cell)cell.line.style.left=(8+(cell.cell.clientWidth-16)*Math.min(1,predicted/beats))+'px';
+  $('position').textContent='第 '+sample.bar+' 小节 · 第 '+Math.min(beats,Math.floor(predicted)+1)+' 拍';
+ }
+ else{if(lastBar)cells.get(lastBar)?.cell.classList.remove('active');lastBar=0;lastActive=null;$('current').textContent='—'}
+ const state=!connected?'连接中断，正在重连…':!sample?.valid?'主机尚未读到 Logic 播放头':clockOffset===null?'正在校准时钟…':!fresh?'位置数据已过期，等待主机…':sample.rate>0?'跟随播放':'停止／定位中';
+ $('status').textContent=state+(clockOffset!==null?' · 网络往返 '+rtt.toFixed(0)+' ms':'')+(sample?' · 读取耗时 '+sample.readMs.toFixed(0)+' ms':'')+(sample&&!sample.precise?' · 当前只能按拍同步':'');
+ window.ChordCueMetronome?.visual();
+ requestAnimationFrame(frame);
+}
+document.addEventListener('visibilitychange',()=>{if(document.hidden){if(!window.ChordCueNative)window.ChordCueMetronome?.disable()}else{clockOffset=null;clockSamples=[];calibrate();lastBar=0;lastActive=null}});
+window.ChordCueSync={snapshot:()=>({sample,chart,clockOffset,connected,lastReceived,rtt,page}),calibrate};
+if(window.ChordCueNative){document.body.classList.add('native');changePage('metronome')}else{connect();if(location.hash==='#metronome')changePage('metronome')}
+calibrate();setTimeout(calibrate,300);setTimeout(calibrate,800);setInterval(calibrate,3000);requestAnimationFrame(frame);
+</script>
+<script src="Metronome.js"></script>
+</html>
