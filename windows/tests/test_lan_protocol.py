@@ -1,0 +1,530 @@
+"""Actual TCP/HTTP/SSE tests; no Qt application or external network required."""
+
+from concurrent.futures import Future
+from dataclasses import replace
+import http.client
+import json
+import socket
+import threading
+import time
+from urllib.parse import urlsplit
+
+import pytest
+
+from chordcue import lan
+from chordcue.lan import LANServer, _Limits, chart_payload, is_local_address
+from chordcue.models import ChartDocument, ChordEvent, KeySection, MusicalKey
+from chordcue.transport import StandaloneTransport
+
+
+def wait_for(predicate, timeout=3):
+    deadline = time.monotonic() + timeout
+    while time.monotonic() < deadline:
+        if predicate():
+            return
+        time.sleep(0.01)
+    assert predicate(), "condition did not become true"
+
+
+def request(url, route="", method="GET"):
+    parsed = urlsplit(url)
+    client = http.client.HTTPConnection(parsed.hostname, parsed.port, timeout=3)
+    try:
+        client.request(method, parsed.path + route)
+        response = client.getresponse()
+        return response.status, dict(response.getheaders()), response.read()
+    finally:
+        client.close()
+
+
+class Stream:
+    def __init__(self, url, receive_buffer=None):
+        parsed = urlsplit(url)
+        self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.socket.settimeout(3)
+        if receive_buffer:
+            self.socket.setsockopt(socket.SOL_SOCKET, socket.SO_RCVBUF, receive_buffer)
+        self.socket.connect((parsed.hostname, parsed.port))
+        self.socket.sendall(f"GET {parsed.path}events HTTP/1.1\r\nHost: localhost\r\n\r\n".encode())
+        self.file = self.socket.makefile("rb")
+        self.status = int(self.file.readline().split()[1])
+        self.headers = {}
+        while (line := self.file.readline()) != b"\r\n":
+            assert line, "connection closed while reading headers"
+            name, value = line.decode().strip().split(":", 1)
+            self.headers[name] = value.strip()
+        if self.status == 200:
+            assert self.block() == b"retry: 1000"
+
+    def block(self):
+        lines = []
+        while True:
+            line = self.file.readline()
+            if not line:
+                raise EOFError("SSE disconnected")
+            if line in (b"\n", b"\r\n"):
+                return b"\n".join(lines)
+            lines.append(line.rstrip(b"\r\n"))
+
+    def event(self):
+        while True:
+            block = self.block()
+            if block.startswith(b"event: "):
+                kind, data = block.split(b"\n", 1)
+                return kind[7:].decode(), json.loads(data[6:])
+
+    def close(self):
+        self.file.close()
+        self.socket.close()
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *args):
+        self.close()
+
+
+@pytest.fixture
+def server():
+    instance = LANServer(host="127.0.0.1", _addresses=lambda: ["127.0.0.1"])
+    links = instance.start()
+    try:
+        yield instance, links[0]
+    finally:
+        instance.stop()
+
+
+def state(revision=1):
+    document = ChartDocument(name="局域网原创测试", bars=32,
+                             events=(ChordEvent(1, 1, 0, "C"),))
+    return (chart_payload(document, (KeySection(1, MusicalKey(0)),), revision),
+            StandaloneTransport(document).snapshot(revision))
+
+
+def raw_socket(url):
+    parsed = urlsplit(url)
+    return socket.create_connection((parsed.hostname, parsed.port), timeout=3)
+
+
+def closed(sock):
+    try:
+        return sock.recv(1) == b""
+    except (ConnectionResetError, ConnectionAbortedError):
+        return True
+
+
+def inspect_peers(server):
+    """Read loop-owned diagnostics on the loop, never race its peer set."""
+    result = Future()
+
+    def inspect():
+        result.set_result([
+            {"paused": peer.paused,
+             "pending": peer._pending,
+             "buffer": peer.transport.get_write_buffer_size()}
+            for peer in server._peers if peer.streaming
+        ])
+
+    server._loop.call_soon_threadsafe(inspect)
+    return result.result(3)
+
+
+def test_chart_shape_sorting_fractional_position_keys_and_project_tail():
+    document = ChartDocument(name="原创练习", bars=37, meter=3,
+                             events=(ChordEvent(2, 5, 1199, "Am"),
+                                     ChordEvent(1, 1, 0, "C")))
+    result = chart_payload(document, [KeySection(5, MusicalKey(9, True)),
+                                      KeySection(1, MusicalKey(0))], 8)
+    assert result["revision"] == 8
+    assert result["bars"] == 37
+    assert result["meter"] == "3/4"
+    assert result["events"][0]["number"] == "1"
+    assert result["events"][1] == {
+        "id": 2, "bar": 5, "beat": 2, "division": 1, "tick": 239,
+        "symbol": "Am", "number": "6m",
+    }
+    assert result["sections"] == [
+        {"bar": 1, "root": 0, "minor": False, "family": 0},
+        {"bar": 5, "root": 9, "minor": True, "family": 0},
+    ]
+    with pytest.raises(ValueError):
+        chart_payload(document, [], True)
+    with pytest.raises(ValueError):
+        chart_payload(document, [KeySection(38, MusicalKey(0))])
+
+
+@pytest.mark.parametrize("address", [
+    "10.0.0.1", "172.16.0.1", "172.31.255.255", "192.168.1.1", "127.42.1.1",
+    "169.254.1.1", "::1", "fe80::1%12", "febf::1234", "fc00::1", "fdff::1",
+    "::ffff:192.168.1.1", "::ffff:127.0.0.1",
+])
+def test_explicit_private_ranges(address):
+    assert is_local_address(address)
+
+
+@pytest.mark.parametrize("address", [
+    "0.0.0.0", "100.64.0.1", "192.0.0.1", "192.0.2.1", "198.51.100.1",
+    "203.0.113.1", "8.8.8.8", "172.15.255.255", "172.32.0.1", "224.0.0.1",
+    "240.0.0.1", "255.255.255.255", "::", "2001:db8::1", "fec0::1", "ff02::1",
+    "::ffff:8.8.8.8", "not-an-address", "10.1.1.999",
+])
+def test_nonprivate_and_reserved_ranges_rejected(address):
+    assert not is_local_address(address)
+
+
+def test_constructor_and_disabled_publish_do_not_open_sockets(monkeypatch):
+    def forbidden(*args, **kwargs):
+        pytest.fail("network activity before start")
+
+    monkeypatch.setattr(socket, "socket", forbidden)
+    instance = LANServer()
+    instance.publish(*state())
+    instance.stop()
+    assert not instance.enabled
+
+
+def test_http_resources_clock_and_security_headers(server):
+    instance, url = server
+    assert instance.start() == [url]
+    for route, content_type, expected in [
+        ("", "text/html; charset=utf-8", b"ChordCue"),
+        ("Metronome.js", "text/javascript; charset=utf-8", b"ChordCueMetronome"),
+    ]:
+        status, headers, body = request(url, route)
+        assert status == 200 and expected in body
+        assert headers["Content-Type"] == content_type
+        assert headers["Cache-Control"] == "no-store"
+        assert headers["X-Content-Type-Options"] == "nosniff"
+        assert headers["Referrer-Policy"] == "no-referrer"
+        assert "frame-ancestors 'none'" in headers["Content-Security-Policy"]
+        assert "Access-Control-Allow-Origin" not in headers
+        assert headers["Connection"] == "close"
+    before = time.perf_counter_ns() / 1e6
+    status, headers, body = request(url, "clock?cache=1")
+    after = time.perf_counter_ns() / 1e6
+    value = json.loads(body)
+    assert status == 200 and headers["Content-Type"] == "application/json"
+    assert before <= value["received"] <= value["sent"] <= after
+    assert len(value["session"]) == 32
+
+
+def test_wrong_tokens_unknown_routes_and_readonly_methods(server):
+    _, url = server
+    wrong = url.replace("/join/", "/join/wrong")
+    for route in ("", "events", "clock", "Metronome.js"):
+        assert request(wrong, route)[0] == 404
+    assert request(url, "../clock")[0] == 404
+    assert request(url, "unknown")[0] == 404
+    for method in ("POST", "PUT", "DELETE", "OPTIONS", "HEAD"):
+        status, headers, body = request(url, method=method)
+        assert status == 405 and headers["Allow"] == "GET" and not body
+
+
+@pytest.mark.parametrize("request_template", [
+    "GET {path}clock HTTP/2.0\r\nHost: test\r\n\r\n",
+    "GET {path}clock HTTP/1.1\r\n\r\n",
+    "GET {path}clock HTTP/1.1\r\nHost: test\r\nHost: duplicate\r\n\r\n",
+    "GET {path}clock HTTP/1.1\r\nHost: test\r\nContent-Length: 1\r\n\r\nx",
+    "GET {path}clock HTTP/1.1\r\nHost: test\r\nTransfer-Encoding: chunked\r\n\r\n",
+    "GET {path}clock HTTP/1.1\r\nHost: test\r\nContent-Length: 0\r\nContent-Length: 1\r\n\r\n",
+    "GET {path}clock HTTP/1.1\r\nHost: test\r\n folded: value\r\n\r\n",
+    "GET http://localhost{path}clock HTTP/1.1\r\nHost: test\r\n\r\n",
+    "GET /{path}clock HTTP/1.1\r\nHost: test\r\n\r\n",
+    "GET {path}clock#fragment HTTP/1.1\r\nHost: test\r\n\r\n",
+    "GET {path}clock?x=%zz HTTP/1.1\r\nHost: test\r\n\r\n",
+    "GET {path}clock?x=\x00 HTTP/1.1\r\nHost: test\r\n\r\n",
+    "GET {path}clock HTTP/1.1\r\nHost: test\r\nX-Bad: \x7f\r\n\r\n",
+    "GET {path}clock HTTP/1.1\r\nHost: test\r\n\r\nGET {path}events HTTP/1.1\r\nHost: test\r\n\r\n",
+])
+def test_malformed_and_ambiguous_requests_rejected(server, request_template):
+    instance, url = server
+    with raw_socket(url) as client:
+        client.sendall(request_template.format(path=urlsplit(url).path).encode())
+        assert client.recv(4096).startswith(b"HTTP/1.1 400")
+    assert request(url, "clock")[0] == 200
+    assert instance.enabled
+
+
+def test_sse_initial_reconnect_latest_snapshot_and_revision_order(server):
+    instance, url = server
+    chart, transport = state()
+    instance.publish(chart, transport)
+    chart["name"] = "caller mutated after publication"
+    transport["bar"] = 99
+    with Stream(url) as stream:
+        assert stream.headers["Content-Type"] == "text/event-stream"
+        assert stream.headers["Referrer-Policy"] == "no-referrer"
+        kind, initial_chart = stream.event()
+        assert kind == "chart" and initial_chart["name"] == "局域网原创测试"
+        assert stream.event()[1]["bar"] == 1
+        chart, transport = state()
+        transport["bar"] = 2
+        instance.publish(chart, transport)
+        assert stream.event() == ("transport", transport)
+        chart, transport = state(2)
+        chart["meter"] = transport["meter"] = "3/4"
+        instance.publish(chart, transport)
+        assert stream.event() == ("chart", chart)
+        assert stream.event() == ("transport", transport)
+    wait_for(lambda: instance.viewers == 0)
+    with Stream(url) as reconnect:
+        assert reconnect.event() == ("chart", chart)
+        assert reconnect.event() == ("transport", transport)
+    wait_for(lambda: instance.connections == 0)
+
+
+def test_sse_heartbeat_does_not_replace_pending_state():
+    instance = LANServer(host="127.0.0.1", _addresses=lambda: ["127.0.0.1"],
+                         _limits=replace(_Limits(), heartbeat_seconds=0.03))
+    url = instance.start()[0]
+    try:
+        with Stream(url) as stream:
+            assert stream.block() == b": heartbeat"
+            instance.publish(*state())
+            assert stream.event()[0] == "chart"
+            assert stream.event()[0] == "transport"
+    finally:
+        instance.stop()
+
+
+def test_sse_rejects_followup_request(server):
+    instance, url = server
+    with Stream(url) as stream:
+        stream.socket.sendall(b"GET / HTTP/1.1\r\nHost: test\r\n\r\n")
+        with pytest.raises((EOFError, ConnectionResetError, ConnectionAbortedError)):
+            stream.block()
+    wait_for(lambda: instance.connections == 0)
+
+
+def test_publish_rejects_mismatch_nonfinite_and_oversize_payload(server):
+    instance, _ = server
+    chart, transport = state()
+    with pytest.raises(ValueError, match="revisions must match"):
+        instance.publish(chart, {**transport, "revision": 2})
+    with pytest.raises(ValueError):
+        instance.publish(chart, {**transport, "sampleTime": float("nan")})
+    with pytest.raises(ValueError, match="payload exceeds"):
+        instance.publish({**chart, "name": "x" * (_Limits().chart_bytes + 1)}, transport)
+    with pytest.raises(ValueError, match="payload exceeds"):
+        instance.publish(chart, {**transport, "extra": "x" * (_Limits().transport_bytes + 1)})
+
+
+def test_exact_total_header_limit(server):
+    _, url = server
+    prefix = f"GET {urlsplit(url).path}clock HTTP/1.1\r\nHost: test\r\nX-Pad: ".encode()
+    suffix = b"\r\n\r\n"
+    with raw_socket(url) as client:
+        client.sendall(prefix + b"a" * (8192 - len(prefix) - len(suffix)) + suffix)
+        assert client.recv(4096).startswith(b"HTTP/1.1 200")
+    with raw_socket(url) as client:
+        client.sendall(prefix + b"a" * (8193 - len(prefix) - len(suffix)) + suffix)
+        assert closed(client)
+
+
+def test_slow_request_timeout_is_total_not_reset_per_fragment():
+    instance = LANServer(host="127.0.0.1", _addresses=lambda: ["127.0.0.1"],
+                         _limits=replace(_Limits(), request_seconds=0.2))
+    url = instance.start()[0]
+    try:
+        with raw_socket(url) as client:
+            client.sendall(b"GET /")
+            time.sleep(0.1)
+            client.sendall(b"join/")
+            started = time.monotonic()
+            assert closed(client)
+            assert time.monotonic() - started < 0.18
+        wait_for(lambda: instance.connections == 0)
+    finally:
+        instance.stop()
+
+
+def test_default_connection_limit_includes_incomplete_requests(server):
+    instance, url = server
+    clients = []
+    try:
+        for _ in range(40):
+            clients.append(raw_socket(url))
+        wait_for(lambda: instance.connections == 40)
+        with raw_socket(url) as overflow:
+            assert closed(overflow)
+        clients.pop().close()
+        wait_for(lambda: instance.connections == 39)
+        assert request(url, "clock")[0] == 200
+    finally:
+        for client in clients:
+            client.close()
+
+
+def test_default_sse_limit_and_slot_recovery(server):
+    instance, url = server
+    clients = []
+    try:
+        for _ in range(24):
+            clients.append(Stream(url))
+        assert instance.viewers == 24
+        with Stream(url) as overflow:
+            assert overflow.status == 503
+        assert request(url, "clock")[0] == 200
+        clients.pop().close()
+        wait_for(lambda: instance.viewers == 23)
+        with Stream(url) as replacement:
+            assert replacement.status == 200
+    finally:
+        for client in clients:
+            client.close()
+
+
+def test_peer_filter_checked_before_http_parsing():
+    seen = []
+
+    def reject(address):
+        seen.append(address)
+        return is_local_address("198.51.100.1")
+
+    instance = LANServer(host="127.0.0.1", _addresses=lambda: ["127.0.0.1"],
+                         _peer_filter=reject)
+    url = instance.start()[0]
+    try:
+        with raw_socket(url) as client:
+            assert closed(client)
+        assert seen == ["127.0.0.1"]
+        assert instance.connections == 0
+    finally:
+        instance.stop()
+
+
+def test_slow_client_is_bounded_coalesces_latest_and_disconnects():
+    limits = replace(_Limits(), write_high=1024, socket_send_bytes=4096,
+                     write_seconds=1.2, heartbeat_seconds=0.05)
+    instance = LANServer(host="127.0.0.1", _addresses=lambda: ["127.0.0.1"], _limits=limits)
+    url = instance.start()[0]
+    try:
+        with Stream(url, receive_buffer=1024):
+            chart, transport = state()
+            chart["name"] = "x" * 600_000
+            # Windows loopback can absorb several writes despite SO_RCVBUF;
+            # fill the real TCP window before testing persistent backpressure.
+            for revision in range(1, 101):
+                instance.publish({**chart, "revision": revision},
+                                 {**transport, "revision": revision})
+                peers = inspect_peers(instance)
+                if peers and peers[0]["paused"]:
+                    time.sleep(0.03)
+                    peers = inspect_peers(instance)
+                    if peers and peers[0]["paused"]:
+                        break
+            assert peers and peers[0]["paused"]
+            for revision in range(101, 121):
+                instance.publish({**chart, "revision": revision},
+                                 {**transport, "revision": revision})
+
+            def has_latest():
+                peers = inspect_peers(instance)
+                return bool(peers and peers[0]["pending"]
+                            and b'"revision":120,' in peers[0]["pending"].transport)
+
+            wait_for(has_latest)
+            peer = inspect_peers(instance)[0]
+            assert peer["paused"]
+            assert peer["buffer"] <= 2 * 602_000 + limits.write_high
+            # A stalled peer does not block the clock route or a healthy SSE viewer.
+            assert request(url, "clock")[0] == 200
+            instance.publish(*state(121))
+            with Stream(url) as fast:
+                assert fast.event()[1]["revision"] == 121
+                assert fast.event()[1]["revision"] == 121
+            wait_for(lambda: instance.viewers == 0)
+    finally:
+        instance.stop()
+
+
+def test_new_session_shutdown_disconnects_all_and_releases_thread(server):
+    instance, url = server
+    session = json.loads(request(url, "clock")[2])["session"]
+    pending = raw_socket(url)
+    stream = Stream(url)
+    thread = instance._thread
+    try:
+        instance.stop()
+        assert not instance.enabled and not thread.is_alive()
+        assert instance.connections == instance.viewers == 0
+        assert closed(pending)
+        with pytest.raises((EOFError, ConnectionResetError, ConnectionAbortedError)):
+            stream.block()
+        instance.stop()
+        with pytest.raises(OSError):
+            raw_socket(url)
+        restarted = instance.start()[0]
+        assert urlsplit(restarted).path != urlsplit(url).path
+        assert json.loads(request(restarted, "clock")[2])["session"] != session
+        assert request(restarted.replace(urlsplit(restarted).path, urlsplit(url).path), "clock")[0] == 404
+        # No chart/state from the previous session is sent on a fresh start.
+        assert instance._current is None
+    finally:
+        pending.close()
+        stream.close()
+
+
+def test_bind_failure_propagates_without_thread_leak():
+    with socket.socket() as occupied:
+        occupied.bind(("127.0.0.1", 0))
+        occupied.listen()
+        instance = LANServer(host="127.0.0.1", port=occupied.getsockname()[1],
+                             _addresses=lambda: ["127.0.0.1"])
+        before = {thread.ident for thread in threading.enumerate()}
+        with pytest.raises(RuntimeError, match="could not start"):
+            instance.start()
+        assert not instance.enabled and instance._thread is None
+        assert {thread.ident for thread in threading.enumerate()} == before
+        instance.stop()
+
+
+def test_missing_assets_fail_before_listener_creation(monkeypatch, tmp_path):
+    monkeypatch.setattr(lan, "resource_path", lambda name: tmp_path / name)
+    instance = LANServer()
+    with pytest.raises(FileNotFoundError):
+        instance.start()
+    assert not instance.enabled and instance._thread is None
+
+
+def test_default_listener_accepts_ipv4_and_ipv6_loopback_when_supported():
+    addresses = ["127.0.0.1", "::1"] if socket.has_ipv6 else ["127.0.0.1"]
+    instance = LANServer(_addresses=lambda: addresses)
+    urls = instance.start()
+    try:
+        for url in urls:
+            assert request(url, "clock")[0] == 200
+        assert any("127.0.0.1" in url for url in urls)
+    finally:
+        instance.stop()
+
+
+def test_runtime_failure_reaches_gui_caller_and_still_releases_thread():
+    instance = LANServer(host="127.0.0.1", _addresses=lambda: ["127.0.0.1"])
+    url = instance.start()[0]
+    thread = instance._thread
+
+    def fail():
+        raise RuntimeError("injected event-loop failure")
+
+    instance._loop.call_soon_threadsafe(fail)
+    wait_for(lambda: not instance.enabled)
+    with pytest.raises(RuntimeError, match="injected event-loop failure"):
+        instance.publish(*state())
+    with pytest.raises(RuntimeError, match="injected event-loop failure"):
+        instance.stop()
+    assert not thread.is_alive() and instance._thread is None
+    with pytest.raises(OSError):
+        raw_socket(url)
+    # The acknowledged failure must not prevent an explicit new session.
+    restarted = instance.start()[0]
+    try:
+        assert request(restarted, "clock")[0] == 200
+    finally:
+        instance.stop()
+
+
+@pytest.mark.skipif(lan.sys.platform != "win32", reason="Windows adapter enumeration")
+def test_windows_adapter_enumeration_returns_only_explicit_lan_addresses():
+    addresses = lan.local_addresses()
+    assert addresses and all(is_local_address(address) for address in addresses)
