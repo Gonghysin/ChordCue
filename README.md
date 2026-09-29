@@ -18,6 +18,30 @@ ChordCue 是独立的 macOS 应用。读取 Logic Pro 已有和弦轨与播放�
 - 同步经典节拍器／鼓机，与和弦谱同时使用。八分音符模式下 4/4 有 8 根三格柱，0–3 格表示静音、轻拍、正常、重拍。
 - 窗口缩放、置顶开关；不改变 Logic 工程、伴奏音高或音频。
 
+## 界面演示
+
+以下为真实应用界面截图，使用原创演示和弦和固定播放位置，不连接 Logic。截图展示界面功能，不用于证明同步精度。
+
+### 和弦谱
+
+按小节排版；一个小节内的和弦按起拍分隔，当前小节及和弦以蓝色突出显示。
+
+![ChordCue 和弦谱：小节网格、当前和弦与工程信息](docs/images/chord-chart.jpg)
+
+### 级数谱
+
+同一谱面切换为级数，保留和弦性质与转位，并在调性段落标注 `1=C` 等关系大调信息。
+
+![ChordCue 级数谱：调性标记与当前级数和弦](docs/images/number-chart.jpg)
+
+### 节拍器与重音设置
+
+4/4 拍的八分音符模式显示 8 根柱子；0、1、2、3 格分别表示静音、轻拍、正常和重拍。音色、音量和重音可独立设置，开启后可以切回和弦谱同时使用。
+
+![ChordCue 节拍器：八分音符的八根柱子与四档重音](docs/images/metronome.jpg)
+
+截图来源与演示入口见 [截图说明](docs/images/README.md)。
+
 ## 下载应用
 
 在 [v0.1.0 Release](https://github.com/Gonghysin/ChordCue/releases/tag/v0.1.0) 下载 `ChordCue-v0.1.0-macos-arm64.zip`，解压后将 `ChordCue.app` 移到“应用程序”。适用于 macOS 13+ 的 Apple Silicon Mac；下载版运行不需要 Xcode 或 Homebrew。
