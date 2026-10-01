@@ -9,8 +9,9 @@ Implementation repairs were made by the integration and desktop owners.
 
 **Final source-review status:** all reproduced findings below are repaired and
 the independent full suite is green. No unresolved source blocker was found in
-the reviewed scope. The platform, installer and real-device gates listed below
-remain unverified; this is not release or PR approval.
+the reviewed scope. Subsequent CI and artifact evidence is recorded below;
+clean consumer-Windows installation and real-device gates remain unverified.
+This is not release or PR approval.
 
 ## Environment and scope
 
@@ -73,7 +74,8 @@ the reload finding and is superseded by the result above.
 
 The eight skips are six actual Swift-oracle comparisons (macOS/Swift execution
 not available here) and two final frozen/MSI artifact checks (artifact paths were
-not supplied for this run).
+not supplied for this run). This preserves that run's history; subsequent CI and
+artifact evidence closes those evidence gaps as described below.
 
 ## Static integration conclusions
 
@@ -104,19 +106,64 @@ not supplied for this run).
 - No implementation change or reviewed source result grants release/PR gate
   approval by itself.
 
+## Post-review evidence — 2026-10-01
+
+A7 independently checked the public GitHub run and job-step results for commit
+`ca468151485e6479459d1d065e8b4864f585c723`, and read the local frozen smoke and
+final MSI evidence. No full test suite was rerun during this documentation-only
+update.
+
+- [CI run 36850683918](https://github.com/JoeyZhuoer/ChordCue/actions/runs/36850683918)
+  completed successfully at `2026-10-01T10:46:34Z`; its head SHA matches the
+  commit above. Both platform jobs concluded `success`.
+- The [macOS job](https://github.com/JoeyZhuoer/ChordCue/actions/runs/36850683918/job/110331329670)
+  successfully built the original application, compiled the authoritative Swift
+  oracle, and compared the Windows core with actual Swift results. The former
+  missing macOS/Swift evidence is therefore **closed by CI**; this does not
+  establish Logic Pro or physical audio behavior.
+- The [Windows job](https://github.com/JoeyZhuoer/ChordCue/actions/runs/36850683918/job/110331329389)
+  successfully built the frozen application and MSI, checked final payloads and
+  tables, ran the actual frozen GUI/WebEngine/PDF smoke, and passed the final
+  installer pytest audit. The former missing final-build/artifact evidence is
+  therefore **closed for build, smoke and static artifact checks**. A hosted
+  Windows Server runner does not establish consumer-Windows installation
+  lifecycle behavior.
+- Local `windows/smoke-results/smoke.json` and
+  `windows/.diagnostics/frozen-isolated/smoke.json` both record `passed: true`,
+  `frozen: true`, PDF creation and window capture on Windows build 19045. Both
+  explicitly record physical audio and cross-device LAN as unverified.
+- A7 recomputed the retained local candidate identity: `0.2.0`,
+  `windows/dist/ChordCue-0.2.0-win-x64.msi`, **141545472 bytes**, SHA-256
+  `0fd80c9b0ac5c75966d2060f3f9d7452ef4386b1063626b4fb33215121c69510`.
+  Read-only `verify_msi(read_msi(...))` and `verify_tree(...)` passed; actual MSI
+  tables exactly match `windows/dist/msi-tables.json`, with **412 File rows**.
+  A6's separate completed audit also confirmed all 412 file paths/sizes against
+  the frozen tree and checked license hashes, with no findings. This is the
+  local candidate's hash; no byte-identity claim is made for the independently
+  rebuilt CI MSI.
+
+The user confirmed that additional real-device resources are not currently
+available and requested retention of the candidate package with pending
+acceptance items. **Keep the candidate and evidence; do not create a PR.**
+
 ## Remaining gate evidence
 
-The following remain **BLOCKED / NOT ESTABLISHED** by this independent review:
+After the post-review evidence above, the following remain
+**BLOCKED / NOT ESTABLISHED**:
 
-1. Actual macOS original-app build and execution of the Swift oracle.
-2. Final frozen application and MSI table/payload verification after final fixes.
-3. Clean Windows 10 22H2 and Windows 11 x64 install, standard-user runtime,
+1. Clean Windows 10 22H2 and Windows 11 x64 install, standard-user runtime,
    repair, upgrade, failed-upgrade rollback, downgrade rejection and uninstall.
-4. Real LAN devices/browsers, network changes and reconnection on the target
+   Include a second account, absence of Python, configuration isolation and
+   preservation of user data. Neither developer-host smoke nor CI replaces this.
+2. Real LAN devices/browsers, network changes and reconnection on the target
    network. Loopback protocol tests cannot substitute for those devices.
-5. At least the required 10-minute actual-output audio run, output-device changes,
-   lock/suspend behavior and measured cross-device timing. Fake/offline synthesis
-   and Qt bridge tests cannot establish acoustic performance.
+3. The required actual-output audio runs: 10 minutes minimized and 10 minutes
+   switching tabs, plus output-device changes, lock/sleep/wake behavior and
+   measured cross-device timing. Fake/offline synthesis and Qt bridge tests
+   cannot establish acoustic performance.
+
+The full outstanding release checklist, including final corresponding-source
+and licensing review, is maintained in [VERIFICATION.md](VERIFICATION.md).
 
 Do not create or describe a PR as gate-approved until the agreed real-device and
 platform evidence is complete. Keep unsupported or unmeasured results explicit.
