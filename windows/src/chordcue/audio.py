@@ -145,6 +145,7 @@ class AudioPanel(QWidget):
         self._requested_enabled = False
         self._pending_enabled: bool | None = None
         self._command_sequence = 0
+        self._document_epoch = 0
         self._pending: dict | None = None
         self._sending = False
         self._ready_attempts = 0
@@ -224,11 +225,11 @@ class AudioPanel(QWidget):
             return
         self._page.runJavaScript(
             "!!(window.ChordCueBridgeReady && window.ChordCueMetronome && window.acceptNativeState)",
-            self._confirmed_ready,
+            lambda result, epoch=self._document_epoch: self._confirmed_ready(result, epoch),
         )
 
-    def _confirmed_ready(self, successful) -> None:
-        if self._closed:
+    def _confirmed_ready(self, successful, epoch: int) -> None:
+        if self._closed or epoch != self._document_epoch:
             return
         self.ready = bool(successful)
         if self.ready:
@@ -236,16 +237,23 @@ class AudioPanel(QWidget):
             self._flush()
         elif self._ready_attempts < 50:
             self._ready_attempts += 1
-            QTimer.singleShot(100, lambda: self._loaded(True))
+            QTimer.singleShot(100, lambda: self._loaded(True) if epoch == self._document_epoch else None)
         else:
             self.ready_changed.emit(False)
 
     def _renderer_stopped(self, *_args) -> None:
+        if self._closed:
+            return
+        self._document_epoch += 1
+        self._command_sequence += 1
         self.ready = False
         self.ready_changed.emit(False)
-        self._pending_enabled = None
+        # Every fresh renderer starts disarmed and receives the current command
+        # sequence before its own button notifications can change native state.
+        self._pending_enabled = False
         self._requested_enabled = False
         self._sending = False
+        self._page.setAudioMuted(True)
         if self._enabled:
             self._enabled = False
             self.enabled_changed.emit(False)
@@ -284,9 +292,12 @@ class AudioPanel(QWidget):
             calls.append("window.ChordCueBridge.applyAudioCommand(" + json.dumps(enabled)
                          + "," + str(self._command_sequence) + ");")
         self._sending = True
-        self._page.runJavaScript("\n".join(calls), self._sent)
+        self._page.runJavaScript("\n".join(calls),
+                                 lambda result, epoch=self._document_epoch: self._sent(result, epoch))
 
-    def _sent(self, _result) -> None:
+    def _sent(self, _result, epoch: int) -> None:
+        if self._closed or epoch != self._document_epoch:
+            return
         self._sending = False
         self._flush()
 
