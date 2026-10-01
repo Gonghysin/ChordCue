@@ -1,3 +1,5 @@
 # Archived notice hashes must match on Windows and macOS checkouts.
 licenses/*.txt text eol=lf
 licenses/*manifest.json text eol=lf
+# Preserve upstream license whitespace and the archived content hashes.
+licenses/*-NOTICES.txt -whitespace

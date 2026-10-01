@@ -29,6 +29,7 @@ windows/*.log
 windows/.diagnostics/
 windows/*.egg-info/
 windows/src/*.egg-info/
+*.egg-info/
 __pycache__/
 .pytest_cache/
 .mypy_cache/

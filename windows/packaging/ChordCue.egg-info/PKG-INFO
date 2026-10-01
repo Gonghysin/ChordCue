@@ -1,9 +1,0 @@
-Metadata-Version: 2.4
-Name: ChordCue
-Version: 0.2.0
-Summary: Standalone chord chart and metronome
-Home-page: https://github.com/Gonghysin/ChordCue
-Author: ChordCue contributors
-Dynamic: author
-Dynamic: home-page
-Dynamic: summary
