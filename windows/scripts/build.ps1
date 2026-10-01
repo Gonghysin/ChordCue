@@ -37,7 +37,10 @@ try {
         if ($Packages.Count -ne 1) { throw 'Expected exactly one MSI in dist. Use a clean build workspace.' }
         & $Python (Join-Path $WindowsRoot 'packaging/verify_artifacts.py') --msi $Packages[0].FullName --report (Join-Path $DistRoot 'msi-tables.json')
         if ($LASTEXITCODE) { throw 'Final MSI table audit failed' }
-        Get-FileHash -Algorithm SHA256 -LiteralPath $Packages[0].FullName | Format-List
+        $PackageHash = Get-FileHash -Algorithm SHA256 -LiteralPath $Packages[0].FullName
+        ('{0}  {1}' -f $PackageHash.Hash.ToLowerInvariant(), $Packages[0].Name) |
+            Set-Content -LiteralPath ($Packages[0].FullName + '.sha256') -Encoding ascii
+        $PackageHash | Format-List
     }
 } finally {
     $env:CHORDCUE_BUILD_PROTOTYPE = $PreviousPrototype

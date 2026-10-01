@@ -12,7 +12,8 @@ if (-not $OutputDirectory) { $OutputDirectory = Join-Path $WindowsRoot 'smoke-re
 $OutputDirectory = [IO.Path]::GetFullPath($OutputDirectory)
 New-Item -ItemType Directory -Force -Path $OutputDirectory | Out-Null
 $StartedAt = Get-Date
-$Arguments = if ($Prototype) { @('"' + $OutputDirectory + '"') } else { @('--smoke-test', '"' + $OutputDirectory + '"') }
+$QuotedOutput = '"{0}"' -f $OutputDirectory
+$Arguments = if ($Prototype) { @($QuotedOutput) } else { @('--smoke-test', $QuotedOutput) }
 $Process = Start-Process -FilePath $Exe -ArgumentList $Arguments -WindowStyle Hidden -PassThru -RedirectStandardOutput (Join-Path $OutputDirectory 'stdout.log') -RedirectStandardError (Join-Path $OutputDirectory 'stderr.log')
 if (-not $Process.WaitForExit(45000)) {
     Stop-Process -Id $Process.Id -Force

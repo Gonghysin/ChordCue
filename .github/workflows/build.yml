@@ -65,6 +65,7 @@ jobs:
           name: ChordCue-windows-x64
           path: |
             windows/dist/*.msi
+            windows/dist/*.sha256
             windows/dist/msi-tables.json
             windows/smoke-results/
             windows/test-results.xml
