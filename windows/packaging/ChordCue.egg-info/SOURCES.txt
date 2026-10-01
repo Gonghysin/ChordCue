@@ -1,0 +1,6 @@
+README.md
+setup.py
+ChordCue.egg-info/PKG-INFO
+ChordCue.egg-info/SOURCES.txt
+ChordCue.egg-info/dependency_links.txt
+ChordCue.egg-info/top_level.txt

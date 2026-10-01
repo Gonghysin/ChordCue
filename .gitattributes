@@ -1,0 +1,3 @@
+# Archived notice hashes must match on Windows and macOS checkouts.
+licenses/*.txt text eol=lf
+licenses/*manifest.json text eol=lf

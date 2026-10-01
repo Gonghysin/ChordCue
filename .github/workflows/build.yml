@@ -1,0 +1,107 @@
+name: Build and test
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: build-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  windows:
+    runs-on: windows-2022
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+          architecture: x64
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install locked build environment
+        shell: pwsh
+        run: |
+          python -m venv windows/.venv
+          windows/.venv/Scripts/python -m pip install --require-hashes -r windows/requirements.lock
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          windows/.venv/Scripts/python -m pip install --no-deps --no-build-isolation -e windows
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+      - name: Python and JavaScript checks
+        shell: pwsh
+        run: |
+          windows/.venv/Scripts/python -m ruff check windows/src windows/tests windows/packaging windows/scripts
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          windows/.venv/Scripts/python -m mypy --config-file windows/pyproject.toml windows/src/chordcue
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          windows/.venv/Scripts/python -m pytest -q windows/tests --junitxml=windows/test-results.xml
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          Get-ChildItem Resources -Filter '*.js' | ForEach-Object {
+            node --check $_.FullName
+            if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          }
+      - name: Build frozen application and MSI; inspect final payload and tables
+        shell: pwsh
+        run: windows/scripts/build.ps1
+      - name: Frozen application smoke (window, WebEngine, PDF)
+        shell: pwsh
+        run: windows/scripts/smoke.ps1
+      - name: Audit final installer through pytest
+        shell: pwsh
+        run: |
+          $env:CHORDCUE_MSI = (Get-ChildItem windows/dist/*.msi).FullName
+          $env:CHORDCUE_FROZEN_DIR = (Resolve-Path windows/build/exe).Path
+          windows/.venv/Scripts/python -m pytest -q windows/tests/test_packaging_artifacts.py
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+      - name: Upload MSI and diagnostic evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ChordCue-windows-x64
+          path: |
+            windows/dist/*.msi
+            windows/dist/msi-tables.json
+            windows/smoke-results/
+            windows/test-results.xml
+          if-no-files-found: warn
+          retention-days: 14
+
+  macos:
+    runs-on: macos-14
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original macOS build and JavaScript syntax
+        run: |
+          bash -n scripts/build.sh scripts/install.sh
+          for file in Resources/*.js; do node --check "$file"; done
+          bash scripts/build.sh
+      - name: Compile authoritative Swift oracle
+        run: >-
+          xcrun swiftc -parse-as-library Sources/LogicReader.swift Sources/ChordTheory.swift
+          windows/tests/fixtures/TheoryOracle.swift -o /tmp/chordcue-theory-oracle
+      - name: Compare Windows core with actual Swift results
+        env:
+          CHORDCUE_SWIFT_ORACLE: /tmp/chordcue-theory-oracle
+          PYTHONPATH: windows/src
+        run: |
+          python -m pip install --require-hashes -r windows/requirements.lock
+          python -m pytest -q windows/tests/test_core_swift_oracle.py
+      - name: Archive macOS app preserving executable permissions
+        run: ditto -c -k --sequesterRsrc --keepParent build/ChordCue.app build/ChordCue-macos.zip
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ChordCue-macos
+          path: build/ChordCue-macos.zip
+          retention-days: 14
