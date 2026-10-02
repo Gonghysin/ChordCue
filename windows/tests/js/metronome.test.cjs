@@ -100,6 +100,10 @@ function harness({legacy = false, html = false, native = true, audio = {}} = {})
       if(native)window.acceptNativeClock(data, clockRequests.at(-1));
       else {clockReply(data);return this.flush();}
     },
+    replyClock(data) {
+      if(native)window.acceptNativeClock(data,clockRequests.at(-1));
+      else {clockReply(data);return this.flush();}
+    },
     async flush() { for (let i=0;i<8;i++) await Promise.resolve(); },
     get audioContext() { return audioContext; },
     get sample() { return sample; },
@@ -278,6 +282,30 @@ test('100 natural loops have no duplicate, missed or cancelled scheduled onsets'
   assert.equal(h.cancels.length, 0);
 });
 
+for(const native of [true,false])test(`${native?'native bridge':'LAN HTTP'} congested bootstrap waits for reliable mapping then schedules 100 continuous loops`,async()=>{
+  const h=harness({html:true,native}),origin=3e8;
+  await h.enable();h.time(256);
+  await h.replyClock({received:origin,sent:origin,session:'first'});
+  h.tick(256);assert.equal(h.starts.length,0);
+  assert.equal(h.window.ChordCueSync.snapshot().clockOffset,null);
+  assert.equal(h.window.ChordCueSync.snapshot().clockDiagnostics.status,'calibrating');
+  h.time(800);h.window.ChordCueSync.calibrate();h.time(806);
+  await h.replyClock({received:origin+803,sent:origin+803,session:'first'});
+  assert.equal(h.window.ChordCueSync.snapshot().clockOffset,origin);
+  const options={rate:5,loop:[4,8],initial:4,start:origin+1206};
+  for(let now=806;now<=81106;now+=25){
+    h.time(now);
+    if(now>806&&(now-806)%3000===0)h.window.ChordCueSync.calibrate();
+    if(now>831&&(now-806)%3000===25)await h.clock('first',origin);
+    h.receive(sampleAt(now+origin,options));h.tick(now,false);
+    assert.equal(h.window.ChordCueSync.snapshot().clockDiagnostics.status,'valid');
+  }
+  const onsets=h.starts.map(s=>s.at);
+  assert.equal(onsets.length,401);assert.equal(new Set(onsets).size,401);
+  onsets.forEach((at,i)=>assert.ok(Math.abs(at-(2.206+i*.2))<1e-6));
+  assert.equal(h.cancels.length,0);assert.equal(h.window.ChordCueMetronome.diagnostics().late,0);
+});
+
 for(const native of [true,false])test(`${native?'native bridge':'LAN HTTP'} calibration probes and bounded drift preserve 100 audible loops`,async()=>{
   const h=harness({html:true,native}),origin=300000000;
   await h.clock('first',origin);await h.enable();
@@ -339,6 +367,8 @@ test('page hiding still cancels queued audio while a refresh probe is pending',a
 
 test('missing initial calibration and a failed background refresh keep factual audio gates',async()=>{
   const h=harness({html:true});await h.enable();h.tick(300);assert.equal(h.starts.length,0);
+  // The outstanding initial request took 300 ms: its map remains unknown.
+  h.clock('first');assert.equal(h.window.ChordCueSync.snapshot().clockOffset,null);
   h.clock('first');h.tick(325);assert.equal(h.starts.length,1);
   // Transport stays live but no clock response is accepted: no indefinite extension.
   for(let now=350;now<=10325;now+=25)h.tick(now,{loop:[0,4]});

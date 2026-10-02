@@ -88,10 +88,47 @@ Manual native checks after compilation:
     their device-output telemetry remains null. Verify that valid output
     timestamps still drive scheduling and that manual advance remains separate.
 
-Current validation limitation: these native commands and manual checks have
-not been run in the Windows development workspace. No Swift compiler or Mac
-runtime is available here. Shared JavaScript/Python checks do not establish
-native Swift compilation, WebKit behavior or LAN socket lifecycle success.
+Current validation status: the native arm64 build and automated Mac checks
+passed on `macos-14` in the staged CI run below. The Windows development
+workspace still has no Swift compiler or Mac runtime. Native UI interaction,
+WebKit/LAN socket lifecycle, Logic integration, physical audio synchronization
+and PDF visual QA remain unverified; compilation and automated core checks do
+not establish those results. Intel Mac builds have not been accepted.
+
+## Staged 0.3.5 / build 8 native CI evidence (2026-10-02)
+
+The second fork CI [run 37023991926](https://github.com/JoeyZhuoer/ChordCue/actions/runs/37023991926)
+tested commit `958ebef220a689c763305edf08027ca0e925375f`. Its
+[macos job 110893864457](https://github.com/JoeyZhuoer/ChordCue/actions/runs/37023991926/job/110893864457)
+completed successfully. Read-only `gh run view` structured results confirmed
+success for every Mac build/test/archive step; the workflow as a whole failed
+in the separate Windows job. The local `outputs/pr-ci-macos.log` belongs to
+the first failed run and is not evidence for this successful second job.
+
+This `macos-14` job completed native arm64 compilation with the macOS 13 target,
+packaged the shared offline resources, applied and verified ad-hoc signing,
+and passed the following automated checks:
+
+- Logic chord-position boundary/subdivision checks.
+- Score/project/LAN protocol fixtures and the timing oracle, including legacy
+  project compatibility and source timing preservation.
+- Actual Swift theory, ScoreIR codec and playback-plan differential checks
+  against the Windows core.
+- All 112 shared JavaScript tests present at this tested revision.
+- Creation and upload of the Mac app archive with executable permissions
+  preserved.
+
+This is native build and automated-core evidence, not interactive app
+acceptance. No native UI/WebKit interaction, real Logic session or
+Accessibility flow, physical audio/cross-device acoustic synchronization,
+native PDF visual inspection, or Intel Mac build was verified by this job.
+The archive is ad-hoc signed; this record does not establish notarization or
+release acceptance. Later Windows/clock fixes and an expanded JavaScript suite
+need their own CI record and must not be attributed to this commit.
+
+The historical sections below retain the evidence and limitations available
+at those earlier stages; their unverified-compilation statements do not
+override the staged native CI result above.
 
 ## Historical 0.3.1 / build 4 acceptance
 
@@ -133,7 +170,7 @@ The Mac changes have only been reviewed statically in this workspace: neither
 transfer behavior, WebKit rendering and playback have not been run. Run the
 Mac commands and manual checks above before recording native acceptance.
 
-## 0.3.4 / build 7 timing presets
+## Historical 0.3.4 / build 7 timing presets
 
 In 0.3.5 / build 8 the manual timing sheet and add-change controls have been
 removed. Current BPM / meter remain read-only and imported source maps still
@@ -161,7 +198,7 @@ run cannot compile or exercise AppKit / WebKit; these are required Mac checks:
 6. Check 1000 loop endpoints and samples immediately before/after the boundary;
    no stale end-of-loop bar or extra/missing onset may occur.
 
-## 0.3.3 / build 6 changes and focused verification
+## Historical 0.3.3 / build 6 changes and focused verification
 
 Info.plist now declares 0.3.3, build 6. The device table uses
 **音频输出延迟估计** and displays **未提供估计** for null telemetry. The shared

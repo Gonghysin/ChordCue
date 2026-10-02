@@ -8,7 +8,7 @@ ChordCue 是独立的 macOS 应用。读取 Logic Pro 已有和弦轨与播放�
 
 > macOS 宿主支持 Logic Pro。新增 [Windows 10/11 x64 独立桌面版](windows/README.md)，使用手动谱面和本机播放时钟；MSI 仍需完成 [发布验收](windows/docs/VERIFICATION.md)，当前未发布正式 Windows Release。FL Studio、Cubase 和 iReal Pro HTML 导入继续独立规划。
 
-`0.3.5` 开发版已接入 Guitar Pro / MusicXML、五线谱与 TAB、源谱独立播放和按设备分配视图；播放自动跟随文件中的 BPM / 拍号变化。支持格式、操作和验证范围见 [Issue 1 实现说明](docs/ISSUE1_IMPLEMENTATION.md)。候选安装包和开发主机验收记录保留在本地；Mac 新增功能仍需原生构建和运行验证。
+`0.3.5` 开发版已接入 Guitar Pro / MusicXML、五线谱与 TAB、源谱独立播放和按设备分配视图；播放自动跟随文件中的 BPM / 拍号变化。支持格式、操作和验证范围见 [Issue 1 实现说明](docs/ISSUE1_IMPLEMENTATION.md)。候选安装包和开发主机验收记录保留在本地；Mac arm64 原生构建与自动检查已通过 CI，界面和实体音频仍需实机验证。
 
 ## 功能
 

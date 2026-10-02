@@ -6,6 +6,10 @@
     const VIEWS=Object.freeze(['chords','numbers','staff','tab','metronome']);
     const ID=/^[A-Za-z0-9_.:-]{1,128}$/;
     const revision=value=>Number.isSafeInteger(value)&&value>=0;
+    // A four-timestamp estimate has at most RTT/2 uncertainty. Acquire and
+    // refresh a usable map within transport's existing 30 ms future tolerance.
+    const MAX_TRANSPORT_FUTURE_MS=30;
+    const MAX_CLOCK_PROBE_RTT_MS=2*MAX_TRANSPORT_FUTURE_MS;
     // Offset maps independent monotonic origins; it is not audible sync error.
     // A probe belongs to one connection/page generation and one host session.
     class ClockCalibration{
@@ -31,10 +35,17 @@
             this.samples=this.samples.filter(v=>t3-v.time>=0&&t3-v.time<10000);
             // A confident clock discontinuity needs a new audio epoch. Ordinary
             // drift and probe noise preserve the mapping while it is refined.
-            if(this.best&&Math.abs(offset-this.best.offset)>Math.max(30,(latency+this.best.rtt)/2)){this.samples=[];this.offset=null;++this.generation;}
+            if(this.best&&Math.abs(offset-this.best.offset)>Math.max(MAX_TRANSPORT_FUTURE_MS,(latency+this.best.rtt)/2)){this.samples=[];this.offset=null;this.best=null;this.latest=null;++this.generation;}
             this.samples.push({time:t3,offset,rtt:latency});
-            this.latest=t3;this.samples=this.samples.slice(-20);this.best=this.samples.reduce((a,b)=>a.rtt<b.rtt?a:b);
-            if(this.offset===null)this.offset=this.best.offset;
+            this.samples=this.samples.slice(-20);
+            if(latency<=MAX_CLOCK_PROBE_RTT_MS){
+                // Bootstrap must not slew from an untrusted congested probe.
+                // After loss of a usable map there is no live audio to preserve.
+                if(this.latest!==null&&t3-this.latest>=10000){this.offset=null;++this.generation;}
+                this.latest=t3;
+                this.best=this.samples.filter(v=>v.rtt<=MAX_CLOCK_PROBE_RTT_MS).reduce((a,b)=>a.rtt<b.rtt?a:b);
+                if(this.offset===null)this.offset=this.best.offset;
+            }
             return true;
         }
         diagnostics(now,wall){
@@ -43,13 +54,13 @@
             // their replacement must not briefly invalidate a healthy clock.
             const age=this.latest===null?null:now-this.latest,valid=age!==null&&age>=0&&age<10000;
             const values=this.samples.filter(v=>now-v.time>=0&&now-v.time<10000);
-            const jitter=values.length>1?Math.sqrt(values.reduce((sum,v)=>sum+(v.offset-this.best.offset)**2,0)/values.length):null;
+            const jitter=this.best&&values.length>1?Math.sqrt(values.reduce((sum,v)=>sum+(v.offset-this.best.offset)**2,0)/values.length):null;
             return {version:1,status:valid?'valid':this.best?'stale':'calibrating',jitterMs:jitter,probeAgeMs:age};
         }
     }
     function transportFresh(sample,chart,now,offset,lastReceived,connected=true){
         const age=sample&&offset!==null?now+offset-sample.sampleTime:NaN;
-        return connected&&!!sample?.valid&&sample.revision===chart?.revision&&Number.isFinite(age)&&age>=-30&&age<=350&&now-lastReceived>=0&&now-lastReceived<=350;
+        return connected&&!!sample?.valid&&sample.revision===chart?.revision&&Number.isFinite(age)&&age>=-MAX_TRANSPORT_FUTURE_MS&&age<=350&&now-lastReceived>=0&&now-lastReceived<=350;
     }
     function identity(crypto){
         if(crypto?.randomUUID)return 'browser-'+crypto.randomUUID();

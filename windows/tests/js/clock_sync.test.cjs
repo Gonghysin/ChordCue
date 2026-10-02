@@ -64,6 +64,42 @@ test('measurement jitter describes consistency rather than monotonic origin mapp
  assert.ok(clock.diagnostics(220,100220).jitterMs>0);
  assert.ok(clock.diagnostics(220,100220).jitterMs<3);
 });
+test('asymmetric 256 ms bootstrap waits for a bounded 6 ms mapping instead of slewing for 25 seconds',()=>{
+ const clock=new ClockCalibration(),origin=3e8;
+ const first=clock.begin(0,100000);
+ assert.equal(clock.accept({received:origin,sent:origin,session:'host'},first,256,100256),true);
+ assert.equal(clock.offset,null);assert.equal(clock.diagnostics(256,100256).status,'calibrating');
+ assert.equal(transportFresh({valid:true,revision:1,sampleTime:origin+251},{revision:1},256,clock.offset,256),false);
+ const reliable=clock.begin(800,100800);
+ assert.equal(clock.accept({received:origin+803,sent:origin+803,session:'host'},reliable,806,100806),true);
+ assert.equal(clock.offset,origin);assert.equal(clock.best.rtt,6);
+ assert.equal(clock.diagnostics(806,100806).status,'valid');
+ assert.equal(transportFresh({valid:true,revision:1,sampleTime:origin+801},{revision:1},806,clock.offset,806),true);
+});
+test('probe uncertainty is bounded by the existing 30 ms transport future tolerance',()=>{
+ for(const [rtt,status] of [[60,'valid'],[60.001,'calibrating']]){
+  const clock=new ClockCalibration(),request=clock.begin(0,100000);
+  assert.equal(clock.accept({received:3e8,sent:3e8,session:'host'},request,rtt,100000+rtt),true);
+  assert.equal(clock.diagnostics(rtt,100000+rtt).status,status);
+  if(status==='valid')assert.equal(transportFresh({valid:true,revision:1,sampleTime:3e8+rtt},{revision:1},rtt,clock.offset,rtt),true);
+ }
+});
+test('congested probes neither retarget a healthy mapping nor renew expired reliable calibration',()=>{
+ const clock=new ClockCalibration();probe(clock,3e8,0,20);const offset=clock.offset,generation=clock.generation;
+ for(let start=1000;start<=12000;start+=1000){
+  const request=clock.begin(start,100000+start);
+  // A return-side delay is compatible with the good map, but cannot refine it.
+  assert.equal(clock.accept({received:3e8+start,sent:3e8+start,session:'host'},request,start+256,100000+start+256),true);
+  assert.equal(clock.offset,offset);assert.equal(clock.generation,generation);
+  assert.equal(clock.diagnostics(start+256,100000+start+256).status,start+256<10020?'valid':'stale');
+ }
+ assert.equal(clock.latest,20);assert.equal(clock.best.rtt,18);
+ // First reliable probe after staleness acquires the map rather than carrying
+ // a stale offset through a new valid epoch.
+ probe(clock,3e8+10,13000,13010);
+ assert.equal(clock.diagnostics(13010,113010).status,'valid');
+ assert.equal(clock.offset,clock.best.offset);assert.equal(clock.generation,generation+1);
+});
 test('latest accepted probe keeps calibration valid when the minimum RTT estimate expires',()=>{
  const clock=new ClockCalibration();probe(clock,3e8,0,20);
  for(let start=1000;start<=12000;start+=1000){

@@ -268,18 +268,22 @@ loops, unwrapped quarter = wrapped quarter + iteration * loop quarter length.
 Host/browser monotonic clocks may have unrelated origins. `clockOffsetMs` is
 the signed origin mapping used for prediction, not a user-visible latency.
 Valid four-timestamp probes require finite ordered timestamps, nonnegative
-RTT, and a matching outstanding probe/session. Calibration chooses the lowest
-RTT valid probe within the ten-second window. In 0.3.2 / build 5, probing
-continues while calibration is healthy. `probeAgeMs` and calibration freshness
-use the latest successful probe, independently of the age of the lowest-RTT
-estimate. A new successful probe therefore keeps a healthy mapping valid when
-an older lowest-RTT estimate leaves the window.
+RTT, and a matching outstanding probe/session. A usable estimate also requires
+RTT at most 60 ms: the four-timestamp estimate's RTT/2 uncertainty must fit the
+existing 30 ms future-sample tolerance. Before the first usable probe the map
+remains unknown and diagnostics remain `calibrating`; the first usable probe
+anchors the map directly. Calibration chooses the lowest-RTT usable probe
+within the ten-second window. Probing continues while calibration is healthy.
+`probeAgeMs` and calibration freshness use the latest usable probe,
+independently of the age of the lowest-RTT estimate. Congested probes can
+contribute to measurement jitter but cannot retarget the usable map or extend
+its validity. The first usable probe after expiry acquires a new audio epoch.
 
 Ordinary drift corrections approach the chosen estimate by at most 5 ms per
 second. Already scheduled metronome onsets keep their scheduled times; normal
 calibration does not cancel those beats, and the refined mapping applies to
 subsequently scheduled beats. First use without calibration, calibration
-expiry after successful probes time out, and a genuine clock mapping jump
+expiry after usable probes time out, and a genuine clock mapping jump
 still mute/cancel audio until a valid mapping and fresh transport are available.
 Resume and reconnect
 invalidate prior probes. Sample ages must be in `[-30,350]` ms for
