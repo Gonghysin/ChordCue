@@ -4,6 +4,7 @@ import WebKit
 struct NativeMetronome: NSViewRepresentable {
     let info: ProjectInfo
     let sample: TransportSample
+    let visible: Bool
     @Binding var enabled: Bool
     var route: [String: Any] = [:]
 
@@ -32,6 +33,10 @@ struct NativeMetronome: NSViewRepresentable {
         if context.coordinator.requestedEnabled != enabled {
             context.coordinator.requestedEnabled = enabled
             context.coordinator.pendingAudio = enabled
+        }
+        if !visible && !enabled && context.coordinator.pendingAudio == nil {
+            context.coordinator.pending = nil
+            return
         }
         var transport = LANBroadcast.transportPayload(sample: sample, info: info, revision: 1)
         for (key, value) in route { transport[key] = value }

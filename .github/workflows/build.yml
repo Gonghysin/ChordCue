@@ -91,6 +91,8 @@ jobs:
           bash -n scripts/build.sh scripts/install.sh
           for file in Resources/*.js; do node --check "$file"; done
           bash scripts/build.sh
+          xcrun swiftc -parse-as-library Sources/LogicReader.swift tools/ChordPositionChecks.swift -o /tmp/chordcue-position-checks
+          /tmp/chordcue-position-checks
           bash scripts/test-mac-score.sh
           node --test windows/tests/js/*.test.cjs
       - name: Compile authoritative Swift oracle

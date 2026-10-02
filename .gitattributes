@@ -3,3 +3,7 @@ licenses/*.txt text eol=lf
 licenses/*manifest.json text eol=lf
 # Preserve upstream license whitespace and the archived content hashes.
 licenses/*-NOTICES.txt -whitespace
+# Preserve pinned third-party payload bytes and their manifest checksums.
+Resources/vendor/** -text -whitespace
+# Build scripts must also run from Windows-created checkouts.
+*.sh text eol=lf

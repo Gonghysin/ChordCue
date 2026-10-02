@@ -8,11 +8,12 @@ ChordCue 是独立的 macOS 应用。读取 Logic Pro 已有和弦轨与播放�
 
 > macOS 宿主支持 Logic Pro。新增 [Windows 10/11 x64 独立桌面版](windows/README.md)，使用手动谱面和本机播放时钟；MSI 仍需完成 [发布验收](windows/docs/VERIFICATION.md)，当前未发布正式 Windows Release。FL Studio、Cubase 和 iReal Pro HTML 导入继续独立规划。
 
-本地 `0.3.5` 开发版已接入 Guitar Pro / MusicXML、五线谱与 TAB、源谱独立播放和按设备分配视图；播放自动跟随文件中的 BPM / 拍号变化。支持格式、操作和验证范围见 [Issue 1 实现说明](docs/ISSUE1_IMPLEMENTATION.md)。本轮未 push、发布、合并或部署；Mac 新增功能仍需原生构建和运行验证。
+`0.3.5` 开发版已接入 Guitar Pro / MusicXML、五线谱与 TAB、源谱独立播放和按设备分配视图；播放自动跟随文件中的 BPM / 拍号变化。支持格式、操作和验证范围见 [Issue 1 实现说明](docs/ISSUE1_IMPLEMENTATION.md)。候选安装包和开发主机验收记录保留在本地；Mac 新增功能仍需原生构建和运行验证。
 
 ## 功能
 
 - 按 Logic 小节与起拍显示和弦，突出当前和弦，随窗口宽度调整布局。
+- 谱面将距离整拍不超过 30 tick 的和弦对齐到整拍，跨小节时归入下一小节；保留真正的拍内细分。读取的原始位置和 Logic 工程不变。
 - 实时显示当前工程名、拍号和 BPM；速度来自 Logic，不自行分析歌曲 BPM。
 - 和弦／级数切换、显示移调、自动定调和候选转调检测；支持手动定调及转调点。
 - 导出和弦谱或级数谱 PDF，支持轨道原样、C 调、已指定的移调前原调和当前显示调。

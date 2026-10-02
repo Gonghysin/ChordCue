@@ -9,6 +9,21 @@ struct SongPosition: Comparable {
 
     static let start = SongPosition(bar: 1, beat: 1, division: 1, tick: 0)
 
+    var quarterNoteOffset: Double {
+        Double(beat - 1) + Double(division - 1) / 4 + Double(tick) / 960
+    }
+
+    func alignedForChart(beatsPerBar: Int) -> SongPosition {
+        let meter = max(1, beatsPerBar)
+        let offsetTicks = quarterNoteOffset * 960
+        let nearestBeat = Int((offsetTicks / 960).rounded())
+        // Logic's analyzed chords may sit a few ticks either side of a beat.
+        // Keep actual subdivisions; only remove this small boundary jitter.
+        guard offsetTicks >= 0, abs(offsetTicks - Double(nearestBeat * 960)) <= 30 else { return self }
+        return SongPosition(bar: bar + nearestBeat / meter, beat: nearestBeat % meter + 1,
+                            division: 1, tick: 0)
+    }
+
     static func < (lhs: SongPosition, rhs: SongPosition) -> Bool {
         [lhs.bar, lhs.beat, lhs.division, lhs.tick].lexicographicallyPrecedes(
             [rhs.bar, rhs.beat, rhs.division, rhs.tick]
@@ -20,6 +35,13 @@ struct ChordEvent: Identifiable, Equatable {
     let id: Int
     let position: SongPosition
     let symbol: String
+
+    static func alignedForChart(_ events: [ChordEvent], beatsPerBar: Int) -> [ChordEvent] {
+        events.sorted { $0.position < $1.position }.map {
+            ChordEvent(id: $0.id, position: $0.position.alignedForChart(beatsPerBar: beatsPerBar),
+                       symbol: $0.symbol)
+        }
+    }
 }
 
 struct ProjectInfo: Equatable {

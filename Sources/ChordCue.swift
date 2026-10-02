@@ -45,6 +45,7 @@ struct ChordCueView: View {
     @State private var showManualProject = false
     @State private var showKeySettings = false
     @State private var exportError: String?
+    @State private var alignedChords: [ChordEvent] = []
 
     private var playbackSample: TransportSample { playbackMode == "standalone" ? scoreSession.sample : logic.transport }
     private var playbackPosition: SongPosition { playbackSample.position }
@@ -81,11 +82,19 @@ struct ChordCueView: View {
 
     private var snapshotChords: [ChordEvent] { Self.bundledChords }
 
-    private var chords: [ChordEvent] {
-        if scoreSession.project != nil { return scoreSession.chords }
-        if !logic.chords.isEmpty { return logic.chords }
-        if !manualChords.isEmpty { return manualChords }
-        return snapshotChords
+    private func refreshChartChords() {
+        // Imported/source-project positions are exact. Only the Logic display
+        // adapter removes the small beat-boundary jitter reported by the host.
+        guard scoreSession.project == nil else { return }
+        let source = !logic.chords.isEmpty ? logic.chords
+            : !manualChords.isEmpty ? manualChords : snapshotChords
+        let updated = ChordEvent.alignedForChart(source, beatsPerBar: beatsPerBar)
+        if updated != alignedChords { alignedChords = updated }
+    }
+    private var chords: [ChordEvent] { scoreSession.project != nil ? scoreSession.chords : alignedChords }
+    private var beatsPerBar: Int {
+        let beats = Int(logic.projectInfo.timeSignature?.split(separator: "/").first.map(String.init) ?? "4") ?? 4
+        return max(1, min(12, beats))
     }
     private var activeChord: ChordEvent? {
         if scoreSession.score != nil {
@@ -304,7 +313,8 @@ struct ChordCueView: View {
             Divider()
 
             ZStack {
-                NativeMetronome(info: projectInfo, sample: playbackSample, enabled: $metronomeEnabled,
+                NativeMetronome(info: projectInfo, sample: playbackSample,
+                                visible: mainPage == "metronome", enabled: $metronomeEnabled,
                                 route: nativeRoute)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .opacity(mainPage == "metronome" ? 1 : 0)
@@ -418,6 +428,7 @@ struct ChordCueView: View {
         .frame(minWidth: 420, minHeight: 300)
         .background(Color(nsColor: .windowBackgroundColor))
         .onAppear {
+            refreshChartChords()
             if ["staff", "tab"].contains(displayNotation) {
                 scoreNotation = displayNotation; displayNotation = "chords"
                 if scoreSession.score != nil { mainPage = "score" }
@@ -441,13 +452,20 @@ struct ChordCueView: View {
             publishBroadcast()
         } }
         .onReceive(logic.$chords) { _ in
-            DispatchQueue.main.async { publishBroadcast() }
+            DispatchQueue.main.async {
+                refreshChartChords()
+                publishBroadcast()
+            }
+        }
+        .onChange(of: logic.projectInfo.timeSignature) { _ in
+            refreshChartChords()
+            publishBroadcast()
         }
         .onChange(of: projectInfo) { _ in publishBroadcast() }
         .onChange(of: numberKeyChoice) { _ in if scoreSession.score != nil, transpositionBase == nil { displayKey = "track" }; publishBroadcast() }
         .onChange(of: sectionKeyOverrides) { _ in keySettingsRevision += 1; publishBroadcast() }
         .onChange(of: detectKeyChanges) { _ in keySettingsRevision += 1; publishBroadcast() }
-        .onChange(of: manualChordText) { _ in publishBroadcast() }
+        .onChange(of: manualChordText) { _ in refreshChartChords(); publishBroadcast() }
         .onChange(of: playbackMode) { mode in if mode == "logic" { scoreSession.pause() }; publishBroadcast() }
         .onChange(of: broadcast.enabled) { enabled in logic.setBroadcasting(enabled || metronomeEnabled || mainPage == "metronome") }
         .onChange(of: mainPage) { page in
@@ -500,6 +518,8 @@ struct ChordCueView: View {
         panel.allowedContentTypes = [.pdf]
         let projectName = projectInfo.name.trimmingCharacters(in: .whitespacesAndNewlines)
         let events = chords
+        let meter = scoreSession.project?.meter ?? beatsPerBar
+        let alignLegacyChords = scoreSession.project == nil
         let sections = keySections
         let sourceScore = scoreSession.score
         let manualMeasures = sourceScore == nil ? scoreSession.effectiveMeasures : []
@@ -523,9 +543,9 @@ struct ChordCueView: View {
             do {
                 try ChartPDF.write(chords: events, sections: sections, notation: notation,
                                    semitones: semitones,
-                                   preferFlats: [1, 3, 5, 8, 10].contains(targetPitch), to: url,
+                                   preferFlats: [1, 3, 5, 8, 10].contains(targetPitch), beatsPerBar: meter, to: url,
                                    score: sourceScore, selectedPartId: sourcePartId, sourceKeys: sourceKeys,
-                                   manualMeasures: manualMeasures, measureBPMs: measureBPMs)
+                                   manualMeasures: manualMeasures, measureBPMs: measureBPMs, alignLegacyChords: alignLegacyChords)
             } catch {
                 exportError = error.localizedDescription
             }
@@ -599,8 +619,7 @@ struct ChordCueView: View {
     }
 
     private func beatOffset(_ position: SongPosition) -> Double {
-        let raw = Double(position.beat - 1) + Double(position.division - 1) / 4 + Double(position.tick) / 960
-        return min(barLength(position.bar), max(0, raw))
+        return min(barLength(position.bar), max(0, position.quarterNoteOffset))
     }
 
     private func scoreLogicRoute(_ sample: TransportSample) -> [String: Any] {
@@ -727,7 +746,7 @@ struct ChordCueView: View {
 
     private func barLength(_ bar: Int) -> Double {
         if scoreSession.effectiveMeasures.indices.contains(bar - 1) { return scoreSession.effectiveMeasures[bar - 1].duration.value }
-        return Double(scoreSession.project?.meter ?? Int(projectInfo.timeSignature?.split(separator: "/").first ?? "4") ?? 4)
+        return Double(scoreSession.project?.meter ?? beatsPerBar)
     }
 
     private func barSegments(_ bar: Int, items: [ChordEvent]) -> [BarSegment] {

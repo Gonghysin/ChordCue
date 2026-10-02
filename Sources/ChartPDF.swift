@@ -16,10 +16,13 @@ enum ChartPDF {
     }
 
     static func write(chords: [ChordEvent], sections: [KeySection], notation: ChartNotation,
-                      semitones: Int, preferFlats: Bool, to url: URL,
+                      semitones: Int, preferFlats: Bool, beatsPerBar: Int = 4, to url: URL,
                       score: ScoreIR? = nil, selectedPartId: String? = nil, sourceKeys: [Int: MusicalKey] = [:],
-                      manualMeasures: [ScoreMeasure] = [], measureBPMs: [String: Double] = [:]) throws {
+                      manualMeasures: [ScoreMeasure] = [], measureBPMs: [String: Double] = [:], alignLegacyChords: Bool = true) throws {
         if let score { try score.validate() }
+        let meter = CGFloat(max(1, beatsPerBar))
+        // Structured scores keep their exact offsets and per-measure duration.
+        let chords = alignLegacyChords && score == nil && manualMeasures.isEmpty ? ChordEvent.alignedForChart(chords, beatsPerBar: beatsPerBar) : chords
         let sourcePart = score?.parts.first { $0.id == (selectedPartId ?? score?.parts.first?.id) }
         let sourceOffsets = Dictionary(uniqueKeysWithValues: (sourcePart?.chords ?? []).enumerated().map { ($0.offset, $0.element.offset.value) })
         var page = CGRect(x: 0, y: 0, width: 595, height: 842)
@@ -68,7 +71,7 @@ enum ChartPDF {
                                   y: 650 - CGFloat(row) * cellHeight,
                                   width: cellWidth, height: cellHeight)
                 let sourceMeasure = score?.measures[bar - 1] ?? (manualMeasures.indices.contains(bar - 1) ? manualMeasures[bar - 1] : nil)
-                let length = CGFloat(sourceMeasure?.duration.value ?? 4)
+                let length = sourceMeasure.map { CGFloat($0.duration.value) } ?? meter
                 context.setStrokeColor(NSColor(white: 0.72, alpha: 1).cgColor)
                 context.setLineWidth(0.6)
                 context.stroke(rect)
@@ -104,10 +107,7 @@ enum ChartPDF {
                 }
                 var onsets: [(offset: CGFloat, event: ChordEvent)] = []
                 for event in events {
-                    let legacyOffset = (Double(event.position.beat - 1)
-                        + Double(event.position.division - 1) / 4
-                        + Double(event.position.tick) / 960)
-                    let fallback = manualMeasures.isEmpty ? min(3, legacyOffset.rounded()) : legacyOffset
+                    let fallback = event.position.quarterNoteOffset
                     let offset = min(length, max(0, CGFloat(sourceOffsets[event.id] ?? fallback)))
                     if onsets.last?.offset == offset {
                         onsets[onsets.count - 1] = (offset, event)
