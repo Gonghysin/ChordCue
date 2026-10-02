@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import asyncio
 from dataclasses import dataclass
+import errno
 import hashlib
 import ipaddress
 import json
@@ -478,6 +479,45 @@ class LANServer:
                 self._viewers = self._connections = 0
             self._ready.set()
 
+    def _recover_peer_close(self, context: dict) -> bool:
+        """Finish a Windows transport close interrupted by a socket disconnect.
+
+        CPython 3.13 calls socket.shutdown before closing/detaching its proactor
+        transport. A reset can escape that callback, even after our protocol has
+        already disconnected. Only that owned callback is recoverable: protocol
+        bugs, unrelated callbacks and failed tasks must still stop the service.
+        """
+        from asyncio.proactor_events import _ProactorBasePipeTransport, _ProactorSocketTransport
+
+        error = context.get("exception")
+        if not (isinstance(error, ConnectionError) or isinstance(error, OSError)
+                and error.errno in (errno.ENOTCONN, errno.ESHUTDOWN)):
+            return False
+        callback = getattr(context.get("handle"), "_callback", None)
+        close_function = getattr(_ProactorBasePipeTransport, "_call_connection_lost")
+        if (callback is None or close_function is None
+                or getattr(callback, "__func__", None) is not close_function):
+            return False
+        transport = callback.__self__
+        if not isinstance(transport, _ProactorSocketTransport) or not transport.is_closing():
+            return False
+        peer = transport.get_protocol()
+        if not isinstance(peer, _Peer) or peer.owner is not self or peer.transport is not transport:
+            return False
+        traceback = error.__traceback__
+        while traceback is not None and traceback.tb_next is not None:
+            traceback = traceback.tb_next
+        sock = getattr(transport, "_sock", None)
+        if (traceback is None or traceback.tb_frame.f_code is not getattr(close_function, "__code__", None)
+                or sock is None or getattr(transport, "_called_connection_lost", False)):
+            return False
+        recoverable = error.__context__ is None and error.__cause__ is None
+        sock.close()
+        # Re-enter CPython's close tail with a closed socket: shutdown is skipped,
+        # then socket references, Server membership and close flags are released.
+        callback(None)
+        return recoverable  # A socket failure must not hide an earlier protocol bug.
+
     async def _serve(self, addresses: list[str]) -> None:
         loop = asyncio.get_running_loop()
         shutdown = asyncio.Event()
@@ -485,8 +525,15 @@ class LANServer:
             self._loop, self._shutdown = loop, shutdown
 
         def failed(_loop: asyncio.AbstractEventLoop, context: dict) -> None:
+            error = context.get("exception") or RuntimeError(context.get("message", "LAN event-loop failure"))
+            try:
+                if self._recover_peer_close(context):
+                    return
+            except Exception as cleanup_error:
+                error = cleanup_error
             with self._lock:
-                self._failure = context.get("exception") or RuntimeError(context["message"])
+                if self._failure is None:
+                    self._failure = error
             shutdown.set()
 
         loop.set_exception_handler(failed)
@@ -857,6 +904,8 @@ class _Peer(asyncio.Protocol):
         self._flush()
 
     def close(self) -> None:
+        if self.closed:
+            return
         self.closed = True
         for timer in (self._request_timer, self._write_timer):
             if timer is not None:

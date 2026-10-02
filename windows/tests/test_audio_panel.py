@@ -35,6 +35,12 @@ def javascript(qtbot, panel, source):
 
 
 def test_page_loads_local_resources_and_clock_bridge(panel, qtbot, tmp_path):
+    # Page/bridge readiness can precede the first reliable clock response on a
+    # cold runner. Await real calibration rather than trusting a congested probe.
+    qtbot.waitUntil(lambda: javascript(qtbot, panel, "(() => {"
+                    "const s=ChordCueSync.snapshot();"
+                    "return s.clockDiagnostics.status==='valid' && Number.isFinite(s.clockOffset);"
+                    "})()"), timeout=5_000)
     snapshot = javascript(qtbot, panel, "({native:ChordCueNative,bridge:ChordCueBridgeReady,"
                           "clock:ChordCueSync.snapshot().clockOffset,"
                           "enabled:document.getElementById('audioEnable').textContent})")

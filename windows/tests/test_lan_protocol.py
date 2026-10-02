@@ -6,6 +6,7 @@ from dataclasses import replace
 import http.client
 import json
 import socket
+import struct
 import threading
 import time
 from urllib.parse import urlsplit
@@ -693,6 +694,175 @@ def test_runtime_failure_reaches_gui_caller_and_still_releases_thread():
         assert request(restarted, "clock")[0] == 200
     finally:
         instance.stop()
+
+
+def on_loop(server, callback):
+    """Run fault injection/transport inspection on the owning event loop."""
+    result = Future()
+
+    def run():
+        try:
+            result.set_result(callback())
+        except BaseException as error:
+            result.set_exception(error)
+
+    server._loop.call_soon_threadsafe(run)
+    return result.result(3)
+
+
+@pytest.mark.skipif(lan.sys.platform != "win32", reason="Windows proactor close callback")
+def test_proactor_socket_shutdown_failure_releases_peer_and_preserves_other_streams(server):
+    instance, url = server
+    instance.publish(*state())
+    with Stream(url) as healthy, Stream(url) as victim:
+        for stream in (healthy, victim):
+            assert stream.event()[0] == "chart"
+            assert stream.event()[0] == "transport"
+        victim_port = victim.socket.getsockname()[1]
+
+        def interrupt_shutdown():
+            peer = next(peer for peer in instance._peers
+                        if peer.transport.get_extra_info("peername")[1] == victim_port)
+            transport = peer.transport
+            assert isinstance(instance._loop, asyncio.ProactorEventLoop)
+            listener, original = transport._server, transport._sock
+            # Cancel its real I/O first, then make CPython's native socket.shutdown
+            # raise WSAENOTCONN. This exercises the actual Handle error context and
+            # the same interrupted close tail as an intermittent WSAECONNRESET.
+            disconnected = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            transport.abort()
+            transport._sock = disconnected
+            original.close()
+            return transport, listener, original, disconnected
+
+        transport, listener, original, disconnected = on_loop(instance, interrupt_shutdown)
+        try:
+            details = on_loop(instance, lambda: (
+                transport._sock, transport._server, transport._called_connection_lost,
+                len(listener._clients), instance.connections, instance._failure))
+            assert details == (None, None, True, 1, 1, None)
+            assert original.fileno() == disconnected.fileno() == -1
+            # The extra close already queued by abort/connection_lost is harmless.
+            on_loop(instance, lambda: transport._call_connection_lost(None))
+            assert instance.enabled and instance.viewers == 1
+            instance.publish(*state(2))
+            assert healthy.event()[1]["revision"] == 2
+            assert healthy.event()[1]["revision"] == 2
+            with Stream(url) as reconnected:
+                assert reconnected.event()[1]["revision"] == 2
+                assert reconnected.event()[1]["revision"] == 2
+                instance.publish(*state(3))
+                for stream in (healthy, reconnected):
+                    assert stream.event()[1]["revision"] == 3
+                    assert stream.event()[1]["revision"] == 3
+            thread = instance._thread
+            instance.stop()
+            assert not thread.is_alive() and instance._thread is None
+            assert len(listener._clients) == 0
+        finally:
+            # Also permit the pre-fix implementation to finish shutdown when this
+            # regression fails, rather than leaving its non-daemon thread blocked.
+            disconnected.close()
+            if not transport._called_connection_lost and instance._loop is not None:
+                on_loop(instance, lambda: transport._call_connection_lost(None))
+
+
+def test_real_tcp_resets_leave_other_streams_live_and_allow_reconnect(server):
+    instance, url = server
+    instance.publish(*state())
+    with Stream(url) as healthy:
+        assert healthy.event()[0] == "chart"
+        assert healthy.event()[0] == "transport"
+        for revision in range(2, 12):
+            reset = Stream(url)
+            assert reset.event()[1]["revision"] == revision - 1
+            assert reset.event()[1]["revision"] == revision - 1
+            reset.file.close()
+            layout = "HH" if lan.sys.platform == "win32" else "ii"
+            reset.socket.setsockopt(socket.SOL_SOCKET, socket.SO_LINGER,
+                                    struct.pack(layout, 1, 0))
+            reset.socket.close()  # Abort with an actual TCP RST instead of FIN.
+            wait_for(lambda: instance.viewers == 1)
+            instance.publish(*state(revision))
+            assert healthy.event()[1]["revision"] == revision
+            assert healthy.event()[1]["revision"] == revision
+            assert instance.enabled and instance._failure is None
+        with Stream(url) as reconnected:
+            assert reconnected.event()[1]["revision"] == 11
+            assert reconnected.event()[1]["revision"] == 11
+        thread = instance._thread
+        instance.stop()
+        assert not thread.is_alive() and instance.connections == instance.viewers == 0
+
+
+@pytest.mark.skipif(lan.sys.platform != "win32", reason="Windows proactor close callback")
+def test_proactor_shutdown_error_does_not_hide_protocol_failure():
+    instance = LANServer(host="127.0.0.1", _addresses=lambda: ["127.0.0.1"])
+    url = instance.start()[0]
+    thread = instance._thread
+    with Stream(url) as stream:
+        port = stream.socket.getsockname()[1]
+
+        def interrupt_shutdown():
+            peer = next(peer for peer in instance._peers
+                        if peer.transport.get_extra_info("peername")[1] == port)
+            transport = peer.transport
+            def broken_protocol(exc):
+                raise RuntimeError("protocol close bug")
+
+            peer.connection_lost = broken_protocol
+            original = transport._sock
+            disconnected = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            transport.abort()
+            transport._sock = disconnected
+            original.close()
+            return transport, transport._server, original, disconnected
+
+        transport, listener, original, disconnected = on_loop(instance, interrupt_shutdown)
+        wait_for(lambda: not instance.enabled)
+        failure = instance._failure
+        assert isinstance(failure, RuntimeError)
+        assert str(failure) == "protocol close bug"
+        assert original.fileno() == disconnected.fileno() == -1
+        assert transport._sock is None and transport._server is None
+        assert transport._called_connection_lost and len(listener._clients) == 0
+        with pytest.raises(RuntimeError, match="protocol close bug") as raised:
+            instance.publish(*state())
+        assert raised.value.__cause__ is failure
+        with pytest.raises(RuntimeError, match="protocol close bug") as raised:
+            instance.stop()
+        assert raised.value.__cause__ is failure
+        assert not thread.is_alive() and instance._thread is None
+
+
+@pytest.mark.parametrize("source", ["callback", "task", "foreign-close", "protocol"])
+def test_connection_errors_outside_owned_socket_close_remain_fatal(source):
+    instance = LANServer(host="127.0.0.1", _addresses=lambda: ["127.0.0.1"])
+    instance.start()
+    thread = instance._thread
+
+    def fail():
+        raise ConnectionResetError(f"fatal {source}")
+
+    async def fail_task():
+        fail()
+
+    if source == "task":
+        instance._loop.call_soon_threadsafe(lambda: asyncio.create_task(fail_task()))
+    elif source in ("foreign-close", "protocol"):
+        # Same error class plus plausible context keys must not make a task or
+        # unrelated protocol's error recoverable without the owned close Handle.
+        context = {"exception": ConnectionResetError(f"fatal {source}"),
+                   "protocol": asyncio.Protocol(), "transport": object()}
+        instance._loop.call_soon_threadsafe(instance._loop.call_exception_handler, context)
+    else:
+        instance._loop.call_soon_threadsafe(fail)
+    wait_for(lambda: not instance.enabled)
+    with pytest.raises(RuntimeError, match=f"fatal {source}"):
+        instance.publish(*state())
+    with pytest.raises(RuntimeError, match=f"fatal {source}"):
+        instance.stop()
+    assert not thread.is_alive() and instance._thread is None
 
 
 @pytest.mark.skipif(lan.sys.platform != "win32", reason="Windows adapter enumeration")
