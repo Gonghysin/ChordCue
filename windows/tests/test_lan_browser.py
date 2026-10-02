@@ -8,7 +8,7 @@ from PySide6.QtWebEngineCore import QWebEnginePage, QWebEngineProfile, QWebEngin
 from PySide6.QtWebEngineWidgets import QWebEngineView
 
 from chordcue.lan import LANServer, chart_payload
-from chordcue.models import ChartDocument, ChordEvent, KeySection, MusicalKey, document_with_score
+from chordcue.models import ChartDocument, ChordEvent, KeySection, LoopRange, MusicalKey, document_with_score
 from chordcue.score_models import ScoreIR
 from chordcue.score_ui import DevicePanel
 from chordcue.transport import StandaloneTransport
@@ -258,8 +258,13 @@ def test_two_real_lan_browsers_render_sync_and_keep_personal_preferences(qtbot, 
 
 def test_lan_score_rows_align_below_header_and_stale_position_clears_boxes(qtbot):
     document = document_with_score(multi_row_score())
-    chart = chart_payload(document, (), revision=71)
     transport = StandaloneTransport(document)
+    # The final measure lasts only two seconds at the source's default tempo.
+    # Keep it playing through a real loop so slow render/clock/ACK callbacks
+    # cannot permanently miss the last-row observation window at score end.
+    transport.set_loop(LoopRange(24, 25))
+    chart = chart_payload(transport.document, (), revision=71)
+    chart["route"] = transport.plan.to_dict()
     server = LANServer(host="127.0.0.1", _addresses=lambda: ["127.0.0.1"])
     view = QWebEngineView()
     qtbot.addWidget(view)
@@ -269,33 +274,90 @@ def test_lan_score_rows_align_below_header_and_stale_position_clears_boxes(qtbot
     view.setPage(page)
     publisher = QTimer()
     publisher.setInterval(20)
-    publisher.timeout.connect(lambda: server.publish(chart, transport.snapshot(revision=71)))
+    publisher.timeout.connect(lambda: server.publish_prepared(chart, transport.snapshot(71, include_route=False)))
+
+    def wait_browser(expression):
+        try:
+            wait_javascript(qtbot, page, expression)
+        except qtbot.TimeoutError as error:
+            state = javascript(qtbot, page, """(() => {
+                const s=ChordCueSync.snapshot(), now=performance.now(), sample=s.sample;
+                return {clock:s.clockDiagnostics, connected:s.connected, assignment:s.assignment,
+                    applied:s.device?.applied, rendered:scoreView?.rendered,
+                    view:scoreView?.view, visibleHighlights:scoreView?.highlights.filter(x=>!x.hidden).length,
+                    svgCount:document.querySelectorAll('#score svg').length,
+                    sample:sample && {valid:sample.valid, revision:sample.revision,
+                        playing:sample.playing, preparing:sample.preparing,
+                        discontinuity:sample.discontinuity, playQuarter:sample.playQuarter,
+                        sourceMeasureId:sample.sourceMeasureId, sourceOffsetQuarter:sample.sourceOffsetQuarter},
+                    sampleAgeMs:sample && now+s.clockOffset-sample.sampleTime,
+                    receivedAgeMs:now-s.lastReceived,
+                    fresh:ChordCueDeviceClient.transportFresh(sample,s.chart,now,s.clockOffset,s.lastReceived,s.connected),
+                    status:document.getElementById('status').textContent};
+            })()""")
+            raise AssertionError(f"LAN score wait failed: {expression}\n{json.dumps(state)}") from error
+
     try:
         url = server.start()[0]
-        server.publish(chart, transport.snapshot(revision=71))
+        server.publish_prepared(chart, transport.snapshot(71, include_route=False))
         publisher.start()
         view.resize(680, 520)
         view.show()
         with qtbot.waitSignal(page.loadFinished, timeout=20000):
             view.load(QUrl(url))
-        wait_javascript(qtbot, page, "window.ChordCueSync?.snapshot().device?.applied===true")
+        wait_browser("window.ChordCueSync?.snapshot().device?.applied===true")
         client_id = javascript(qtbot, page, "ChordCueSync.snapshot().device.clientId")
         for kind in ("staff", "tab"):
-            server.assign_device(client_id, "p1", kind)
-            wait_javascript(qtbot, page, "scoreView?.rendered===true && scoreView?.view==='"+kind+"'")
+            assigned = server.assign_device(client_id, "p1", kind)
+            wait_browser("""(() => {
+                const s=ChordCueSync.snapshot();
+                return scoreView?.rendered===true && scoreView.view===%s
+                    && s.assignment?.view===%s && s.assignment.assignmentRevision===%s
+                    && s.device?.applied===true && s.device.appliedAssignmentRevision===%s
+                    && s.clockDiagnostics.status==='valid' && s.sample?.valid===true
+                    && ChordCueDeviceClient.transportFresh(s.sample,s.chart,performance.now(),s.clockOffset,s.lastReceived,s.connected);
+            })()""" % (json.dumps(kind), json.dumps(kind), assigned["assignmentRevision"],
+                        assigned["assignmentRevision"]))
+            qtbot.waitUntil(lambda: any(item["clientId"] == client_id
+                            and item["assignmentRevision"] == assigned["assignmentRevision"]
+                            and item["view"] == kind and item["applied"] for item in server.devices),
+                            timeout=5000)
             transport.seek(24, 1)
             transport.play()
-            wait_javascript(qtbot, page, "scoreView?.highlights.some(x=>!x.hidden)===true && !ChordCueSync.snapshot().sample.preparing")
-            wait_javascript(qtbot, page, """(() => {
-                const entry=ChordCueScoreView.activeEntries(scoreView.converted.beatMap.get(scoreView.latestSample.sourceMeasureId),scoreView.latestSample.sourceOffsetQuarter)[0];
+            epoch = transport.snapshot(71, include_route=False)["discontinuity"]
+            wait_browser("""(() => {
+                const s=ChordCueSync.snapshot();
+                return s.sample?.discontinuity===%s && s.sample.playing===true && !s.sample.preparing
+                    && s.sample.sourceMeasureId==='row.m23' && s.clockDiagnostics.status==='valid'
+                    && ChordCueDeviceClient.transportFresh(s.sample,s.chart,performance.now(),s.clockOffset,s.lastReceived,s.connected)
+                    && scoreView?.highlights.some(x=>!x.hidden)===true;
+            })()""" % epoch)
+            wait_browser("""(() => {
+                const sample=scoreView.latestSample;
+                if(!sample?.playing || sample.preparing || sample.sourceMeasureId!=='row.m23')return false;
+                const entry=ChordCueScoreView.activeEntries(scoreView.converted.beatMap.get(sample.sourceMeasureId),sample.sourceOffsetQuarter)[0];
+                if(!entry)return false;
                 const bounds=scoreView.api.renderer.boundsLookup.findBeat(entry.beat);
+                if(!bounds)return false;
                 const system=bounds.barBounds.masterBarBounds.staffSystemBounds;
                 const top=scoreView.element.getBoundingClientRect().top+scoreView._origin().y+system.realBounds.y;
                 return Math.abs(top-document.querySelector('header').getBoundingClientRect().height)<=8;
             })()""")
             transport.pause()
+        wait_browser("""(() => {
+            const s=ChordCueSync.snapshot();
+            return s.sample?.playing===false && s.clockDiagnostics.status==='valid'
+                && ChordCueDeviceClient.transportFresh(s.sample,s.chart,performance.now(),s.clockOffset,s.lastReceived,s.connected)
+                && scoreView.highlights.some(x=>!x.hidden);
+        })()""")
         publisher.stop()
-        wait_javascript(qtbot, page, "scoreView.highlights.every(x=>x.hidden)")
+        wait_browser("""(() => {
+            const s=ChordCueSync.snapshot(), now=performance.now();
+            return s.connected && s.device.applied && s.sample.valid && s.clockDiagnostics.status==='valid'
+                && now-s.lastReceived>=350
+                && !ChordCueDeviceClient.transportFresh(s.sample,s.chart,now,s.clockOffset,s.lastReceived,s.connected)
+                && scoreView.highlights.every(x=>x.hidden);
+        })()""")
     finally:
         publisher.stop()
         server.stop()

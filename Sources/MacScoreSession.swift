@@ -136,7 +136,7 @@ final class MacScoreSession: ObservableObject {
     }
     @discardableResult func createManualProject(name: String, bars: Int, chords: [ChordEvent]) -> Bool {
         do { try install(MacScoreProject(name: name, bars: bars, chords: chords)); return true }
-        catch { error = String(describing: error); return false }
+        catch { self.error = String(describing: error); return false }
     }
     @discardableResult func applyTiming(_ changes: [TimingChange]) -> Bool {
         guard let project else { return false }
@@ -144,7 +144,7 @@ final class MacScoreSession: ObservableObject {
             let candidate = try project.applyingTiming(changes)
             try install(candidate, preservePosition: true)
             error = nil; status = "已应用按小节 BPM/拍号预设，播放已暂停"; return true
-        } catch { error = String(describing: error); return false }
+        } catch { self.error = String(describing: error); return false }
     }
     private func install(_ candidate: MacScoreProject, preservePosition: Bool = false) throws {
         _ = try candidate.encodedValidated()
@@ -190,28 +190,28 @@ final class MacScoreSession: ObservableObject {
     func selectPart(_ id: String) {
         guard var updated = project, updated.score?.parts.contains(where: { $0.id == id }) == true else { return }
         do { try engine?.selectPart(id); updated.selectedPartId = id; _ = try updated.encodedValidated(); project = updated; refreshDisplayCaches(); chartRevision += 1; updateSnapshot() }
-        catch { error = String(describing: error) }
+        catch { self.error = String(describing: error) }
     }
     func play() { engine?.play(); updateSnapshot() }
     func pause() { engine?.pause(); updateSnapshot() }
     func stop() { engine?.stop(); updateSnapshot() }
     func seek(measureId: String, offset: Double = 0) {
         guard let index = playbackSource?.measures.firstIndex(where: { $0.id == measureId }) else { return }
-        do { try engine?.seek(sourceIndex: index + 1, offsetQuarter: offset); updateSnapshot() } catch { error = String(describing: error) }
+        do { try engine?.seek(sourceIndex: index + 1, offsetQuarter: offset); updateSnapshot() } catch { self.error = String(describing: error) }
     }
     func setLoop(start: Int, endExclusive: Int) {
         do {
             var updated = project; try updated?.setLoop(start: start, endExclusive: endExclusive)
             try engine?.setLoop(startSourceIndex: start, endSourceIndexExclusive: endExclusive)
             project = updated; updateSnapshot()
-        } catch { error = String(describing: error) }
+        } catch { self.error = String(describing: error) }
     }
     func clearLoop() {
         do { var updated = project; try updated?.setLoop(start: nil); engine?.clearLoop(); project = updated; updateSnapshot() }
-        catch { error = String(describing: error) }
+        catch { self.error = String(describing: error) }
     }
     func setTempoScale(_ scale: Double) {
-        do { try engine?.setTempoScale(scale); updateSnapshot() } catch { error = String(describing: error) }
+        do { try engine?.setTempoScale(scale); updateSnapshot() } catch { self.error = String(describing: error) }
     }
     private func updateSnapshot() {
         guard let engine else { return }
@@ -325,7 +325,7 @@ final class MacScoreWebController: NSObject, ObservableObject, WKNavigationDeleg
                 case .failure(let failure): self.error = failure.localizedDescription
                 }
             }
-        } catch { error = String(describing: error) }
+        } catch { self.error = String(describing: error) }
     }
     func setPosition(_ sample: [String: Any]) {
         lastPosition = sample
