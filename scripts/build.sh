@@ -8,7 +8,7 @@ CHORDCUE_SIGNING_IDENTITY="${CHORDCUE_SIGNING_IDENTITY:--}"
 case "$CHORDCUE_ARCH" in arm64|x86_64) ;; *) echo "Unsupported architecture: $CHORDCUE_ARCH" >&2; exit 1;; esac
 mkdir -p "$APP_PATH/Contents/MacOS" "$APP_PATH/Contents/Resources"
 echo "Building ChordCue for ${CHORDCUE_ARCH}…"
-xcrun swiftc -target "$CHORDCUE_ARCH-apple-macos13.0" -parse-as-library \
+xcrun swiftc -O -target "$CHORDCUE_ARCH-apple-macos13.0" -parse-as-library \
   "$PROJECT_DIR/Sources/ChordCue.swift" "$PROJECT_DIR/Sources/LogicReader.swift" \
   "$PROJECT_DIR/Sources/ChordTheory.swift" "$PROJECT_DIR/Sources/ChartPDF.swift" \
   "$PROJECT_DIR/Sources/LANBroadcast.swift" "$PROJECT_DIR/Sources/NativeMetronome.swift" \

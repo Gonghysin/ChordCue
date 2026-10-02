@@ -4,6 +4,7 @@ import WebKit
 struct NativeMetronome: NSViewRepresentable {
     let info: ProjectInfo
     let sample: TransportSample
+    let visible: Bool
     @Binding var enabled: Bool
 
     func makeCoordinator() -> Coordinator { Coordinator(enabled: $enabled) }
@@ -31,6 +32,10 @@ struct NativeMetronome: NSViewRepresentable {
         if context.coordinator.requestedEnabled != enabled {
             context.coordinator.requestedEnabled = enabled
             context.coordinator.pendingAudio = enabled
+        }
+        if !visible && !enabled && context.coordinator.pendingAudio == nil {
+            context.coordinator.pending = nil
+            return
         }
         context.coordinator.pending = ["name": info.name,
                                        "transport": LANBroadcast.transportPayload(sample: sample, info: info, revision: 1)]

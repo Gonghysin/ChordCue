@@ -33,6 +33,7 @@ struct ChordCueView: View {
     @State private var showSettings = false
     @State private var showKeySettings = false
     @State private var exportError: String?
+    @State private var alignedChords: [ChordEvent] = []
 
     private var manualChords: [ChordEvent] {
         manualChordText.components(separatedBy: .newlines).enumerated().compactMap { index, raw in
@@ -57,11 +58,13 @@ struct ChordCueView: View {
 
     private var snapshotChords: [ChordEvent] { Self.bundledChords }
 
-    private var chords: [ChordEvent] {
+    private func refreshChartChords() {
         let source = !logic.chords.isEmpty ? logic.chords
             : !manualChords.isEmpty ? manualChords : snapshotChords
-        return ChordEvent.alignedForChart(source, beatsPerBar: beatsPerBar)
+        let updated = ChordEvent.alignedForChart(source, beatsPerBar: beatsPerBar)
+        if updated != alignedChords { alignedChords = updated }
     }
+    private var chords: [ChordEvent] { alignedChords }
     private var beatsPerBar: Int {
         let beats = Int(logic.projectInfo.timeSignature?.split(separator: "/").first.map(String.init) ?? "4") ?? 4
         return max(1, min(12, beats))
@@ -240,7 +243,8 @@ struct ChordCueView: View {
             Divider()
 
             ZStack {
-                NativeMetronome(info: logic.projectInfo, sample: logic.transport, enabled: $metronomeEnabled)
+                NativeMetronome(info: logic.projectInfo, sample: logic.transport,
+                                visible: mainPage == "metronome", enabled: $metronomeEnabled)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .opacity(mainPage == "metronome" ? 1 : 0)
                     .allowsHitTesting(mainPage == "metronome")
@@ -334,6 +338,7 @@ struct ChordCueView: View {
         .frame(minWidth: 420, minHeight: 300)
         .background(Color(nsColor: .windowBackgroundColor))
         .onAppear {
+            refreshChartChords()
             DispatchQueue.main.async {
                 for window in NSApp.windows { window.level = alwaysOnTop ? .floating : .normal }
             }
@@ -343,13 +348,23 @@ struct ChordCueView: View {
         }
         .onReceive(logic.$transport) { sample in publishBroadcast(sample: sample) }
         .onReceive(logic.$chords) { _ in
-            DispatchQueue.main.async { publishBroadcast() }
+            DispatchQueue.main.async {
+                refreshChartChords()
+                publishBroadcast()
+            }
+        }
+        .onChange(of: logic.projectInfo.timeSignature) { _ in
+            refreshChartChords()
+            publishBroadcast()
         }
         .onChange(of: logic.projectInfo) { _ in publishBroadcast() }
         .onChange(of: numberKeyChoice) { _ in publishBroadcast() }
         .onChange(of: sectionKeyOverrides) { _ in publishBroadcast() }
         .onChange(of: detectKeyChanges) { _ in publishBroadcast() }
-        .onChange(of: manualChordText) { _ in publishBroadcast() }
+        .onChange(of: manualChordText) { _ in
+            refreshChartChords()
+            publishBroadcast()
+        }
         .onChange(of: broadcast.enabled) { enabled in logic.setBroadcasting(enabled || metronomeEnabled || mainPage == "metronome") }
         .onChange(of: mainPage) { page in logic.setBroadcasting(broadcast.enabled || metronomeEnabled || page == "metronome") }
         .onChange(of: metronomeEnabled) { enabled in logic.setBroadcasting(broadcast.enabled || enabled || mainPage == "metronome") }
