@@ -58,9 +58,13 @@ struct ChordCueView: View {
     private var snapshotChords: [ChordEvent] { Self.bundledChords }
 
     private var chords: [ChordEvent] {
-        if !logic.chords.isEmpty { return logic.chords }
-        if !manualChords.isEmpty { return manualChords }
-        return snapshotChords
+        let source = !logic.chords.isEmpty ? logic.chords
+            : !manualChords.isEmpty ? manualChords : snapshotChords
+        return ChordEvent.alignedForChart(source, beatsPerBar: beatsPerBar)
+    }
+    private var beatsPerBar: Int {
+        let beats = Int(logic.projectInfo.timeSignature?.split(separator: "/").first.map(String.init) ?? "4") ?? 4
+        return max(1, min(12, beats))
     }
     private var activeChord: ChordEvent? { chords.last { $0.position <= logic.position } }
     private var barCount: Int { max(chords.last?.position.bar ?? 0, logic.position.bar, 16) }
@@ -367,6 +371,7 @@ struct ChordCueView: View {
         panel.allowedContentTypes = [.pdf]
         let projectName = logic.projectInfo.name.trimmingCharacters(in: .whitespacesAndNewlines)
         let events = chords
+        let meter = beatsPerBar
         let sections = keySections
         let semitones = shift(for: target)
         let targetPitch = (trackFamilyRoot + semitones + 12) % 12
@@ -385,7 +390,8 @@ struct ChordCueView: View {
             do {
                 try ChartPDF.write(chords: events, sections: sections, notation: notation,
                                    semitones: semitones,
-                                   preferFlats: [1, 3, 5, 8, 10].contains(targetPitch), to: url)
+                                   preferFlats: [1, 3, 5, 8, 10].contains(targetPitch),
+                                   beatsPerBar: meter, to: url)
             } catch {
                 exportError = error.localizedDescription
             }
@@ -420,7 +426,7 @@ struct ChordCueView: View {
                                                     segment.isCarry ? Color.gray : Color.black)
                                 .lineLimit(1)
                                 .minimumScaleFactor(0.65)
-                                .frame(width: geometry.size.width * segment.length / 4, height: 56)
+                                .frame(width: geometry.size.width * segment.length / Double(beatsPerBar), height: 56)
                                 .background(segment.isActive && isCurrent ? Color.blue.opacity(0.08) : Color.clear)
                                 .overlay(alignment: .leading) {
                                     if segment.start > 0 {
@@ -435,7 +441,7 @@ struct ChordCueView: View {
                         Rectangle()
                             .fill(Color.blue)
                             .frame(width: 2, height: 58)
-                            .offset(x: min(geometry.size.width - 2, geometry.size.width * playheadOffset / 4))
+                            .offset(x: min(geometry.size.width - 2, geometry.size.width * playheadOffset / Double(beatsPerBar)))
                     }
                 }
             }
@@ -448,8 +454,7 @@ struct ChordCueView: View {
     }
 
     private func beatOffset(_ position: SongPosition) -> Double {
-        let raw = Double(position.beat - 1) + Double(position.division - 1) / 4 + Double(position.tick) / 960
-        return min(4, max(0, raw))
+        return min(Double(beatsPerBar), max(0, position.quarterNoteOffset))
     }
 
     private func barSegments(_ bar: Int, items: [ChordEvent]) -> [BarSegment] {
@@ -457,7 +462,7 @@ struct ChordCueView: View {
         let carry = chords.last { $0.position < start }
         var onsets: [(offset: Double, event: ChordEvent)] = []
         for item in items {
-            let offset = min(3, beatOffset(item.position).rounded())
+            let offset = beatOffset(item.position)
             if onsets.last?.offset == offset {
                 onsets[onsets.count - 1] = (offset, item)
             } else {
@@ -465,7 +470,7 @@ struct ChordCueView: View {
             }
         }
         if onsets.isEmpty {
-            return [BarSegment(id: -bar, start: 0, length: 4, symbol: carry == nil ? "·" : "%",
+            return [BarSegment(id: -bar, start: 0, length: Double(beatsPerBar), symbol: carry == nil ? "·" : "%",
                                isCarry: true, isActive: carry?.id == activeChord?.id)]
         }
         var result: [BarSegment] = []
@@ -476,7 +481,7 @@ struct ChordCueView: View {
         }
         for index in onsets.indices {
             let onset = onsets[index]
-            let end = index + 1 < onsets.count ? onsets[index + 1].offset : 4
+            let end = index + 1 < onsets.count ? onsets[index + 1].offset : Double(beatsPerBar)
             result.append(BarSegment(id: onset.event.id, start: onset.offset,
                                      length: max(0, end - onset.offset), symbol: formattedSymbol(onset.event),
                                      isCarry: false, isActive: onset.event.id == activeChord?.id))

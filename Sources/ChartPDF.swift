@@ -16,7 +16,9 @@ enum ChartPDF {
     }
 
     static func write(chords: [ChordEvent], sections: [KeySection], notation: ChartNotation,
-                      semitones: Int, preferFlats: Bool, to url: URL) throws {
+                      semitones: Int, preferFlats: Bool, beatsPerBar: Int = 4, to url: URL) throws {
+        let meter = CGFloat(max(1, beatsPerBar))
+        let chords = ChordEvent.alignedForChart(chords, beatsPerBar: beatsPerBar)
         var page = CGRect(x: 0, y: 0, width: 595, height: 842)
         guard let consumer = CGDataConsumer(url: url as CFURL),
               let context = CGContext(consumer: consumer, mediaBox: &page, nil) else {
@@ -87,9 +89,7 @@ enum ChartPDF {
                 }
                 var onsets: [(offset: CGFloat, event: ChordEvent)] = []
                 for event in events {
-                    let offset = CGFloat(min(3, max(0, (Double(event.position.beat - 1)
-                        + Double(event.position.division - 1) / 4
-                        + Double(event.position.tick) / 960).rounded())))
+                    let offset = min(meter, max(0, CGFloat(event.position.quarterNoteOffset)))
                     if onsets.last?.offset == offset {
                         onsets[onsets.count - 1] = (offset, event)
                     } else {
@@ -97,17 +97,17 @@ enum ChartPDF {
                     }
                 }
                 if let first = onsets.first, first.offset > 0 {
-                    let width = (rect.width - 12) * first.offset / 4
+                    let width = (rect.width - 12) * first.offset / meter
                     draw(previous == nil ? "·" : "—",
                          in: CGRect(x: rect.minX + 6, y: rect.minY + 31, width: width, height: 28),
                          size: 16, color: .gray, alignment: .center)
                 }
                 for index in onsets.indices {
                     let onset = onsets[index]
-                    let end = index + 1 < onsets.count ? onsets[index + 1].offset : 4
+                    let end = index + 1 < onsets.count ? onsets[index + 1].offset : meter
                     let contentWidth = rect.width - 12
-                    let x = rect.minX + 6 + contentWidth * onset.offset / 4
-                    let width = contentWidth * (end - onset.offset) / 4
+                    let x = rect.minX + 6 + contentWidth * onset.offset / meter
+                    let width = contentWidth * (end - onset.offset) / meter
                     let key = sections.last(where: { $0.firstBar <= bar })?.key
                         ?? MusicalKey(root: 0, isMinor: false)
                     let symbol = notation == .numbers
