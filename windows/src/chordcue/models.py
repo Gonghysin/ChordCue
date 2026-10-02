@@ -7,6 +7,8 @@ browser protocol uses the older beat/division/tick representation.
 from dataclasses import dataclass
 from math import isfinite
 
+from .score_models import MAX_MEASURES, ScoreIR, ScoreMeter, ScoreTempoChange, ZERO
+
 PPQ = 960
 SUPPORTED_METERS = tuple(range(1, 13))
 
@@ -115,6 +117,28 @@ class LoopRange:
 
 
 @dataclass(frozen=True)
+class TimingChange:
+    """Effective timing from a source bar onward; BPM always counts quarters."""
+
+    bar: int
+    bpm: float
+    numerator: int
+    denominator: int
+
+    def __post_init__(self) -> None:
+        self.validate()
+
+    def validate(self) -> None:
+        _integer(self.bar, "timing bar", 1, 100_000)
+        ScoreMeter(self.numerator, self.denominator)
+        ScoreTempoChange("timing", ZERO, self.bpm)
+
+    @property
+    def meter(self) -> ScoreMeter:
+        return ScoreMeter(self.numerator, self.denominator)
+
+
+@dataclass(frozen=True)
 class ChartDocument:
     name: str = "未命名"
     bars: int = 16
@@ -126,6 +150,9 @@ class ChartDocument:
     detect_changes: bool = True
     original_key: MusicalKey | None = None
     loop: LoopRange | None = None
+    score: ScoreIR | None = None
+    selected_part_id: str | None = None
+    timing_changes: tuple[TimingChange, ...] = ()
 
     def __post_init__(self) -> None:
         self.validate()
@@ -144,6 +171,32 @@ class ChartDocument:
             raise ValueError("detect_changes must be a boolean")
         if not isinstance(self.events, tuple) or not isinstance(self.manual_sections, tuple):
             raise ValueError("events and manual_sections must be tuples")
+        if not isinstance(self.timing_changes, tuple) or len(self.timing_changes) > MAX_MEASURES:
+            raise ValueError("timing_changes must be a bounded tuple")
+        if self.timing_changes:
+            if self.score is not None:
+                raise ValueError("source score timing must be stored in ScoreIR")
+            if self.bars > MAX_MEASURES:
+                raise ValueError("有变化表的手工谱最多支持 10000 小节")
+            previous_bar = 0
+            for change in self.timing_changes:
+                if not isinstance(change, TimingChange):
+                    raise ValueError("timing_changes must contain TimingChange objects")
+                change.validate()
+                if change.bar <= previous_bar or change.bar > self.bars:
+                    raise ValueError("timing bars must be unique, ordered, and within the project")
+                previous_bar = change.bar
+            if self.timing_changes[0].bar != 1:
+                raise ValueError("timing table must start at bar 1")
+        capacities = [self.meter * PPQ] * self.bars if self.timing_changes else None
+        if capacities is not None:
+            change_index = 0
+            for bar in range(1, self.bars + 1):
+                if (change_index + 1 < len(self.timing_changes)
+                        and self.timing_changes[change_index + 1].bar == bar):
+                    change_index += 1
+                quarters = self.timing_changes[change_index].meter.quarters
+                capacities[bar - 1] = int(quarters * PPQ)
         for key in (self.forced_key, self.original_key):
             if key is not None:
                 if not isinstance(key, MusicalKey):
@@ -155,7 +208,12 @@ class ChartDocument:
             if not isinstance(event, ChordEvent):
                 raise ValueError("events must contain ChordEvent objects")
             event.validate()
-            if event.bar > self.bars or event.tick >= self.meter * PPQ:
+            capacity = (capacities[event.bar - 1] if capacities is not None and event.bar <= self.bars
+                        else self.meter * PPQ)
+            if self.timing_changes and (event.bar > self.bars or event.tick >= capacity):
+                raise ValueError(f"第 {event.bar} 小节的和弦（ID {event.id}，位置 {event.tick}/{PPQ} 四分音符）"
+                                 f"超出小节容量 {capacity}/{PPQ} 四分音符")
+            if event.bar > self.bars or event.tick >= capacity:
                 raise ValueError("event position is outside the project or bar")
             if event.id in ids:
                 raise ValueError(f"duplicate event id: {event.id}")
@@ -179,6 +237,37 @@ class ChartDocument:
             self.loop.validate()
             if self.loop.end_bar_exclusive > self.bars + 1:
                 raise ValueError("loop is outside the project")
+        if self.score is not None:
+            if not isinstance(self.score, ScoreIR):
+                raise ValueError("score must be a ScoreIR or None")
+            self.score.validate()
+            if self.bars != len(self.score.measures):
+                raise ValueError("project bars must match source score measure count")
+            if self.selected_part_id is not None and self.selected_part_id not in {
+                    part.id for part in self.score.parts}:
+                raise ValueError("selected part must reference a score part")
+        elif self.selected_part_id is not None:
+            raise ValueError("selected part requires a score")
+
+
+def document_with_score(score: ScoreIR, selected_part_id: str | None = None) -> ChartDocument:
+    """Create a legacy envelope while preserving the complete authoritative score.
+
+    The legacy meter/BPM are display fallbacks. Score-aware playback must use the
+    actual score maps; no chord symbols are inferred from notes here.
+    """
+    if not isinstance(score, ScoreIR):
+        raise ValueError("score must be a ScoreIR")
+    score.validate()
+    first_meter = score.measures[0].meter
+    fallback_meter = min(12, max(1, round(float(first_meter.quarters))))
+    initial_tempo = next((change.bpm for change in score.tempo_changes
+                          if change.measure_id == score.measures[0].id
+                          and change.offset.numerator == 0), 120.0)
+    return ChartDocument(name=score.title, bars=len(score.measures),
+                         bpm=min(300.0, max(20.0, initial_tempo)), meter=fallback_meter,
+                         score=score, selected_part_id=(score.parts[0].id if selected_part_id is None
+                                                        else selected_part_id))
 
 
 def event_position(event: ChordEvent) -> dict[str, int]:

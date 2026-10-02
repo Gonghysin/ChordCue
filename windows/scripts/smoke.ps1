@@ -1,7 +1,8 @@
 param(
     [switch]$Prototype,
     [string]$Exe = '',
-    [string]$OutputDirectory = ''
+    [string]$OutputDirectory = '',
+    [string]$ScoreFile = ''
 )
 $ErrorActionPreference = 'Stop'
 $WindowsRoot = Split-Path -Parent $PSScriptRoot
@@ -14,6 +15,9 @@ New-Item -ItemType Directory -Force -Path $OutputDirectory | Out-Null
 $StartedAt = Get-Date
 $QuotedOutput = '"{0}"' -f $OutputDirectory
 $Arguments = if ($Prototype) { @($QuotedOutput) } else { @('--smoke-test', $QuotedOutput) }
+if ($ScoreFile -and -not $Prototype) {
+    $Arguments += @('--smoke-score', ('"{0}"' -f [IO.Path]::GetFullPath($ScoreFile)))
+}
 $Process = Start-Process -FilePath $Exe -ArgumentList $Arguments -WindowStyle Hidden -PassThru -RedirectStandardOutput (Join-Path $OutputDirectory 'stdout.log') -RedirectStandardError (Join-Path $OutputDirectory 'stderr.log')
 if (-not $Process.WaitForExit(45000)) {
     Stop-Process -Id $Process.Id -Force

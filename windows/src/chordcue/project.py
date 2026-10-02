@@ -6,10 +6,13 @@ from pathlib import Path
 import tempfile
 from typing import Any
 
-from .models import ChartDocument, ChordEvent, KeySection, LoopRange, MusicalKey
+from .models import ChartDocument, ChordEvent, KeySection, LoopRange, MusicalKey, TimingChange
 from .parsing import parse_logic_text
+from .score_models import MAX_SCORE_BYTES, ScoreIR, check_json_complexity
 
-SCHEMA_VERSION = 1
+SCHEMA_VERSION = 3
+SOURCE_SCHEMA_VERSION = 2
+LEGACY_SCHEMA_VERSION = 1
 
 # Original Resources/DemoChords.txt, embedded so the demo also works without a
 # resource locator and in pure-core tests. Keep this in sync with that asset.
@@ -60,12 +63,51 @@ def _invalid_constant(value: str) -> None:
 
 def load_project(path: str | os.PathLike[str]) -> ChartDocument:
     """Return a wholly validated document; never mutate an existing project."""
-    with Path(path).open("r", encoding="utf-8-sig") as source:
-        data = json.load(source, object_pairs_hook=_no_duplicate_keys, parse_constant=_invalid_constant)
+    with Path(path).open("rb") as source:
+        encoded = source.read(MAX_SCORE_BYTES + 1)
+    if len(encoded) > MAX_SCORE_BYTES:
+        raise ValueError("project JSON exceeds 32 MiB limit")
+    try:
+        data = json.loads(encoded.decode("utf-8-sig"), object_pairs_hook=_no_duplicate_keys,
+                          parse_constant=_invalid_constant)
+    except RecursionError as error:
+        raise ValueError("project JSON exceeds complexity limit") from error
+    # Legacy chart symbols historically had no 4096-character text cap. Preserve
+    # that compatibility while bounding all new score projects before decoding.
     data = _object(data, {"schemaVersion", "name", "bars", "bpm", "meter", "events", "forcedKey",
                           "manualSections", "detectChanges", "originalKey", "loop"}, "project")
-    if type(data["schemaVersion"]) is not int or data["schemaVersion"] != SCHEMA_VERSION:
+    if (type(data["schemaVersion"]) is not int
+            or data["schemaVersion"] not in (LEGACY_SCHEMA_VERSION, SOURCE_SCHEMA_VERSION, SCHEMA_VERSION)):
         raise ValueError(f"unsupported project schemaVersion: {data['schemaVersion']!r}")
+    score = None
+    selected_part_id = None
+    timing_changes: list[TimingChange] = []
+    if data["schemaVersion"] == SOURCE_SCHEMA_VERSION:
+        _object(data, {"score", "selectedPartId"}, "schema 2 project")
+        check_json_complexity(data)
+        if data["score"] is None:
+            raise ValueError("schema 2 project requires a score")
+        score = ScoreIR.from_dict(data["score"])
+        selected_part_id = data["selectedPartId"]
+        if selected_part_id is not None and not isinstance(selected_part_id, str):
+            raise ValueError("selectedPartId must be text or null")
+        if "timingChanges" in data:
+            raise ValueError("schema 2 timing must be stored in its score")
+    else:
+        if "score" in data or "selectedPartId" in data:
+            raise ValueError("manual project cannot contain score fields")
+        if data["schemaVersion"] == SCHEMA_VERSION:
+            _object(data, {"timingChanges"}, "schema 3 project")
+            if not isinstance(data["timingChanges"], list) or not 1 <= len(data["timingChanges"]) <= 10_000:
+                raise ValueError("schema 3 requires 1..10000 timingChanges")
+            check_json_complexity(data)
+            for raw in data["timingChanges"]:
+                item = _object(raw, {"bar", "bpm", "numerator", "denominator"}, "timing change")
+                if set(item) != {"bar", "bpm", "numerator", "denominator"}:
+                    raise ValueError("timing change fields differ from schema")
+                timing_changes.append(TimingChange(item["bar"], item["bpm"], item["numerator"], item["denominator"]))
+        elif "timingChanges" in data:
+            raise ValueError("schema 1 cannot contain timingChanges")
     if not isinstance(data["events"], list) or not isinstance(data["manualSections"], list):
         raise ValueError("events and manualSections must be arrays")
     events = []
@@ -86,7 +128,9 @@ def load_project(path: str | os.PathLike[str]) -> ChartDocument:
     return ChartDocument(name=data["name"], bars=data["bars"], bpm=data["bpm"], meter=data["meter"],
                          events=tuple(events), forced_key=_key(data["forcedKey"]),
                          manual_sections=tuple(sections), detect_changes=data["detectChanges"],
-                         original_key=_key(data["originalKey"]), loop=loop)
+                         original_key=_key(data["originalKey"]), loop=loop,
+                         score=score, selected_part_id=selected_part_id,
+                         timing_changes=tuple(timing_changes))
 
 
 def save_project(document: ChartDocument, path: str | os.PathLike[str]) -> None:
@@ -97,7 +141,8 @@ def save_project(document: ChartDocument, path: str | os.PathLike[str]) -> None:
     """
     document.validate()
     data = {
-        "schemaVersion": SCHEMA_VERSION,
+        "schemaVersion": (SOURCE_SCHEMA_VERSION if document.score is not None
+                          else SCHEMA_VERSION if document.timing_changes else LEGACY_SCHEMA_VERSION),
         "name": document.name, "bars": document.bars, "bpm": document.bpm, "meter": document.meter,
         "events": [{"id": event.id, "bar": event.bar, "tick": event.tick, "symbol": event.symbol}
                    for event in document.events],
@@ -108,7 +153,18 @@ def save_project(document: ChartDocument, path: str | os.PathLike[str]) -> None:
         "loop": None if document.loop is None else {"startBar": document.loop.start_bar,
                                                      "endBarExclusive": document.loop.end_bar_exclusive},
     }
+    if document.score is not None:
+        data["score"] = document.score.to_dict()
+        data["selectedPartId"] = document.selected_part_id
+        check_json_complexity(data)
+    elif document.timing_changes:
+        data["timingChanges"] = [{"bar": row.bar, "bpm": row.bpm,
+                                  "numerator": row.numerator, "denominator": row.denominator}
+                                 for row in document.timing_changes]
+        check_json_complexity(data)
     encoded = json.dumps(data, ensure_ascii=False, allow_nan=False, indent=2) + "\n"
+    if len(encoded.encode("utf-8")) > MAX_SCORE_BYTES:
+        raise ValueError("project JSON exceeds 32 MiB limit")
     destination = Path(path).absolute()
     # Save As can target a file we never opened. Never destroy an unsupported
     # future project (or a damaged document) merely because its name was chosen.

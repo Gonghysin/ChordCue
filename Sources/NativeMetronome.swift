@@ -5,6 +5,7 @@ struct NativeMetronome: NSViewRepresentable {
     let info: ProjectInfo
     let sample: TransportSample
     @Binding var enabled: Bool
+    var route: [String: Any] = [:]
 
     func makeCoordinator() -> Coordinator { Coordinator(enabled: $enabled) }
 
@@ -32,8 +33,11 @@ struct NativeMetronome: NSViewRepresentable {
             context.coordinator.requestedEnabled = enabled
             context.coordinator.pendingAudio = enabled
         }
-        context.coordinator.pending = ["name": info.name,
-                                       "transport": LANBroadcast.transportPayload(sample: sample, info: info, revision: 1)]
+        var transport = LANBroadcast.transportPayload(sample: sample, info: info, revision: 1)
+        for (key, value) in route { transport[key] = value }
+        if transport["routeId"] == nil { context.coordinator.lastSentRouteId = nil }
+        if let routeId = transport["routeId"] as? String, routeId == context.coordinator.lastSentRouteId { transport.removeValue(forKey: "route") }
+        context.coordinator.pending = ["name": info.name, "transport": transport]
         context.coordinator.flush()
     }
 
@@ -56,6 +60,7 @@ struct NativeMetronome: NSViewRepresentable {
         var pendingAudio: Bool?
         private var sending = false
         private let session = UUID().uuidString
+        var lastSentRouteId: String?
         private var observers: [NSObjectProtocol] = []
 
         init(enabled: Binding<Bool>) { self.enabled = enabled }
@@ -78,6 +83,7 @@ struct NativeMetronome: NSViewRepresentable {
 
         func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
             ready = true
+            lastSentRouteId = nil
             flush()
         }
 
@@ -90,7 +96,10 @@ struct NativeMetronome: NSViewRepresentable {
             pending = nil
             pendingAudio = nil
             sending = true
-            view.evaluateJavaScript("window.acceptNativeState(\(text));") { [weak self] _, _ in
+            let transport = value["transport"] as? [String: Any]
+            let deliveredRoute = transport?["route"] != nil ? transport?["routeId"] as? String : nil
+            view.evaluateJavaScript("window.acceptNativeState(\(text));") { [weak self] _, error in
+                if error == nil, let deliveredRoute { self?.lastSentRouteId = deliveredRoute }
                 self?.sending = false
                 self?.flush()
             }

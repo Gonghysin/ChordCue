@@ -1,0 +1,7 @@
+@font-face{font-family:Bravura;src:url('../vendor/alphatab/dist/font/Bravura.woff2') format('woff2')}
+.score-view-heading{padding:12px 16px;color:#25364a;background:#f3f7fb;font:600 15px sans-serif;border-radius:8px}
+.score-view-canvas{position:relative;min-height:180px;background:white;padding:8px}
+.score-source-chords{display:flex;gap:18px;flex-wrap:wrap;padding-top:8px;font:13px sans-serif}
+.score-playback-layer{position:absolute;inset:0;pointer-events:none;z-index:10}
+.score-note-highlight{position:absolute;box-sizing:border-box;border:2px solid #287fce;border-radius:4px;background:rgba(40,127,206,.16);pointer-events:none}
+.score-error{padding:18px;color:#a63b32;font:14px sans-serif}

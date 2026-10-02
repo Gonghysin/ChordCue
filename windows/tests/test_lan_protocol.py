@@ -1,6 +1,7 @@
 """Actual TCP/HTTP/SSE tests; no Qt application or external network required."""
 
 from concurrent.futures import Future
+import asyncio
 from dataclasses import replace
 import http.client
 import json
@@ -13,8 +14,9 @@ import pytest
 
 from chordcue import lan
 from chordcue.lan import LANServer, _Limits, chart_payload, is_local_address
-from chordcue.models import ChartDocument, ChordEvent, KeySection, MusicalKey
+from chordcue.models import ChartDocument, ChordEvent, KeySection, MusicalKey, document_with_score
 from chordcue.transport import StandaloneTransport
+from score_fixtures import large_score
 
 
 def wait_for(predicate, timeout=3):
@@ -273,6 +275,174 @@ def test_sse_initial_reconnect_latest_snapshot_and_revision_order(server):
     wait_for(lambda: instance.connections == 0)
 
 
+def test_prepared_score_serializes_once_and_reconnect_gets_latest_revision(server, monkeypatch):
+    instance, url = server
+    encode = instance._event
+    chart_encodes = []
+
+    def counted(name, value, maximum):
+        if name == "chart":
+            chart_encodes.append(value["revision"])
+        return encode(name, value, maximum)
+
+    monkeypatch.setattr(instance, "_event", counted)
+    chart, transport = state()
+    for bar in range(1, 11):
+        transport = {**transport, "bar": bar}
+        instance.publish_prepared(chart, transport)
+    assert chart_encodes == [1]
+    with Stream(url) as stream:
+        assert stream.event() == ("chart", chart)
+        assert stream.event() == ("transport", transport)
+    following, sample = state(2)
+    instance.publish_prepared(following, sample)
+    assert chart_encodes == [1, 2]
+    with Stream(url) as reconnect:
+        assert reconnect.event() == ("chart", following)
+        assert reconnect.event() == ("transport", sample)
+
+
+def test_valid_score_over_old_budget_streams_complete_and_reconnects(server):
+    instance, url = server
+    document = document_with_score(large_score())
+    chart = chart_payload(document, (), 5)
+    playback = StandaloneTransport(document)
+    chart["route"] = playback.plan.to_dict()
+    sample = playback.snapshot(5, include_route=False)
+    assert len(json.dumps(chart, separators=(",", ":")).encode()) > 2 * 1024 * 1024
+    try:
+        instance.publish_prepared(chart, sample)
+        with Stream(url) as stream:
+            assert stream.event() == ("chart", chart)
+            assert stream.event() == ("transport", sample)
+            for position in (1, 2, 3):
+                latest = {**sample, "bar": position}
+                instance.publish_prepared(chart, latest)
+                assert stream.event() == ("transport", latest)
+        with Stream(url) as reconnect:
+            assert reconnect.event() == ("chart", chart)
+            assert reconnect.event() == ("transport", latest)
+        instance.stop()
+        assert instance._prepared_chart is instance._prepared_event is instance._prepared_identity is None
+    finally:
+        playback.close()
+
+
+def test_chunked_frame_cannot_be_interleaved_and_coalesces_latest_transport():
+    async def check():
+        owner = LANServer(_limits=replace(_Limits(), write_high=32, write_seconds=0.2))
+        owner._devices.set_parts({"p1": frozenset(("staff", "tab"))}, 1)
+        owner._devices.register({"clientId": "chunk-test"}, "test")
+        peer = lan._Peer(owner)
+        owner._peers.add(peer)
+        peer.streaming = True
+        peer.client_id = "chunk-test"
+        writes = []
+
+        class Buffer:
+            def write(self, data):
+                writes.append(bytes(data))
+                if len(writes) == 1:
+                    peer.pause_writing()
+
+            def abort(self):
+                pass
+
+        peer.transport = Buffer()
+        chart, sample = state()
+        wire = owner._event("chart", chart, owner._limits.chart_bytes)
+        snapshot = lan._Snapshot(wire, owner._event("transport", sample, 65536), b"identity")
+        peer.offer(snapshot)
+        await asyncio.sleep(0)
+        assert peer._writing_chart is not None
+        owner._devices.assign("chunk-test", "p1", "tab")
+        updated = lan._Snapshot(wire, owner._event("transport", {**sample, "bar": 8}, 65536), b"identity")
+        peer.offer(updated)
+        peer.send_assignment()
+        peer.heartbeat()
+        assert len(writes) == 1
+        peer.resume_writing()
+        for _ in range(100):
+            if peer._pending is None:
+                break
+            await asyncio.sleep(0)
+        blocks = b"".join(writes).split(b"\n\n")
+        assert blocks[0] == wire.rstrip(b"\n")
+        assert blocks[1].startswith(b"event: assignment\ndata: ")
+        assert json.loads(blocks[1].split(b"data: ", 1)[1])["view"] == "tab"
+        assert json.loads(blocks[2].split(b"data: ", 1)[1])["bar"] == 8
+        assert peer._writing_chart is None and peer._sent_chart_identity == b"identity"
+        assert max(map(len, writes[:-2])) <= 32
+        peer.close()
+
+    asyncio.run(check())
+
+
+def test_inflight_old_frame_budget_releases_slow_history():
+    owner = LANServer(_limits=replace(_Limits(), inflight_chart_bytes=100))
+    first, second, incoming = [lan._Peer(owner) for _ in range(3)]
+    owner._peers.update((first, second, incoming))
+    first._writing_chart, second._writing_chart = b"a" * 40, b"b" * 40
+    first._chart_started, second._chart_started = 1, 2
+    assert owner._reserve_chart(incoming, b"c" * 40)
+    assert first.closed and first._writing_chart is None
+    assert not second.closed
+
+
+def test_progressing_chart_may_take_longer_than_one_stall_deadline():
+    async def check():
+        limits = replace(_Limits(), write_high=32, write_seconds=0.08)
+        owner = LANServer(_limits=limits)
+        peer = lan._Peer(owner)
+        owner._peers.add(peer)
+        writes = []
+
+        class Buffer:
+            def write(self, data):
+                writes.append(bytes(data))
+                peer.pause_writing()
+                asyncio.get_running_loop().call_later(0.004, peer.resume_writing)
+
+            def abort(self):
+                pass
+
+        peer.transport = Buffer()
+        chart, sample = state()
+        chart["name"] = "x" * 2000
+        wire = owner._event("chart", chart, limits.chart_bytes)
+        started = time.monotonic()
+        peer.offer(lan._Snapshot(wire, owner._event("transport", sample, 65536), b"slow-progress"))
+        for _ in range(500):
+            if peer._pending is None or peer.closed:
+                break
+            await asyncio.sleep(0.005)
+        assert time.monotonic() - started > limits.write_seconds
+        assert not peer.closed and peer._pending is None
+        assert b"".join(writes).startswith(wire)
+        assert max(map(len, writes[:-1])) <= 32
+        peer.close()
+
+    asyncio.run(check())
+
+
+def test_score_chart_does_not_duplicate_legacy_display_adapter():
+    score = large_score()
+    document = replace(document_with_score(score), events=(ChordEvent(1, 1, 0, "C"),))
+    chart = chart_payload(document, (KeySection(1, MusicalKey(0)),))
+    assert chart["events"] == chart["sections"] == []
+    assert chart["score"] == score.to_dict()
+
+
+def test_score_and_route_budgets_are_independent_of_total_chart_limit(monkeypatch):
+    monkeypatch.setattr(lan, "MAX_SCORE_BYTES", 128)
+    maximum = _Limits().chart_bytes
+    with pytest.raises(ValueError, match="score payload exceeds"):
+        LANServer._event("chart", {"score": {"detail": "x" * 128}}, maximum)
+    with pytest.raises(ValueError, match="route payload exceeds"):
+        LANServer._event("chart", {"score": {}, "route": {"detail": "x" * 128}}, maximum)
+    assert b'"route"' in LANServer._event("chart", {"score": {"small": 1}, "route": {"small": 2}}, maximum)
+
+
 def test_sse_heartbeat_does_not_replace_pending_state():
     instance = LANServer(host="127.0.0.1", _addresses=lambda: ["127.0.0.1"],
                          _limits=replace(_Limits(), heartbeat_seconds=0.03))
@@ -296,15 +466,16 @@ def test_sse_rejects_followup_request(server):
     wait_for(lambda: instance.connections == 0)
 
 
-def test_publish_rejects_mismatch_nonfinite_and_oversize_payload(server):
+def test_publish_rejects_mismatch_nonfinite_and_oversize_payload(server, monkeypatch):
     instance, _ = server
     chart, transport = state()
     with pytest.raises(ValueError, match="revisions must match"):
         instance.publish(chart, {**transport, "revision": 2})
     with pytest.raises(ValueError):
         instance.publish(chart, {**transport, "sampleTime": float("nan")})
+    monkeypatch.setattr(instance, "_limits", replace(instance._limits, chart_bytes=4096))
     with pytest.raises(ValueError, match="payload exceeds"):
-        instance.publish({**chart, "name": "x" * (_Limits().chart_bytes + 1)}, transport)
+        instance.publish({**chart, "name": "x" * 4097}, transport)
     with pytest.raises(ValueError, match="payload exceeds"):
         instance.publish(chart, {**transport, "extra": "x" * (_Limits().transport_bytes + 1)})
 

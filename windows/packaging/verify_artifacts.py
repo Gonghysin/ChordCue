@@ -101,6 +101,7 @@ def verify_payload(names: list[str]) -> None:
         "vcruntime140.dll", "vcruntime140_1.dll", "msvcp140.dll",
         "Broadcast.html", "Metronome.js", "DemoChords.txt", "THIRD_PARTY_NOTICES.md",
         "Python-LICENSE.txt", "installed-distributions.json",
+        "alphaTab-integrated-NOTICES.txt",
         "Qt-LGPL-3.0.txt", "Qt-GPL-3.0.txt", "GNU-LGPL-2.1.txt",
         "Qt-6.11.2-THIRD-PARTY-NOTICES.txt", "Qt-6.11.2-notices-manifest.json",
         "PySide6-6.11.2-NOTICES.txt", "Qt-PySide-SOURCE-INFORMATION.txt",
@@ -112,6 +113,19 @@ def verify_tree(directory: Path) -> None:
     files = [path for path in directory.rglob("*") if path.is_file()]
     verify_payload([path.name for path in files])
     assert (directory / "Resources/licenses/installed-distributions.json").is_file()
+    assert (directory / "Resources/licenses/alphaTab-integrated-NOTICES.txt").is_file()
+    for relative in ("score/ScoreView.html", "score/ScoreView.js", "score/ScoreView.css",
+                     "score/ScoreIO.js", "score/MusicXMLImport.js", "score/GuitarProImport.js",
+                     "score/PlaybackPlan.js", "score/DeviceClient.js",
+                     "score/score.schema.json",
+                     "vendor/alphatab/dist/alphaTab.min.js", "vendor/alphatab/LICENSE.header",
+                     "vendor/alphatab/dist/font/Bravura.woff2", "vendor/fflate/umd/index.js"):
+        assert (directory / "Resources" / relative).is_file(), f"Missing score resource: {relative}"
+    for package in ("alphatab", "fflate"):
+        root = directory / "Resources/vendor" / package
+        vendor = json.loads((root / "manifest.json").read_text("utf-8"))
+        for entry in vendor["files"]:
+            assert hashlib.sha256((root / entry["path"]).read_bytes()).hexdigest() == entry["sha256"], entry["path"]
     assert any("platforms" in path.parts and path.name == "qwindows.dll" for path in files)
     assert any("qtwebengine_locales" in path.parts and path.name == "en-US.pak" for path in files)
     assert (directory / "share/licenses/vc_redist/LICENSE.txt").is_file()

@@ -10,6 +10,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description="ChordCue Windows 桌面版")
     parser.add_argument("project", nargs="?", type=Path)
     parser.add_argument("--smoke-test", type=Path, metavar="OUTPUT_DIRECTORY")
+    parser.add_argument("--smoke-score", type=Path, metavar="SCORE_FILE")
     args = parser.parse_args()
     # Desktop audio must keep its lookahead timer alive when the chart tab is selected.
     flag = "--disable-background-timer-throttling"
@@ -40,10 +41,13 @@ def main() -> int:
         window = MainWindow()
     window.show()
     if args.project is not None:
-        window.open_project_path(args.project)
+        if args.project.suffix.lower() == ".json":
+            window.open_project_path(args.project)
+        else:
+            window.import_score_path(args.project)
     if args.smoke_test is not None:
         from chordcue.diagnostics import run_smoke
-        run_smoke(window, args.smoke_test, app)
+        run_smoke(window, args.smoke_test, app, score_path=args.smoke_score)
     return app.exec()
 
 

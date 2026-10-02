@@ -35,3 +35,7 @@ __pycache__/
 .mypy_cache/
 .ruff_cache/
 *.pyc
+.test-tmp/
+windows/pytest-cache-files-*/
+# Local execution evidence and unsigned candidates are not source changes.
+outputs/

@@ -24,7 +24,7 @@ from .paths import resource_path
 
 
 class _LocalResources(QWebEngineUrlRequestInterceptor):
-    """Deny every request except the two immutable metronome resources."""
+    """Deny every request outside the immutable local resource allowlist."""
 
     def __init__(self, assets: set[Path], parent: QObject) -> None:
         super().__init__(parent)
@@ -166,7 +166,15 @@ class AudioPanel(QWidget):
         self._profile.setPersistentCookiesPolicy(
             QWebEngineProfile.PersistentCookiesPolicy.NoPersistentCookies
         )
-        self._requests = _LocalResources({document, script}, self._profile)
+        assets = {document, script}
+        for name in ("score/ScoreIO.js", "score/ScoreView.js", "score/ScoreView.css",
+                     "score/PlaybackPlan.js", "score/DeviceClient.js",
+                     "vendor/alphatab/dist/alphaTab.min.js",
+                     "vendor/alphatab/dist/font/Bravura.woff2"):
+            path = document.parent / name
+            if path.is_file():
+                assets.add(path.resolve())
+        self._requests = _LocalResources(assets, self._profile)
         self._profile.setUrlRequestInterceptor(self._requests)
         self.view = QWebEngineView(self)
         self._page = _LocalPage(self._profile, document, self.view)
@@ -245,6 +253,7 @@ class AudioPanel(QWidget):
         if self._closed:
             return
         self._document_epoch += 1
+        self._sent_route_id = None
         self._command_sequence += 1
         self.ready = False
         self.ready_changed.emit(False)
@@ -262,7 +271,11 @@ class AudioPanel(QWidget):
         if self._closed:
             return
         # Copy across the asynchronous boundary and forbid NaN/Infinity in JS.
-        self._pending = json.loads(json.dumps({"name": name, "transport": payload}, allow_nan=False))
+        wire = payload
+        route_id = payload.get("routeId")
+        if route_id and route_id == getattr(self, "_sent_route_id", None):
+            wire = {key: value for key, value in payload.items() if key != "route"}
+        self._pending = json.loads(json.dumps({"name": name, "transport": wire}, allow_nan=False))
         self._flush()
 
     def set_enabled(self, enabled: bool) -> None:
@@ -288,6 +301,8 @@ class AudioPanel(QWidget):
         calls = []
         if value is not None:
             calls.append("window.acceptNativeState(" + json.dumps(value, ensure_ascii=True) + ");")
+            if "route" in value["transport"]:
+                self._sent_route_id = value["transport"].get("routeId")
         if enabled is not None:
             calls.append("window.ChordCueBridge.applyAudioCommand(" + json.dumps(enabled)
                          + "," + str(self._command_sequence) + ");")

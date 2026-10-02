@@ -1,0 +1,24 @@
+{
+  "package": "fflate",
+  "version": "0.8.2",
+  "license": "MIT",
+  "url": "https://registry.npmjs.org/fflate/-/fflate-0.8.2.tgz",
+  "integrity": "sha512-cPJU47OaAoCbg0pBvzsgpTPhmhqI5eJjh/JIu8tPj5q+T7iLvW/JAYUqmE7KOB4R1ZyEhzBaIQpQpardBF5z8A==",
+  "files": [
+    {
+      "path": "umd/index.js",
+      "bytes": 32665,
+      "sha256": "c3b34f2e9f5e74d4d7d64e01cac7a0c01954c6c406414d42185c7b53d6875ddf"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 1069,
+      "sha256": "805f6cb28bb8b6d3a0badd83c93bccd9671fa01a3b4b92b7042b0743325ac243"
+    },
+    {
+      "path": "package.json",
+      "bytes": 3482,
+      "sha256": "1f39729fc15f568a3aef326e03b3a2b766ad3b6d43705a11bcb66b2979649c89"
+    }
+  ]
+}

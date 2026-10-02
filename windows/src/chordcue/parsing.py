@@ -1,7 +1,8 @@
 """Manual chart and Logic accessibility-text import, independent of Qt."""
 
 import re
-from collections.abc import Iterable
+from collections.abc import Callable, Iterable
+from fractions import Fraction
 
 from .models import ChordEvent, PPQ, event_position, validate_meter
 
@@ -30,7 +31,8 @@ def _append(events: list[ChordEvent], onsets: set[tuple[int, int]], event: Chord
     events.append(event)
 
 
-def parse_manual(text: str, meter: int = 4) -> tuple[ChordEvent, ...]:
+def parse_manual(text: str, meter: int = 4, *,
+                 bar_quarters: Callable[[int], Fraction] | None = None) -> tuple[ChordEvent, ...]:
     """Parse ``bar[.beat[.division.tick]] chord``; IDs are source line indices.
 
     Empty lines are ignored. Every other line must be valid, so a bad edit
@@ -54,7 +56,15 @@ def parse_manual(text: str, meter: int = 4) -> tuple[ChordEvent, ...]:
                 raise ValueError("expected bar, bar.beat, or bar.beat.division.tick")
             bar, beat, division, tick = (int(value) if value is not None else default
                                          for value, default in zip(match.groups(), (1, 1, 1, 0)))
-            offset = _position_tick(bar, beat, division, tick, meter)
+            if bar_quarters is None:
+                offset = _position_tick(bar, beat, division, tick, meter)
+            else:
+                capacity = bar_quarters(bar) * PPQ
+                if bar < 1 or beat < 1 or not 1 <= division <= 4 or not 0 <= tick < PPQ:
+                    raise ValueError("position is outside bar/beat/division/tick bounds")
+                offset = (beat-1)*PPQ + (division-1)*(PPQ//4) + tick
+                if offset >= capacity:
+                    raise ValueError("position is outside this bar's meter (positions use quarters)")
             _append(events, onsets, ChordEvent(index, bar, offset, parts[1].strip()))
         except ValueError as exc:
             raise ValueError(f"Line {index + 1}: {exc}") from exc

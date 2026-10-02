@@ -1,0 +1,930 @@
+{
+  "formatVersion": 2,
+  "id": "score",
+  "title": "Technique preservation",
+  "source": {
+    "format": "guitarpro",
+    "fileName": "techniques.gp",
+    "sha256": null
+  },
+  "measures": [
+    {
+      "id": "m1",
+      "number": "1",
+      "duration": {
+        "numerator": 4,
+        "denominator": 1
+      },
+      "meter": {
+        "numerator": 4,
+        "denominator": 4
+      },
+      "repeatStart": false,
+      "repeatEnd": null,
+      "endingNumbers": [],
+      "markers": [],
+      "navigation": []
+    },
+    {
+      "id": "m2",
+      "number": "2",
+      "duration": {
+        "numerator": 4,
+        "denominator": 1
+      },
+      "meter": {
+        "numerator": 4,
+        "denominator": 4
+      },
+      "repeatStart": false,
+      "repeatEnd": null,
+      "endingNumbers": [],
+      "markers": [],
+      "navigation": []
+    },
+    {
+      "id": "m3",
+      "number": "3",
+      "duration": {
+        "numerator": 4,
+        "denominator": 1
+      },
+      "meter": {
+        "numerator": 4,
+        "denominator": 4
+      },
+      "repeatStart": false,
+      "repeatEnd": null,
+      "endingNumbers": [],
+      "markers": [],
+      "navigation": []
+    },
+    {
+      "id": "m4",
+      "number": "4",
+      "duration": {
+        "numerator": 4,
+        "denominator": 1
+      },
+      "meter": {
+        "numerator": 4,
+        "denominator": 4
+      },
+      "repeatStart": false,
+      "repeatEnd": null,
+      "endingNumbers": [],
+      "markers": [],
+      "navigation": []
+    }
+  ],
+  "parts": [
+    {
+      "id": "p1",
+      "name": "Guitar",
+      "instrument": null,
+      "staves": [
+        {
+          "id": "p1.s1",
+          "name": "谱表 1",
+          "kind": "tab",
+          "clef": "G2",
+          "tuning": [
+            64,
+            59,
+            55,
+            50,
+            45,
+            40
+          ],
+          "capo": 0,
+          "events": [
+            {
+              "id": "p1.e1",
+              "measureId": "m1",
+              "offset": {
+                "numerator": 0,
+                "denominator": 1
+              },
+              "duration": {
+                "numerator": 1,
+                "denominator": 1
+              },
+              "voice": 1,
+              "isRest": false,
+              "grace": false,
+              "notes": [
+                {
+                  "id": "p1.n1",
+                  "pitch": 64,
+                  "string": 1,
+                  "fret": 0,
+                  "tieStart": false,
+                  "tieStop": false,
+                  "unpitched": false,
+                  "accidental": null,
+                  "writtenPitch": 64,
+                  "techniques": [
+                    {
+                      "kind": "palmMute",
+                      "targetNoteId": null,
+                      "value": null,
+                      "direction": null,
+                      "curve": []
+                    },
+                    {
+                      "kind": "accent",
+                      "targetNoteId": null,
+                      "value": null,
+                      "direction": null,
+                      "curve": []
+                    },
+                    {
+                      "kind": "hammerOn",
+                      "targetNoteId": "p1.n2",
+                      "value": null,
+                      "direction": null,
+                      "curve": []
+                    }
+                  ]
+                }
+              ],
+              "techniques": [
+                {
+                  "kind": "pick",
+                  "targetNoteId": null,
+                  "value": null,
+                  "direction": "down",
+                  "curve": []
+                }
+              ]
+            },
+            {
+              "id": "p1.e2",
+              "measureId": "m1",
+              "offset": {
+                "numerator": 1,
+                "denominator": 1
+              },
+              "duration": {
+                "numerator": 1,
+                "denominator": 1
+              },
+              "voice": 1,
+              "isRest": false,
+              "grace": false,
+              "notes": [
+                {
+                  "id": "p1.n2",
+                  "pitch": 66,
+                  "string": 1,
+                  "fret": 2,
+                  "tieStart": false,
+                  "tieStop": false,
+                  "unpitched": false,
+                  "accidental": null,
+                  "writtenPitch": 66,
+                  "techniques": [
+                    {
+                      "kind": "letRing",
+                      "targetNoteId": null,
+                      "value": null,
+                      "direction": null,
+                      "curve": []
+                    },
+                    {
+                      "kind": "vibrato",
+                      "targetNoteId": null,
+                      "value": null,
+                      "direction": "wide",
+                      "curve": []
+                    },
+                    {
+                      "kind": "pullOff",
+                      "targetNoteId": "p1.n3",
+                      "value": null,
+                      "direction": null,
+                      "curve": []
+                    }
+                  ]
+                }
+              ],
+              "techniques": []
+            },
+            {
+              "id": "p1.e3",
+              "measureId": "m1",
+              "offset": {
+                "numerator": 2,
+                "denominator": 1
+              },
+              "duration": {
+                "numerator": 1,
+                "denominator": 1
+              },
+              "voice": 1,
+              "isRest": false,
+              "grace": false,
+              "notes": [
+                {
+                  "id": "p1.n3",
+                  "pitch": 64,
+                  "string": 1,
+                  "fret": 0,
+                  "tieStart": false,
+                  "tieStop": false,
+                  "unpitched": false,
+                  "accidental": null,
+                  "writtenPitch": 64,
+                  "techniques": [
+                    {
+                      "kind": "deadNote",
+                      "targetNoteId": null,
+                      "value": null,
+                      "direction": null,
+                      "curve": []
+                    },
+                    {
+                      "kind": "slide",
+                      "targetNoteId": "p1.n4",
+                      "value": null,
+                      "direction": "shift",
+                      "curve": []
+                    }
+                  ]
+                }
+              ],
+              "techniques": []
+            },
+            {
+              "id": "p1.e4",
+              "measureId": "m1",
+              "offset": {
+                "numerator": 3,
+                "denominator": 1
+              },
+              "duration": {
+                "numerator": 1,
+                "denominator": 1
+              },
+              "voice": 1,
+              "isRest": false,
+              "grace": false,
+              "notes": [
+                {
+                  "id": "p1.n4",
+                  "pitch": 67,
+                  "string": 1,
+                  "fret": 3,
+                  "tieStart": false,
+                  "tieStop": false,
+                  "unpitched": false,
+                  "accidental": null,
+                  "writtenPitch": 67,
+                  "techniques": [
+                    {
+                      "kind": "staccato",
+                      "targetNoteId": null,
+                      "value": null,
+                      "direction": null,
+                      "curve": []
+                    },
+                    {
+                      "kind": "heavyAccent",
+                      "targetNoteId": null,
+                      "value": null,
+                      "direction": null,
+                      "curve": []
+                    },
+                    {
+                      "kind": "slide",
+                      "targetNoteId": "p1.n5",
+                      "value": null,
+                      "direction": "legato",
+                      "curve": []
+                    }
+                  ]
+                }
+              ],
+              "techniques": []
+            },
+            {
+              "id": "p1.e5",
+              "measureId": "m2",
+              "offset": {
+                "numerator": 0,
+                "denominator": 1
+              },
+              "duration": {
+                "numerator": 1,
+                "denominator": 1
+              },
+              "voice": 1,
+              "isRest": false,
+              "grace": false,
+              "notes": [
+                {
+                  "id": "p1.n5",
+                  "pitch": 67,
+                  "string": 1,
+                  "fret": 3,
+                  "tieStart": false,
+                  "tieStop": false,
+                  "unpitched": false,
+                  "accidental": null,
+                  "writtenPitch": 67,
+                  "techniques": [
+                    {
+                      "kind": "bend",
+                      "targetNoteId": null,
+                      "value": null,
+                      "direction": "release",
+                      "curve": [
+                        {
+                          "position": 0,
+                          "semitones": 0
+                        },
+                        {
+                          "position": 0.5,
+                          "semitones": 2
+                        },
+                        {
+                          "position": 0.5,
+                          "semitones": 2
+                        },
+                        {
+                          "position": 1,
+                          "semitones": 0
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "slide",
+                      "targetNoteId": null,
+                      "value": null,
+                      "direction": "inBelow",
+                      "curve": []
+                    }
+                  ]
+                }
+              ],
+              "techniques": []
+            },
+            {
+              "id": "p1.e6",
+              "measureId": "m2",
+              "offset": {
+                "numerator": 1,
+                "denominator": 1
+              },
+              "duration": {
+                "numerator": 1,
+                "denominator": 1
+              },
+              "voice": 1,
+              "isRest": false,
+              "grace": false,
+              "notes": [
+                {
+                  "id": "p1.n6",
+                  "pitch": 67,
+                  "string": 1,
+                  "fret": 3,
+                  "tieStart": false,
+                  "tieStop": false,
+                  "unpitched": false,
+                  "accidental": null,
+                  "writtenPitch": 67,
+                  "techniques": [
+                    {
+                      "kind": "bend",
+                      "targetNoteId": null,
+                      "value": null,
+                      "direction": "prebend",
+                      "curve": [
+                        {
+                          "position": 0,
+                          "semitones": 2
+                        },
+                        {
+                          "position": 1,
+                          "semitones": 2
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "slide",
+                      "targetNoteId": null,
+                      "value": null,
+                      "direction": "outUp",
+                      "curve": []
+                    }
+                  ]
+                }
+              ],
+              "techniques": []
+            },
+            {
+              "id": "p1.e7",
+              "measureId": "m2",
+              "offset": {
+                "numerator": 2,
+                "denominator": 1
+              },
+              "duration": {
+                "numerator": 1,
+                "denominator": 1
+              },
+              "voice": 1,
+              "isRest": false,
+              "grace": false,
+              "notes": [
+                {
+                  "id": "p1.n7",
+                  "pitch": 67,
+                  "string": 1,
+                  "fret": 3,
+                  "tieStart": false,
+                  "tieStop": false,
+                  "unpitched": false,
+                  "accidental": null,
+                  "writtenPitch": 67,
+                  "techniques": [
+                    {
+                      "kind": "bend",
+                      "targetNoteId": null,
+                      "value": null,
+                      "direction": "prebendRelease",
+                      "curve": [
+                        {
+                          "position": 0,
+                          "semitones": 2
+                        },
+                        {
+                          "position": 1,
+                          "semitones": 0
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "slide",
+                      "targetNoteId": null,
+                      "value": null,
+                      "direction": "inAbove",
+                      "curve": []
+                    }
+                  ]
+                }
+              ],
+              "techniques": []
+            },
+            {
+              "id": "p1.e8",
+              "measureId": "m2",
+              "offset": {
+                "numerator": 3,
+                "denominator": 1
+              },
+              "duration": {
+                "numerator": 1,
+                "denominator": 1
+              },
+              "voice": 1,
+              "isRest": false,
+              "grace": false,
+              "notes": [
+                {
+                  "id": "p1.n8",
+                  "pitch": 76,
+                  "string": 1,
+                  "fret": 12,
+                  "tieStart": false,
+                  "tieStop": false,
+                  "unpitched": false,
+                  "accidental": null,
+                  "writtenPitch": 76,
+                  "techniques": [
+                    {
+                      "kind": "harmonic",
+                      "targetNoteId": null,
+                      "value": 12,
+                      "direction": "natural",
+                      "curve": []
+                    }
+                  ]
+                }
+              ],
+              "techniques": []
+            },
+            {
+              "id": "p1.e9",
+              "measureId": "m3",
+              "offset": {
+                "numerator": 0,
+                "denominator": 1
+              },
+              "duration": {
+                "numerator": 1,
+                "denominator": 1
+              },
+              "voice": 1,
+              "isRest": false,
+              "grace": false,
+              "notes": [
+                {
+                  "id": "p1.n9",
+                  "pitch": 81,
+                  "string": 1,
+                  "fret": 5,
+                  "tieStart": false,
+                  "tieStop": false,
+                  "unpitched": false,
+                  "accidental": null,
+                  "writtenPitch": 69,
+                  "techniques": [
+                    {
+                      "kind": "ghost",
+                      "targetNoteId": null,
+                      "value": null,
+                      "direction": null,
+                      "curve": []
+                    },
+                    {
+                      "kind": "harmonic",
+                      "targetNoteId": null,
+                      "value": 12,
+                      "direction": "artificial",
+                      "curve": []
+                    }
+                  ]
+                }
+              ],
+              "techniques": [
+                {
+                  "kind": "tremoloPicking",
+                  "targetNoteId": null,
+                  "value": 32,
+                  "direction": null,
+                  "curve": []
+                }
+              ]
+            },
+            {
+              "id": "p1.e10",
+              "measureId": "m3",
+              "offset": {
+                "numerator": 1,
+                "denominator": 1
+              },
+              "duration": {
+                "numerator": 1,
+                "denominator": 1
+              },
+              "voice": 1,
+              "isRest": false,
+              "grace": false,
+              "notes": [
+                {
+                  "id": "p1.n10",
+                  "pitch": 71,
+                  "string": 1,
+                  "fret": 7,
+                  "tieStart": false,
+                  "tieStop": false,
+                  "unpitched": false,
+                  "accidental": null,
+                  "writtenPitch": 71,
+                  "techniques": [
+                    {
+                      "kind": "tap",
+                      "targetNoteId": null,
+                      "value": null,
+                      "direction": null,
+                      "curve": []
+                    }
+                  ]
+                }
+              ],
+              "techniques": [
+                {
+                  "kind": "tap",
+                  "targetNoteId": null,
+                  "value": null,
+                  "direction": null,
+                  "curve": []
+                }
+              ]
+            },
+            {
+              "id": "p1.e11",
+              "measureId": "m3",
+              "offset": {
+                "numerator": 2,
+                "denominator": 1
+              },
+              "duration": {
+                "numerator": 1,
+                "denominator": 1
+              },
+              "voice": 1,
+              "isRest": false,
+              "grace": false,
+              "notes": [
+                {
+                  "id": "p1.n11",
+                  "pitch": 69,
+                  "string": 1,
+                  "fret": 5,
+                  "tieStart": false,
+                  "tieStop": false,
+                  "unpitched": false,
+                  "accidental": null,
+                  "writtenPitch": 69,
+                  "techniques": [
+                    {
+                      "kind": "ghost",
+                      "targetNoteId": null,
+                      "value": null,
+                      "direction": null,
+                      "curve": []
+                    }
+                  ]
+                }
+              ],
+              "techniques": [
+                {
+                  "kind": "slap",
+                  "targetNoteId": null,
+                  "value": null,
+                  "direction": null,
+                  "curve": []
+                }
+              ]
+            },
+            {
+              "id": "p1.e12",
+              "measureId": "m3",
+              "offset": {
+                "numerator": 3,
+                "denominator": 1
+              },
+              "duration": {
+                "numerator": 1,
+                "denominator": 1
+              },
+              "voice": 1,
+              "isRest": false,
+              "grace": false,
+              "notes": [
+                {
+                  "id": "p1.n12",
+                  "pitch": 67,
+                  "string": 1,
+                  "fret": 3,
+                  "tieStart": false,
+                  "tieStop": false,
+                  "unpitched": false,
+                  "accidental": null,
+                  "writtenPitch": 67,
+                  "techniques": []
+                }
+              ],
+              "techniques": [
+                {
+                  "kind": "pop",
+                  "targetNoteId": null,
+                  "value": null,
+                  "direction": null,
+                  "curve": []
+                },
+                {
+                  "kind": "whammy",
+                  "targetNoteId": null,
+                  "value": null,
+                  "direction": "bend",
+                  "curve": [
+                    {
+                      "position": 0,
+                      "semitones": 0
+                    },
+                    {
+                      "position": 0.5,
+                      "semitones": -2
+                    },
+                    {
+                      "position": 1,
+                      "semitones": 0
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "p1.e13",
+              "measureId": "m4",
+              "offset": {
+                "numerator": 0,
+                "denominator": 1
+              },
+              "duration": {
+                "numerator": 1,
+                "denominator": 1
+              },
+              "voice": 1,
+              "isRest": false,
+              "grace": false,
+              "notes": [
+                {
+                  "id": "p1.n13",
+                  "pitch": 64,
+                  "string": 1,
+                  "fret": 0,
+                  "tieStart": false,
+                  "tieStop": false,
+                  "unpitched": false,
+                  "accidental": null,
+                  "writtenPitch": 64,
+                  "techniques": [
+                    {
+                      "kind": "trill",
+                      "targetNoteId": null,
+                      "value": 66,
+                      "direction": null,
+                      "curve": []
+                    }
+                  ]
+                }
+              ],
+              "techniques": [
+                {
+                  "kind": "pick",
+                  "targetNoteId": null,
+                  "value": null,
+                  "direction": "up",
+                  "curve": []
+                }
+              ]
+            },
+            {
+              "id": "p1.e14",
+              "measureId": "m4",
+              "offset": {
+                "numerator": 1,
+                "denominator": 1
+              },
+              "duration": {
+                "numerator": 1,
+                "denominator": 1
+              },
+              "voice": 1,
+              "isRest": false,
+              "grace": false,
+              "notes": [
+                {
+                  "id": "p1.n14",
+                  "pitch": 64,
+                  "string": 1,
+                  "fret": 0,
+                  "tieStart": false,
+                  "tieStop": false,
+                  "unpitched": false,
+                  "accidental": null,
+                  "writtenPitch": 64,
+                  "techniques": []
+                }
+              ],
+              "techniques": [
+                {
+                  "kind": "pick",
+                  "targetNoteId": null,
+                  "value": null,
+                  "direction": "up",
+                  "curve": []
+                },
+                {
+                  "kind": "brush",
+                  "targetNoteId": null,
+                  "value": 0.125,
+                  "direction": "down",
+                  "curve": []
+                }
+              ]
+            },
+            {
+              "id": "p1.e15",
+              "measureId": "m4",
+              "offset": {
+                "numerator": 2,
+                "denominator": 1
+              },
+              "duration": {
+                "numerator": 1,
+                "denominator": 1
+              },
+              "voice": 1,
+              "isRest": false,
+              "grace": false,
+              "notes": [
+                {
+                  "id": "p1.n15",
+                  "pitch": 64,
+                  "string": 1,
+                  "fret": 0,
+                  "tieStart": true,
+                  "tieStop": false,
+                  "unpitched": false,
+                  "accidental": null,
+                  "writtenPitch": 64,
+                  "techniques": []
+                }
+              ],
+              "techniques": [
+                {
+                  "kind": "vibrato",
+                  "targetNoteId": null,
+                  "value": null,
+                  "direction": "slight",
+                  "curve": []
+                }
+              ]
+            },
+            {
+              "id": "p1.e16",
+              "measureId": "m4",
+              "offset": {
+                "numerator": 3,
+                "denominator": 1
+              },
+              "duration": {
+                "numerator": 1,
+                "denominator": 1
+              },
+              "voice": 1,
+              "isRest": false,
+              "grace": false,
+              "notes": [
+                {
+                  "id": "p1.n16",
+                  "pitch": 64,
+                  "string": 1,
+                  "fret": 0,
+                  "tieStart": false,
+                  "tieStop": true,
+                  "unpitched": false,
+                  "accidental": null,
+                  "writtenPitch": 64,
+                  "techniques": []
+                }
+              ],
+              "techniques": []
+            }
+          ]
+        }
+      ],
+      "chords": []
+    }
+  ],
+  "tempoChanges": [
+    {
+      "measureId": "m1",
+      "offset": {
+        "numerator": 0,
+        "denominator": 1
+      },
+      "bpm": 120
+    }
+  ],
+  "keyChanges": [
+    {
+      "measureId": "m1",
+      "offset": {
+        "numerator": 0,
+        "denominator": 1
+      },
+      "fifths": 0,
+      "mode": "major"
+    }
+  ],
+  "warnings": [
+    {
+      "code": "technique.unsupported",
+      "message": "p1.n13 未转换的单音技法：trillSpeed 16",
+      "severity": "warning",
+      "measureId": "m4",
+      "partId": "p1"
+    },
+    {
+      "code": "chords.missing",
+      "message": "该声部没有显式和弦标记；未从音符推断和弦",
+      "severity": "warning",
+      "measureId": null,
+      "partId": "p1"
+    },
+    {
+      "code": "source.version",
+      "message": "按文件头识别为 GP8；不支持的技法在预览中逐项提示",
+      "severity": "warning",
+      "measureId": null,
+      "partId": null
+    }
+  ]
+}

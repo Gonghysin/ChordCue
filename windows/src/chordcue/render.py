@@ -1,5 +1,5 @@
 """One fractional-tick layout and painter for the screen and A4 PDF."""
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 import os
 from pathlib import Path
 import tempfile
@@ -10,6 +10,7 @@ from PySide6.QtWidgets import QWidget
 
 from .models import ChartDocument, ChordEvent, MusicalKey, PPQ
 from .theory import analyze_sections, display_chord, number, transpose
+from .timing import measure_quarters, timing_at, timing_rows
 
 
 @dataclass(frozen=True)
@@ -18,6 +19,7 @@ class Span:
     end: float
     text: str
     carry: bool = False
+    source_offset: str | None = None
 
 
 @dataclass(frozen=True)
@@ -25,6 +27,9 @@ class Bar:
     number: int
     section: str
     spans: tuple[Span, ...]
+    source_number: str | None = None
+    duration: float | None = None
+    meter: tuple[int, int] | None = None
 
 
 def _fixed_font(pixels=12, bold=False):
@@ -55,6 +60,8 @@ def crowded_bar(bar: Bar, width: float) -> bool:
 
 
 def onset_label(span: Span, meter: int) -> str:
+    if span.source_offset is not None:
+        return span.source_offset
     # Recover the exact source tick from its normalized position; no beat rounding.
     tick = round(span.start * meter * PPQ)
     beat, remainder = divmod(tick, PPQ)
@@ -102,7 +109,7 @@ def pdf_pages(bars):
                             raise ValueError("单个和弦名称过长，无法在一页内完整排版；请缩短该名称。")
                         taken.append(spans.pop(0))
                         used += entry_height
-                    fragment.append(Bar(bar.number, "续" if continuation else bar.section, tuple(taken)))
+                    fragment.append(replace(bar, section="续" if continuation else bar.section, spans=tuple(taken)))
                 fragment_height = max(bar_height(bar, 127.5) for bar in fragment)
                 pages.append(((tuple(fragment), fragment_height),))
                 continuation = True
@@ -119,9 +126,22 @@ def pdf_pages(bars):
 
 def display_shift(document, sections, mode="track", current_mode="track"):
     mode = current_mode if mode == "current" else mode
-    root = sections[0].key.major_family_root
     if mode == "track":
         return 0
+    if document.score:
+        key = document.forced_key
+        if key is None and document.score.key_changes:
+            order = {measure.id: index for index, measure in enumerate(document.score.measures)}
+            change = min(document.score.key_changes,
+                         key=lambda item: (order[item.measure_id], item.offset.as_fraction()))
+            if change.mode != "unknown":
+                key = MusicalKey((7 * change.fifths + (9 if change.mode == "minor" else 0)) % 12,
+                                 change.mode == "minor")
+        if key is None:
+            raise ValueError("源谱没有已知调性；请先指定调性再移调")
+        root = key.major_family_root
+    else:
+        root = sections[0].key.major_family_root
     if mode.lower() == "c":
         return -root
     if mode == "original":
@@ -138,6 +158,8 @@ def layout_chart(document: ChartDocument, notation="chords", mode="track", *,
     document.validate()
     if notation not in ("chords", "numbers"):
         raise ValueError("Unknown chart notation")
+    if document.score is not None:
+        return _score_layout(document, notation, current_mode if mode == "current" else mode)
     sections = sections or analyze_sections(document)
     shift = display_shift(document, sections, mode, current_mode)
     events = sorted(document.events, key=lambda e: (e.bar, e.tick))
@@ -145,18 +167,25 @@ def layout_chart(document: ChartDocument, notation="chords", mode="track", *,
     for event in events:
         grouped.setdefault(event.bar, []).append(event)
     previous = False
+    changes = {row.bar: row for row in timing_rows(document)} if document.timing_changes else {}
     bars = []
     for bar in range(1, document.bars + 1):
         key_section = next(s for s in reversed(sections) if s.first_bar <= bar)
         key = key_section.key
         shifted = MusicalKey((key.root + shift) % 12, key.is_minor)
         label = shifted.label if key_section.first_bar == bar else ""
+        duration = float(measure_quarters(document, bar)) if document.timing_changes else document.meter
+        timing = timing_at(document, bar) if document.timing_changes else None
+        if bar in changes:
+            change = changes[bar]
+            label = " · ".join(filter(None, (label,
+                f"{change.numerator}/{change.denominator} · ♩={change.bpm:g}")))
         local = grouped.get(bar, [])
         spans = []
         if not local:
             spans.append(Span(0, 1, "%" if previous else "·", True))
         else:
-            total = document.meter * PPQ
+            total = duration * PPQ
             if local[0].tick:
                 spans.append(Span(0, local[0].tick / total, "—" if previous else "·", True))
             for i, event in enumerate(local):
@@ -164,9 +193,66 @@ def layout_chart(document: ChartDocument, notation="chords", mode="track", *,
                 text = (number(event.symbol, key) if notation == "numbers" else
                         display_chord(transpose(event.symbol, shift,
                                       prefer_flats=shifted.major_family_root in (1, 3, 5, 8, 10))))
-                spans.append(Span(event.tick / total, end / total, text))
+                source_offset = None
+                if timing:
+                    beat, rest = divmod(event.tick, PPQ)
+                    division, tick = divmod(rest, PPQ//4)
+                    source_offset = f"{beat+1}.{division+1}.{tick}"
+                spans.append(Span(event.tick / total, end / total, text, source_offset=source_offset))
             previous = True
-        bars.append(Bar(bar, label, tuple(spans)))
+        if timing:
+            # Dense carry entries retain the same quarter-position convention.
+            spans = [replace(span, source_offset=span.source_offset or "1.1.0") for span in spans]
+        bars.append(Bar(bar, label, tuple(spans), duration=duration if timing else None,
+                        meter=(timing.numerator, timing.denominator) if timing else None))
+    return tuple(bars)
+
+
+def _score_layout(document, notation, mode):
+    """Use explicit source chords and exact quarter offsets, including pickups."""
+    score = document.score
+    part = next(p for p in score.parts if p.id == (document.selected_part_id or score.parts[0].id))
+    shift = display_shift(document, (), mode)
+    key = document.forced_key
+    bars = []
+    timing_changes = {row.bar: row for row in timing_rows(document)}
+    for index, measure in enumerate(score.measures, 1):
+        duration = float(measure.duration.as_fraction())
+        changes = sorted((c for c in score.key_changes if c.measure_id == measure.id),
+                         key=lambda c: c.offset.as_fraction())
+        local = sorted((c for c in part.chords if c.measure_id == measure.id),
+                       key=lambda c: c.offset.as_fraction())
+        spans = []
+        change_index = 0
+        for i, chord in enumerate(local):
+            offset = chord.offset.as_fraction()
+            while change_index < len(changes) and changes[change_index].offset.as_fraction() <= offset:
+                change = changes[change_index]
+                if document.forced_key is None:
+                    key = None if change.mode == "unknown" else MusicalKey(
+                        (7 * change.fifths + (9 if change.mode == "minor" else 0)) % 12,
+                        change.mode == "minor")
+                change_index += 1
+            end = float(local[i+1].offset.as_fraction()) if i+1 < len(local) else duration
+            text = number(chord.text, key) if notation == "numbers" and key else transpose(chord.text, shift)
+            if notation == "numbers" and key is None:
+                text = chord.text + "（调性未知）"
+            exact = str(offset.numerator) if offset.denominator == 1 else f"{offset.numerator}/{offset.denominator}"
+            spans.append(Span(float(offset)/duration, end/duration, text, source_offset=f"♩ +{exact}"))
+        for change in changes[change_index:]:
+            if document.forced_key is None:
+                key = None if change.mode == "unknown" else MusicalKey(
+                    (7*change.fifths + (9 if change.mode == "minor" else 0)) % 12, change.mode == "minor")
+        if not spans:
+            spans.append(Span(0, 1, "无和弦标记", True))
+        elif spans[0].start > 0:
+            spans.insert(0, Span(0, spans[0].start, "·", True))
+        labels = [m.label for m in measure.markers]
+        labels.append(f"{measure.meter.numerator}/{measure.meter.denominator}")
+        if index in timing_changes:
+            labels.append(f"♩={timing_changes[index].bpm:g}")
+        bars.append(Bar(index, " · ".join(labels), tuple(spans), measure.number, duration,
+                        (measure.meter.numerator, measure.meter.denominator)))
     return tuple(bars)
 
 
@@ -189,13 +275,14 @@ def paint_bar(painter, rect: QRectF, bar: Bar, meter: int, active=False, phase=N
     painter.fillRect(rect, QColor("#eaf3ff" if active else "#fffefa"))
     painter.setPen(QPen(QColor("#bdcde0" if active else "#d9dcd9"), .7))
     painter.drawRect(rect)
-    _text(painter, QRectF(rect.x()+8, rect.y()+6, 25, 20), str(bar.number), 9,
+    _text(painter, QRectF(rect.x()+8, rect.y()+6, 25, 20), bar.source_number or str(bar.number), 9,
           "#3472b8" if active else "#8793a0", align=Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignVCenter)
     _text(painter, QRectF(rect.x()+34, rect.y()+6, rect.width()-43, 20), bar.section, 8,
           "#2877c7", align=Qt.AlignmentFlag.AlignRight | Qt.AlignmentFlag.AlignVCenter)
     left, width = rect.x()+7, rect.width()-14
-    for beat in range(meter):
-        x = left + width * beat / meter
+    ticks = meter if bar.meter is None else min(bar.meter[0], int((bar.duration or meter)*bar.meter[1]/4))
+    for beat in range(ticks):
+        x = left + width * beat / max(1, ticks)
         painter.setPen(QPen(QColor("#dfe5e8"), .7))
         painter.drawLine(QLineF(x, rect.bottom()-15, x, rect.bottom()-10))
     dense = crowded_bar(bar, rect.width())
@@ -236,6 +323,7 @@ class ChartWidget(QWidget):
         self.meter = 4
         self.active_bar = 0
         self.phase = 0
+        self._follow_space = 0
         self.setMinimumWidth(580)
         self.setCursor(Qt.CursorShape.PointingHandCursor)
         self.setAccessibleName("和弦谱，点击小节定位播放位置")
@@ -247,7 +335,20 @@ class ChartWidget(QWidget):
 
     def _resize_rows(self):
         self._rows = chart_rows(self.bars, (self.width()-36)/4, 108)
-        self.setMinimumHeight(int(sum(height for _, height in self._rows)+36))
+        self.setMinimumHeight(int(sum(height for _, height in self._rows)+36+self._follow_space))
+
+    def set_follow_space(self, viewport_height):
+        if self._follow_space != viewport_height:
+            self._follow_space = viewport_height
+            self._resize_rows()
+
+    def bar_row_top(self, bar):
+        y = 18.0
+        for row, height in self._rows:
+            if any(item.number == bar for item in row):
+                return int(y)
+            y += height
+        return int(y)
 
     def resizeEvent(self, event):
         self._resize_rows()
@@ -263,7 +364,10 @@ class ChartWidget(QWidget):
 
     def set_position(self, payload):
         self.active_bar = payload["bar"]
-        self.phase = (payload["beat"]-1+(payload["division"]-1)/4+payload["tick"]/PPQ)/self.meter
+        source = next((b for b in self.bars if b.number == self.active_bar), None)
+        self.phase = (payload.get("sourceOffsetQuarter", 0)/(source.duration or self.meter)
+                      if source and source.duration else
+                      (payload["beat"]-1+(payload["division"]-1)/4+payload["tick"]/PPQ)/self.meter)
         self.update()
 
     def paintEvent(self, event):
@@ -295,7 +399,7 @@ class ChartWidget(QWidget):
             y -= height
         if bar <= len(self.bars):
             fraction = min(.9999, max(0, (x%width-7)/(width-14)))
-            self.seek_requested.emit(bar, 1+fraction*self.meter)
+            self.seek_requested.emit(bar, 1+fraction*(self.bars[bar-1].duration or self.meter))
 
 
 def export_pdf(document, path: str | Path, notation="chords", mode="track", *, current_mode="track", sections=None):
@@ -340,6 +444,11 @@ def _write_pdf(document, path, notation, pages):
                   align=Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignVCenter)
             _text(painter, QRectF(445, 15, 80, 25), f"{page+1} / {len(pages)}", 10)
             subtitle = f"{'级数谱' if notation == 'numbers' else '和弦谱'}  ·  {document.meter}/4  ·  ♩ = {document.bpm:g}"
+            if document.score:
+                part = next(p for p in document.score.parts if p.id == (document.selected_part_id or document.score.parts[0].id))
+                subtitle = f"{'级数谱' if notation == 'numbers' else '和弦谱'} · {part.name} · 源拍号 / 精确和弦起点"
+            elif document.timing_changes:
+                subtitle = f"{'级数谱' if notation == 'numbers' else '和弦谱'} · 按小节 BPM / 拍号预设 · ♩ BPM"
             _text(painter, QRectF(15, 49, 500, 24), subtitle, 10, "#69798c",
                   align=Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignVCenter)
             y = 89.0
@@ -347,7 +456,9 @@ def _write_pdf(document, path, notation, pages):
                 for column, bar in enumerate(row):
                     paint_bar(painter, QRectF(15+column*127.5, y, 127.5, height), bar, document.meter)
                 y += height
-            _text(painter, QRectF(15, 745, 510, 20), "ChordCue · % 延续小节 / — 延续和弦 / · 空拍 · 密集和弦标注：拍.分拍.tick", 8, "#8994a0")
+            footer = ("ChordCue · 和弦仅来自源标记 · 起点以四分音符计（♩ + 分数）" if document.score else
+                      "ChordCue · % 延续小节 / — 延续和弦 / · 空拍 · 密集和弦标注：拍.分拍.tick")
+            _text(painter, QRectF(15, 745, 510, 20), footer, 8, "#8994a0")
             painter.restore()
     finally:
         painter.end()

@@ -1,0 +1,955 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://chordcue.local/schema/score-v2",
+  "title": "ChordCue ScoreIR v2",
+  "$ref": "#/$defs/ScoreIR",
+  "$comment": "Canonical v2; runtime codecs strictly accept and migrate v1 with empty techniques. Runtime validation additionally enforces conditional technique fields, later same-staff/voice/string note links, finite curve points and total budgets.",
+  "$defs": {
+    "QuarterFraction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "numerator",
+        "denominator"
+      ],
+      "properties": {
+        "numerator": {
+          "type": "integer",
+          "minimum": -2147483647,
+          "maximum": 2147483647
+        },
+        "denominator": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1000000
+        }
+      }
+    },
+    "ScoreMeter": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "numerator",
+        "denominator"
+      ],
+      "properties": {
+        "numerator": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 64
+        },
+        "denominator": {
+          "type": "integer",
+          "enum": [
+            1,
+            2,
+            4,
+            8,
+            16,
+            32,
+            64
+          ]
+        }
+      }
+    },
+    "ScoreSource": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "format",
+        "fileName",
+        "sha256"
+      ],
+      "properties": {
+        "format": {
+          "type": "string",
+          "maxLength": 1024,
+          "pattern": "^[^\\u0000-\\u001f\\u007f-\\u009f\\u2028\\u2029]*$",
+          "enum": [
+            "musicxml",
+            "guitarpro",
+            "manual"
+          ]
+        },
+        "fileName": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 1024,
+              "pattern": "^[^/\\\\\\u0000-\\u001f\\u007f-\\u009f\\u2028\\u2029]+$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "sha256": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 64,
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "ScoreMarker": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "kind",
+        "label",
+        "offset"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$",
+          "maxLength": 128
+        },
+        "kind": {
+          "type": "string",
+          "maxLength": 1024,
+          "pattern": "^[^\\u0000-\\u001f\\u007f-\\u009f\\u2028\\u2029]*$",
+          "enum": [
+            "section",
+            "rehearsal",
+            "segno",
+            "coda",
+            "fine"
+          ]
+        },
+        "label": {
+          "type": "string",
+          "maxLength": 1024,
+          "pattern": "^[^\\u0000-\\u001f\\u007f-\\u009f\\u2028\\u2029]*$"
+        },
+        "offset": {
+          "$ref": "#/$defs/QuarterFraction",
+          "allOf": [
+            {
+              "properties": {
+                "numerator": {
+                  "minimum": 0
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "ScoreNavigation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "targetMarkerId",
+        "offset"
+      ],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "maxLength": 1024,
+          "pattern": "^[^\\u0000-\\u001f\\u007f-\\u009f\\u2028\\u2029]*$",
+          "enum": [
+            "dc",
+            "ds",
+            "toCoda",
+            "fine"
+          ]
+        },
+        "targetMarkerId": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$",
+              "maxLength": 128
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "offset": {
+          "$ref": "#/$defs/QuarterFraction",
+          "allOf": [
+            {
+              "properties": {
+                "numerator": {
+                  "minimum": 0
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "ScoreMeasure": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "number",
+        "duration",
+        "meter",
+        "repeatStart",
+        "repeatEnd",
+        "endingNumbers",
+        "markers",
+        "navigation"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$",
+          "maxLength": 128
+        },
+        "number": {
+          "type": "string",
+          "maxLength": 128,
+          "pattern": "^[^\\u0000-\\u001f\\u007f-\\u009f\\u2028\\u2029]*$",
+          "minLength": 1
+        },
+        "duration": {
+          "$ref": "#/$defs/QuarterFraction",
+          "allOf": [
+            {
+              "properties": {
+                "numerator": {
+                  "minimum": 1
+                }
+              }
+            }
+          ]
+        },
+        "meter": {
+          "$ref": "#/$defs/ScoreMeter"
+        },
+        "repeatStart": {
+          "type": "boolean"
+        },
+        "repeatEnd": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 2,
+              "maximum": 32
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "endingNumbers": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 32
+          },
+          "maxItems": 32,
+          "uniqueItems": true
+        },
+        "markers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ScoreMarker"
+          },
+          "maxItems": 128
+        },
+        "navigation": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ScoreNavigation"
+          },
+          "maxItems": 16
+        }
+      }
+    },
+    "ScoreNote": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "pitch",
+        "string",
+        "fret",
+        "tieStart",
+        "tieStop",
+        "unpitched",
+        "accidental",
+        "writtenPitch",
+        "techniques"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$",
+          "maxLength": 128
+        },
+        "pitch": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 127
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "string": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 24
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "fret": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 99
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "tieStart": {
+          "type": "boolean"
+        },
+        "tieStop": {
+          "type": "boolean"
+        },
+        "unpitched": {
+          "type": "boolean"
+        },
+        "accidental": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 64,
+              "pattern": "^[^\\u0000-\\u001f\\u007f-\\u009f\\u2028\\u2029]*$",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "writtenPitch": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 127
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "techniques": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ScoreTechnique"
+          },
+          "maxItems": 32
+        }
+      }
+    },
+    "ScoreEvent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "measureId",
+        "offset",
+        "duration",
+        "voice",
+        "isRest",
+        "grace",
+        "notes",
+        "techniques"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$",
+          "maxLength": 128
+        },
+        "measureId": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$",
+          "maxLength": 128
+        },
+        "offset": {
+          "$ref": "#/$defs/QuarterFraction",
+          "allOf": [
+            {
+              "properties": {
+                "numerator": {
+                  "minimum": 0
+                }
+              }
+            }
+          ]
+        },
+        "duration": {
+          "$ref": "#/$defs/QuarterFraction",
+          "allOf": [
+            {
+              "properties": {
+                "numerator": {
+                  "minimum": 0
+                }
+              }
+            }
+          ]
+        },
+        "voice": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 16
+        },
+        "isRest": {
+          "type": "boolean"
+        },
+        "grace": {
+          "type": "boolean"
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ScoreNote"
+          },
+          "maxItems": 128
+        },
+        "techniques": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ScoreTechnique"
+          },
+          "maxItems": 32
+        }
+      }
+    },
+    "ScoreStaff": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "name",
+        "kind",
+        "clef",
+        "tuning",
+        "capo",
+        "events"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$",
+          "maxLength": 128
+        },
+        "name": {
+          "type": "string",
+          "maxLength": 1024,
+          "pattern": "^[^\\u0000-\\u001f\\u007f-\\u009f\\u2028\\u2029]*$"
+        },
+        "kind": {
+          "type": "string",
+          "maxLength": 1024,
+          "pattern": "^[^\\u0000-\\u001f\\u007f-\\u009f\\u2028\\u2029]*$",
+          "enum": [
+            "standard",
+            "tab",
+            "percussion"
+          ]
+        },
+        "clef": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 64,
+              "pattern": "^[^\\u0000-\\u001f\\u007f-\\u009f\\u2028\\u2029]*$",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "tuning": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 127
+          },
+          "maxItems": 24
+        },
+        "capo": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 24
+        },
+        "events": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ScoreEvent"
+          },
+          "maxItems": 500000
+        }
+      }
+    },
+    "ScoreChord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "measureId",
+        "offset",
+        "text",
+        "staffId"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$",
+          "maxLength": 128
+        },
+        "measureId": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$",
+          "maxLength": 128
+        },
+        "offset": {
+          "$ref": "#/$defs/QuarterFraction",
+          "allOf": [
+            {
+              "properties": {
+                "numerator": {
+                  "minimum": 0
+                }
+              }
+            }
+          ]
+        },
+        "text": {
+          "type": "string",
+          "maxLength": 1024,
+          "pattern": "^[^\\u0000-\\u001f\\u007f-\\u009f\\u2028\\u2029]*$",
+          "minLength": 1
+        },
+        "staffId": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$",
+              "maxLength": 128
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "ScorePart": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "name",
+        "instrument",
+        "staves",
+        "chords"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$",
+          "maxLength": 128
+        },
+        "name": {
+          "type": "string",
+          "maxLength": 1024,
+          "pattern": "^[^\\u0000-\\u001f\\u007f-\\u009f\\u2028\\u2029]*$",
+          "minLength": 1
+        },
+        "instrument": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 1024,
+              "pattern": "^[^\\u0000-\\u001f\\u007f-\\u009f\\u2028\\u2029]*$",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "staves": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ScoreStaff"
+          },
+          "maxItems": 16,
+          "minItems": 1
+        },
+        "chords": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ScoreChord"
+          },
+          "maxItems": 100000
+        }
+      }
+    },
+    "ScoreTempoChange": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "measureId",
+        "offset",
+        "bpm"
+      ],
+      "properties": {
+        "measureId": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$",
+          "maxLength": 128
+        },
+        "offset": {
+          "$ref": "#/$defs/QuarterFraction",
+          "allOf": [
+            {
+              "properties": {
+                "numerator": {
+                  "minimum": 0
+                }
+              }
+            }
+          ]
+        },
+        "bpm": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 1000
+        }
+      }
+    },
+    "ScoreKeyChange": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "measureId",
+        "offset",
+        "fifths",
+        "mode"
+      ],
+      "properties": {
+        "measureId": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$",
+          "maxLength": 128
+        },
+        "offset": {
+          "$ref": "#/$defs/QuarterFraction",
+          "allOf": [
+            {
+              "properties": {
+                "numerator": {
+                  "minimum": 0
+                }
+              }
+            }
+          ]
+        },
+        "fifths": {
+          "type": "integer",
+          "minimum": -7,
+          "maximum": 7
+        },
+        "mode": {
+          "type": "string",
+          "maxLength": 1024,
+          "pattern": "^[^\\u0000-\\u001f\\u007f-\\u009f\\u2028\\u2029]*$",
+          "enum": [
+            "major",
+            "minor",
+            "unknown"
+          ]
+        }
+      }
+    },
+    "ScoreWarning": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "code",
+        "message",
+        "severity",
+        "measureId",
+        "partId"
+      ],
+      "properties": {
+        "code": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$",
+          "maxLength": 128
+        },
+        "message": {
+          "type": "string",
+          "maxLength": 2048,
+          "pattern": "^[^\\u0000-\\u001f\\u007f-\\u009f\\u2028\\u2029]*$",
+          "minLength": 1
+        },
+        "severity": {
+          "type": "string",
+          "maxLength": 1024,
+          "pattern": "^[^\\u0000-\\u001f\\u007f-\\u009f\\u2028\\u2029]*$",
+          "enum": [
+            "info",
+            "warning"
+          ]
+        },
+        "measureId": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$",
+              "maxLength": 128
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "partId": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$",
+              "maxLength": 128
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "ScoreIR": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "title",
+        "source",
+        "measures",
+        "parts",
+        "tempoChanges",
+        "keyChanges",
+        "warnings",
+        "formatVersion"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$",
+          "maxLength": 128
+        },
+        "title": {
+          "type": "string",
+          "maxLength": 1024,
+          "pattern": "^[^\\u0000-\\u001f\\u007f-\\u009f\\u2028\\u2029]*$",
+          "minLength": 1
+        },
+        "source": {
+          "$ref": "#/$defs/ScoreSource"
+        },
+        "measures": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ScoreMeasure"
+          },
+          "maxItems": 10000,
+          "minItems": 1
+        },
+        "parts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ScorePart"
+          },
+          "maxItems": 64,
+          "minItems": 1
+        },
+        "tempoChanges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ScoreTempoChange"
+          },
+          "maxItems": 100000
+        },
+        "keyChanges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ScoreKeyChange"
+          },
+          "maxItems": 100000
+        },
+        "warnings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ScoreWarning"
+          },
+          "maxItems": 10000
+        },
+        "formatVersion": {
+          "type": "integer",
+          "const": 2
+        }
+      }
+    },
+    "ScoreBendPoint": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "position",
+        "semitones"
+      ],
+      "properties": {
+        "position": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "semitones": {
+          "type": "number",
+          "minimum": -24,
+          "maximum": 24
+        }
+      }
+    },
+    "ScoreTechnique": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "targetNoteId",
+        "value",
+        "direction",
+        "curve"
+      ],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "hammerOn",
+            "pullOff",
+            "slide",
+            "bend",
+            "vibrato",
+            "harmonic",
+            "palmMute",
+            "deadNote",
+            "letRing",
+            "staccato",
+            "accent",
+            "heavyAccent",
+            "pick",
+            "tremoloPicking",
+            "trill",
+            "tap",
+            "slap",
+            "pop",
+            "ghost",
+            "brush",
+            "whammy"
+          ]
+        },
+        "targetNoteId": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$",
+              "maxLength": 128
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 256
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "direction": {
+          "anyOf": [
+            {
+              "type": "string",
+              "enum": [
+                "shift",
+                "legato",
+                "inAbove",
+                "inBelow",
+                "outUp",
+                "outDown",
+                "bend",
+                "prebend",
+                "release",
+                "prebendRelease",
+                "slight",
+                "wide",
+                "natural",
+                "artificial",
+                "tap",
+                "pinch",
+                "semi",
+                "feedback",
+                "up",
+                "down",
+                "arpeggioUp",
+                "arpeggioDown"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "curve": {
+          "type": "array",
+          "maxItems": 64,
+          "items": {
+            "$ref": "#/$defs/ScoreBendPoint"
+          }
+        }
+      }
+    }
+  }
+}

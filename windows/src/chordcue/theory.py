@@ -104,7 +104,8 @@ class _Evidence:
     has_third: bool
 
 
-def _make_evidence(events: tuple[ChordEvent, ...], meter: int, last_bar: int) -> tuple[_Evidence, ...]:
+def _make_evidence(events: tuple[ChordEvent, ...], meter: int, last_bar: int,
+                   bar_starts: tuple[float, ...] = ()) -> tuple[_Evidence, ...]:
     evidence = []
     for index, event in enumerate(events):
         chord = _parsed_root(event.symbol.split("/")[0])
@@ -131,12 +132,12 @@ def _make_evidence(events: tuple[ChordEvent, ...], meter: int, last_bar: int) ->
             tones.append(1 if "b9" in quality else 3 if "#9" in quality else 2)
         if "11" in quality:
             tones.append(6 if "#11" in quality else 5)
-        start = (event.bar - 1) * meter + event.tick / PPQ
+        start = (bar_starts[event.bar-1] if bar_starts else (event.bar-1)*meter) + event.tick/PPQ
         if index + 1 < len(events):
             following = events[index + 1]
-            end = (following.bar - 1) * meter + following.tick / PPQ
+            end = (bar_starts[following.bar-1] if bar_starts else (following.bar-1)*meter) + following.tick/PPQ
         else:
-            end = float(last_bar * meter)
+            end = bar_starts[last_bar] if bar_starts else float(last_bar*meter)
         if end > start:
             evidence.append(_Evidence(start, end, chord[0], tuple(sorted(set(tones))), minor,
                                       extended and not minor and not diminished and not suspended and "maj" not in quality,
@@ -187,7 +188,8 @@ def _score(key: MusicalKey, evidence: tuple[_Evidence, ...], start: float, end: 
 
 @lru_cache(maxsize=32)
 def _analyzed_sections(chords: tuple[ChordEvent, ...], forced_key: MusicalKey | None,
-                       detect_changes: bool, meter: int) -> tuple[KeySection, ...]:
+                       detect_changes: bool, meter: int,
+                       bar_starts: tuple[float, ...] = ()) -> tuple[KeySection, ...]:
     if forced_key is not None:
         return (KeySection(1, forced_key),)
     fallback = (KeySection(1, MusicalKey(0)),)
@@ -195,11 +197,12 @@ def _analyzed_sections(chords: tuple[ChordEvent, ...], forced_key: MusicalKey | 
         return fallback
     events = tuple(sorted(chords, key=lambda event: (event.bar, event.tick)))
     last_bar = events[-1].bar
-    evidence = _make_evidence(events, meter, last_bar)
+    boundaries = bar_starts or tuple(float(bar*meter) for bar in range(last_bar+1))
+    evidence = _make_evidence(events, meter, last_bar, bar_starts)
     if not evidence:
         return fallback
     candidates = tuple(MusicalKey(root, minor) for root in range(12) for minor in (False, True))
-    global_scores = [_score(key, evidence, 0, last_bar * meter) for key in candidates]
+    global_scores = [_score(key, evidence, 0, boundaries[last_bar]) for key in candidates]
     # Python max, like Swift's ordered Sequence.max, retains the first equal item.
     global_index = max(range(24), key=global_scores.__getitem__)
     global_key = candidates[global_index]
@@ -209,7 +212,7 @@ def _analyzed_sections(chords: tuple[ChordEvent, ...], forced_key: MusicalKey | 
                 for family in range(12)]
     emissions = [[0.0] * 12 for _ in range(last_bar)]
     for bar in range(last_bar):
-        local = [_score(key, evidence, bar * meter, (bar + 1) * meter) for key in candidates]
+        local = [_score(key, evidence, boundaries[bar], boundaries[bar+1]) for key in candidates]
         for family in range(12):
             emissions[bar][family] = max(local[index] for index in families[family])
             emissions[bar][family] += 0.15 * max(global_scores[index] for index in families[family])
@@ -231,7 +234,7 @@ def _analyzed_sections(chords: tuple[ChordEvent, ...], forced_key: MusicalKey | 
         end = start + 1
         while end < last_bar and path[end] == path[start]:
             end += 1
-        roots = {chord.root for chord in evidence if chord.start < end * meter and chord.end > start * meter}
+        roots = {chord.root for chord in evidence if chord.start < boundaries[end] and chord.end > boundaries[start]}
         if end - start < 4 or len(roots) < 3:
             neighbors = {path[start - 1] if start > 0 else global_key.major_family_root,
                          path[end] if end < last_bar else global_key.major_family_root}
@@ -247,7 +250,7 @@ def _analyzed_sections(chords: tuple[ChordEvent, ...], forced_key: MusicalKey | 
         while end < last_bar and path[end] == path[start]:
             end += 1
         index = max(families[path[start]],
-                    key=lambda candidate: _score(candidates[candidate], evidence, start * meter, end * meter))
+                    key=lambda candidate: _score(candidates[candidate], evidence, boundaries[start], boundaries[end]))
         result.append(KeySection(start + 1, candidates[index]))
         start = end
     return tuple(result)
@@ -261,7 +264,30 @@ def analyze_sections(document: ChartDocument) -> tuple[KeySection, ...]:
     Empty project tail bars do not change the evidence duration, matching Swift.
     """
     document.validate()
-    automatic = _analyzed_sections(document.events, document.forced_key, document.detect_changes, document.meter)
+    if document.score is not None:
+        if document.forced_key is not None:
+            return (KeySection(1, document.forced_key),)
+        source_indices = {measure.id: index for index, measure in enumerate(document.score.measures, 1)}
+        keys = {}
+        for change in document.score.key_changes:
+            if change.mode != "unknown":
+                keys[source_indices[change.measure_id]] = MusicalKey(
+                    (7 * change.fifths + (9 if change.mode == "minor" else 0)) % 12,
+                    change.mode == "minor")
+        # The legacy display adapter needs a starting key. Score rendering uses
+        # the source map directly and labels absent keys as unknown.
+        if 1 not in keys:
+            keys[1] = MusicalKey(0)
+        return tuple(KeySection(bar, key) for bar, key in sorted(keys.items()))
+    boundaries: tuple[float, ...] = ()
+    if document.timing_changes and document.events:
+        from .timing import measure_quarters
+        values = [0.0]
+        for bar in range(1, max(event.bar for event in document.events)+1):
+            values.append(values[-1] + float(measure_quarters(document, bar)))
+        boundaries = tuple(values)
+    automatic = _analyzed_sections(document.events, document.forced_key, document.detect_changes,
+                                   document.meter, boundaries)
     if not document.manual_sections:
         return automatic
     result = [KeySection(1, automatic[0].key)]

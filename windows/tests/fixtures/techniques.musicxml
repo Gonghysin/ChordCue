@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Original ChordCue technique contract fixture, MIT. -->
+<score-partwise version="4.0">
+ <work><work-title>Technique preservation</work-title></work>
+ <part-list><score-part id="g"><part-name>Guitar</part-name></score-part></part-list>
+ <part id="g">
+  <measure number="1">
+   <attributes><divisions>1</divisions><time><beats>4</beats><beat-type>4</beat-type></time><clef><sign>TAB</sign><line>5</line></clef><staff-details><staff-lines>6</staff-lines>
+    <staff-tuning line="1"><tuning-step>E</tuning-step><tuning-octave>2</tuning-octave></staff-tuning>
+    <staff-tuning line="2"><tuning-step>A</tuning-step><tuning-octave>2</tuning-octave></staff-tuning>
+    <staff-tuning line="3"><tuning-step>D</tuning-step><tuning-octave>3</tuning-octave></staff-tuning>
+    <staff-tuning line="4"><tuning-step>G</tuning-step><tuning-octave>3</tuning-octave></staff-tuning>
+    <staff-tuning line="5"><tuning-step>B</tuning-step><tuning-octave>3</tuning-octave></staff-tuning>
+    <staff-tuning line="6"><tuning-step>E</tuning-step><tuning-octave>4</tuning-octave></staff-tuning>
+   </staff-details></attributes>
+   <note><pitch><step>E</step><octave>4</octave></pitch><duration>1</duration><type>quarter</type><notations><technical><string>1</string><fret>0</fret><hammer-on type="start" number="1">H</hammer-on><down-bow/></technical><articulations><accent/></articulations></notations></note>
+   <note><pitch><step>F</step><alter>1</alter><octave>4</octave></pitch><duration>1</duration><type>quarter</type><notations><technical><string>1</string><fret>2</fret><hammer-on type="stop" number="1"/><pull-off type="start" number="1">P</pull-off></technical><tied type="let-ring"/></notations></note>
+   <note><pitch><step>E</step><octave>4</octave></pitch><duration>1</duration><type>quarter</type><notations><technical><string>1</string><fret>0</fret><pull-off type="stop" number="1"/></technical><slide type="start" number="1"/></notations></note>
+   <note><pitch><step>G</step><octave>4</octave></pitch><duration>1</duration><type>quarter</type><notations><technical><string>1</string><fret>3</fret></technical><slide type="stop" number="1"/><articulations><staccato/><strong-accent/></articulations></notations></note>
+  </measure>
+  <measure number="2">
+   <note><pitch><step>G</step><octave>4</octave></pitch><duration>1</duration><type>quarter</type><notations><technical><string>1</string><fret>3</fret><bend><bend-alter>2</bend-alter><release/></bend></technical></notations></note>
+   <note><pitch><step>G</step><octave>4</octave></pitch><duration>1</duration><type>quarter</type><notations><technical><string>1</string><fret>3</fret><bend><bend-alter>2</bend-alter><pre-bend/></bend></technical></notations></note>
+   <note><pitch><step>G</step><octave>4</octave></pitch><duration>1</duration><type>quarter</type><notations><technical><string>1</string><fret>3</fret><bend><bend-alter>2</bend-alter><pre-bend/><release/></bend></technical></notations></note>
+   <note><pitch><step>E</step><octave>5</octave></pitch><duration>1</duration><type>quarter</type><notations><technical><string>1</string><fret>12</fret><harmonic><natural/><sounding-pitch/></harmonic></technical></notations></note>
+  </measure>
+  <measure number="3">
+   <note><pitch><step>A</step><octave>5</octave></pitch><duration>1</duration><type>quarter</type><notations><technical><string>1</string><fret>5</fret><harmonic><artificial/><sounding-pitch/></harmonic></technical><ornaments><tremolo type="single">3</tremolo></ornaments></notations></note>
+   <note><pitch><step>B</step><octave>4</octave></pitch><duration>1</duration><type>quarter</type><notations><technical><string>1</string><fret>7</fret><tap/></technical></notations></note>
+   <note><pitch><step>A</step><octave>4</octave></pitch><duration>1</duration><type>quarter</type><notehead parentheses="yes">normal</notehead><notations><technical><string>1</string><fret>5</fret></technical></notations></note>
+   <note><pitch><step>G</step><octave>4</octave></pitch><duration>1</duration><type>quarter</type><notehead>x</notehead><notations><technical><string>1</string><fret>3</fret></technical></notations></note>
+  </measure>
+  <measure number="4">
+   <note><pitch><step>E</step><octave>4</octave></pitch><duration>1</duration><type>quarter</type><notations><technical><string>1</string><fret>0</fret><up-bow/></technical><ornaments><trill-mark/></ornaments></notations></note>
+   <note><pitch><step>E</step><octave>4</octave></pitch><duration>1</duration><type>quarter</type><notations><technical><string>1</string><fret>0</fret><other-technical>palm mute</other-technical></technical></notations></note>
+   <note><pitch><step>E</step><octave>4</octave></pitch><duration>1</duration><type>quarter</type><tie type="start"/><notations><technical><string>1</string><fret>0</fret></technical><tied type="start"/></notations></note>
+   <note><pitch><step>E</step><octave>4</octave></pitch><duration>1</duration><type>quarter</type><tie type="stop"/><notations><technical><string>1</string><fret>0</fret></technical><tied type="stop"/></notations></note>
+  </measure>
+ </part>
+</score-partwise>

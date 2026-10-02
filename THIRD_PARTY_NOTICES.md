@@ -31,3 +31,13 @@ Qt / PySide 的许可独立于 ChordCue 的 MIT。仓库保存 Qt LGPL v3、GPL 
 `licenses/PySide6-6.11.2-NOTICES.txt` 另外收录同版本官方源码归档的许可文件、归属记录和记录引用的全文，包括 Shiboken 使用的 Python 3.7 代码通知。`licenses/Qt-PySide-SOURCE-INFORMATION.txt` 将对应源码和动态库替换说明带入安装包，供离线查看。
 
 最终程序资源会包含这些材料和所分发 Python 包附带的许可。VC 运行库条款另位于 `share/licenses/vc_redist`。完整源码入口、动态库替换／重建说明及尚需发行者确认的事项见 [Windows 第三方说明](windows/docs/THIRD_PARTY.md)。保留通知和上游链接不等于已经完成最终二进制及对应源码的发行审查。
+
+## 乐谱导入和排版运行依赖
+
+Windows、macOS 与 LAN 浏览器离线分发固定版本 [alphaTab 1.8.4](https://github.com/CoderLine/alphaTab/tree/v1.8.4)，用于 Guitar Pro 解析和五线谱／TAB SVG 排版。未修改 vendor 代码，未开启其播放器或分发 SoundFont；其打包 JavaScript 仍包含上游合并的模块，须保留全部通知。完整 MPL-2.0 文本及合并模块通知分别位于 `Resources/vendor/alphatab/LICENSE` 和 `LICENSE.header`。对应源码可从上述固定版本地址取得，npm 包来源、SHA-512 完整性值及逐文件 SHA-256 位于同目录 `manifest.json`；`tools/vendor_score.py` 可重建这些离线资源。
+
+Bravura 字体随 alphaTab 分发，独立采用 SIL Open Font License 1.1；完整版权、许可、FAQ 与字体修改记录位于 `Resources/vendor/alphatab/dist/font/Bravura-OFL.txt`、`Bravura-OFL-FAQ.txt`、`Bravura-FONTLOG.txt`，未修改字体。
+
+上游合并模块的版权归属与完整 MIT / libvorbis BSD 许可正文另保存于 `licenses/alphaTab-integrated-NOTICES.txt`，随两平台构建分发；libvorbis 原文固定来源和 SHA-256 同文件记录。该文件不声明合并模块的具体内部代码版本。
+
+压缩 MusicXML 的 ZIP 解压使用固定版本 [fflate 0.8.2](https://github.com/101arrowz/fflate/tree/v0.8.2) UMD，采用 MIT，完整文本位于 `Resources/vendor/fflate/LICENSE`；其来源和完整性 manifest 同目录保存。源谱 XML 语义适配、统一 ScoreIR、播放路线与设备协议为项目自身代码。测试谱为本项目原创三声部练习，随 MIT 分发。

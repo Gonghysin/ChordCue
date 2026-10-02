@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import asyncio
 from dataclasses import dataclass
+import hashlib
 import ipaddress
 import json
 import re
@@ -20,11 +21,14 @@ import sys
 import threading
 import time
 from typing import Callable, Iterable, cast
-from urllib.parse import quote
+from urllib.parse import parse_qs, quote, urlsplit
 
 from .models import ChartDocument, KeySection, MusicalKey, event_position
+from .devices import DeviceRegistry
 from .paths import resource_path
+from .score_models import MAX_SCORE_BYTES
 from .theory import number
+from .timing import playback_score
 
 
 _LOCAL_NETWORKS = tuple(ipaddress.ip_network(value) for value in (
@@ -38,6 +42,15 @@ _SECURITY_HEADERS = (
     "Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; "
     "style-src 'self' 'unsafe-inline'; connect-src 'self'; frame-ancestors 'none'\r\n"
 )
+
+
+def _unique_json_object(pairs):
+    result = {}
+    for key, value in pairs:
+        if key in result:
+            raise ValueError("duplicate JSON key")
+        result[key] = value
+    return result
 
 
 def is_local_address(value: str) -> bool:
@@ -151,17 +164,34 @@ def chart_payload(document: ChartDocument, sections: Iterable[KeySection],
     events = []
     key = MusicalKey(0)
     section_index = 0
-    for event in sorted(document.events, key=lambda item: (item.bar, item.tick)):
+    for event in sorted(document.events if document.score is None else (),
+                        key=lambda item: (item.bar, item.tick)):
         while section_index < len(ordered) and ordered[section_index].first_bar <= event.bar:
             key = ordered[section_index].key
             section_index += 1
         events.append({"id": event.id, **event_position(event), "symbol": event.symbol,
                        "number": number(event.symbol, key)})
-    return {"revision": revision, "name": document.name, "bars": document.bars,
+    payload = {"revision": revision, "name": document.name, "bars": document.bars,
             "meter": f"{document.meter}/4", "events": events,
             "sections": [{"bar": section.first_bar, "root": section.key.root,
                           "minor": section.key.is_minor,
-                          "family": section.key.major_family_root} for section in ordered]}
+                          "family": section.key.major_family_root} for section in ordered
+                         if document.score is None]}
+    if document.score is not None:
+        payload["score"] = document.score.to_dict()
+        payload["selectedPartId"] = document.selected_part_id
+        payload["protocolVersion"] = 2
+    elif document.timing_changes:
+        effective = playback_score(document)
+        assert effective is not None
+        payload["protocolVersion"] = 2
+        payload["measures"] = [{"id": measure.id, "sourceNumber": measure.number,
+            "duration": {"numerator": measure.duration.numerator,
+                         "denominator": measure.duration.denominator},
+            "meter": {"numerator": measure.meter.numerator,
+                      "denominator": measure.meter.denominator}}
+            for measure in effective.measures]
+    return payload
 
 
 def _revision(value: object) -> int:
@@ -178,7 +208,9 @@ class _Limits:
     request_seconds: float = 5.0
     write_seconds: float = 5.0
     heartbeat_seconds: float = 1.0
-    chart_bytes: int = 2 * 1024 * 1024
+    # A complete source score and its expanded route have independent budgets.
+    chart_bytes: int = 65 * 1024 * 1024
+    inflight_chart_bytes: int = 256 * 1024 * 1024
     transport_bytes: int = 64 * 1024
     write_high: int = 64 * 1024
     socket_send_bytes: int = 64 * 1024
@@ -188,6 +220,7 @@ class _Limits:
 class _Snapshot:
     chart: bytes
     transport: bytes
+    chart_identity: bytes
 
 
 class LANServer:
@@ -222,6 +255,29 @@ class LANServer:
         self._connections = 0
         self._assets: dict[str, tuple[str, bytes]] = {}
         self._token = self._session = ""
+        self._devices = DeviceRegistry()
+        self._device_revision = -1
+        self._prepared_chart: dict | None = None
+        self._prepared_event: bytes | None = None
+        self._prepared_identity: bytes | None = None
+
+    @property
+    def devices(self) -> list[dict]:
+        return self._devices.summaries()
+
+    def assign_device(self, client_id: str, part_id: str | None, view: str,
+                      label: str | None = None) -> dict:
+        result = self._devices.assign(client_id, part_id, view, label)
+        with self._lock:
+            loop = self._loop
+        if loop is not None:
+            loop.call_soon_threadsafe(self._send_assignments)
+        return result
+
+    def _send_assignments(self):
+        for peer in tuple(self._peers):
+            if peer.streaming and peer.client_id:
+                peer.send_assignment()
 
     @property
     def enabled(self) -> bool:
@@ -251,8 +307,20 @@ class LANServer:
                 "Metronome.js": ("text/javascript; charset=utf-8",
                                  resource_path("Metronome.js").read_bytes()),
             }
+            root = resource_path("Broadcast.html").parent
+            static = ("score/ScoreIO.js", "score/ScoreView.js", "score/ScoreView.css",
+                      "score/PlaybackPlan.js", "score/DeviceClient.js",
+                      "vendor/alphatab/dist/alphaTab.min.js",
+                      "vendor/alphatab/dist/font/Bravura.woff2")
+            for relative in static:
+                path = root / relative
+                if path.is_file():
+                    kind = ("text/javascript; charset=utf-8" if path.suffix == ".js" else
+                            "text/css; charset=utf-8" if path.suffix == ".css" else "font/woff2")
+                    self._assets[relative] = (kind, path.read_bytes())
             addresses = self._addresses()
             self._token, self._session = secrets.token_hex(16), secrets.token_hex(16)
+            self._device_revision = -1
             self._ready.clear()
             with self._lock:
                 self._failure = None
@@ -272,7 +340,21 @@ class LANServer:
                 raise RuntimeError(f"LAN server could not start: {failure}") from failure
             return links
 
-    def publish(self, chart: dict, transport: dict) -> None:
+    def publish_prepared(self, chart: dict, transport: dict) -> None:
+        """Publish the GUI's immutable revision object, serializing its score once.
+
+        The owner replaces this object on every edit. Callers with mutable chart
+        dictionaries use publish(), which still copies every publication.
+        """
+        if chart is not self._prepared_chart:
+            event = self._event("chart", chart, self._limits.chart_bytes)
+            self._prepared_chart, self._prepared_event = chart, event
+            self._prepared_identity = hashlib.sha256(event).digest()
+        self.publish(chart, transport, _chart_event=self._prepared_event,
+                     _chart_identity=self._prepared_identity)
+
+    def publish(self, chart: dict, transport: dict, *, _chart_event: bytes | None = None,
+                _chart_identity: bytes | None = None) -> None:
         with self._lock:
             self._raise_failure()
             if not self._running:
@@ -280,8 +362,24 @@ class LANServer:
             session = self._session
         if _revision(chart.get("revision")) != _revision(transport.get("revision")):
             raise ValueError("chart and transport revisions must match")
-        snapshot = _Snapshot(self._event("chart", chart, self._limits.chart_bytes),
-                             self._event("transport", transport, self._limits.transport_bytes))
+        encoded_chart = _chart_event if _chart_event is not None else self._event("chart", chart, self._limits.chart_bytes)
+        snapshot = _Snapshot(encoded_chart,
+                             self._event("transport", transport, self._limits.transport_bytes),
+                             _chart_identity if _chart_identity is not None else hashlib.sha256(encoded_chart).digest())
+        if self._device_revision != chart["revision"]:
+            parts = {}
+            if score := chart.get("score"):
+                for part in score["parts"]:
+                    views = {"staff", "metronome"}
+                    if part["chords"]:
+                        views.update(("chords", "numbers"))
+                    if any(staff["tuning"] and any(note["string"] is not None
+                           for event in staff["events"] for note in event["notes"])
+                           for staff in part["staves"]):
+                        views.add("tab")
+                    parts[part["id"]] = frozenset(views)
+            self._devices.set_parts(parts, chart["revision"])
+            self._device_revision = chart["revision"]
         with self._lock:
             self._raise_failure()
             if not self._running or session != self._session:
@@ -296,9 +394,11 @@ class LANServer:
         with self._lifecycle:
             thread = self._thread
             if thread is None:
+                self._prepared_chart = self._prepared_event = self._prepared_identity = None
                 return
             with self._lock:
                 self._running = False
+                self._devices.stop()
                 loop, shutdown = self._loop, self._shutdown
                 self._pending = None
             if thread.is_alive() and loop is not None and shutdown is not None:
@@ -311,6 +411,7 @@ class LANServer:
                 raise RuntimeError("LAN server thread did not shut down")
             self._thread = None
             self._assets.clear()
+            self._prepared_chart = self._prepared_event = self._prepared_identity = None
             with self._lock:
                 self._raise_failure()
 
@@ -320,11 +421,46 @@ class LANServer:
 
     @staticmethod
     def _event(name: str, value: dict, maximum: int) -> bytes:
-        data = json.dumps(value, ensure_ascii=False, separators=(",", ":"),
-                          allow_nan=False).encode("utf-8")
+        def encode(item):
+            return json.dumps(item, ensure_ascii=False, separators=(",", ":"),
+                              allow_nan=False).encode("utf-8")
+
+        if name == "chart" and value.get("score") is not None:
+            pieces, embedded = [], 0
+            for key, item in value.items():
+                if not isinstance(key, str):
+                    raise ValueError("chart keys must be strings")
+                content = encode(item)
+                if key in ("score", "route"):
+                    if len(content) > MAX_SCORE_BYTES:
+                        raise ValueError(f"{key} payload exceeds {MAX_SCORE_BYTES} bytes ({len(content)} bytes)")
+                    embedded += len(content)
+                pieces.append(encode(key) + b":" + content)
+            data = b"{" + b",".join(pieces) + b"}"
+            if len(data) - embedded > 1024 * 1024:
+                raise ValueError("chart metadata payload exceeds 1048576 bytes")
+        else:
+            data = encode(value)
         if len(data) > maximum:
-            raise ValueError(f"{name} payload exceeds {maximum} bytes")
+            raise ValueError(f"{name} payload exceeds {maximum} bytes "
+                             f"({len(data) / 1048576:.2f} MiB; limit {maximum / 1048576:g} MiB)")
         return b"event: " + name.encode("ascii") + b"\ndata: " + data + b"\n\n"
+
+    def _reserve_chart(self, peer: _Peer, data: bytes) -> bool:
+        """Bound distinct old frames shared by slow peers; completed frames are freed."""
+        def usage():
+            frames = {id(data): data}
+            for item in self._peers:
+                if item._writing_chart is not None:
+                    frames[id(item._writing_chart)] = item._writing_chart
+            return sum(map(len, frames.values()))
+
+        for victim in sorted(self._peers, key=lambda item: item._chart_started):
+            if usage() <= self._limits.inflight_chart_bytes:
+                return True
+            if victim is not peer and victim._writing_chart is not None:
+                victim.close()
+        return usage() <= self._limits.inflight_chart_bytes
 
     def _thread_main(self, addresses: list[str]) -> None:
         try:
@@ -453,7 +589,16 @@ class _Peer(asyncio.Protocol):
         self._request_timer: asyncio.TimerHandle | None = None
         self._write_timer: asyncio.TimerHandle | None = None
         self._pending: _Snapshot | None = None
-        self._sent_chart: bytes | None = None
+        self._sent_chart_identity: bytes | None = None
+        self._writing_chart: bytes | None = None
+        self._writing_identity: bytes | None = None
+        self._chart_offset = 0
+        self._chart_started = 0.0
+        self._flush_queued = False
+        self.client_id: str | None = None
+        self.connection_id = secrets.token_hex(16)
+        self._sent_assignment: bytes | None = None
+        self._parsed_request: tuple[str, str, dict[str, str], float, int] | None = None
 
     def connection_made(self, transport: asyncio.BaseTransport) -> None:
         self.transport = cast(asyncio.Transport, transport)
@@ -477,21 +622,22 @@ class _Peer(asyncio.Protocol):
         if self._responded:
             self.close()  # No bodies, pipelining or bidirectional controls.
             return
-        if len(self._request) + len(data) > self.owner._limits.header_bytes:
-            self.close()
-            return
         self._request.extend(data)
+        if self._parsed_request is not None:
+            method, path, fields, received, length = self._parsed_request
+            if len(self._request) > length:
+                self._reply("400 Bad Request")
+            elif len(self._request) == length:
+                self._finish_request(method, path, fields, bytes(self._request), received)
+            return
         if b"\r\n\r\n" not in self._request:
+            if len(self._request) > self.owner._limits.header_bytes:
+                self.close()
             return
         received = time.perf_counter_ns() / 1e6
         header, trailing = bytes(self._request).split(b"\r\n\r\n", 1)
-        self._request.clear()
-        assert self._request_timer is not None
-        self._request_timer.cancel()
-        self._request_timer = None
-        self._responded = True
-        if trailing:
-            self._reply("400 Bad Request")
+        if len(header) + 4 > self.owner._limits.header_bytes:
+            self.close()
             return
         try:
             lines = header.decode("ascii").split("\r\n")
@@ -516,20 +662,77 @@ class _Peer(asyncio.Protocol):
                 fields[lowered] = value.strip()
             if version == "HTTP/1.1" and not fields.get("host"):
                 raise ValueError("missing host")
-            if "transfer-encoding" in fields or fields.get("content-length", "0") != "0":
+            if "transfer-encoding" in fields:
+                raise ValueError("body")
+            raw_length = fields.get("content-length", "0")
+            if not re.fullmatch(r"0|[1-9][0-9]{0,8}", raw_length):
+                raise ValueError("length")
+            length = int(raw_length)
+            if method != "POST" and (length or trailing):
                 raise ValueError("body")
         except (UnicodeError, ValueError):
             self._reply("400 Bad Request")
             return
-        if method != "GET":
+        route = urlsplit(path).path
+        post_routes = (f"/join/{self.owner._token}/register", f"/join/{self.owner._token}/telemetry")
+        if method != "GET" and not (method == "POST" and route in post_routes):
             self._reply("405 Method Not Allowed", extra="Allow: GET\r\n")
             return
-        path = path.split("?", 1)[0]
+        if method == "POST":
+            if not 0 < length <= 8192:
+                self._reply("413 Content Too Large")
+                return
+            authority = fields.get("host", "")
+            host = urlsplit("http://" + authority)
+            local = self.transport.get_extra_info("sockname") if self.transport else None
+            try:
+                permitted_host = bool(local and host.port == local[1] and host.hostname
+                                      and (host.hostname == "localhost" or is_local_address(host.hostname)))
+            except ValueError:
+                permitted_host = False
+            if (not permitted_host or fields.get("origin") != "http://" + authority
+                    or fields.get("content-type", "").split(";", 1)[0] != "application/json"):
+                self._reply("403 Forbidden")
+                return
+            if len(trailing) > length:
+                self._reply("400 Bad Request")
+                return
+            if len(trailing) < length:
+                self._request = bytearray(trailing)
+                self._parsed_request = (method, path, fields, received, length)
+                return
+        self._finish_request(method, path, fields, trailing, received)
+
+    def _finish_request(self, method, path, fields, body, received):
+        self._request.clear()
+        if self._request_timer is not None:
+            self._request_timer.cancel()
+            self._request_timer = None
+        self._responded = True
+        target = urlsplit(path)
+        path = target.path
         base = f"/join/{self.owner._token}/"
         if not path.startswith(base):
             self._reply("404 Not Found")
             return
         route = path[len(base):]
+        if method == "POST":
+            try:
+                payload = json.loads(body, object_pairs_hook=_unique_json_object,
+                                     parse_constant=lambda _: (_ for _ in ()).throw(ValueError("nonfinite")))
+                if not isinstance(payload, dict):
+                    raise ValueError("body must be object")
+                if route == "register":
+                    result = self.owner._devices.register(payload, fields.get("user-agent", "浏览器"))
+                    result["sessionId"] = self.owner._session
+                else:
+                    result = self.owner._devices.telemetry(payload)
+                self._reply("200 OK", json.dumps(result, ensure_ascii=False, allow_nan=False).encode(), "application/json")
+            except PermissionError:
+                self._reply("403 Forbidden")
+            except (ValueError, TypeError, UnicodeError, RecursionError):
+                self._reply("400 Bad Request")
+            return
         if route in self.owner._assets:
             content_type, body = self.owner._assets[route]
             self._reply("200 OK", body, content_type)
@@ -541,6 +744,14 @@ class _Peer(asyncio.Protocol):
             if sum(peer.streaming for peer in self.owner._peers) >= self.owner._limits.streams:
                 self._reply("503 Service Unavailable")
                 return
+            query = parse_qs(target.query)
+            if "clientId" in query:
+                try:
+                    self.client_id = query["clientId"][0]
+                    self.owner._devices.attach(self.client_id, query.get("resumeKey", [""])[0], self.connection_id)
+                except (ValueError, PermissionError):
+                    self._reply("403 Forbidden")
+                    return
             self.streaming = True
             self.owner._counts()
             assert self.transport is not None
@@ -567,20 +778,65 @@ class _Peer(asyncio.Protocol):
     def offer(self, snapshot: _Snapshot) -> None:
         if not self.closed:
             self._pending = snapshot
-            self._flush()
+            self._queue_flush()
+
+    def _queue_flush(self):
+        if not self.closed and not self.paused and not self._flush_queued:
+            self._flush_queued = True
+            asyncio.get_running_loop().call_soon(self._flush)
 
     def _flush(self) -> None:
-        if self.closed or self.paused or self._pending is None:
+        self._flush_queued = False
+        if self.closed or self.paused:
+            return
+        if self._pending is None:
+            self.send_assignment()
             return
         assert self.transport is not None
         snapshot = self._pending
-        if self._sent_chart != snapshot.chart:
-            self._sent_chart = snapshot.chart
-            self.transport.write(snapshot.chart)
+        if self._writing_chart is None and self._sent_chart_identity != snapshot.chart_identity:
+            if not self.owner._reserve_chart(self, snapshot.chart):
+                self.close()
+                return
+            self._writing_chart, self._writing_identity = snapshot.chart, snapshot.chart_identity
+            self._chart_offset = 0
+            self._chart_started = time.monotonic()
+        if self._writing_chart is not None:
+            data = self._writing_chart
+            end = min(len(data), self._chart_offset + min(64 * 1024, self.owner._limits.write_high))
+            chunk = memoryview(data)[self._chart_offset:end]
+            self._chart_offset = end
+            self.transport.write(chunk)
+            if end == len(data):
+                self._sent_chart_identity = self._writing_identity
+                self._writing_chart = self._writing_identity = None
+            else:
+                self._queue_flush()
+                return
             if self.paused or self.closed:
                 return
+        # Never interleave a new chart, assignment or heartbeat inside an SSE frame.
+        snapshot = self._pending
+        if self._sent_chart_identity != snapshot.chart_identity:
+            self._queue_flush()
+            return
+        self.send_assignment()
+        if self.paused or self.closed:
+            return
         self._pending = None
         self.transport.write(snapshot.transport)
+
+    def send_assignment(self):
+        if not self.client_id or self.closed or self.paused or self._writing_chart is not None:
+            return
+        assignment = self.owner._devices.assignment(self.client_id)
+        if assignment is not None:
+            assignment["sessionId"] = self.owner._session
+            event = self.owner._event("assignment", assignment, 8192)
+            if event != self._sent_assignment:
+                self._sent_assignment = event
+                assert self.transport is not None
+                self.transport.write(event)
 
     def heartbeat(self) -> None:
         if self.streaming and not self.closed and not self.paused and self._pending is None:
@@ -606,9 +862,12 @@ class _Peer(asyncio.Protocol):
             if timer is not None:
                 timer.cancel()
         self._request_timer = self._write_timer = None
-        self._pending = self._sent_chart = None
+        self._pending = None
+        self._sent_chart_identity = self._writing_chart = self._writing_identity = None
         self._request.clear()
         self.owner._peers.discard(self)
+        if self.client_id:
+            self.owner._devices.disconnect(self.client_id, self.connection_id)
         self.owner._counts()
         if self.transport is not None:
             self.transport.abort()

@@ -2,9 +2,10 @@
 from dataclasses import replace
 from functools import partial
 from pathlib import Path
+import time
 
 from PySide6.QtCore import QSignalBlocker, QTimer, Qt
-from PySide6.QtGui import QKeySequence
+from PySide6.QtGui import QKeySequence, QStandardItemModel
 from PySide6.QtWidgets import (
     QApplication, QCheckBox, QComboBox, QDoubleSpinBox, QFileDialog,
     QFormLayout, QGroupBox, QHBoxLayout, QLabel, QLineEdit, QMainWindow,
@@ -12,13 +13,15 @@ from PySide6.QtWidgets import (
     QSpinBox, QSplitter, QTabWidget, QToolBar, QToolButton, QVBoxLayout, QWidget,
 )
 
-from .models import ChartDocument, KeySection, LoopRange, MusicalKey
+from .models import ChartDocument, KeySection, LoopRange, MusicalKey, document_with_score
 from .parsing import format_manual, parse_manual
 from .project import demo_document, load_project, save_project
 from .render import ChartWidget, export_pdf, layout_chart
 from .settings import Settings
+from .score_ui import DevicePanel, ScorePreview, available_views
 from .theory import analyze_sections, note_name, parse_key
 from .transport import StandaloneTransport
+from .timing import measure_quarters
 
 
 STYLE = """
@@ -63,7 +66,7 @@ def parse_sections(text: str, bars: int) -> tuple[KeySection, ...]:
 
 class MainWindow(QMainWindow):
     def __init__(self, *, settings=None, audio_factory=None, lan_factory=None, session_factory=None,
-                 chart_factory=None):
+                 chart_factory=None, score_factory=None):
         super().__init__()
         if audio_factory is None:
             from .audio import AudioPanel
@@ -91,10 +94,16 @@ class MainWindow(QMainWindow):
         self._sections: tuple[KeySection, ...] = ()
         self._chart_payload = None
         self._previous_bar = None
+        self._score_factory = score_factory
+        self.score_panel = None
+        self.score_page = None
+        self._previous_chart_row = None
+        self._device_updated = 0.0
         self._session_factory = session_factory
         self.setStyleSheet(STYLE)
         self.setMinimumSize(960, 680)
         self.resize(1240, 830)
+        self.setAcceptDrops(True)
         self._build_toolbar()
         center = QWidget()
         body = QVBoxLayout(center)
@@ -120,6 +129,15 @@ class MainWindow(QMainWindow):
         display_row.addWidget(self.notation)
         display_row.addWidget(QLabel("显示调"))
         display_row.addWidget(self.display_key)
+        self.score_part = QComboBox()
+        self.score_part.setAccessibleName("源谱声部")
+        self.score_part.hide()
+        self.score_kind = QComboBox()
+        self.score_kind.addItem("五线谱", "staff")
+        self.score_kind.addItem("源 TAB", "tab")
+        self.score_kind.hide()
+        self.score_follow = QCheckBox("跟随播放")
+        self.score_follow.setChecked(True)
         display_row.addStretch()
         self.key_summary = QLabel()
         self.key_summary.setObjectName("muted")
@@ -144,6 +162,10 @@ class MainWindow(QMainWindow):
         self.chart.seek_requested.connect(self._seek)
         self.notation.currentIndexChanged.connect(self._display_changed)
         self.display_key.currentIndexChanged.connect(self._display_changed)
+        self.score_part.currentIndexChanged.connect(self._part_changed)
+        self.score_kind.currentIndexChanged.connect(self._display_changed)
+        self.score_follow.toggled.connect(self._score_follow_changed)
+        self.tabs.currentChanged.connect(self._score_visibility_changed)
         self.audio.enabled_changed.connect(self._audio_state)
         self._sync_widgets()
         self._refresh_chart()
@@ -182,6 +204,8 @@ class MainWindow(QMainWindow):
             action = toolbar.addAction(label)
             action.setShortcut(shortcut)
             action.triggered.connect(lambda checked=False, callback=callback: callback())
+        self.import_action = toolbar.addAction("导入乐谱…")
+        self.import_action.triggered.connect(self.import_score)
         export = QToolButton()
         export.setText("导出 PDF ▾")
         export.setPopupMode(QToolButton.ToolButtonPopupMode.InstantPopup)
@@ -228,6 +252,10 @@ class MainWindow(QMainWindow):
         row.addWidget(self.bpm)
         row.addWidget(self.meter)
         row.addWidget(self.bars)
+        self.timing_status = QLabel()
+        self.timing_status.setAccessibleName("当前 BPM 与拍号")
+        self.timing_status.setToolTip("按乐谱或工程中已有的速度与拍号标记自动切换；BPM 以四分音符计")
+        row.addWidget(self.timing_status)
         layout.addLayout(row)
         self.name_edit.editingFinished.connect(self._project_changed)
         self.bpm.valueChanged.connect(self._bpm_changed)
@@ -298,10 +326,10 @@ class MainWindow(QMainWindow):
         label = QLabel("和弦输入")
         label.setStyleSheet("font-weight: 600; font-size: 15px;")
         layout.addWidget(label)
-        hint = QLabel("每行：小节[.拍[.分拍.tick]] 和弦\n例如：1 Cmaj7　2.3 G/B　3.1.2.120 Am")
-        hint.setWordWrap(True)
-        hint.setObjectName("muted")
-        layout.addWidget(hint)
+        self.chord_input_hint = QLabel("每行：小节[.拍[.分拍.tick]] 和弦\n例如：1 Cmaj7　2.3 G/B　3.1.2.120 Am")
+        self.chord_input_hint.setWordWrap(True)
+        self.chord_input_hint.setObjectName("muted")
+        layout.addWidget(self.chord_input_hint)
         self.chords_edit = QPlainTextEdit()
         self.chords_edit.setAccessibleName("和弦输入编辑器")
         layout.addWidget(self.chords_edit, 1)
@@ -318,9 +346,9 @@ class MainWindow(QMainWindow):
         buttons.addWidget(apply_button)
         buttons.addWidget(revert_button)
         layout.addLayout(buttons)
-        import_button = QPushButton("导入和弦文本…")
-        import_button.clicked.connect(self.import_text)
-        layout.addWidget(import_button)
+        self.import_text_button = QPushButton("导入和弦文本…")
+        self.import_text_button.clicked.connect(self.import_text)
+        layout.addWidget(self.import_text_button)
         for widget in (self.chords_edit, self.sections_edit):
             widget.textChanged.connect(self._mark_editor_dirty)
         for widget in (self.forced_key, self.original_key):
@@ -330,7 +358,9 @@ class MainWindow(QMainWindow):
 
     def _build_lan_panel(self, layout):
         self.lan_panel = QWidget()
-        row = QHBoxLayout(self.lan_panel)
+        panel_layout = QVBoxLayout(self.lan_panel)
+        row = QHBoxLayout()
+        panel_layout.addLayout(row)
         row.setContentsMargins(8, 0, 8, 0)
         self.lan_links = QLabel()
         self.lan_links.setTextFormat(Qt.TextFormat.PlainText)
@@ -342,6 +372,8 @@ class MainWindow(QMainWindow):
         hint = QLabel("同一局域网打开；停止投放后链接失效。")
         hint.setObjectName("muted")
         row.addWidget(hint)
+        self.devices = DevicePanel(self._assign_device, self._show_error, self.lan_panel)
+        panel_layout.addWidget(self.devices)
         self.lan_panel.hide()
         layout.addWidget(self.lan_panel)
 
@@ -373,6 +405,36 @@ class MainWindow(QMainWindow):
         self.bpm.setValue(doc.bpm)
         self._set_combo(self.meter, doc.meter)
         self.bars.setValue(doc.bars)
+        imported = doc.score is not None
+        self.bpm.setVisible(not imported and not doc.timing_changes)
+        self.meter.setVisible(not imported and not doc.timing_changes)
+        self.bars.setEnabled(not imported)
+        self.meter.setEnabled(not imported and not doc.timing_changes)
+        self.bpm.setEnabled(not imported and not doc.timing_changes)
+        self.bpm.setToolTip("手工和弦谱的整首固定速度，BPM 以四分音符计")
+        self.meter.setToolTip("手工和弦谱的整首固定拍号")
+        self.chords_edit.setReadOnly(imported)
+        self.sections_edit.setEnabled(not imported)
+        self.detect_changes.setEnabled(not imported)
+        self.import_text_button.setEnabled(not imported)
+        self.forced_key.setItemText(0, "使用源调号" if imported else "自动定调")
+        self.chord_input_hint.setText(
+            "和弦与转调点来自源谱。轨道定调、移调前原调和显示调可调整呈现；修改源标记后请重新导入。"
+            if imported else "每行：小节[.拍[.分拍.tick]] 和弦\n例如：1 Cmaj7　2.3 G/B　3.1.2.120 Am" +
+            ("\n位置始终以四分音符计；6/8 的 2.3 表示第 2 小节第 3 个四分音符。"
+             if doc.timing_changes else ""))
+        self.score_part.setVisible(imported)
+        self.score_kind.setVisible(imported)
+        block = QSignalBlocker(self.score_part)
+        self.score_part.clear()
+        if imported:
+            for part in doc.score.parts:
+                self.score_part.addItem(part.name, part.id)
+            self._set_combo(self.score_part, doc.selected_part_id or doc.score.parts[0].id)
+            self._ensure_score_panel()
+        if self.score_panel and self.score_page is not None:
+            self.tabs.setTabVisible(self.tabs.indexOf(self.score_page), imported)
+        del block
         self.seek_slider.setRange(0, min(2147483647, doc.bars*doc.meter*960))
         for spin in (self.loop_start, self.loop_end):
             spin.setMaximum(doc.bars)
@@ -391,13 +453,139 @@ class MainWindow(QMainWindow):
         self._revision += 1
         self._sections = analyze_sections(self.document)
         self._chart_payload = self._make_chart_payload(self.document, self._sections, self._revision)
+        if self.transport.plan is not None:
+            self._chart_payload["route"] = self.transport.plan.to_dict()
         self.key_summary.setText(" · ".join(s.key.label for s in self._sections[:3]))
+        if self.document.score and not self.document.score.key_changes and self.document.forced_key is None:
+            self.key_summary.setText("源谱调性未知")
         self._display_changed()
         self._title()
 
     def _display_changed(self, *_args):
-        self.chart.set_chart(layout_chart(self.document, self.notation.currentData(), self.display_key.currentData(),
-                                          sections=self._sections), self.document.meter)
+        try:
+            self.chart.set_chart(layout_chart(self.document, self.notation.currentData(), self.display_key.currentData(),
+                                              sections=self._sections), self.document.meter)
+            if self.document.score and self.score_panel:
+                from .render import display_shift
+                part = next(p for p in self.document.score.parts
+                            if p.id == self.score_part.currentData())
+                tab_available = "tab" in available_views(part)
+                kind_model = self.score_kind.model()
+                if isinstance(kind_model, QStandardItemModel):
+                    tab_item = kind_model.item(1)
+                    if tab_item is not None:
+                        tab_item.setEnabled(tab_available)
+                self.score_kind.setToolTip("" if tab_available else "源声部缺少调弦或弦品资料")
+                if not tab_available and self.score_kind.currentData() == "tab":
+                    blocker = QSignalBlocker(self.score_kind)
+                    self.score_kind.setCurrentIndex(0)
+                    del blocker
+                shift = display_shift(self.document, self._sections, self.display_key.currentData())
+                if self.score_kind.currentData() == "tab":
+                    shift = 0
+                    self.score_kind.setToolTip("源 TAB 保留原调指法；五线谱与和弦谱可移调")
+                self.score_panel.show_score(self.document.score, self.score_part.currentData(),
+                                            self.score_kind.currentData(), shift)
+        except ValueError as error:
+            self.chart.set_chart((), self.document.meter)
+            if self.score_panel:
+                self.score_panel.clear_score(str(error))
+            self._show_error(error)
+
+    def _ensure_score_panel(self):
+        if self.score_panel is None:
+            factory = self._score_factory
+            if factory is None:
+                from .score_panel import ScorePanel
+                factory = ScorePanel
+            self.score_panel = factory(self)
+            self.score_page = QWidget()
+            layout = QVBoxLayout(self.score_page)
+            layout.setContentsMargins(0, 0, 0, 0)
+            toolbar = QHBoxLayout()
+            toolbar.addWidget(QLabel("声部"))
+            toolbar.addWidget(self.score_part)
+            toolbar.addWidget(self.score_kind)
+            toolbar.addWidget(self.score_follow)
+            toolbar.addStretch()
+            layout.addLayout(toolbar)
+            layout.addWidget(self.score_panel, 1)
+            if hasattr(self.score_panel, "seek_requested"):
+                self.score_panel.seek_requested.connect(self._score_seek)
+            self.tabs.addTab(self.score_page, "乐谱")
+            self._score_follow_changed(self.score_follow.isChecked())
+            self._score_visibility_changed()
+        return self.score_panel
+
+    def _score_follow_changed(self, enabled):
+        if self.score_panel and hasattr(self.score_panel, "set_follow"):
+            self.score_panel.set_follow(enabled)
+
+    def _score_visibility_changed(self, *_args):
+        if self.score_panel and hasattr(self.score_panel, "set_active"):
+            self.score_panel.set_active(self.tabs.currentWidget() is self.score_page)
+
+    def _score_seek(self, measure_id, offset):
+        if self.document.score:
+            for index, measure in enumerate(self.document.score.measures, 1):
+                if measure.id == measure_id:
+                    self._seek(index, offset+1)
+                    return
+
+    def _part_changed(self, *_args):
+        if self._syncing or not self.document.score:
+            return
+        part_id = self.score_part.currentData()
+        if part_id and part_id != self.document.selected_part_id:
+            # Selection changes the saved presentation.
+            self.transport.select_part(part_id)
+            self._refresh_chart()
+
+    def import_score(self, *_args):
+        path, _ = QFileDialog.getOpenFileName(self, "导入 Guitar Pro / MusicXML", "",
+                    "乐谱 (*.gp *.gpx *.gp5 *.gp4 *.gp3 *.musicxml *.xml *.mxl);;所有文件 (*)")
+        if path:
+            self.import_score_path(path)
+
+    def import_score_path(self, path):
+        self.import_action.setEnabled(False)
+        self.statusBar().showMessage("正在读取源谱…")
+        def failed(message):
+            self.import_action.setEnabled(True)
+            self._show_error(f"导入失败：{message}")
+        def preview(score):
+            self.import_action.setEnabled(True)
+            try:
+                dialog = ScorePreview(score, self)
+            except ValueError as error:
+                failed(error)
+                return
+            if dialog.exec() != ScorePreview.DialogCode.Accepted:
+                return
+            if not self._confirm_discard():
+                return
+            self.suspend()
+            self.project_path = None
+            self._replace_document(document_with_score(score, dialog.part.currentData()))
+            self._ensure_score_panel()
+            assert self.score_page is not None
+            self.tabs.setCurrentWidget(self.score_page)
+            self.statusBar().showMessage("源谱已导入；播放自动跟随文件中的 BPM 与拍号变化", 7000)
+        self._ensure_score_panel().import_file(path, preview, failed)
+
+    def dragEnterEvent(self, event):
+        urls = event.mimeData().urls()
+        if len(urls) == 1 and urls[0].isLocalFile() and Path(urls[0].toLocalFile()).suffix.lower() in (
+                ".gp", ".gpx", ".gp5", ".gp4", ".gp3", ".musicxml", ".xml", ".mxl", ".json"):
+            event.acceptProposedAction()
+
+    def dropEvent(self, event):
+        path = event.mimeData().urls()[0].toLocalFile()
+        self.open_project_path(path) if Path(path).suffix.lower() == ".json" else self.import_score_path(path)
+        event.acceptProposedAction()
+
+    def _assign_device(self, client_id, part_id, view, label):
+        self._lan.assign_device(client_id, part_id, view, label)
 
     def _replace_document(self, document, *, reset_editor=True):
         self.transport.set_document(document)
@@ -421,8 +609,12 @@ class MainWindow(QMainWindow):
 
     def _bpm_changed(self, value):
         if not self._syncing:
-            self.transport.set_bpm(value)
-            self._refresh_chart()
+            try:
+                self.transport.set_bpm(value)
+                self._refresh_chart()
+            except ValueError as error:
+                self._show_error(error)
+                self._sync_widgets(editor=False)
 
     def _meter_changed(self, *_args):
         if self._syncing:
@@ -453,17 +645,22 @@ class MainWindow(QMainWindow):
 
     def apply_editor(self):
         try:
-            events = parse_manual(self.chords_edit.toPlainText(), self.document.meter)
+            events = self.document.events if self.document.score else parse_manual(
+                self.chords_edit.toPlainText(), self.document.meter,
+                bar_quarters=(lambda bar: measure_quarters(self.document, bar))
+                if self.document.timing_changes else None)
             # Report the source line for positions beyond the declared chart length.
             for event in events:
                 if event.bar > self.document.bars:
                     raise ValueError(f"Line {event.id+1}: 小节超出曲目长度 {self.document.bars}")
             document = replace(self.document, events=events,
-                               manual_sections=parse_sections(self.sections_edit.toPlainText(), self.document.bars),
+                               manual_sections=(self.document.manual_sections if self.document.score else
+                                                parse_sections(self.sections_edit.toPlainText(), self.document.bars)),
                                forced_key=self.forced_key.currentData(), original_key=self.original_key.currentData(),
-                               detect_changes=self.detect_changes.isChecked())
+                               detect_changes=(self.document.detect_changes if self.document.score else
+                                               self.detect_changes.isChecked()))
             self._replace_document(document)
-            self.statusBar().showMessage("已应用和弦与调性设置", 4000)
+            self.statusBar().showMessage("已应用调性显示设置" if document.score else "已应用和弦与调性设置", 4000)
             return True
         except ValueError as error:
             self._show_error(error)
@@ -485,6 +682,10 @@ class MainWindow(QMainWindow):
 
     def _slider_seek(self):
         position = self.seek_slider.value()/960
+        if self.transport.plan is not None:
+            self.transport.seek_quarter(position)
+            self._tick()
+            return
         bar = int(position//self.document.meter)+1
         self._seek(bar, position%self.document.meter+1)
 
@@ -498,22 +699,51 @@ class MainWindow(QMainWindow):
             return
         payload = self.transport.snapshot(self._revision)
         self.position.setText(f"{payload['bar']:03d} · {payload['beat']}")
+        if self.transport.plan is not None and payload.get("sourceMeasureId"):
+            label = (next(m.number for m in self.document.score.measures if m.id == payload["sourceMeasureId"])
+                     if self.document.score else f"{payload['bar']:03d}")
+            self.position.setText(f"{label} · ♩+{payload['sourceOffsetQuarter']:.2f}")
+            self.position.setToolTip(f"播放出现：{payload.get('occurrenceId', '')}")
         self.play_button.setText("暂停" if payload["playing"] else "播放")
-        self.meter.setEnabled(not payload["playing"])
+        self.meter.setEnabled(not payload["playing"] and self.document.score is None and
+                              not self.document.timing_changes)
+        if self.transport.plan is not None:
+            self.position.setToolTip(f"♩ = {payload['bpm']:g} · {payload['meter']} "
+                                    f"· 播放出现：{payload.get('occurrenceId', '')}")
+            self.timing_status.setText(f"♩ = {payload['bpm']:g} · {payload['meter']}")
+            self.timing_status.setVisible(True)
+        else:
+            self.timing_status.setVisible(False)
         if not self.seek_slider.isSliderDown():
-            ticks = ((payload["bar"]-1)*self.document.meter+payload["beat"]-1)*960+(payload["division"]-1)*240+payload["tick"]
+            if self.transport.plan is not None and "playQuarter" in payload:
+                self.seek_slider.setMaximum(min(2147483647, round(payload["route"]["endQuarter"]*960)))
+                ticks = round(payload["playQuarter"]*960)
+            else:
+                ticks = ((payload["bar"]-1)*self.document.meter+payload["beat"]-1)*960+(payload["division"]-1)*240+payload["tick"]
             self.seek_slider.setValue(ticks)
         self.chart.set_position(payload)
-        if payload["playing"] and payload["bar"] != self._previous_bar:
-            self.scroll_area.ensureVisible(self.chart.width()//2, self.chart.bar_center_y(payload["bar"]), 0, 65)
+        row = (self.chart.width(), self.chart.bar_row_top(payload["bar"]),
+               payload.get("discontinuity", 0))
+        if payload["playing"] and row != self._previous_chart_row:
+            self.chart.set_follow_space(self.scroll_area.viewport().height())
+            self.scroll_area.verticalScrollBar().setValue(row[1])
+        self._previous_chart_row = row
         self._previous_bar = payload["bar"]
         self.audio.update_transport(payload, self.document.name)
+        if self.document.score and self.score_panel:
+            self.score_panel.set_position(payload)
         if self._lan_enabled:
             try:
-                self._lan.publish(self._chart_payload, payload)
+                publish = getattr(self._lan, "publish_prepared", self._lan.publish)
+                publish(self._chart_payload, {key: value for key, value in payload.items() if key != "route"})
             except Exception as error:
                 self._toggle_lan(False)
                 self._show_error(f"局域网投放已停止：{error}")
+            now = time.monotonic()
+            if now-self._device_updated >= 1:
+                self._device_updated = now
+                self.devices.update_devices(getattr(self._lan, "devices", []),
+                    self.document.score.parts if self.document.score else ())
 
     def suspend(self):
         self.transport.pause()
@@ -568,8 +798,10 @@ class MainWindow(QMainWindow):
         return True
 
     def open_project(self):
-        path, _ = QFileDialog.getOpenFileName(self, "打开 ChordCue 曲目", "", "ChordCue 项目 (*.chordcue.json *.json);;所有文件 (*)")
-        return self.open_project_path(path) if path else False
+        path, _ = QFileDialog.getOpenFileName(self, "打开 ChordCue 曲目", "", "ChordCue / 乐谱 (*.json *.gp *.gpx *.gp5 *.gp4 *.gp3 *.musicxml *.xml *.mxl);;所有文件 (*)")
+        if not path:
+            return False
+        return self.open_project_path(path) if Path(path).suffix.lower() == ".json" else self.import_score_path(path)
 
     def open_project_path(self, path):
         try:
@@ -615,12 +847,17 @@ class MainWindow(QMainWindow):
             return False
 
     def import_text(self):
+        if self.document.score:
+            self._show_error("源谱和弦来自原文件；修改源文件后请重新导入。")
+            return
         path, _ = QFileDialog.getOpenFileName(self, "导入和弦文本", "", "手动和弦文本 (*.txt);;所有文件 (*)")
         if not path:
             return
         try:
             text = Path(path).read_text(encoding="utf-8-sig")
-            events = parse_manual(text, self.document.meter)
+            events = parse_manual(text, self.document.meter,
+                bar_quarters=(lambda bar: measure_quarters(self.document, bar))
+                if self.document.timing_changes else None)
             if not events:
                 raise ValueError("文本中没有可导入的和弦。")
             if any(event.bar > self.document.bars for event in events):
@@ -660,6 +897,8 @@ class MainWindow(QMainWindow):
         self.session_guard.close()
         self.transport.close()
         self.audio.shutdown()
+        if self.score_panel:
+            self.score_panel.shutdown()
         try:
             self._lan.stop()
         finally:

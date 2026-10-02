@@ -27,6 +27,7 @@ enum ChordTheory {
     private static var cachedSections: [KeySection] = []
     private static var cachedDetectChanges = false
     private static var cachedBeatsPerBar = 4
+    private static var cachedMeasureDurations: [Double] = []
 
     // Krumhansl–Kessler profiles, also used by music21's KrumhanslSchmuckler.
     // Reference and upstream BSD notice: THIRD_PARTY_NOTICES.md.
@@ -128,29 +129,36 @@ enum ChordTheory {
     }
 
     static func sections(for chords: [ChordEvent], forcedKey: MusicalKey?, detectChanges: Bool = true,
-                         beatsPerBar: Int = 4) -> [KeySection] {
+                         beatsPerBar: Int = 4, measureDurations: [Double] = []) -> [KeySection] {
         let meter = max(1, min(32, beatsPerBar))
         if !cachedSections.isEmpty && cachedChords == chords && cachedForcedKey == forcedKey
-            && cachedDetectChanges == detectChanges && cachedBeatsPerBar == meter {
+            && cachedDetectChanges == detectChanges && cachedBeatsPerBar == meter
+            && cachedMeasureDurations == measureDurations {
             return cachedSections
         }
         let sections = analyzedSections(for: chords, forcedKey: forcedKey, detectChanges: detectChanges,
-                                        beatsPerBar: meter)
+                                        beatsPerBar: meter, measureDurations: measureDurations)
         cachedChords = chords
         cachedForcedKey = forcedKey
         cachedSections = sections
         cachedDetectChanges = detectChanges
         cachedBeatsPerBar = meter
+        cachedMeasureDurations = measureDurations
         return sections
     }
 
     private static func analyzedSections(for chords: [ChordEvent], forcedKey: MusicalKey?, detectChanges: Bool,
-                                         beatsPerBar: Int) -> [KeySection] {
+                                         beatsPerBar: Int, measureDurations: [Double]) -> [KeySection] {
         if let forcedKey { return [KeySection(firstBar: 1, key: forcedKey)] }
         guard !chords.isEmpty else { return [KeySection(firstBar: 1, key: MusicalKey(root: 0, isMinor: false))] }
         let sorted = chords.sorted { $0.position < $1.position }
         let lastBar = max(1, sorted.last?.position.bar ?? 1)
         let meter = Double(beatsPerBar)
+        var boundaries = (0...lastBar).map { Double($0) * meter }
+        if measureDurations.count >= lastBar && measureDurations.prefix(lastBar).allSatisfy({ $0.isFinite && $0 > 0 }) {
+            boundaries = [0]
+            for duration in measureDurations.prefix(lastBar) { boundaries.append(boundaries.last! + duration) }
+        }
         let evidence: [Evidence] = sorted.enumerated().compactMap { index, event in
             guard let chord = parsedRoot(event.symbol.components(separatedBy: "/")[0]) else { return nil }
             let quality = chord.remainder.lowercased().replacingOccurrences(of: " ", with: "")
@@ -168,11 +176,11 @@ enum ChordTheory {
             if quality.contains("9") { tones.append(quality.contains("b9") ? 1 : quality.contains("#9") ? 3 : 2) }
             if quality.contains("11") { tones.append(quality.contains("#11") ? 6 : 5) }
             func offset(_ position: SongPosition) -> Double {
-                Double(position.bar - 1) * meter + Double(position.beat - 1)
+                boundaries[position.bar - 1] + Double(position.beat - 1)
                     + Double(position.division - 1) / 4 + Double(position.tick) / 960
             }
             let start = offset(event.position)
-            let end = index + 1 < sorted.count ? offset(sorted[index + 1].position) : Double(lastBar) * meter
+            let end = index + 1 < sorted.count ? offset(sorted[index + 1].position) : boundaries[lastBar]
             guard end > start else { return nil }
             return Evidence(start: start, end: end, root: chord.pitch, intervals: Array(Set(tones)).sorted(),
                             minor: minor, dominant: extended && !minor && !diminished && !suspended
@@ -182,7 +190,7 @@ enum ChordTheory {
         let candidates = (0..<12).flatMap { root in
             [MusicalKey(root: root, isMinor: false), MusicalKey(root: root, isMinor: true)]
         }
-        let globalScores = candidates.map { score($0, evidence, from: 0, to: Double(lastBar) * meter) }
+        let globalScores = candidates.map { score($0, evidence, from: 0, to: boundaries[lastBar]) }
         let globalIndex = globalScores.indices.max { globalScores[$0] < globalScores[$1] } ?? 0
         let globalKey = candidates[globalIndex]
         guard detectChanges, lastBar >= 8 else { return [KeySection(firstBar: 1, key: globalKey)] }
@@ -192,7 +200,7 @@ enum ChordTheory {
         let families = (0..<12).map { family in candidates.indices.filter { candidates[$0].majorFamilyRoot == family } }
         var emissions = Array(repeating: Array(repeating: 0.0, count: 12), count: lastBar)
         for bar in 0..<lastBar {
-            let local = candidates.map { score($0, evidence, from: Double(bar) * meter, to: Double(bar + 1) * meter) }
+            let local = candidates.map { score($0, evidence, from: boundaries[bar], to: boundaries[bar + 1]) }
             for family in 0..<12 {
                 emissions[bar][family] = families[family].map { local[$0] }.max() ?? 0
                 // A weak whole-song prior breaks ambiguous common-chord ties without blocking new evidence.
@@ -222,7 +230,7 @@ enum ChordTheory {
         while start < lastBar {
             var end = start + 1
             while end < lastBar && path[end] == path[start] { end += 1 }
-            let roots = Set(evidence.filter { $0.start < Double(end) * meter && $0.end > Double(start) * meter }.map(\.root))
+            let roots = Set(evidence.filter { $0.start < boundaries[end] && $0.end > boundaries[start] }.map(\.root))
             if end - start < 4 || roots.count < 3 {
                 let neighbors = Set([start > 0 ? path[start - 1] : globalKey.majorFamilyRoot,
                                      end < lastBar ? path[end] : globalKey.majorFamilyRoot])
@@ -241,8 +249,8 @@ enum ChordTheory {
             while end < lastBar && path[end] == path[start] { end += 1 }
             let indices = families[path[start]]
             let index = indices.max { lhs, rhs in
-                score(candidates[lhs], evidence, from: Double(start) * meter, to: Double(end) * meter)
-                    < score(candidates[rhs], evidence, from: Double(start) * meter, to: Double(end) * meter)
+                score(candidates[lhs], evidence, from: boundaries[start], to: boundaries[end])
+                    < score(candidates[rhs], evidence, from: boundaries[start], to: boundaries[end])
             } ?? globalIndex
             result.append(KeySection(firstBar: start + 1, key: candidates[index]))
             start = end
