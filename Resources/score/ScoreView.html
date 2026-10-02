@@ -1,0 +1,10 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ChordCue 乐谱</title><link rel="stylesheet" href="ScoreView.css"><style>body{margin:0;background:#faf9f5;font:14px sans-serif}#view{padding:12px}#error{padding:12px;color:#a63b32}</style></head><body><div id="error" role="status"></div><div id="view"></div><script src="../vendor/alphatab/dist/alphaTab.min.js"></script><script src="../vendor/fflate/umd/index.js"></script><script src="ScoreIO.js"></script><script src="MusicXMLImport.js"></script><script src="GuitarProImport.js"></script><script src="ScoreView.js"></script><script>
+let view=null,displayGeneration=0,scoreFollow=true,scoreActive=true;
+window.clearScore=(message='')=>{++displayGeneration;view?.destroy();view=null;document.getElementById('view').replaceChildren();document.getElementById('error').textContent=message};
+window.showScore=async(score,partId,kind,shift=0)=>{const generation=++displayGeneration;try{document.getElementById('error').textContent='';view ||= new ChordCueScoreView.ScoreView(document.getElementById('view'),{assetBase:'../vendor/alphatab/dist/',onSeek:(id,q)=>window.ChordCueScoreBridge?.seek(id,q)});const result=await view.show(score,partId,kind,shift);return generation===displayGeneration&&result}catch(e){if(generation===displayGeneration)document.getElementById('error').textContent=e.message;return false}};
+window.setScorePosition=sample=>{if(view){view.setFollow(scoreFollow);view.setActive(scoreActive);view.setPosition(sample)}};
+window.setScoreFollow=enabled=>{scoreFollow=!!enabled;view?.setFollow(scoreFollow)};
+window.setScoreActive=active=>{scoreActive=!!active;view?.setActive(scoreActive)};
+window.importScoreBytes=(base64,name,hash)=>{const bytes=Uint8Array.from(atob(base64),c=>c.charCodeAt(0));const lower=name.toLowerCase();return (/\.(musicxml|xml|mxl)$/.test(lower)?ChordCueMusicXML:ChordCueGuitarPro).importScore(bytes,name,hash)};
+window.ScoreViewReady=true;
+</script></body></html>

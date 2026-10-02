@@ -16,3 +16,26 @@ __pycache__/
 *.mobileprovision
 *.logicx/
 *.pdf
+# Windows development and build artifacts
+windows/.venv/
+windows/build/
+windows/build-prototype/
+windows/dist/
+windows/dist-prototype/
+windows/smoke-prototype/
+windows/smoke-results/
+windows/test-results.xml
+windows/*.log
+windows/.diagnostics/
+windows/*.egg-info/
+windows/src/*.egg-info/
+*.egg-info/
+__pycache__/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.pyc
+.test-tmp/
+windows/pytest-cache-files-*/
+# Local execution evidence and unsigned candidates are not source changes.
+outputs/

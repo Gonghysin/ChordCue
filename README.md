@@ -6,7 +6,9 @@
 
 ChordCue 是独立的 macOS 应用。读取 Logic Pro 已有和弦轨与播放位置，用大字和小节网格帮助边看边演奏；也能把同步谱面投放给局域网内的其他人。
 
-> 当前宿主仅支持 macOS 上的 Logic Pro。Windows、FL Studio、Cubase 和 iReal Pro HTML 导入是待实现计划，欢迎贡献 PR。
+> macOS 宿主支持 Logic Pro。新增 [Windows 10/11 x64 独立桌面版](windows/README.md)，使用手动谱面和本机播放时钟；MSI 仍需完成 [发布验收](windows/docs/VERIFICATION.md)，当前未发布正式 Windows Release。FL Studio、Cubase 和 iReal Pro HTML 导入继续独立规划。
+
+`0.3.5` 开发版已接入 Guitar Pro / MusicXML、五线谱与 TAB、源谱独立播放和按设备分配视图；播放自动跟随文件中的 BPM / 拍号变化。支持格式、操作和验证范围见 [Issue 1 实现说明](docs/ISSUE1_IMPLEMENTATION.md)。候选安装包和开发主机验收记录保留在本地；Mac arm64 原生构建与自动检查已通过 CI，界面和实体音频仍需实机验证。
 
 ## 功能
 
@@ -51,7 +53,7 @@ ChordCue 是独立的 macOS 应用。读取 Logic Pro 已有和弦轨与播放�
 
 ## 安装：从源码构建
 
-需要 macOS 13+、Xcode Command Line Tools，以及带有和弦轨的 Logic Pro。源码依赖 SwiftUI、AppKit、WebKit、ApplicationServices、Network 等系统框架，无第三方运行时包依赖。当前在 Apple Silicon 上验证；Intel 构建入口可用，但尚未实机验证。
+需要 macOS 13+、Xcode Command Line Tools；Logic 跟随模式另需带有和弦轨的 Logic Pro。原生界面依赖 SwiftUI、AppKit、WebKit、ApplicationServices、Network 等系统框架，源谱导入和渲染随包提供离线 JavaScript 与字体，许可见 [第三方说明](THIRD_PARTY_NOTICES.md)。原有版本在 Apple Silicon 上验证；本轮新增功能和 Intel 构建仍需对应实机验证。
 
 ```bash
 xcode-select --install
@@ -93,8 +95,8 @@ bash scripts/build.sh
 
 - 和弦来源是 Logic 的和弦轨，ChordCue 不从音频重新识别和弦。
 - 定调仅依据和弦，不能保证唯一判断关系大小调；转调位置是候选结果，允许手动修正。
-- 目前未接入完整的历史／未来变拍号和速度地图，不能保证所有变奏边界的布局与声音排程正确。
-- 节拍器暂支持四分音符为拍单位的 1–12 拍；其他分母的拍号暂停同步发声。
+- Logic 跟随模式目前未接入完整的历史／未来变拍号和速度地图，不能保证所有变奏边界的布局与声音排程正确。导入源谱的独立模式使用文件中的拍号与速度地图。
+- 原有 Logic 节拍样本支持四分音符为拍单位的 1–12 拍；导入源谱按自己的拍号、弱起与重复路线排程。
 - 同步依赖辅助功能界面更新、采样、网络和设备输出延迟；不是采样级同步，也不是专业无线耳返。
 - 当前读取逻辑依赖 Logic 的辅助功能结构；软件更新或语言差异可能需要适配。
 - 局域网为 HTTP，访问链接持有者可读谱；不建议映射到公网。

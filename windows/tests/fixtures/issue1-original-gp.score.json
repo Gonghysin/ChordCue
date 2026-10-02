@@ -1,0 +1,491 @@
+{
+  "formatVersion": 1,
+  "id": "score",
+  "title": "ChordCue 原创三声部练习",
+  "source": {
+    "format": "guitarpro",
+    "fileName": "issue1-original.gp",
+    "sha256": null
+  },
+  "measures": [
+    {
+      "id": "m1",
+      "number": "1",
+      "duration": {
+        "numerator": 4,
+        "denominator": 1
+      },
+      "meter": {
+        "numerator": 4,
+        "denominator": 4
+      },
+      "repeatStart": true,
+      "repeatEnd": null,
+      "endingNumbers": [],
+      "markers": [
+        {
+          "id": "m1.section",
+          "kind": "section",
+          "label": "A",
+          "offset": {
+            "numerator": 0,
+            "denominator": 1
+          }
+        }
+      ],
+      "navigation": []
+    },
+    {
+      "id": "m2",
+      "number": "2",
+      "duration": {
+        "numerator": 4,
+        "denominator": 1
+      },
+      "meter": {
+        "numerator": 4,
+        "denominator": 4
+      },
+      "repeatStart": false,
+      "repeatEnd": 2,
+      "endingNumbers": [
+        1
+      ],
+      "markers": [],
+      "navigation": []
+    },
+    {
+      "id": "m3",
+      "number": "3",
+      "duration": {
+        "numerator": 3,
+        "denominator": 1
+      },
+      "meter": {
+        "numerator": 6,
+        "denominator": 8
+      },
+      "repeatStart": false,
+      "repeatEnd": null,
+      "endingNumbers": [
+        2
+      ],
+      "markers": [],
+      "navigation": []
+    }
+  ],
+  "parts": [
+    {
+      "id": "p1",
+      "name": "吉他",
+      "instrument": null,
+      "staves": [
+        {
+          "id": "p1.s1",
+          "name": "谱表 1",
+          "kind": "tab",
+          "clef": "G2",
+          "tuning": [
+            64,
+            59,
+            55,
+            50,
+            45,
+            40
+          ],
+          "capo": 0,
+          "events": [
+            {
+              "id": "p1.e1",
+              "measureId": "m1",
+              "offset": {
+                "numerator": 0,
+                "denominator": 1
+              },
+              "duration": {
+                "numerator": 1,
+                "denominator": 1
+              },
+              "voice": 1,
+              "isRest": false,
+              "grace": false,
+              "notes": [
+                {
+                  "id": "p1.n1",
+                  "pitch": 64,
+                  "string": 1,
+                  "fret": 0,
+                  "tieStart": false,
+                  "tieStop": false,
+                  "unpitched": false,
+                  "accidental": null
+                }
+              ]
+            },
+            {
+              "id": "p1.e2",
+              "measureId": "m1",
+              "offset": {
+                "numerator": 1,
+                "denominator": 1
+              },
+              "duration": {
+                "numerator": 1,
+                "denominator": 1
+              },
+              "voice": 1,
+              "isRest": false,
+              "grace": false,
+              "notes": [
+                {
+                  "id": "p1.n2",
+                  "pitch": 65,
+                  "string": 1,
+                  "fret": 1,
+                  "tieStart": false,
+                  "tieStop": false,
+                  "unpitched": false,
+                  "accidental": null
+                }
+              ]
+            },
+            {
+              "id": "p1.e3",
+              "measureId": "m1",
+              "offset": {
+                "numerator": 2,
+                "denominator": 1
+              },
+              "duration": {
+                "numerator": 2,
+                "denominator": 1
+              },
+              "voice": 1,
+              "isRest": true,
+              "grace": false,
+              "notes": []
+            },
+            {
+              "id": "p1.e4",
+              "measureId": "m2",
+              "offset": {
+                "numerator": 0,
+                "denominator": 1
+              },
+              "duration": {
+                "numerator": 4,
+                "denominator": 1
+              },
+              "voice": 1,
+              "isRest": false,
+              "grace": false,
+              "notes": [
+                {
+                  "id": "p1.n3",
+                  "pitch": 67,
+                  "string": 1,
+                  "fret": 3,
+                  "tieStart": false,
+                  "tieStop": false,
+                  "unpitched": false,
+                  "accidental": null
+                }
+              ]
+            },
+            {
+              "id": "p1.e5",
+              "measureId": "m3",
+              "offset": {
+                "numerator": 0,
+                "denominator": 1
+              },
+              "duration": {
+                "numerator": 3,
+                "denominator": 1
+              },
+              "voice": 1,
+              "isRest": false,
+              "grace": false,
+              "notes": [
+                {
+                  "id": "p1.n4",
+                  "pitch": 64,
+                  "string": 1,
+                  "fret": 0,
+                  "tieStart": false,
+                  "tieStop": false,
+                  "unpitched": false,
+                  "accidental": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "chords": [
+        {
+          "id": "p1.c1",
+          "measureId": "m1",
+          "offset": {
+            "numerator": 0,
+            "denominator": 1
+          },
+          "text": "Cmaj7/E",
+          "staffId": "p1.s1"
+        },
+        {
+          "id": "p1.c2",
+          "measureId": "m1",
+          "offset": {
+            "numerator": 1,
+            "denominator": 1
+          },
+          "text": "Dm7",
+          "staffId": "p1.s1"
+        },
+        {
+          "id": "p1.c3",
+          "measureId": "m2",
+          "offset": {
+            "numerator": 0,
+            "denominator": 1
+          },
+          "text": "G7",
+          "staffId": "p1.s1"
+        },
+        {
+          "id": "p1.c4",
+          "measureId": "m3",
+          "offset": {
+            "numerator": 0,
+            "denominator": 1
+          },
+          "text": "C",
+          "staffId": "p1.s1"
+        }
+      ]
+    },
+    {
+      "id": "p2",
+      "name": "贝斯",
+      "instrument": null,
+      "staves": [
+        {
+          "id": "p2.s1",
+          "name": "谱表 1",
+          "kind": "tab",
+          "clef": "F4",
+          "tuning": [
+            43,
+            38,
+            33,
+            28
+          ],
+          "capo": 0,
+          "events": [
+            {
+              "id": "p2.e6",
+              "measureId": "m1",
+              "offset": {
+                "numerator": 0,
+                "denominator": 1
+              },
+              "duration": {
+                "numerator": 4,
+                "denominator": 1
+              },
+              "voice": 1,
+              "isRest": false,
+              "grace": false,
+              "notes": [
+                {
+                  "id": "p2.n5",
+                  "pitch": 36,
+                  "string": 3,
+                  "fret": 3,
+                  "tieStart": false,
+                  "tieStop": false,
+                  "unpitched": false,
+                  "accidental": null
+                }
+              ]
+            },
+            {
+              "id": "p2.e7",
+              "measureId": "m2",
+              "offset": {
+                "numerator": 0,
+                "denominator": 1
+              },
+              "duration": {
+                "numerator": 4,
+                "denominator": 1
+              },
+              "voice": 1,
+              "isRest": false,
+              "grace": false,
+              "notes": [
+                {
+                  "id": "p2.n6",
+                  "pitch": 31,
+                  "string": 4,
+                  "fret": 3,
+                  "tieStart": false,
+                  "tieStop": false,
+                  "unpitched": false,
+                  "accidental": null
+                }
+              ]
+            },
+            {
+              "id": "p2.e8",
+              "measureId": "m3",
+              "offset": {
+                "numerator": 0,
+                "denominator": 1
+              },
+              "duration": {
+                "numerator": 3,
+                "denominator": 1
+              },
+              "voice": 1,
+              "isRest": false,
+              "grace": false,
+              "notes": [
+                {
+                  "id": "p2.n7",
+                  "pitch": 36,
+                  "string": 3,
+                  "fret": 3,
+                  "tieStart": false,
+                  "tieStop": false,
+                  "unpitched": false,
+                  "accidental": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "chords": []
+    },
+    {
+      "id": "p3",
+      "name": "节奏",
+      "instrument": null,
+      "staves": [
+        {
+          "id": "p3.s1",
+          "name": "谱表 1",
+          "kind": "percussion",
+          "clef": "percussion",
+          "tuning": [],
+          "capo": 0,
+          "events": [
+            {
+              "id": "p3.e9",
+              "measureId": "m1",
+              "offset": {
+                "numerator": 0,
+                "denominator": 1
+              },
+              "duration": {
+                "numerator": 4,
+                "denominator": 1
+              },
+              "voice": 1,
+              "isRest": true,
+              "grace": false,
+              "notes": []
+            },
+            {
+              "id": "p3.e10",
+              "measureId": "m2",
+              "offset": {
+                "numerator": 0,
+                "denominator": 1
+              },
+              "duration": {
+                "numerator": 4,
+                "denominator": 1
+              },
+              "voice": 1,
+              "isRest": true,
+              "grace": false,
+              "notes": []
+            },
+            {
+              "id": "p3.e11",
+              "measureId": "m3",
+              "offset": {
+                "numerator": 0,
+                "denominator": 1
+              },
+              "duration": {
+                "numerator": 3,
+                "denominator": 1
+              },
+              "voice": 1,
+              "isRest": true,
+              "grace": false,
+              "notes": []
+            }
+          ]
+        }
+      ],
+      "chords": []
+    }
+  ],
+  "tempoChanges": [
+    {
+      "measureId": "m1",
+      "offset": {
+        "numerator": 0,
+        "denominator": 1
+      },
+      "bpm": 120
+    },
+    {
+      "measureId": "m3",
+      "offset": {
+        "numerator": 0,
+        "denominator": 1
+      },
+      "bpm": 135
+    }
+  ],
+  "keyChanges": [
+    {
+      "measureId": "m1",
+      "offset": {
+        "numerator": 0,
+        "denominator": 1
+      },
+      "fifths": 0,
+      "mode": "major"
+    }
+  ],
+  "warnings": [
+    {
+      "code": "chords.missing",
+      "message": "该声部没有显式和弦标记；未从音符推断和弦",
+      "severity": "warning",
+      "measureId": null,
+      "partId": "p2"
+    },
+    {
+      "code": "chords.missing",
+      "message": "该声部没有显式和弦标记；未从音符推断和弦",
+      "severity": "warning",
+      "measureId": null,
+      "partId": "p3"
+    },
+    {
+      "code": "source.version",
+      "message": "按文件头识别为 GP8；不支持的技法在预览中逐项提示",
+      "severity": "warning",
+      "measureId": null,
+      "partId": null
+    }
+  ]
+}

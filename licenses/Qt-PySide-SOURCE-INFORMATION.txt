@@ -1,0 +1,94 @@
+CHORDCUE WINDOWS: QT / PYSIDE SOURCE AND REPLACEMENT INFORMATION
+
+ChordCue is MIT-licensed. Its third-party libraries retain their own copyrights
+and license terms. This file does not replace any component's license.
+
+VERSION AND NOTICE MATERIALS
+
+The Windows build is pinned to PySide6 / Shiboken6 6.11.2 and Qt 6.11.2.
+The development runtime reported Qt WebEngine 6.11.2 and Chromium 140.0.7339.225.
+Verify the final distributed binary separately. The installed-distributions.json
+file lists the Python distribution versions and copied license-file locations.
+
+Qt-6.11.2-THIRD-PARTY-NOTICES.txt preserves the official Qt/Chromium attribution
+page text, including full copyright/license blocks. It is an all-module and
+all-platform documentation superset, not a binary SBOM. The companion manifest
+records source URLs, version evidence and raw/extracted SHA-256 hashes.
+
+PySide6-6.11.2-NOTICES.txt contains the LICENSES catalog, COPYING files,
+qt_attribution.json records and every designated LicenseFile from Qt's official
+matching source archive. This source-notice superset also includes examples.
+Qt LGPL 3.0/GPL 3.0 and GNU LGPL 2.1/LGPL 2.0/GPL 2.0 full texts are distributed
+separately. Third-party terms are not superseded by ChordCue's MIT license.
+
+CORRESPONDING SOURCE LOCATIONS
+
+ChordCue application, lock and packaging source:
+https://github.com/Gonghysin/ChordCue
+Use the source commit associated with the specific distributed build.
+
+Qt 6.11.2 complete source:
+https://download.qt.io/official_releases/qt/6.11/6.11.2/single/qt-everywhere-src-6.11.2.zip
+
+Qt Base 6.11.2:
+https://download.qt.io/official_releases/qt/6.11/6.11.2/submodules/qtbase-everywhere-src-6.11.2.zip
+
+Qt WebEngine 6.11.2 (including its Chromium source tree):
+https://download.qt.io/official_releases/qt/6.11/6.11.2/submodules/qtwebengine-everywhere-src-6.11.2.zip
+
+Qt WebChannel 6.11.2:
+https://download.qt.io/official_releases/qt/6.11/6.11.2/submodules/qtwebchannel-everywhere-src-6.11.2.zip
+
+Qt Declarative 6.11.2:
+https://download.qt.io/official_releases/qt/6.11/6.11.2/submodules/qtdeclarative-everywhere-src-6.11.2.zip
+
+PySide / Shiboken 6.11.2:
+https://download.qt.io/official_releases/QtForPython/pyside6/PySide6-6.11.2-src/pyside-setup-everywhere-src-6.11.2.zip
+Official primary-host copy used for the source-notice archive:
+https://master.qt.io/official_releases/QtForPython/pyside6/PySide6-6.11.2-src/pyside-setup-everywhere-src-6.11.2.zip
+Archive SHA-256: c0fdd62b91a1d36d5ee2e1fb71050a32fbc93fcdeef0fdcb41d29afaaf00d9b5
+
+The same download directories also provide .tar.xz files and mirror/checksum
+information. Building Qt for Python from source:
+https://doc.qt.io/qtforpython-6/building_from_source/index.html
+Qt licensing information:
+https://doc.qt.io/qt-6/licensing.html
+Qt WebEngine licensing information:
+https://doc.qt.io/qt-6/qtwebengine-licensing.html
+
+This project currently uses upstream wheels without modifying Qt/PySide source.
+The links identify upstream versions, but do not demonstrate a bit-identical
+rebuild of a wheel. A distributor must retain and verify the corresponding
+source, patches and build configuration for its actual distributed binaries.
+These links are not described as a fulfilled written source offer; any chosen
+written-offer mechanism needs its own genuine terms/contact and fulfilment.
+
+DYNAMIC REPLACEMENT AND REBUILDING
+
+The frozen application ships Qt DLLs, PySide extension modules, plugins,
+QtWebEngineProcess, WebEngine data and locales as separate files. ChordCue's
+code does not statically link Qt. ChordCue imposes no additional restriction
+against replacing these libraries, rebuilding, or reverse engineering for
+debugging modifications to the libraries; the libraries' own licenses apply.
+
+First copy the entire frozen directory to a user-writable development location
+and retain the original installation. Use compatible x64/Qt/PySide ABI versions.
+Replace the matching files under lib/PySide6, the related Shiboken files,
+plugins, WebEngine executable, resources and locales as a coherent set. Final
+paths are determined by the installed payload; mixing unmatched DLLs can fail.
+Alternatively install your rebuilt compatible wheel in an isolated Python 3.13
+x64 environment, install the matching ChordCue source, and rerun its cx_Freeze
+build and smoke procedures from windows/docs/BUILD.md and windows/packaging.
+Windows directory permissions and MSI repair may affect a hand-edited copy in
+Program Files, which is why a user-writable development copy is recommended.
+ChordCue does not require uploading a modified library to its maintainers.
+
+These engineering instructions and notice files are not a claim that a final
+distributor's binary/source license review has been completed. Final payload,
+source availability and applicable requirements remain release acceptance items.
+
+中文说明：本文件随安装包提供对应版本的源码入口、完整许可材料位置以及动态库
+替换／重新构建方法。第三方许可独立于 ChordCue 的 MIT。使用者可在个人可写的
+开发副本中替换匹配版本的 Qt / PySide 动态库，或使用源码重新构建；本项目不添加
+阻止为调试修改版库而逆向工程的额外限制。官方源码链接不冒充已经履行的书面
+源码要约；最终发行仍需确认实际二进制、对应源码、补丁、构建配置及许可义务。

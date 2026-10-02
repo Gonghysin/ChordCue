@@ -12,10 +12,16 @@ xcrun swiftc -O -target "$CHORDCUE_ARCH-apple-macos13.0" -parse-as-library \
   "$PROJECT_DIR/Sources/ChordCue.swift" "$PROJECT_DIR/Sources/LogicReader.swift" \
   "$PROJECT_DIR/Sources/ChordTheory.swift" "$PROJECT_DIR/Sources/ChartPDF.swift" \
   "$PROJECT_DIR/Sources/LANBroadcast.swift" "$PROJECT_DIR/Sources/NativeMetronome.swift" \
+  "$PROJECT_DIR/Sources/LANDevices.swift" "$PROJECT_DIR/Sources/ScoreModels.swift" \
+  "$PROJECT_DIR/Sources/StandaloneTransport.swift" "$PROJECT_DIR/Sources/MacScoreProject.swift" \
+  "$PROJECT_DIR/Sources/MacTiming.swift" \
+  "$PROJECT_DIR/Sources/MacScoreSession.swift" \
   -o "$APP_PATH/Contents/MacOS/ChordCue"
 cp "$PROJECT_DIR/Resources/Info.plist" "$APP_PATH/Contents/Info.plist"
 cp "$PROJECT_DIR/Resources/Broadcast.html" "$PROJECT_DIR/Resources/Metronome.js" \
   "$PROJECT_DIR/Resources/DemoChords.txt" "$PROJECT_DIR/Resources/ChordCue.svg" "$APP_PATH/Contents/Resources/"
+# Preserve relative paths used by WKWebView and LAN allowlisted resources.
+cp -R "$PROJECT_DIR/Resources/score" "$PROJECT_DIR/Resources/vendor" "$APP_PATH/Contents/Resources/"
 if command -v rsvg-convert >/dev/null 2>&1; then
   mkdir -p "$BUILD_DIR/ChordCue.iconset"
   for size in 16 32 128 256 512; do

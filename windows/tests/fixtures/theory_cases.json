@@ -1,0 +1,9994 @@
+{
+  "noteNames": [
+    {
+      "pitch": -24,
+      "preferFlats": false
+    },
+    {
+      "pitch": -24,
+      "preferFlats": true
+    },
+    {
+      "pitch": -23,
+      "preferFlats": false
+    },
+    {
+      "pitch": -23,
+      "preferFlats": true
+    },
+    {
+      "pitch": -22,
+      "preferFlats": false
+    },
+    {
+      "pitch": -22,
+      "preferFlats": true
+    },
+    {
+      "pitch": -21,
+      "preferFlats": false
+    },
+    {
+      "pitch": -21,
+      "preferFlats": true
+    },
+    {
+      "pitch": -20,
+      "preferFlats": false
+    },
+    {
+      "pitch": -20,
+      "preferFlats": true
+    },
+    {
+      "pitch": -19,
+      "preferFlats": false
+    },
+    {
+      "pitch": -19,
+      "preferFlats": true
+    },
+    {
+      "pitch": -18,
+      "preferFlats": false
+    },
+    {
+      "pitch": -18,
+      "preferFlats": true
+    },
+    {
+      "pitch": -17,
+      "preferFlats": false
+    },
+    {
+      "pitch": -17,
+      "preferFlats": true
+    },
+    {
+      "pitch": -16,
+      "preferFlats": false
+    },
+    {
+      "pitch": -16,
+      "preferFlats": true
+    },
+    {
+      "pitch": -15,
+      "preferFlats": false
+    },
+    {
+      "pitch": -15,
+      "preferFlats": true
+    },
+    {
+      "pitch": -14,
+      "preferFlats": false
+    },
+    {
+      "pitch": -14,
+      "preferFlats": true
+    },
+    {
+      "pitch": -13,
+      "preferFlats": false
+    },
+    {
+      "pitch": -13,
+      "preferFlats": true
+    },
+    {
+      "pitch": -12,
+      "preferFlats": false
+    },
+    {
+      "pitch": -12,
+      "preferFlats": true
+    },
+    {
+      "pitch": -11,
+      "preferFlats": false
+    },
+    {
+      "pitch": -11,
+      "preferFlats": true
+    },
+    {
+      "pitch": -10,
+      "preferFlats": false
+    },
+    {
+      "pitch": -10,
+      "preferFlats": true
+    },
+    {
+      "pitch": -9,
+      "preferFlats": false
+    },
+    {
+      "pitch": -9,
+      "preferFlats": true
+    },
+    {
+      "pitch": -8,
+      "preferFlats": false
+    },
+    {
+      "pitch": -8,
+      "preferFlats": true
+    },
+    {
+      "pitch": -7,
+      "preferFlats": false
+    },
+    {
+      "pitch": -7,
+      "preferFlats": true
+    },
+    {
+      "pitch": -6,
+      "preferFlats": false
+    },
+    {
+      "pitch": -6,
+      "preferFlats": true
+    },
+    {
+      "pitch": -5,
+      "preferFlats": false
+    },
+    {
+      "pitch": -5,
+      "preferFlats": true
+    },
+    {
+      "pitch": -4,
+      "preferFlats": false
+    },
+    {
+      "pitch": -4,
+      "preferFlats": true
+    },
+    {
+      "pitch": -3,
+      "preferFlats": false
+    },
+    {
+      "pitch": -3,
+      "preferFlats": true
+    },
+    {
+      "pitch": -2,
+      "preferFlats": false
+    },
+    {
+      "pitch": -2,
+      "preferFlats": true
+    },
+    {
+      "pitch": -1,
+      "preferFlats": false
+    },
+    {
+      "pitch": -1,
+      "preferFlats": true
+    },
+    {
+      "pitch": 0,
+      "preferFlats": false
+    },
+    {
+      "pitch": 0,
+      "preferFlats": true
+    },
+    {
+      "pitch": 1,
+      "preferFlats": false
+    },
+    {
+      "pitch": 1,
+      "preferFlats": true
+    },
+    {
+      "pitch": 2,
+      "preferFlats": false
+    },
+    {
+      "pitch": 2,
+      "preferFlats": true
+    },
+    {
+      "pitch": 3,
+      "preferFlats": false
+    },
+    {
+      "pitch": 3,
+      "preferFlats": true
+    },
+    {
+      "pitch": 4,
+      "preferFlats": false
+    },
+    {
+      "pitch": 4,
+      "preferFlats": true
+    },
+    {
+      "pitch": 5,
+      "preferFlats": false
+    },
+    {
+      "pitch": 5,
+      "preferFlats": true
+    },
+    {
+      "pitch": 6,
+      "preferFlats": false
+    },
+    {
+      "pitch": 6,
+      "preferFlats": true
+    },
+    {
+      "pitch": 7,
+      "preferFlats": false
+    },
+    {
+      "pitch": 7,
+      "preferFlats": true
+    },
+    {
+      "pitch": 8,
+      "preferFlats": false
+    },
+    {
+      "pitch": 8,
+      "preferFlats": true
+    },
+    {
+      "pitch": 9,
+      "preferFlats": false
+    },
+    {
+      "pitch": 9,
+      "preferFlats": true
+    },
+    {
+      "pitch": 10,
+      "preferFlats": false
+    },
+    {
+      "pitch": 10,
+      "preferFlats": true
+    },
+    {
+      "pitch": 11,
+      "preferFlats": false
+    },
+    {
+      "pitch": 11,
+      "preferFlats": true
+    },
+    {
+      "pitch": 12,
+      "preferFlats": false
+    },
+    {
+      "pitch": 12,
+      "preferFlats": true
+    },
+    {
+      "pitch": 13,
+      "preferFlats": false
+    },
+    {
+      "pitch": 13,
+      "preferFlats": true
+    },
+    {
+      "pitch": 14,
+      "preferFlats": false
+    },
+    {
+      "pitch": 14,
+      "preferFlats": true
+    },
+    {
+      "pitch": 15,
+      "preferFlats": false
+    },
+    {
+      "pitch": 15,
+      "preferFlats": true
+    },
+    {
+      "pitch": 16,
+      "preferFlats": false
+    },
+    {
+      "pitch": 16,
+      "preferFlats": true
+    },
+    {
+      "pitch": 17,
+      "preferFlats": false
+    },
+    {
+      "pitch": 17,
+      "preferFlats": true
+    },
+    {
+      "pitch": 18,
+      "preferFlats": false
+    },
+    {
+      "pitch": 18,
+      "preferFlats": true
+    },
+    {
+      "pitch": 19,
+      "preferFlats": false
+    },
+    {
+      "pitch": 19,
+      "preferFlats": true
+    },
+    {
+      "pitch": 20,
+      "preferFlats": false
+    },
+    {
+      "pitch": 20,
+      "preferFlats": true
+    },
+    {
+      "pitch": 21,
+      "preferFlats": false
+    },
+    {
+      "pitch": 21,
+      "preferFlats": true
+    },
+    {
+      "pitch": 22,
+      "preferFlats": false
+    },
+    {
+      "pitch": 22,
+      "preferFlats": true
+    },
+    {
+      "pitch": 23,
+      "preferFlats": false
+    },
+    {
+      "pitch": 23,
+      "preferFlats": true
+    },
+    {
+      "pitch": 24,
+      "preferFlats": false
+    },
+    {
+      "pitch": 24,
+      "preferFlats": true
+    },
+    {
+      "pitch": 25,
+      "preferFlats": false
+    },
+    {
+      "pitch": 25,
+      "preferFlats": true
+    },
+    {
+      "pitch": 26,
+      "preferFlats": false
+    },
+    {
+      "pitch": 26,
+      "preferFlats": true
+    },
+    {
+      "pitch": 27,
+      "preferFlats": false
+    },
+    {
+      "pitch": 27,
+      "preferFlats": true
+    },
+    {
+      "pitch": 28,
+      "preferFlats": false
+    },
+    {
+      "pitch": 28,
+      "preferFlats": true
+    },
+    {
+      "pitch": 29,
+      "preferFlats": false
+    },
+    {
+      "pitch": 29,
+      "preferFlats": true
+    },
+    {
+      "pitch": 30,
+      "preferFlats": false
+    },
+    {
+      "pitch": 30,
+      "preferFlats": true
+    },
+    {
+      "pitch": 31,
+      "preferFlats": false
+    },
+    {
+      "pitch": 31,
+      "preferFlats": true
+    },
+    {
+      "pitch": 32,
+      "preferFlats": false
+    },
+    {
+      "pitch": 32,
+      "preferFlats": true
+    },
+    {
+      "pitch": 33,
+      "preferFlats": false
+    },
+    {
+      "pitch": 33,
+      "preferFlats": true
+    },
+    {
+      "pitch": 34,
+      "preferFlats": false
+    },
+    {
+      "pitch": 34,
+      "preferFlats": true
+    },
+    {
+      "pitch": 35,
+      "preferFlats": false
+    },
+    {
+      "pitch": 35,
+      "preferFlats": true
+    },
+    {
+      "pitch": 36,
+      "preferFlats": false
+    },
+    {
+      "pitch": 36,
+      "preferFlats": true
+    }
+  ],
+  "transposes": [
+    {
+      "symbol": "C",
+      "semitones": -25,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C",
+      "semitones": -25,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C",
+      "semitones": -12,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C",
+      "semitones": -12,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C",
+      "semitones": -3,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C",
+      "semitones": -3,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C",
+      "semitones": 0,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C",
+      "semitones": 0,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C",
+      "semitones": 1,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C",
+      "semitones": 1,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C",
+      "semitones": 2,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C",
+      "semitones": 2,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C",
+      "semitones": 6,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C",
+      "semitones": 6,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C",
+      "semitones": 12,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C",
+      "semitones": 12,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C",
+      "semitones": 25,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C",
+      "semitones": 25,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Db",
+      "semitones": -25,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Db",
+      "semitones": -25,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Db",
+      "semitones": -12,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Db",
+      "semitones": -12,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Db",
+      "semitones": -3,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Db",
+      "semitones": -3,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Db",
+      "semitones": 0,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Db",
+      "semitones": 0,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Db",
+      "semitones": 1,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Db",
+      "semitones": 1,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Db",
+      "semitones": 2,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Db",
+      "semitones": 2,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Db",
+      "semitones": 6,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Db",
+      "semitones": 6,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Db",
+      "semitones": 12,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Db",
+      "semitones": 12,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Db",
+      "semitones": 25,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Db",
+      "semitones": 25,
+      "preferFlats": true
+    },
+    {
+      "symbol": "D♭maj7",
+      "semitones": -25,
+      "preferFlats": false
+    },
+    {
+      "symbol": "D♭maj7",
+      "semitones": -25,
+      "preferFlats": true
+    },
+    {
+      "symbol": "D♭maj7",
+      "semitones": -12,
+      "preferFlats": false
+    },
+    {
+      "symbol": "D♭maj7",
+      "semitones": -12,
+      "preferFlats": true
+    },
+    {
+      "symbol": "D♭maj7",
+      "semitones": -3,
+      "preferFlats": false
+    },
+    {
+      "symbol": "D♭maj7",
+      "semitones": -3,
+      "preferFlats": true
+    },
+    {
+      "symbol": "D♭maj7",
+      "semitones": 0,
+      "preferFlats": false
+    },
+    {
+      "symbol": "D♭maj7",
+      "semitones": 0,
+      "preferFlats": true
+    },
+    {
+      "symbol": "D♭maj7",
+      "semitones": 1,
+      "preferFlats": false
+    },
+    {
+      "symbol": "D♭maj7",
+      "semitones": 1,
+      "preferFlats": true
+    },
+    {
+      "symbol": "D♭maj7",
+      "semitones": 2,
+      "preferFlats": false
+    },
+    {
+      "symbol": "D♭maj7",
+      "semitones": 2,
+      "preferFlats": true
+    },
+    {
+      "symbol": "D♭maj7",
+      "semitones": 6,
+      "preferFlats": false
+    },
+    {
+      "symbol": "D♭maj7",
+      "semitones": 6,
+      "preferFlats": true
+    },
+    {
+      "symbol": "D♭maj7",
+      "semitones": 12,
+      "preferFlats": false
+    },
+    {
+      "symbol": "D♭maj7",
+      "semitones": 12,
+      "preferFlats": true
+    },
+    {
+      "symbol": "D♭maj7",
+      "semitones": 25,
+      "preferFlats": false
+    },
+    {
+      "symbol": "D♭maj7",
+      "semitones": 25,
+      "preferFlats": true
+    },
+    {
+      "symbol": "D#9",
+      "semitones": -25,
+      "preferFlats": false
+    },
+    {
+      "symbol": "D#9",
+      "semitones": -25,
+      "preferFlats": true
+    },
+    {
+      "symbol": "D#9",
+      "semitones": -12,
+      "preferFlats": false
+    },
+    {
+      "symbol": "D#9",
+      "semitones": -12,
+      "preferFlats": true
+    },
+    {
+      "symbol": "D#9",
+      "semitones": -3,
+      "preferFlats": false
+    },
+    {
+      "symbol": "D#9",
+      "semitones": -3,
+      "preferFlats": true
+    },
+    {
+      "symbol": "D#9",
+      "semitones": 0,
+      "preferFlats": false
+    },
+    {
+      "symbol": "D#9",
+      "semitones": 0,
+      "preferFlats": true
+    },
+    {
+      "symbol": "D#9",
+      "semitones": 1,
+      "preferFlats": false
+    },
+    {
+      "symbol": "D#9",
+      "semitones": 1,
+      "preferFlats": true
+    },
+    {
+      "symbol": "D#9",
+      "semitones": 2,
+      "preferFlats": false
+    },
+    {
+      "symbol": "D#9",
+      "semitones": 2,
+      "preferFlats": true
+    },
+    {
+      "symbol": "D#9",
+      "semitones": 6,
+      "preferFlats": false
+    },
+    {
+      "symbol": "D#9",
+      "semitones": 6,
+      "preferFlats": true
+    },
+    {
+      "symbol": "D#9",
+      "semitones": 12,
+      "preferFlats": false
+    },
+    {
+      "symbol": "D#9",
+      "semitones": 12,
+      "preferFlats": true
+    },
+    {
+      "symbol": "D#9",
+      "semitones": 25,
+      "preferFlats": false
+    },
+    {
+      "symbol": "D#9",
+      "semitones": 25,
+      "preferFlats": true
+    },
+    {
+      "symbol": "E♭m7",
+      "semitones": -25,
+      "preferFlats": false
+    },
+    {
+      "symbol": "E♭m7",
+      "semitones": -25,
+      "preferFlats": true
+    },
+    {
+      "symbol": "E♭m7",
+      "semitones": -12,
+      "preferFlats": false
+    },
+    {
+      "symbol": "E♭m7",
+      "semitones": -12,
+      "preferFlats": true
+    },
+    {
+      "symbol": "E♭m7",
+      "semitones": -3,
+      "preferFlats": false
+    },
+    {
+      "symbol": "E♭m7",
+      "semitones": -3,
+      "preferFlats": true
+    },
+    {
+      "symbol": "E♭m7",
+      "semitones": 0,
+      "preferFlats": false
+    },
+    {
+      "symbol": "E♭m7",
+      "semitones": 0,
+      "preferFlats": true
+    },
+    {
+      "symbol": "E♭m7",
+      "semitones": 1,
+      "preferFlats": false
+    },
+    {
+      "symbol": "E♭m7",
+      "semitones": 1,
+      "preferFlats": true
+    },
+    {
+      "symbol": "E♭m7",
+      "semitones": 2,
+      "preferFlats": false
+    },
+    {
+      "symbol": "E♭m7",
+      "semitones": 2,
+      "preferFlats": true
+    },
+    {
+      "symbol": "E♭m7",
+      "semitones": 6,
+      "preferFlats": false
+    },
+    {
+      "symbol": "E♭m7",
+      "semitones": 6,
+      "preferFlats": true
+    },
+    {
+      "symbol": "E♭m7",
+      "semitones": 12,
+      "preferFlats": false
+    },
+    {
+      "symbol": "E♭m7",
+      "semitones": 12,
+      "preferFlats": true
+    },
+    {
+      "symbol": "E♭m7",
+      "semitones": 25,
+      "preferFlats": false
+    },
+    {
+      "symbol": "E♭m7",
+      "semitones": 25,
+      "preferFlats": true
+    },
+    {
+      "symbol": "F#m7(b5)/B",
+      "semitones": -25,
+      "preferFlats": false
+    },
+    {
+      "symbol": "F#m7(b5)/B",
+      "semitones": -25,
+      "preferFlats": true
+    },
+    {
+      "symbol": "F#m7(b5)/B",
+      "semitones": -12,
+      "preferFlats": false
+    },
+    {
+      "symbol": "F#m7(b5)/B",
+      "semitones": -12,
+      "preferFlats": true
+    },
+    {
+      "symbol": "F#m7(b5)/B",
+      "semitones": -3,
+      "preferFlats": false
+    },
+    {
+      "symbol": "F#m7(b5)/B",
+      "semitones": -3,
+      "preferFlats": true
+    },
+    {
+      "symbol": "F#m7(b5)/B",
+      "semitones": 0,
+      "preferFlats": false
+    },
+    {
+      "symbol": "F#m7(b5)/B",
+      "semitones": 0,
+      "preferFlats": true
+    },
+    {
+      "symbol": "F#m7(b5)/B",
+      "semitones": 1,
+      "preferFlats": false
+    },
+    {
+      "symbol": "F#m7(b5)/B",
+      "semitones": 1,
+      "preferFlats": true
+    },
+    {
+      "symbol": "F#m7(b5)/B",
+      "semitones": 2,
+      "preferFlats": false
+    },
+    {
+      "symbol": "F#m7(b5)/B",
+      "semitones": 2,
+      "preferFlats": true
+    },
+    {
+      "symbol": "F#m7(b5)/B",
+      "semitones": 6,
+      "preferFlats": false
+    },
+    {
+      "symbol": "F#m7(b5)/B",
+      "semitones": 6,
+      "preferFlats": true
+    },
+    {
+      "symbol": "F#m7(b5)/B",
+      "semitones": 12,
+      "preferFlats": false
+    },
+    {
+      "symbol": "F#m7(b5)/B",
+      "semitones": 12,
+      "preferFlats": true
+    },
+    {
+      "symbol": "F#m7(b5)/B",
+      "semitones": 25,
+      "preferFlats": false
+    },
+    {
+      "symbol": "F#m7(b5)/B",
+      "semitones": 25,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Bb7/F",
+      "semitones": -25,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Bb7/F",
+      "semitones": -25,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Bb7/F",
+      "semitones": -12,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Bb7/F",
+      "semitones": -12,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Bb7/F",
+      "semitones": -3,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Bb7/F",
+      "semitones": -3,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Bb7/F",
+      "semitones": 0,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Bb7/F",
+      "semitones": 0,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Bb7/F",
+      "semitones": 1,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Bb7/F",
+      "semitones": 1,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Bb7/F",
+      "semitones": 2,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Bb7/F",
+      "semitones": 2,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Bb7/F",
+      "semitones": 6,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Bb7/F",
+      "semitones": 6,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Bb7/F",
+      "semitones": 12,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Bb7/F",
+      "semitones": 12,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Bb7/F",
+      "semitones": 25,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Bb7/F",
+      "semitones": 25,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Cmaj7/E",
+      "semitones": -25,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Cmaj7/E",
+      "semitones": -25,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Cmaj7/E",
+      "semitones": -12,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Cmaj7/E",
+      "semitones": -12,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Cmaj7/E",
+      "semitones": -3,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Cmaj7/E",
+      "semitones": -3,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Cmaj7/E",
+      "semitones": 0,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Cmaj7/E",
+      "semitones": 0,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Cmaj7/E",
+      "semitones": 1,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Cmaj7/E",
+      "semitones": 1,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Cmaj7/E",
+      "semitones": 2,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Cmaj7/E",
+      "semitones": 2,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Cmaj7/E",
+      "semitones": 6,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Cmaj7/E",
+      "semitones": 6,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Cmaj7/E",
+      "semitones": 12,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Cmaj7/E",
+      "semitones": 12,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Cmaj7/E",
+      "semitones": 25,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Cmaj7/E",
+      "semitones": 25,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Am(maj7)",
+      "semitones": -25,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Am(maj7)",
+      "semitones": -25,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Am(maj7)",
+      "semitones": -12,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Am(maj7)",
+      "semitones": -12,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Am(maj7)",
+      "semitones": -3,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Am(maj7)",
+      "semitones": -3,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Am(maj7)",
+      "semitones": 0,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Am(maj7)",
+      "semitones": 0,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Am(maj7)",
+      "semitones": 1,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Am(maj7)",
+      "semitones": 1,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Am(maj7)",
+      "semitones": 2,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Am(maj7)",
+      "semitones": 2,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Am(maj7)",
+      "semitones": 6,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Am(maj7)",
+      "semitones": 6,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Am(maj7)",
+      "semitones": 12,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Am(maj7)",
+      "semitones": 12,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Am(maj7)",
+      "semitones": 25,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Am(maj7)",
+      "semitones": 25,
+      "preferFlats": true
+    },
+    {
+      "symbol": "G13(b9)/B",
+      "semitones": -25,
+      "preferFlats": false
+    },
+    {
+      "symbol": "G13(b9)/B",
+      "semitones": -25,
+      "preferFlats": true
+    },
+    {
+      "symbol": "G13(b9)/B",
+      "semitones": -12,
+      "preferFlats": false
+    },
+    {
+      "symbol": "G13(b9)/B",
+      "semitones": -12,
+      "preferFlats": true
+    },
+    {
+      "symbol": "G13(b9)/B",
+      "semitones": -3,
+      "preferFlats": false
+    },
+    {
+      "symbol": "G13(b9)/B",
+      "semitones": -3,
+      "preferFlats": true
+    },
+    {
+      "symbol": "G13(b9)/B",
+      "semitones": 0,
+      "preferFlats": false
+    },
+    {
+      "symbol": "G13(b9)/B",
+      "semitones": 0,
+      "preferFlats": true
+    },
+    {
+      "symbol": "G13(b9)/B",
+      "semitones": 1,
+      "preferFlats": false
+    },
+    {
+      "symbol": "G13(b9)/B",
+      "semitones": 1,
+      "preferFlats": true
+    },
+    {
+      "symbol": "G13(b9)/B",
+      "semitones": 2,
+      "preferFlats": false
+    },
+    {
+      "symbol": "G13(b9)/B",
+      "semitones": 2,
+      "preferFlats": true
+    },
+    {
+      "symbol": "G13(b9)/B",
+      "semitones": 6,
+      "preferFlats": false
+    },
+    {
+      "symbol": "G13(b9)/B",
+      "semitones": 6,
+      "preferFlats": true
+    },
+    {
+      "symbol": "G13(b9)/B",
+      "semitones": 12,
+      "preferFlats": false
+    },
+    {
+      "symbol": "G13(b9)/B",
+      "semitones": 12,
+      "preferFlats": true
+    },
+    {
+      "symbol": "G13(b9)/B",
+      "semitones": 25,
+      "preferFlats": false
+    },
+    {
+      "symbol": "G13(b9)/B",
+      "semitones": 25,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C7#9",
+      "semitones": -25,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C7#9",
+      "semitones": -25,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C7#9",
+      "semitones": -12,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C7#9",
+      "semitones": -12,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C7#9",
+      "semitones": -3,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C7#9",
+      "semitones": -3,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C7#9",
+      "semitones": 0,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C7#9",
+      "semitones": 0,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C7#9",
+      "semitones": 1,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C7#9",
+      "semitones": 1,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C7#9",
+      "semitones": 2,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C7#9",
+      "semitones": 2,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C7#9",
+      "semitones": 6,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C7#9",
+      "semitones": 6,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C7#9",
+      "semitones": 12,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C7#9",
+      "semitones": 12,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C7#9",
+      "semitones": 25,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C7#9",
+      "semitones": 25,
+      "preferFlats": true
+    },
+    {
+      "symbol": "F7#11",
+      "semitones": -25,
+      "preferFlats": false
+    },
+    {
+      "symbol": "F7#11",
+      "semitones": -25,
+      "preferFlats": true
+    },
+    {
+      "symbol": "F7#11",
+      "semitones": -12,
+      "preferFlats": false
+    },
+    {
+      "symbol": "F7#11",
+      "semitones": -12,
+      "preferFlats": true
+    },
+    {
+      "symbol": "F7#11",
+      "semitones": -3,
+      "preferFlats": false
+    },
+    {
+      "symbol": "F7#11",
+      "semitones": -3,
+      "preferFlats": true
+    },
+    {
+      "symbol": "F7#11",
+      "semitones": 0,
+      "preferFlats": false
+    },
+    {
+      "symbol": "F7#11",
+      "semitones": 0,
+      "preferFlats": true
+    },
+    {
+      "symbol": "F7#11",
+      "semitones": 1,
+      "preferFlats": false
+    },
+    {
+      "symbol": "F7#11",
+      "semitones": 1,
+      "preferFlats": true
+    },
+    {
+      "symbol": "F7#11",
+      "semitones": 2,
+      "preferFlats": false
+    },
+    {
+      "symbol": "F7#11",
+      "semitones": 2,
+      "preferFlats": true
+    },
+    {
+      "symbol": "F7#11",
+      "semitones": 6,
+      "preferFlats": false
+    },
+    {
+      "symbol": "F7#11",
+      "semitones": 6,
+      "preferFlats": true
+    },
+    {
+      "symbol": "F7#11",
+      "semitones": 12,
+      "preferFlats": false
+    },
+    {
+      "symbol": "F7#11",
+      "semitones": 12,
+      "preferFlats": true
+    },
+    {
+      "symbol": "F7#11",
+      "semitones": 25,
+      "preferFlats": false
+    },
+    {
+      "symbol": "F7#11",
+      "semitones": 25,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C7#5",
+      "semitones": -25,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C7#5",
+      "semitones": -25,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C7#5",
+      "semitones": -12,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C7#5",
+      "semitones": -12,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C7#5",
+      "semitones": -3,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C7#5",
+      "semitones": -3,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C7#5",
+      "semitones": 0,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C7#5",
+      "semitones": 0,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C7#5",
+      "semitones": 1,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C7#5",
+      "semitones": 1,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C7#5",
+      "semitones": 2,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C7#5",
+      "semitones": 2,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C7#5",
+      "semitones": 6,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C7#5",
+      "semitones": 6,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C7#5",
+      "semitones": 12,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C7#5",
+      "semitones": 12,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C7#5",
+      "semitones": 25,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C7#5",
+      "semitones": 25,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Cdim7",
+      "semitones": -25,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Cdim7",
+      "semitones": -25,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Cdim7",
+      "semitones": -12,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Cdim7",
+      "semitones": -12,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Cdim7",
+      "semitones": -3,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Cdim7",
+      "semitones": -3,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Cdim7",
+      "semitones": 0,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Cdim7",
+      "semitones": 0,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Cdim7",
+      "semitones": 1,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Cdim7",
+      "semitones": 1,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Cdim7",
+      "semitones": 2,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Cdim7",
+      "semitones": 2,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Cdim7",
+      "semitones": 6,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Cdim7",
+      "semitones": 6,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Cdim7",
+      "semitones": 12,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Cdim7",
+      "semitones": 12,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Cdim7",
+      "semitones": 25,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Cdim7",
+      "semitones": 25,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Cø7",
+      "semitones": -25,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Cø7",
+      "semitones": -25,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Cø7",
+      "semitones": -12,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Cø7",
+      "semitones": -12,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Cø7",
+      "semitones": -3,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Cø7",
+      "semitones": -3,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Cø7",
+      "semitones": 0,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Cø7",
+      "semitones": 0,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Cø7",
+      "semitones": 1,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Cø7",
+      "semitones": 1,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Cø7",
+      "semitones": 2,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Cø7",
+      "semitones": 2,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Cø7",
+      "semitones": 6,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Cø7",
+      "semitones": 6,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Cø7",
+      "semitones": 12,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Cø7",
+      "semitones": 12,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Cø7",
+      "semitones": 25,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Cø7",
+      "semitones": 25,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Caug7",
+      "semitones": -25,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Caug7",
+      "semitones": -25,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Caug7",
+      "semitones": -12,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Caug7",
+      "semitones": -12,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Caug7",
+      "semitones": -3,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Caug7",
+      "semitones": -3,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Caug7",
+      "semitones": 0,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Caug7",
+      "semitones": 0,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Caug7",
+      "semitones": 1,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Caug7",
+      "semitones": 1,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Caug7",
+      "semitones": 2,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Caug7",
+      "semitones": 2,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Caug7",
+      "semitones": 6,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Caug7",
+      "semitones": 6,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Caug7",
+      "semitones": 12,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Caug7",
+      "semitones": 12,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Caug7",
+      "semitones": 25,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Caug7",
+      "semitones": 25,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C+7",
+      "semitones": -25,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C+7",
+      "semitones": -25,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C+7",
+      "semitones": -12,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C+7",
+      "semitones": -12,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C+7",
+      "semitones": -3,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C+7",
+      "semitones": -3,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C+7",
+      "semitones": 0,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C+7",
+      "semitones": 0,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C+7",
+      "semitones": 1,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C+7",
+      "semitones": 1,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C+7",
+      "semitones": 2,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C+7",
+      "semitones": 2,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C+7",
+      "semitones": 6,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C+7",
+      "semitones": 6,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C+7",
+      "semitones": 12,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C+7",
+      "semitones": 12,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C+7",
+      "semitones": 25,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C+7",
+      "semitones": 25,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Csus2",
+      "semitones": -25,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Csus2",
+      "semitones": -25,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Csus2",
+      "semitones": -12,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Csus2",
+      "semitones": -12,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Csus2",
+      "semitones": -3,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Csus2",
+      "semitones": -3,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Csus2",
+      "semitones": 0,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Csus2",
+      "semitones": 0,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Csus2",
+      "semitones": 1,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Csus2",
+      "semitones": 1,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Csus2",
+      "semitones": 2,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Csus2",
+      "semitones": 2,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Csus2",
+      "semitones": 6,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Csus2",
+      "semitones": 6,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Csus2",
+      "semitones": 12,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Csus2",
+      "semitones": 12,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Csus2",
+      "semitones": 25,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Csus2",
+      "semitones": 25,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Csus4",
+      "semitones": -25,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Csus4",
+      "semitones": -25,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Csus4",
+      "semitones": -12,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Csus4",
+      "semitones": -12,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Csus4",
+      "semitones": -3,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Csus4",
+      "semitones": -3,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Csus4",
+      "semitones": 0,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Csus4",
+      "semitones": 0,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Csus4",
+      "semitones": 1,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Csus4",
+      "semitones": 1,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Csus4",
+      "semitones": 2,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Csus4",
+      "semitones": 2,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Csus4",
+      "semitones": 6,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Csus4",
+      "semitones": 6,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Csus4",
+      "semitones": 12,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Csus4",
+      "semitones": 12,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Csus4",
+      "semitones": 25,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Csus4",
+      "semitones": 25,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C5",
+      "semitones": -25,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C5",
+      "semitones": -25,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C5",
+      "semitones": -12,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C5",
+      "semitones": -12,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C5",
+      "semitones": -3,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C5",
+      "semitones": -3,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C5",
+      "semitones": 0,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C5",
+      "semitones": 0,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C5",
+      "semitones": 1,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C5",
+      "semitones": 1,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C5",
+      "semitones": 2,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C5",
+      "semitones": 2,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C5",
+      "semitones": 6,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C5",
+      "semitones": 6,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C5",
+      "semitones": 12,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C5",
+      "semitones": 12,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C5",
+      "semitones": 25,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C5",
+      "semitones": 25,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Cadd9",
+      "semitones": -25,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Cadd9",
+      "semitones": -25,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Cadd9",
+      "semitones": -12,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Cadd9",
+      "semitones": -12,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Cadd9",
+      "semitones": -3,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Cadd9",
+      "semitones": -3,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Cadd9",
+      "semitones": 0,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Cadd9",
+      "semitones": 0,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Cadd9",
+      "semitones": 1,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Cadd9",
+      "semitones": 1,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Cadd9",
+      "semitones": 2,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Cadd9",
+      "semitones": 2,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Cadd9",
+      "semitones": 6,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Cadd9",
+      "semitones": 6,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Cadd9",
+      "semitones": 12,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Cadd9",
+      "semitones": 12,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Cadd9",
+      "semitones": 25,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Cadd9",
+      "semitones": 25,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C6",
+      "semitones": -25,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C6",
+      "semitones": -25,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C6",
+      "semitones": -12,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C6",
+      "semitones": -12,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C6",
+      "semitones": -3,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C6",
+      "semitones": -3,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C6",
+      "semitones": 0,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C6",
+      "semitones": 0,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C6",
+      "semitones": 1,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C6",
+      "semitones": 1,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C6",
+      "semitones": 2,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C6",
+      "semitones": 2,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C6",
+      "semitones": 6,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C6",
+      "semitones": 6,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C6",
+      "semitones": 12,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C6",
+      "semitones": 12,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C6",
+      "semitones": 25,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C6",
+      "semitones": 25,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Cm6",
+      "semitones": -25,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Cm6",
+      "semitones": -25,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Cm6",
+      "semitones": -12,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Cm6",
+      "semitones": -12,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Cm6",
+      "semitones": -3,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Cm6",
+      "semitones": -3,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Cm6",
+      "semitones": 0,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Cm6",
+      "semitones": 0,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Cm6",
+      "semitones": 1,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Cm6",
+      "semitones": 1,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Cm6",
+      "semitones": 2,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Cm6",
+      "semitones": 2,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Cm6",
+      "semitones": 6,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Cm6",
+      "semitones": 6,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Cm6",
+      "semitones": 12,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Cm6",
+      "semitones": 12,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Cm6",
+      "semitones": 25,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Cm6",
+      "semitones": 25,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C11",
+      "semitones": -25,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C11",
+      "semitones": -25,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C11",
+      "semitones": -12,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C11",
+      "semitones": -12,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C11",
+      "semitones": -3,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C11",
+      "semitones": -3,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C11",
+      "semitones": 0,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C11",
+      "semitones": 0,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C11",
+      "semitones": 1,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C11",
+      "semitones": 1,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C11",
+      "semitones": 2,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C11",
+      "semitones": 2,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C11",
+      "semitones": 6,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C11",
+      "semitones": 6,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C11",
+      "semitones": 12,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C11",
+      "semitones": 12,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C11",
+      "semitones": 25,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C11",
+      "semitones": 25,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Cm13",
+      "semitones": -25,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Cm13",
+      "semitones": -25,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Cm13",
+      "semitones": -12,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Cm13",
+      "semitones": -12,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Cm13",
+      "semitones": -3,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Cm13",
+      "semitones": -3,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Cm13",
+      "semitones": 0,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Cm13",
+      "semitones": 0,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Cm13",
+      "semitones": 1,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Cm13",
+      "semitones": 1,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Cm13",
+      "semitones": 2,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Cm13",
+      "semitones": 2,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Cm13",
+      "semitones": 6,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Cm13",
+      "semitones": 6,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Cm13",
+      "semitones": 12,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Cm13",
+      "semitones": 12,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Cm13",
+      "semitones": 25,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Cm13",
+      "semitones": 25,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C/nope",
+      "semitones": -25,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C/nope",
+      "semitones": -25,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C/nope",
+      "semitones": -12,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C/nope",
+      "semitones": -12,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C/nope",
+      "semitones": -3,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C/nope",
+      "semitones": -3,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C/nope",
+      "semitones": 0,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C/nope",
+      "semitones": 0,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C/nope",
+      "semitones": 1,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C/nope",
+      "semitones": 1,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C/nope",
+      "semitones": 2,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C/nope",
+      "semitones": 2,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C/nope",
+      "semitones": 6,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C/nope",
+      "semitones": 6,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C/nope",
+      "semitones": 12,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C/nope",
+      "semitones": 12,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C/nope",
+      "semitones": 25,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C/nope",
+      "semitones": 25,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C/",
+      "semitones": -25,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C/",
+      "semitones": -25,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C/",
+      "semitones": -12,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C/",
+      "semitones": -12,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C/",
+      "semitones": -3,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C/",
+      "semitones": -3,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C/",
+      "semitones": 0,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C/",
+      "semitones": 0,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C/",
+      "semitones": 1,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C/",
+      "semitones": 1,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C/",
+      "semitones": 2,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C/",
+      "semitones": 2,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C/",
+      "semitones": 6,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C/",
+      "semitones": 6,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C/",
+      "semitones": 12,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C/",
+      "semitones": 12,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C/",
+      "semitones": 25,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C/",
+      "semitones": 25,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C/E/G",
+      "semitones": -25,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C/E/G",
+      "semitones": -25,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C/E/G",
+      "semitones": -12,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C/E/G",
+      "semitones": -12,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C/E/G",
+      "semitones": -3,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C/E/G",
+      "semitones": -3,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C/E/G",
+      "semitones": 0,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C/E/G",
+      "semitones": 0,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C/E/G",
+      "semitones": 1,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C/E/G",
+      "semitones": 1,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C/E/G",
+      "semitones": 2,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C/E/G",
+      "semitones": 2,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C/E/G",
+      "semitones": 6,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C/E/G",
+      "semitones": 6,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C/E/G",
+      "semitones": 12,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C/E/G",
+      "semitones": 12,
+      "preferFlats": true
+    },
+    {
+      "symbol": "C/E/G",
+      "semitones": 25,
+      "preferFlats": false
+    },
+    {
+      "symbol": "C/E/G",
+      "semitones": 25,
+      "preferFlats": true
+    },
+    {
+      "symbol": "N.C.",
+      "semitones": -25,
+      "preferFlats": false
+    },
+    {
+      "symbol": "N.C.",
+      "semitones": -25,
+      "preferFlats": true
+    },
+    {
+      "symbol": "N.C.",
+      "semitones": -12,
+      "preferFlats": false
+    },
+    {
+      "symbol": "N.C.",
+      "semitones": -12,
+      "preferFlats": true
+    },
+    {
+      "symbol": "N.C.",
+      "semitones": -3,
+      "preferFlats": false
+    },
+    {
+      "symbol": "N.C.",
+      "semitones": -3,
+      "preferFlats": true
+    },
+    {
+      "symbol": "N.C.",
+      "semitones": 0,
+      "preferFlats": false
+    },
+    {
+      "symbol": "N.C.",
+      "semitones": 0,
+      "preferFlats": true
+    },
+    {
+      "symbol": "N.C.",
+      "semitones": 1,
+      "preferFlats": false
+    },
+    {
+      "symbol": "N.C.",
+      "semitones": 1,
+      "preferFlats": true
+    },
+    {
+      "symbol": "N.C.",
+      "semitones": 2,
+      "preferFlats": false
+    },
+    {
+      "symbol": "N.C.",
+      "semitones": 2,
+      "preferFlats": true
+    },
+    {
+      "symbol": "N.C.",
+      "semitones": 6,
+      "preferFlats": false
+    },
+    {
+      "symbol": "N.C.",
+      "semitones": 6,
+      "preferFlats": true
+    },
+    {
+      "symbol": "N.C.",
+      "semitones": 12,
+      "preferFlats": false
+    },
+    {
+      "symbol": "N.C.",
+      "semitones": 12,
+      "preferFlats": true
+    },
+    {
+      "symbol": "N.C.",
+      "semitones": 25,
+      "preferFlats": false
+    },
+    {
+      "symbol": "N.C.",
+      "semitones": 25,
+      "preferFlats": true
+    },
+    {
+      "symbol": "unknown",
+      "semitones": -25,
+      "preferFlats": false
+    },
+    {
+      "symbol": "unknown",
+      "semitones": -25,
+      "preferFlats": true
+    },
+    {
+      "symbol": "unknown",
+      "semitones": -12,
+      "preferFlats": false
+    },
+    {
+      "symbol": "unknown",
+      "semitones": -12,
+      "preferFlats": true
+    },
+    {
+      "symbol": "unknown",
+      "semitones": -3,
+      "preferFlats": false
+    },
+    {
+      "symbol": "unknown",
+      "semitones": -3,
+      "preferFlats": true
+    },
+    {
+      "symbol": "unknown",
+      "semitones": 0,
+      "preferFlats": false
+    },
+    {
+      "symbol": "unknown",
+      "semitones": 0,
+      "preferFlats": true
+    },
+    {
+      "symbol": "unknown",
+      "semitones": 1,
+      "preferFlats": false
+    },
+    {
+      "symbol": "unknown",
+      "semitones": 1,
+      "preferFlats": true
+    },
+    {
+      "symbol": "unknown",
+      "semitones": 2,
+      "preferFlats": false
+    },
+    {
+      "symbol": "unknown",
+      "semitones": 2,
+      "preferFlats": true
+    },
+    {
+      "symbol": "unknown",
+      "semitones": 6,
+      "preferFlats": false
+    },
+    {
+      "symbol": "unknown",
+      "semitones": 6,
+      "preferFlats": true
+    },
+    {
+      "symbol": "unknown",
+      "semitones": 12,
+      "preferFlats": false
+    },
+    {
+      "symbol": "unknown",
+      "semitones": 12,
+      "preferFlats": true
+    },
+    {
+      "symbol": "unknown",
+      "semitones": 25,
+      "preferFlats": false
+    },
+    {
+      "symbol": "unknown",
+      "semitones": 25,
+      "preferFlats": true
+    },
+    {
+      "symbol": " F SHARPm/A FLAT ",
+      "semitones": -25,
+      "preferFlats": false
+    },
+    {
+      "symbol": " F SHARPm/A FLAT ",
+      "semitones": -25,
+      "preferFlats": true
+    },
+    {
+      "symbol": " F SHARPm/A FLAT ",
+      "semitones": -12,
+      "preferFlats": false
+    },
+    {
+      "symbol": " F SHARPm/A FLAT ",
+      "semitones": -12,
+      "preferFlats": true
+    },
+    {
+      "symbol": " F SHARPm/A FLAT ",
+      "semitones": -3,
+      "preferFlats": false
+    },
+    {
+      "symbol": " F SHARPm/A FLAT ",
+      "semitones": -3,
+      "preferFlats": true
+    },
+    {
+      "symbol": " F SHARPm/A FLAT ",
+      "semitones": 0,
+      "preferFlats": false
+    },
+    {
+      "symbol": " F SHARPm/A FLAT ",
+      "semitones": 0,
+      "preferFlats": true
+    },
+    {
+      "symbol": " F SHARPm/A FLAT ",
+      "semitones": 1,
+      "preferFlats": false
+    },
+    {
+      "symbol": " F SHARPm/A FLAT ",
+      "semitones": 1,
+      "preferFlats": true
+    },
+    {
+      "symbol": " F SHARPm/A FLAT ",
+      "semitones": 2,
+      "preferFlats": false
+    },
+    {
+      "symbol": " F SHARPm/A FLAT ",
+      "semitones": 2,
+      "preferFlats": true
+    },
+    {
+      "symbol": " F SHARPm/A FLAT ",
+      "semitones": 6,
+      "preferFlats": false
+    },
+    {
+      "symbol": " F SHARPm/A FLAT ",
+      "semitones": 6,
+      "preferFlats": true
+    },
+    {
+      "symbol": " F SHARPm/A FLAT ",
+      "semitones": 12,
+      "preferFlats": false
+    },
+    {
+      "symbol": " F SHARPm/A FLAT ",
+      "semitones": 12,
+      "preferFlats": true
+    },
+    {
+      "symbol": " F SHARPm/A FLAT ",
+      "semitones": 25,
+      "preferFlats": false
+    },
+    {
+      "symbol": " F SHARPm/A FLAT ",
+      "semitones": 25,
+      "preferFlats": true
+    },
+    {
+      "symbol": "g 7",
+      "semitones": -25,
+      "preferFlats": false
+    },
+    {
+      "symbol": "g 7",
+      "semitones": -25,
+      "preferFlats": true
+    },
+    {
+      "symbol": "g 7",
+      "semitones": -12,
+      "preferFlats": false
+    },
+    {
+      "symbol": "g 7",
+      "semitones": -12,
+      "preferFlats": true
+    },
+    {
+      "symbol": "g 7",
+      "semitones": -3,
+      "preferFlats": false
+    },
+    {
+      "symbol": "g 7",
+      "semitones": -3,
+      "preferFlats": true
+    },
+    {
+      "symbol": "g 7",
+      "semitones": 0,
+      "preferFlats": false
+    },
+    {
+      "symbol": "g 7",
+      "semitones": 0,
+      "preferFlats": true
+    },
+    {
+      "symbol": "g 7",
+      "semitones": 1,
+      "preferFlats": false
+    },
+    {
+      "symbol": "g 7",
+      "semitones": 1,
+      "preferFlats": true
+    },
+    {
+      "symbol": "g 7",
+      "semitones": 2,
+      "preferFlats": false
+    },
+    {
+      "symbol": "g 7",
+      "semitones": 2,
+      "preferFlats": true
+    },
+    {
+      "symbol": "g 7",
+      "semitones": 6,
+      "preferFlats": false
+    },
+    {
+      "symbol": "g 7",
+      "semitones": 6,
+      "preferFlats": true
+    },
+    {
+      "symbol": "g 7",
+      "semitones": 12,
+      "preferFlats": false
+    },
+    {
+      "symbol": "g 7",
+      "semitones": 12,
+      "preferFlats": true
+    },
+    {
+      "symbol": "g 7",
+      "semitones": 25,
+      "preferFlats": false
+    },
+    {
+      "symbol": "g 7",
+      "semitones": 25,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Cb",
+      "semitones": -25,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Cb",
+      "semitones": -25,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Cb",
+      "semitones": -12,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Cb",
+      "semitones": -12,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Cb",
+      "semitones": -3,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Cb",
+      "semitones": -3,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Cb",
+      "semitones": 0,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Cb",
+      "semitones": 0,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Cb",
+      "semitones": 1,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Cb",
+      "semitones": 1,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Cb",
+      "semitones": 2,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Cb",
+      "semitones": 2,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Cb",
+      "semitones": 6,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Cb",
+      "semitones": 6,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Cb",
+      "semitones": 12,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Cb",
+      "semitones": 12,
+      "preferFlats": true
+    },
+    {
+      "symbol": "Cb",
+      "semitones": 25,
+      "preferFlats": false
+    },
+    {
+      "symbol": "Cb",
+      "semitones": 25,
+      "preferFlats": true
+    },
+    {
+      "symbol": "B#",
+      "semitones": -25,
+      "preferFlats": false
+    },
+    {
+      "symbol": "B#",
+      "semitones": -25,
+      "preferFlats": true
+    },
+    {
+      "symbol": "B#",
+      "semitones": -12,
+      "preferFlats": false
+    },
+    {
+      "symbol": "B#",
+      "semitones": -12,
+      "preferFlats": true
+    },
+    {
+      "symbol": "B#",
+      "semitones": -3,
+      "preferFlats": false
+    },
+    {
+      "symbol": "B#",
+      "semitones": -3,
+      "preferFlats": true
+    },
+    {
+      "symbol": "B#",
+      "semitones": 0,
+      "preferFlats": false
+    },
+    {
+      "symbol": "B#",
+      "semitones": 0,
+      "preferFlats": true
+    },
+    {
+      "symbol": "B#",
+      "semitones": 1,
+      "preferFlats": false
+    },
+    {
+      "symbol": "B#",
+      "semitones": 1,
+      "preferFlats": true
+    },
+    {
+      "symbol": "B#",
+      "semitones": 2,
+      "preferFlats": false
+    },
+    {
+      "symbol": "B#",
+      "semitones": 2,
+      "preferFlats": true
+    },
+    {
+      "symbol": "B#",
+      "semitones": 6,
+      "preferFlats": false
+    },
+    {
+      "symbol": "B#",
+      "semitones": 6,
+      "preferFlats": true
+    },
+    {
+      "symbol": "B#",
+      "semitones": 12,
+      "preferFlats": false
+    },
+    {
+      "symbol": "B#",
+      "semitones": 12,
+      "preferFlats": true
+    },
+    {
+      "symbol": "B#",
+      "semitones": 25,
+      "preferFlats": false
+    },
+    {
+      "symbol": "B#",
+      "semitones": 25,
+      "preferFlats": true
+    },
+    {
+      "symbol": "CM7",
+      "semitones": -25,
+      "preferFlats": false
+    },
+    {
+      "symbol": "CM7",
+      "semitones": -25,
+      "preferFlats": true
+    },
+    {
+      "symbol": "CM7",
+      "semitones": -12,
+      "preferFlats": false
+    },
+    {
+      "symbol": "CM7",
+      "semitones": -12,
+      "preferFlats": true
+    },
+    {
+      "symbol": "CM7",
+      "semitones": -3,
+      "preferFlats": false
+    },
+    {
+      "symbol": "CM7",
+      "semitones": -3,
+      "preferFlats": true
+    },
+    {
+      "symbol": "CM7",
+      "semitones": 0,
+      "preferFlats": false
+    },
+    {
+      "symbol": "CM7",
+      "semitones": 0,
+      "preferFlats": true
+    },
+    {
+      "symbol": "CM7",
+      "semitones": 1,
+      "preferFlats": false
+    },
+    {
+      "symbol": "CM7",
+      "semitones": 1,
+      "preferFlats": true
+    },
+    {
+      "symbol": "CM7",
+      "semitones": 2,
+      "preferFlats": false
+    },
+    {
+      "symbol": "CM7",
+      "semitones": 2,
+      "preferFlats": true
+    },
+    {
+      "symbol": "CM7",
+      "semitones": 6,
+      "preferFlats": false
+    },
+    {
+      "symbol": "CM7",
+      "semitones": 6,
+      "preferFlats": true
+    },
+    {
+      "symbol": "CM7",
+      "semitones": 12,
+      "preferFlats": false
+    },
+    {
+      "symbol": "CM7",
+      "semitones": 12,
+      "preferFlats": true
+    },
+    {
+      "symbol": "CM7",
+      "semitones": 25,
+      "preferFlats": false
+    },
+    {
+      "symbol": "CM7",
+      "semitones": 25,
+      "preferFlats": true
+    },
+    {
+      "symbol": "CMaj7",
+      "semitones": -25,
+      "preferFlats": false
+    },
+    {
+      "symbol": "CMaj7",
+      "semitones": -25,
+      "preferFlats": true
+    },
+    {
+      "symbol": "CMaj7",
+      "semitones": -12,
+      "preferFlats": false
+    },
+    {
+      "symbol": "CMaj7",
+      "semitones": -12,
+      "preferFlats": true
+    },
+    {
+      "symbol": "CMaj7",
+      "semitones": -3,
+      "preferFlats": false
+    },
+    {
+      "symbol": "CMaj7",
+      "semitones": -3,
+      "preferFlats": true
+    },
+    {
+      "symbol": "CMaj7",
+      "semitones": 0,
+      "preferFlats": false
+    },
+    {
+      "symbol": "CMaj7",
+      "semitones": 0,
+      "preferFlats": true
+    },
+    {
+      "symbol": "CMaj7",
+      "semitones": 1,
+      "preferFlats": false
+    },
+    {
+      "symbol": "CMaj7",
+      "semitones": 1,
+      "preferFlats": true
+    },
+    {
+      "symbol": "CMaj7",
+      "semitones": 2,
+      "preferFlats": false
+    },
+    {
+      "symbol": "CMaj7",
+      "semitones": 2,
+      "preferFlats": true
+    },
+    {
+      "symbol": "CMaj7",
+      "semitones": 6,
+      "preferFlats": false
+    },
+    {
+      "symbol": "CMaj7",
+      "semitones": 6,
+      "preferFlats": true
+    },
+    {
+      "symbol": "CMaj7",
+      "semitones": 12,
+      "preferFlats": false
+    },
+    {
+      "symbol": "CMaj7",
+      "semitones": 12,
+      "preferFlats": true
+    },
+    {
+      "symbol": "CMaj7",
+      "semitones": 25,
+      "preferFlats": false
+    },
+    {
+      "symbol": "CMaj7",
+      "semitones": 25,
+      "preferFlats": true
+    }
+  ],
+  "displays": [
+    "C",
+    "Db",
+    "D♭maj7",
+    "D#9",
+    "E♭m7",
+    "F#m7(b5)/B",
+    "Bb7/F",
+    "Cmaj7/E",
+    "Am(maj7)",
+    "G13(b9)/B",
+    "C7#9",
+    "F7#11",
+    "C7#5",
+    "Cdim7",
+    "Cø7",
+    "Caug7",
+    "C+7",
+    "Csus2",
+    "Csus4",
+    "C5",
+    "Cadd9",
+    "C6",
+    "Cm6",
+    "C11",
+    "Cm13",
+    "C/nope",
+    "C/",
+    "C/E/G",
+    "N.C.",
+    "unknown",
+    " F SHARPm/A FLAT ",
+    "g 7",
+    "Cb",
+    "B#",
+    "CM7",
+    "CMaj7"
+  ],
+  "numbers": [
+    {
+      "symbol": "C",
+      "key": {
+        "root": 0,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C",
+      "key": {
+        "root": 0,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C",
+      "key": {
+        "root": 1,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C",
+      "key": {
+        "root": 1,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C",
+      "key": {
+        "root": 2,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C",
+      "key": {
+        "root": 2,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C",
+      "key": {
+        "root": 3,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C",
+      "key": {
+        "root": 3,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C",
+      "key": {
+        "root": 4,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C",
+      "key": {
+        "root": 4,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C",
+      "key": {
+        "root": 5,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C",
+      "key": {
+        "root": 5,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C",
+      "key": {
+        "root": 6,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C",
+      "key": {
+        "root": 6,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C",
+      "key": {
+        "root": 7,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C",
+      "key": {
+        "root": 7,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C",
+      "key": {
+        "root": 8,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C",
+      "key": {
+        "root": 8,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C",
+      "key": {
+        "root": 9,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C",
+      "key": {
+        "root": 9,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C",
+      "key": {
+        "root": 10,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C",
+      "key": {
+        "root": 10,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C",
+      "key": {
+        "root": 11,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C",
+      "key": {
+        "root": 11,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Db",
+      "key": {
+        "root": 0,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Db",
+      "key": {
+        "root": 0,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Db",
+      "key": {
+        "root": 1,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Db",
+      "key": {
+        "root": 1,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Db",
+      "key": {
+        "root": 2,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Db",
+      "key": {
+        "root": 2,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Db",
+      "key": {
+        "root": 3,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Db",
+      "key": {
+        "root": 3,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Db",
+      "key": {
+        "root": 4,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Db",
+      "key": {
+        "root": 4,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Db",
+      "key": {
+        "root": 5,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Db",
+      "key": {
+        "root": 5,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Db",
+      "key": {
+        "root": 6,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Db",
+      "key": {
+        "root": 6,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Db",
+      "key": {
+        "root": 7,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Db",
+      "key": {
+        "root": 7,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Db",
+      "key": {
+        "root": 8,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Db",
+      "key": {
+        "root": 8,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Db",
+      "key": {
+        "root": 9,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Db",
+      "key": {
+        "root": 9,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Db",
+      "key": {
+        "root": 10,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Db",
+      "key": {
+        "root": 10,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Db",
+      "key": {
+        "root": 11,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Db",
+      "key": {
+        "root": 11,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "D♭maj7",
+      "key": {
+        "root": 0,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "D♭maj7",
+      "key": {
+        "root": 0,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "D♭maj7",
+      "key": {
+        "root": 1,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "D♭maj7",
+      "key": {
+        "root": 1,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "D♭maj7",
+      "key": {
+        "root": 2,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "D♭maj7",
+      "key": {
+        "root": 2,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "D♭maj7",
+      "key": {
+        "root": 3,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "D♭maj7",
+      "key": {
+        "root": 3,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "D♭maj7",
+      "key": {
+        "root": 4,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "D♭maj7",
+      "key": {
+        "root": 4,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "D♭maj7",
+      "key": {
+        "root": 5,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "D♭maj7",
+      "key": {
+        "root": 5,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "D♭maj7",
+      "key": {
+        "root": 6,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "D♭maj7",
+      "key": {
+        "root": 6,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "D♭maj7",
+      "key": {
+        "root": 7,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "D♭maj7",
+      "key": {
+        "root": 7,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "D♭maj7",
+      "key": {
+        "root": 8,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "D♭maj7",
+      "key": {
+        "root": 8,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "D♭maj7",
+      "key": {
+        "root": 9,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "D♭maj7",
+      "key": {
+        "root": 9,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "D♭maj7",
+      "key": {
+        "root": 10,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "D♭maj7",
+      "key": {
+        "root": 10,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "D♭maj7",
+      "key": {
+        "root": 11,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "D♭maj7",
+      "key": {
+        "root": 11,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "D#9",
+      "key": {
+        "root": 0,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "D#9",
+      "key": {
+        "root": 0,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "D#9",
+      "key": {
+        "root": 1,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "D#9",
+      "key": {
+        "root": 1,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "D#9",
+      "key": {
+        "root": 2,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "D#9",
+      "key": {
+        "root": 2,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "D#9",
+      "key": {
+        "root": 3,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "D#9",
+      "key": {
+        "root": 3,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "D#9",
+      "key": {
+        "root": 4,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "D#9",
+      "key": {
+        "root": 4,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "D#9",
+      "key": {
+        "root": 5,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "D#9",
+      "key": {
+        "root": 5,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "D#9",
+      "key": {
+        "root": 6,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "D#9",
+      "key": {
+        "root": 6,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "D#9",
+      "key": {
+        "root": 7,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "D#9",
+      "key": {
+        "root": 7,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "D#9",
+      "key": {
+        "root": 8,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "D#9",
+      "key": {
+        "root": 8,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "D#9",
+      "key": {
+        "root": 9,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "D#9",
+      "key": {
+        "root": 9,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "D#9",
+      "key": {
+        "root": 10,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "D#9",
+      "key": {
+        "root": 10,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "D#9",
+      "key": {
+        "root": 11,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "D#9",
+      "key": {
+        "root": 11,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "E♭m7",
+      "key": {
+        "root": 0,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "E♭m7",
+      "key": {
+        "root": 0,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "E♭m7",
+      "key": {
+        "root": 1,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "E♭m7",
+      "key": {
+        "root": 1,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "E♭m7",
+      "key": {
+        "root": 2,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "E♭m7",
+      "key": {
+        "root": 2,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "E♭m7",
+      "key": {
+        "root": 3,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "E♭m7",
+      "key": {
+        "root": 3,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "E♭m7",
+      "key": {
+        "root": 4,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "E♭m7",
+      "key": {
+        "root": 4,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "E♭m7",
+      "key": {
+        "root": 5,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "E♭m7",
+      "key": {
+        "root": 5,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "E♭m7",
+      "key": {
+        "root": 6,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "E♭m7",
+      "key": {
+        "root": 6,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "E♭m7",
+      "key": {
+        "root": 7,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "E♭m7",
+      "key": {
+        "root": 7,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "E♭m7",
+      "key": {
+        "root": 8,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "E♭m7",
+      "key": {
+        "root": 8,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "E♭m7",
+      "key": {
+        "root": 9,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "E♭m7",
+      "key": {
+        "root": 9,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "E♭m7",
+      "key": {
+        "root": 10,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "E♭m7",
+      "key": {
+        "root": 10,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "E♭m7",
+      "key": {
+        "root": 11,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "E♭m7",
+      "key": {
+        "root": 11,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "F#m7(b5)/B",
+      "key": {
+        "root": 0,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "F#m7(b5)/B",
+      "key": {
+        "root": 0,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "F#m7(b5)/B",
+      "key": {
+        "root": 1,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "F#m7(b5)/B",
+      "key": {
+        "root": 1,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "F#m7(b5)/B",
+      "key": {
+        "root": 2,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "F#m7(b5)/B",
+      "key": {
+        "root": 2,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "F#m7(b5)/B",
+      "key": {
+        "root": 3,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "F#m7(b5)/B",
+      "key": {
+        "root": 3,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "F#m7(b5)/B",
+      "key": {
+        "root": 4,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "F#m7(b5)/B",
+      "key": {
+        "root": 4,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "F#m7(b5)/B",
+      "key": {
+        "root": 5,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "F#m7(b5)/B",
+      "key": {
+        "root": 5,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "F#m7(b5)/B",
+      "key": {
+        "root": 6,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "F#m7(b5)/B",
+      "key": {
+        "root": 6,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "F#m7(b5)/B",
+      "key": {
+        "root": 7,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "F#m7(b5)/B",
+      "key": {
+        "root": 7,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "F#m7(b5)/B",
+      "key": {
+        "root": 8,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "F#m7(b5)/B",
+      "key": {
+        "root": 8,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "F#m7(b5)/B",
+      "key": {
+        "root": 9,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "F#m7(b5)/B",
+      "key": {
+        "root": 9,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "F#m7(b5)/B",
+      "key": {
+        "root": 10,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "F#m7(b5)/B",
+      "key": {
+        "root": 10,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "F#m7(b5)/B",
+      "key": {
+        "root": 11,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "F#m7(b5)/B",
+      "key": {
+        "root": 11,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Bb7/F",
+      "key": {
+        "root": 0,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Bb7/F",
+      "key": {
+        "root": 0,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Bb7/F",
+      "key": {
+        "root": 1,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Bb7/F",
+      "key": {
+        "root": 1,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Bb7/F",
+      "key": {
+        "root": 2,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Bb7/F",
+      "key": {
+        "root": 2,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Bb7/F",
+      "key": {
+        "root": 3,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Bb7/F",
+      "key": {
+        "root": 3,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Bb7/F",
+      "key": {
+        "root": 4,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Bb7/F",
+      "key": {
+        "root": 4,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Bb7/F",
+      "key": {
+        "root": 5,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Bb7/F",
+      "key": {
+        "root": 5,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Bb7/F",
+      "key": {
+        "root": 6,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Bb7/F",
+      "key": {
+        "root": 6,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Bb7/F",
+      "key": {
+        "root": 7,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Bb7/F",
+      "key": {
+        "root": 7,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Bb7/F",
+      "key": {
+        "root": 8,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Bb7/F",
+      "key": {
+        "root": 8,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Bb7/F",
+      "key": {
+        "root": 9,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Bb7/F",
+      "key": {
+        "root": 9,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Bb7/F",
+      "key": {
+        "root": 10,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Bb7/F",
+      "key": {
+        "root": 10,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Bb7/F",
+      "key": {
+        "root": 11,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Bb7/F",
+      "key": {
+        "root": 11,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cmaj7/E",
+      "key": {
+        "root": 0,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cmaj7/E",
+      "key": {
+        "root": 0,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cmaj7/E",
+      "key": {
+        "root": 1,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cmaj7/E",
+      "key": {
+        "root": 1,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cmaj7/E",
+      "key": {
+        "root": 2,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cmaj7/E",
+      "key": {
+        "root": 2,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cmaj7/E",
+      "key": {
+        "root": 3,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cmaj7/E",
+      "key": {
+        "root": 3,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cmaj7/E",
+      "key": {
+        "root": 4,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cmaj7/E",
+      "key": {
+        "root": 4,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cmaj7/E",
+      "key": {
+        "root": 5,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cmaj7/E",
+      "key": {
+        "root": 5,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cmaj7/E",
+      "key": {
+        "root": 6,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cmaj7/E",
+      "key": {
+        "root": 6,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cmaj7/E",
+      "key": {
+        "root": 7,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cmaj7/E",
+      "key": {
+        "root": 7,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cmaj7/E",
+      "key": {
+        "root": 8,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cmaj7/E",
+      "key": {
+        "root": 8,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cmaj7/E",
+      "key": {
+        "root": 9,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cmaj7/E",
+      "key": {
+        "root": 9,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cmaj7/E",
+      "key": {
+        "root": 10,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cmaj7/E",
+      "key": {
+        "root": 10,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cmaj7/E",
+      "key": {
+        "root": 11,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cmaj7/E",
+      "key": {
+        "root": 11,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Am(maj7)",
+      "key": {
+        "root": 0,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Am(maj7)",
+      "key": {
+        "root": 0,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Am(maj7)",
+      "key": {
+        "root": 1,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Am(maj7)",
+      "key": {
+        "root": 1,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Am(maj7)",
+      "key": {
+        "root": 2,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Am(maj7)",
+      "key": {
+        "root": 2,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Am(maj7)",
+      "key": {
+        "root": 3,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Am(maj7)",
+      "key": {
+        "root": 3,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Am(maj7)",
+      "key": {
+        "root": 4,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Am(maj7)",
+      "key": {
+        "root": 4,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Am(maj7)",
+      "key": {
+        "root": 5,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Am(maj7)",
+      "key": {
+        "root": 5,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Am(maj7)",
+      "key": {
+        "root": 6,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Am(maj7)",
+      "key": {
+        "root": 6,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Am(maj7)",
+      "key": {
+        "root": 7,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Am(maj7)",
+      "key": {
+        "root": 7,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Am(maj7)",
+      "key": {
+        "root": 8,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Am(maj7)",
+      "key": {
+        "root": 8,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Am(maj7)",
+      "key": {
+        "root": 9,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Am(maj7)",
+      "key": {
+        "root": 9,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Am(maj7)",
+      "key": {
+        "root": 10,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Am(maj7)",
+      "key": {
+        "root": 10,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Am(maj7)",
+      "key": {
+        "root": 11,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Am(maj7)",
+      "key": {
+        "root": 11,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "G13(b9)/B",
+      "key": {
+        "root": 0,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "G13(b9)/B",
+      "key": {
+        "root": 0,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "G13(b9)/B",
+      "key": {
+        "root": 1,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "G13(b9)/B",
+      "key": {
+        "root": 1,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "G13(b9)/B",
+      "key": {
+        "root": 2,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "G13(b9)/B",
+      "key": {
+        "root": 2,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "G13(b9)/B",
+      "key": {
+        "root": 3,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "G13(b9)/B",
+      "key": {
+        "root": 3,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "G13(b9)/B",
+      "key": {
+        "root": 4,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "G13(b9)/B",
+      "key": {
+        "root": 4,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "G13(b9)/B",
+      "key": {
+        "root": 5,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "G13(b9)/B",
+      "key": {
+        "root": 5,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "G13(b9)/B",
+      "key": {
+        "root": 6,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "G13(b9)/B",
+      "key": {
+        "root": 6,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "G13(b9)/B",
+      "key": {
+        "root": 7,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "G13(b9)/B",
+      "key": {
+        "root": 7,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "G13(b9)/B",
+      "key": {
+        "root": 8,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "G13(b9)/B",
+      "key": {
+        "root": 8,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "G13(b9)/B",
+      "key": {
+        "root": 9,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "G13(b9)/B",
+      "key": {
+        "root": 9,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "G13(b9)/B",
+      "key": {
+        "root": 10,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "G13(b9)/B",
+      "key": {
+        "root": 10,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "G13(b9)/B",
+      "key": {
+        "root": 11,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "G13(b9)/B",
+      "key": {
+        "root": 11,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C7#9",
+      "key": {
+        "root": 0,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C7#9",
+      "key": {
+        "root": 0,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C7#9",
+      "key": {
+        "root": 1,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C7#9",
+      "key": {
+        "root": 1,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C7#9",
+      "key": {
+        "root": 2,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C7#9",
+      "key": {
+        "root": 2,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C7#9",
+      "key": {
+        "root": 3,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C7#9",
+      "key": {
+        "root": 3,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C7#9",
+      "key": {
+        "root": 4,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C7#9",
+      "key": {
+        "root": 4,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C7#9",
+      "key": {
+        "root": 5,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C7#9",
+      "key": {
+        "root": 5,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C7#9",
+      "key": {
+        "root": 6,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C7#9",
+      "key": {
+        "root": 6,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C7#9",
+      "key": {
+        "root": 7,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C7#9",
+      "key": {
+        "root": 7,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C7#9",
+      "key": {
+        "root": 8,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C7#9",
+      "key": {
+        "root": 8,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C7#9",
+      "key": {
+        "root": 9,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C7#9",
+      "key": {
+        "root": 9,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C7#9",
+      "key": {
+        "root": 10,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C7#9",
+      "key": {
+        "root": 10,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C7#9",
+      "key": {
+        "root": 11,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C7#9",
+      "key": {
+        "root": 11,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "F7#11",
+      "key": {
+        "root": 0,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "F7#11",
+      "key": {
+        "root": 0,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "F7#11",
+      "key": {
+        "root": 1,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "F7#11",
+      "key": {
+        "root": 1,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "F7#11",
+      "key": {
+        "root": 2,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "F7#11",
+      "key": {
+        "root": 2,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "F7#11",
+      "key": {
+        "root": 3,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "F7#11",
+      "key": {
+        "root": 3,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "F7#11",
+      "key": {
+        "root": 4,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "F7#11",
+      "key": {
+        "root": 4,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "F7#11",
+      "key": {
+        "root": 5,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "F7#11",
+      "key": {
+        "root": 5,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "F7#11",
+      "key": {
+        "root": 6,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "F7#11",
+      "key": {
+        "root": 6,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "F7#11",
+      "key": {
+        "root": 7,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "F7#11",
+      "key": {
+        "root": 7,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "F7#11",
+      "key": {
+        "root": 8,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "F7#11",
+      "key": {
+        "root": 8,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "F7#11",
+      "key": {
+        "root": 9,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "F7#11",
+      "key": {
+        "root": 9,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "F7#11",
+      "key": {
+        "root": 10,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "F7#11",
+      "key": {
+        "root": 10,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "F7#11",
+      "key": {
+        "root": 11,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "F7#11",
+      "key": {
+        "root": 11,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C7#5",
+      "key": {
+        "root": 0,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C7#5",
+      "key": {
+        "root": 0,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C7#5",
+      "key": {
+        "root": 1,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C7#5",
+      "key": {
+        "root": 1,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C7#5",
+      "key": {
+        "root": 2,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C7#5",
+      "key": {
+        "root": 2,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C7#5",
+      "key": {
+        "root": 3,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C7#5",
+      "key": {
+        "root": 3,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C7#5",
+      "key": {
+        "root": 4,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C7#5",
+      "key": {
+        "root": 4,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C7#5",
+      "key": {
+        "root": 5,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C7#5",
+      "key": {
+        "root": 5,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C7#5",
+      "key": {
+        "root": 6,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C7#5",
+      "key": {
+        "root": 6,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C7#5",
+      "key": {
+        "root": 7,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C7#5",
+      "key": {
+        "root": 7,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C7#5",
+      "key": {
+        "root": 8,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C7#5",
+      "key": {
+        "root": 8,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C7#5",
+      "key": {
+        "root": 9,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C7#5",
+      "key": {
+        "root": 9,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C7#5",
+      "key": {
+        "root": 10,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C7#5",
+      "key": {
+        "root": 10,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C7#5",
+      "key": {
+        "root": 11,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C7#5",
+      "key": {
+        "root": 11,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cdim7",
+      "key": {
+        "root": 0,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cdim7",
+      "key": {
+        "root": 0,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cdim7",
+      "key": {
+        "root": 1,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cdim7",
+      "key": {
+        "root": 1,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cdim7",
+      "key": {
+        "root": 2,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cdim7",
+      "key": {
+        "root": 2,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cdim7",
+      "key": {
+        "root": 3,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cdim7",
+      "key": {
+        "root": 3,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cdim7",
+      "key": {
+        "root": 4,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cdim7",
+      "key": {
+        "root": 4,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cdim7",
+      "key": {
+        "root": 5,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cdim7",
+      "key": {
+        "root": 5,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cdim7",
+      "key": {
+        "root": 6,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cdim7",
+      "key": {
+        "root": 6,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cdim7",
+      "key": {
+        "root": 7,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cdim7",
+      "key": {
+        "root": 7,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cdim7",
+      "key": {
+        "root": 8,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cdim7",
+      "key": {
+        "root": 8,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cdim7",
+      "key": {
+        "root": 9,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cdim7",
+      "key": {
+        "root": 9,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cdim7",
+      "key": {
+        "root": 10,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cdim7",
+      "key": {
+        "root": 10,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cdim7",
+      "key": {
+        "root": 11,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cdim7",
+      "key": {
+        "root": 11,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cø7",
+      "key": {
+        "root": 0,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cø7",
+      "key": {
+        "root": 0,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cø7",
+      "key": {
+        "root": 1,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cø7",
+      "key": {
+        "root": 1,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cø7",
+      "key": {
+        "root": 2,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cø7",
+      "key": {
+        "root": 2,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cø7",
+      "key": {
+        "root": 3,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cø7",
+      "key": {
+        "root": 3,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cø7",
+      "key": {
+        "root": 4,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cø7",
+      "key": {
+        "root": 4,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cø7",
+      "key": {
+        "root": 5,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cø7",
+      "key": {
+        "root": 5,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cø7",
+      "key": {
+        "root": 6,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cø7",
+      "key": {
+        "root": 6,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cø7",
+      "key": {
+        "root": 7,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cø7",
+      "key": {
+        "root": 7,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cø7",
+      "key": {
+        "root": 8,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cø7",
+      "key": {
+        "root": 8,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cø7",
+      "key": {
+        "root": 9,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cø7",
+      "key": {
+        "root": 9,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cø7",
+      "key": {
+        "root": 10,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cø7",
+      "key": {
+        "root": 10,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cø7",
+      "key": {
+        "root": 11,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cø7",
+      "key": {
+        "root": 11,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Caug7",
+      "key": {
+        "root": 0,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Caug7",
+      "key": {
+        "root": 0,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Caug7",
+      "key": {
+        "root": 1,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Caug7",
+      "key": {
+        "root": 1,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Caug7",
+      "key": {
+        "root": 2,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Caug7",
+      "key": {
+        "root": 2,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Caug7",
+      "key": {
+        "root": 3,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Caug7",
+      "key": {
+        "root": 3,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Caug7",
+      "key": {
+        "root": 4,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Caug7",
+      "key": {
+        "root": 4,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Caug7",
+      "key": {
+        "root": 5,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Caug7",
+      "key": {
+        "root": 5,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Caug7",
+      "key": {
+        "root": 6,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Caug7",
+      "key": {
+        "root": 6,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Caug7",
+      "key": {
+        "root": 7,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Caug7",
+      "key": {
+        "root": 7,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Caug7",
+      "key": {
+        "root": 8,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Caug7",
+      "key": {
+        "root": 8,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Caug7",
+      "key": {
+        "root": 9,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Caug7",
+      "key": {
+        "root": 9,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Caug7",
+      "key": {
+        "root": 10,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Caug7",
+      "key": {
+        "root": 10,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Caug7",
+      "key": {
+        "root": 11,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Caug7",
+      "key": {
+        "root": 11,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C+7",
+      "key": {
+        "root": 0,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C+7",
+      "key": {
+        "root": 0,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C+7",
+      "key": {
+        "root": 1,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C+7",
+      "key": {
+        "root": 1,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C+7",
+      "key": {
+        "root": 2,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C+7",
+      "key": {
+        "root": 2,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C+7",
+      "key": {
+        "root": 3,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C+7",
+      "key": {
+        "root": 3,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C+7",
+      "key": {
+        "root": 4,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C+7",
+      "key": {
+        "root": 4,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C+7",
+      "key": {
+        "root": 5,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C+7",
+      "key": {
+        "root": 5,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C+7",
+      "key": {
+        "root": 6,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C+7",
+      "key": {
+        "root": 6,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C+7",
+      "key": {
+        "root": 7,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C+7",
+      "key": {
+        "root": 7,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C+7",
+      "key": {
+        "root": 8,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C+7",
+      "key": {
+        "root": 8,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C+7",
+      "key": {
+        "root": 9,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C+7",
+      "key": {
+        "root": 9,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C+7",
+      "key": {
+        "root": 10,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C+7",
+      "key": {
+        "root": 10,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C+7",
+      "key": {
+        "root": 11,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C+7",
+      "key": {
+        "root": 11,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Csus2",
+      "key": {
+        "root": 0,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Csus2",
+      "key": {
+        "root": 0,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Csus2",
+      "key": {
+        "root": 1,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Csus2",
+      "key": {
+        "root": 1,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Csus2",
+      "key": {
+        "root": 2,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Csus2",
+      "key": {
+        "root": 2,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Csus2",
+      "key": {
+        "root": 3,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Csus2",
+      "key": {
+        "root": 3,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Csus2",
+      "key": {
+        "root": 4,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Csus2",
+      "key": {
+        "root": 4,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Csus2",
+      "key": {
+        "root": 5,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Csus2",
+      "key": {
+        "root": 5,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Csus2",
+      "key": {
+        "root": 6,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Csus2",
+      "key": {
+        "root": 6,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Csus2",
+      "key": {
+        "root": 7,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Csus2",
+      "key": {
+        "root": 7,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Csus2",
+      "key": {
+        "root": 8,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Csus2",
+      "key": {
+        "root": 8,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Csus2",
+      "key": {
+        "root": 9,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Csus2",
+      "key": {
+        "root": 9,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Csus2",
+      "key": {
+        "root": 10,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Csus2",
+      "key": {
+        "root": 10,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Csus2",
+      "key": {
+        "root": 11,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Csus2",
+      "key": {
+        "root": 11,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Csus4",
+      "key": {
+        "root": 0,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Csus4",
+      "key": {
+        "root": 0,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Csus4",
+      "key": {
+        "root": 1,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Csus4",
+      "key": {
+        "root": 1,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Csus4",
+      "key": {
+        "root": 2,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Csus4",
+      "key": {
+        "root": 2,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Csus4",
+      "key": {
+        "root": 3,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Csus4",
+      "key": {
+        "root": 3,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Csus4",
+      "key": {
+        "root": 4,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Csus4",
+      "key": {
+        "root": 4,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Csus4",
+      "key": {
+        "root": 5,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Csus4",
+      "key": {
+        "root": 5,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Csus4",
+      "key": {
+        "root": 6,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Csus4",
+      "key": {
+        "root": 6,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Csus4",
+      "key": {
+        "root": 7,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Csus4",
+      "key": {
+        "root": 7,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Csus4",
+      "key": {
+        "root": 8,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Csus4",
+      "key": {
+        "root": 8,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Csus4",
+      "key": {
+        "root": 9,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Csus4",
+      "key": {
+        "root": 9,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Csus4",
+      "key": {
+        "root": 10,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Csus4",
+      "key": {
+        "root": 10,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Csus4",
+      "key": {
+        "root": 11,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Csus4",
+      "key": {
+        "root": 11,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C5",
+      "key": {
+        "root": 0,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C5",
+      "key": {
+        "root": 0,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C5",
+      "key": {
+        "root": 1,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C5",
+      "key": {
+        "root": 1,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C5",
+      "key": {
+        "root": 2,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C5",
+      "key": {
+        "root": 2,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C5",
+      "key": {
+        "root": 3,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C5",
+      "key": {
+        "root": 3,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C5",
+      "key": {
+        "root": 4,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C5",
+      "key": {
+        "root": 4,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C5",
+      "key": {
+        "root": 5,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C5",
+      "key": {
+        "root": 5,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C5",
+      "key": {
+        "root": 6,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C5",
+      "key": {
+        "root": 6,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C5",
+      "key": {
+        "root": 7,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C5",
+      "key": {
+        "root": 7,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C5",
+      "key": {
+        "root": 8,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C5",
+      "key": {
+        "root": 8,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C5",
+      "key": {
+        "root": 9,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C5",
+      "key": {
+        "root": 9,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C5",
+      "key": {
+        "root": 10,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C5",
+      "key": {
+        "root": 10,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C5",
+      "key": {
+        "root": 11,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C5",
+      "key": {
+        "root": 11,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cadd9",
+      "key": {
+        "root": 0,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cadd9",
+      "key": {
+        "root": 0,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cadd9",
+      "key": {
+        "root": 1,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cadd9",
+      "key": {
+        "root": 1,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cadd9",
+      "key": {
+        "root": 2,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cadd9",
+      "key": {
+        "root": 2,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cadd9",
+      "key": {
+        "root": 3,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cadd9",
+      "key": {
+        "root": 3,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cadd9",
+      "key": {
+        "root": 4,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cadd9",
+      "key": {
+        "root": 4,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cadd9",
+      "key": {
+        "root": 5,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cadd9",
+      "key": {
+        "root": 5,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cadd9",
+      "key": {
+        "root": 6,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cadd9",
+      "key": {
+        "root": 6,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cadd9",
+      "key": {
+        "root": 7,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cadd9",
+      "key": {
+        "root": 7,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cadd9",
+      "key": {
+        "root": 8,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cadd9",
+      "key": {
+        "root": 8,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cadd9",
+      "key": {
+        "root": 9,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cadd9",
+      "key": {
+        "root": 9,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cadd9",
+      "key": {
+        "root": 10,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cadd9",
+      "key": {
+        "root": 10,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cadd9",
+      "key": {
+        "root": 11,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cadd9",
+      "key": {
+        "root": 11,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C6",
+      "key": {
+        "root": 0,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C6",
+      "key": {
+        "root": 0,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C6",
+      "key": {
+        "root": 1,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C6",
+      "key": {
+        "root": 1,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C6",
+      "key": {
+        "root": 2,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C6",
+      "key": {
+        "root": 2,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C6",
+      "key": {
+        "root": 3,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C6",
+      "key": {
+        "root": 3,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C6",
+      "key": {
+        "root": 4,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C6",
+      "key": {
+        "root": 4,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C6",
+      "key": {
+        "root": 5,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C6",
+      "key": {
+        "root": 5,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C6",
+      "key": {
+        "root": 6,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C6",
+      "key": {
+        "root": 6,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C6",
+      "key": {
+        "root": 7,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C6",
+      "key": {
+        "root": 7,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C6",
+      "key": {
+        "root": 8,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C6",
+      "key": {
+        "root": 8,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C6",
+      "key": {
+        "root": 9,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C6",
+      "key": {
+        "root": 9,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C6",
+      "key": {
+        "root": 10,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C6",
+      "key": {
+        "root": 10,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C6",
+      "key": {
+        "root": 11,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C6",
+      "key": {
+        "root": 11,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cm6",
+      "key": {
+        "root": 0,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cm6",
+      "key": {
+        "root": 0,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cm6",
+      "key": {
+        "root": 1,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cm6",
+      "key": {
+        "root": 1,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cm6",
+      "key": {
+        "root": 2,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cm6",
+      "key": {
+        "root": 2,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cm6",
+      "key": {
+        "root": 3,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cm6",
+      "key": {
+        "root": 3,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cm6",
+      "key": {
+        "root": 4,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cm6",
+      "key": {
+        "root": 4,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cm6",
+      "key": {
+        "root": 5,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cm6",
+      "key": {
+        "root": 5,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cm6",
+      "key": {
+        "root": 6,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cm6",
+      "key": {
+        "root": 6,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cm6",
+      "key": {
+        "root": 7,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cm6",
+      "key": {
+        "root": 7,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cm6",
+      "key": {
+        "root": 8,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cm6",
+      "key": {
+        "root": 8,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cm6",
+      "key": {
+        "root": 9,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cm6",
+      "key": {
+        "root": 9,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cm6",
+      "key": {
+        "root": 10,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cm6",
+      "key": {
+        "root": 10,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cm6",
+      "key": {
+        "root": 11,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cm6",
+      "key": {
+        "root": 11,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C11",
+      "key": {
+        "root": 0,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C11",
+      "key": {
+        "root": 0,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C11",
+      "key": {
+        "root": 1,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C11",
+      "key": {
+        "root": 1,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C11",
+      "key": {
+        "root": 2,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C11",
+      "key": {
+        "root": 2,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C11",
+      "key": {
+        "root": 3,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C11",
+      "key": {
+        "root": 3,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C11",
+      "key": {
+        "root": 4,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C11",
+      "key": {
+        "root": 4,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C11",
+      "key": {
+        "root": 5,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C11",
+      "key": {
+        "root": 5,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C11",
+      "key": {
+        "root": 6,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C11",
+      "key": {
+        "root": 6,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C11",
+      "key": {
+        "root": 7,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C11",
+      "key": {
+        "root": 7,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C11",
+      "key": {
+        "root": 8,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C11",
+      "key": {
+        "root": 8,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C11",
+      "key": {
+        "root": 9,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C11",
+      "key": {
+        "root": 9,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C11",
+      "key": {
+        "root": 10,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C11",
+      "key": {
+        "root": 10,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C11",
+      "key": {
+        "root": 11,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C11",
+      "key": {
+        "root": 11,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cm13",
+      "key": {
+        "root": 0,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cm13",
+      "key": {
+        "root": 0,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cm13",
+      "key": {
+        "root": 1,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cm13",
+      "key": {
+        "root": 1,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cm13",
+      "key": {
+        "root": 2,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cm13",
+      "key": {
+        "root": 2,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cm13",
+      "key": {
+        "root": 3,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cm13",
+      "key": {
+        "root": 3,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cm13",
+      "key": {
+        "root": 4,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cm13",
+      "key": {
+        "root": 4,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cm13",
+      "key": {
+        "root": 5,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cm13",
+      "key": {
+        "root": 5,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cm13",
+      "key": {
+        "root": 6,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cm13",
+      "key": {
+        "root": 6,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cm13",
+      "key": {
+        "root": 7,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cm13",
+      "key": {
+        "root": 7,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cm13",
+      "key": {
+        "root": 8,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cm13",
+      "key": {
+        "root": 8,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cm13",
+      "key": {
+        "root": 9,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cm13",
+      "key": {
+        "root": 9,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cm13",
+      "key": {
+        "root": 10,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cm13",
+      "key": {
+        "root": 10,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cm13",
+      "key": {
+        "root": 11,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cm13",
+      "key": {
+        "root": 11,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C/nope",
+      "key": {
+        "root": 0,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C/nope",
+      "key": {
+        "root": 0,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C/nope",
+      "key": {
+        "root": 1,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C/nope",
+      "key": {
+        "root": 1,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C/nope",
+      "key": {
+        "root": 2,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C/nope",
+      "key": {
+        "root": 2,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C/nope",
+      "key": {
+        "root": 3,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C/nope",
+      "key": {
+        "root": 3,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C/nope",
+      "key": {
+        "root": 4,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C/nope",
+      "key": {
+        "root": 4,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C/nope",
+      "key": {
+        "root": 5,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C/nope",
+      "key": {
+        "root": 5,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C/nope",
+      "key": {
+        "root": 6,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C/nope",
+      "key": {
+        "root": 6,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C/nope",
+      "key": {
+        "root": 7,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C/nope",
+      "key": {
+        "root": 7,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C/nope",
+      "key": {
+        "root": 8,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C/nope",
+      "key": {
+        "root": 8,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C/nope",
+      "key": {
+        "root": 9,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C/nope",
+      "key": {
+        "root": 9,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C/nope",
+      "key": {
+        "root": 10,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C/nope",
+      "key": {
+        "root": 10,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C/nope",
+      "key": {
+        "root": 11,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C/nope",
+      "key": {
+        "root": 11,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C/",
+      "key": {
+        "root": 0,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C/",
+      "key": {
+        "root": 0,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C/",
+      "key": {
+        "root": 1,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C/",
+      "key": {
+        "root": 1,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C/",
+      "key": {
+        "root": 2,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C/",
+      "key": {
+        "root": 2,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C/",
+      "key": {
+        "root": 3,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C/",
+      "key": {
+        "root": 3,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C/",
+      "key": {
+        "root": 4,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C/",
+      "key": {
+        "root": 4,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C/",
+      "key": {
+        "root": 5,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C/",
+      "key": {
+        "root": 5,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C/",
+      "key": {
+        "root": 6,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C/",
+      "key": {
+        "root": 6,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C/",
+      "key": {
+        "root": 7,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C/",
+      "key": {
+        "root": 7,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C/",
+      "key": {
+        "root": 8,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C/",
+      "key": {
+        "root": 8,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C/",
+      "key": {
+        "root": 9,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C/",
+      "key": {
+        "root": 9,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C/",
+      "key": {
+        "root": 10,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C/",
+      "key": {
+        "root": 10,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C/",
+      "key": {
+        "root": 11,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C/",
+      "key": {
+        "root": 11,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C/E/G",
+      "key": {
+        "root": 0,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C/E/G",
+      "key": {
+        "root": 0,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C/E/G",
+      "key": {
+        "root": 1,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C/E/G",
+      "key": {
+        "root": 1,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C/E/G",
+      "key": {
+        "root": 2,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C/E/G",
+      "key": {
+        "root": 2,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C/E/G",
+      "key": {
+        "root": 3,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C/E/G",
+      "key": {
+        "root": 3,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C/E/G",
+      "key": {
+        "root": 4,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C/E/G",
+      "key": {
+        "root": 4,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C/E/G",
+      "key": {
+        "root": 5,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C/E/G",
+      "key": {
+        "root": 5,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C/E/G",
+      "key": {
+        "root": 6,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C/E/G",
+      "key": {
+        "root": 6,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C/E/G",
+      "key": {
+        "root": 7,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C/E/G",
+      "key": {
+        "root": 7,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C/E/G",
+      "key": {
+        "root": 8,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C/E/G",
+      "key": {
+        "root": 8,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C/E/G",
+      "key": {
+        "root": 9,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C/E/G",
+      "key": {
+        "root": 9,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C/E/G",
+      "key": {
+        "root": 10,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C/E/G",
+      "key": {
+        "root": 10,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "C/E/G",
+      "key": {
+        "root": 11,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "C/E/G",
+      "key": {
+        "root": 11,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "N.C.",
+      "key": {
+        "root": 0,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "N.C.",
+      "key": {
+        "root": 0,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "N.C.",
+      "key": {
+        "root": 1,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "N.C.",
+      "key": {
+        "root": 1,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "N.C.",
+      "key": {
+        "root": 2,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "N.C.",
+      "key": {
+        "root": 2,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "N.C.",
+      "key": {
+        "root": 3,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "N.C.",
+      "key": {
+        "root": 3,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "N.C.",
+      "key": {
+        "root": 4,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "N.C.",
+      "key": {
+        "root": 4,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "N.C.",
+      "key": {
+        "root": 5,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "N.C.",
+      "key": {
+        "root": 5,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "N.C.",
+      "key": {
+        "root": 6,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "N.C.",
+      "key": {
+        "root": 6,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "N.C.",
+      "key": {
+        "root": 7,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "N.C.",
+      "key": {
+        "root": 7,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "N.C.",
+      "key": {
+        "root": 8,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "N.C.",
+      "key": {
+        "root": 8,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "N.C.",
+      "key": {
+        "root": 9,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "N.C.",
+      "key": {
+        "root": 9,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "N.C.",
+      "key": {
+        "root": 10,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "N.C.",
+      "key": {
+        "root": 10,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "N.C.",
+      "key": {
+        "root": 11,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "N.C.",
+      "key": {
+        "root": 11,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "unknown",
+      "key": {
+        "root": 0,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "unknown",
+      "key": {
+        "root": 0,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "unknown",
+      "key": {
+        "root": 1,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "unknown",
+      "key": {
+        "root": 1,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "unknown",
+      "key": {
+        "root": 2,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "unknown",
+      "key": {
+        "root": 2,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "unknown",
+      "key": {
+        "root": 3,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "unknown",
+      "key": {
+        "root": 3,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "unknown",
+      "key": {
+        "root": 4,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "unknown",
+      "key": {
+        "root": 4,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "unknown",
+      "key": {
+        "root": 5,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "unknown",
+      "key": {
+        "root": 5,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "unknown",
+      "key": {
+        "root": 6,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "unknown",
+      "key": {
+        "root": 6,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "unknown",
+      "key": {
+        "root": 7,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "unknown",
+      "key": {
+        "root": 7,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "unknown",
+      "key": {
+        "root": 8,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "unknown",
+      "key": {
+        "root": 8,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "unknown",
+      "key": {
+        "root": 9,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "unknown",
+      "key": {
+        "root": 9,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "unknown",
+      "key": {
+        "root": 10,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "unknown",
+      "key": {
+        "root": 10,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "unknown",
+      "key": {
+        "root": 11,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "unknown",
+      "key": {
+        "root": 11,
+        "minor": true
+      }
+    },
+    {
+      "symbol": " F SHARPm/A FLAT ",
+      "key": {
+        "root": 0,
+        "minor": false
+      }
+    },
+    {
+      "symbol": " F SHARPm/A FLAT ",
+      "key": {
+        "root": 0,
+        "minor": true
+      }
+    },
+    {
+      "symbol": " F SHARPm/A FLAT ",
+      "key": {
+        "root": 1,
+        "minor": false
+      }
+    },
+    {
+      "symbol": " F SHARPm/A FLAT ",
+      "key": {
+        "root": 1,
+        "minor": true
+      }
+    },
+    {
+      "symbol": " F SHARPm/A FLAT ",
+      "key": {
+        "root": 2,
+        "minor": false
+      }
+    },
+    {
+      "symbol": " F SHARPm/A FLAT ",
+      "key": {
+        "root": 2,
+        "minor": true
+      }
+    },
+    {
+      "symbol": " F SHARPm/A FLAT ",
+      "key": {
+        "root": 3,
+        "minor": false
+      }
+    },
+    {
+      "symbol": " F SHARPm/A FLAT ",
+      "key": {
+        "root": 3,
+        "minor": true
+      }
+    },
+    {
+      "symbol": " F SHARPm/A FLAT ",
+      "key": {
+        "root": 4,
+        "minor": false
+      }
+    },
+    {
+      "symbol": " F SHARPm/A FLAT ",
+      "key": {
+        "root": 4,
+        "minor": true
+      }
+    },
+    {
+      "symbol": " F SHARPm/A FLAT ",
+      "key": {
+        "root": 5,
+        "minor": false
+      }
+    },
+    {
+      "symbol": " F SHARPm/A FLAT ",
+      "key": {
+        "root": 5,
+        "minor": true
+      }
+    },
+    {
+      "symbol": " F SHARPm/A FLAT ",
+      "key": {
+        "root": 6,
+        "minor": false
+      }
+    },
+    {
+      "symbol": " F SHARPm/A FLAT ",
+      "key": {
+        "root": 6,
+        "minor": true
+      }
+    },
+    {
+      "symbol": " F SHARPm/A FLAT ",
+      "key": {
+        "root": 7,
+        "minor": false
+      }
+    },
+    {
+      "symbol": " F SHARPm/A FLAT ",
+      "key": {
+        "root": 7,
+        "minor": true
+      }
+    },
+    {
+      "symbol": " F SHARPm/A FLAT ",
+      "key": {
+        "root": 8,
+        "minor": false
+      }
+    },
+    {
+      "symbol": " F SHARPm/A FLAT ",
+      "key": {
+        "root": 8,
+        "minor": true
+      }
+    },
+    {
+      "symbol": " F SHARPm/A FLAT ",
+      "key": {
+        "root": 9,
+        "minor": false
+      }
+    },
+    {
+      "symbol": " F SHARPm/A FLAT ",
+      "key": {
+        "root": 9,
+        "minor": true
+      }
+    },
+    {
+      "symbol": " F SHARPm/A FLAT ",
+      "key": {
+        "root": 10,
+        "minor": false
+      }
+    },
+    {
+      "symbol": " F SHARPm/A FLAT ",
+      "key": {
+        "root": 10,
+        "minor": true
+      }
+    },
+    {
+      "symbol": " F SHARPm/A FLAT ",
+      "key": {
+        "root": 11,
+        "minor": false
+      }
+    },
+    {
+      "symbol": " F SHARPm/A FLAT ",
+      "key": {
+        "root": 11,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "g 7",
+      "key": {
+        "root": 0,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "g 7",
+      "key": {
+        "root": 0,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "g 7",
+      "key": {
+        "root": 1,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "g 7",
+      "key": {
+        "root": 1,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "g 7",
+      "key": {
+        "root": 2,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "g 7",
+      "key": {
+        "root": 2,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "g 7",
+      "key": {
+        "root": 3,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "g 7",
+      "key": {
+        "root": 3,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "g 7",
+      "key": {
+        "root": 4,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "g 7",
+      "key": {
+        "root": 4,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "g 7",
+      "key": {
+        "root": 5,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "g 7",
+      "key": {
+        "root": 5,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "g 7",
+      "key": {
+        "root": 6,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "g 7",
+      "key": {
+        "root": 6,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "g 7",
+      "key": {
+        "root": 7,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "g 7",
+      "key": {
+        "root": 7,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "g 7",
+      "key": {
+        "root": 8,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "g 7",
+      "key": {
+        "root": 8,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "g 7",
+      "key": {
+        "root": 9,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "g 7",
+      "key": {
+        "root": 9,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "g 7",
+      "key": {
+        "root": 10,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "g 7",
+      "key": {
+        "root": 10,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "g 7",
+      "key": {
+        "root": 11,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "g 7",
+      "key": {
+        "root": 11,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cb",
+      "key": {
+        "root": 0,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cb",
+      "key": {
+        "root": 0,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cb",
+      "key": {
+        "root": 1,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cb",
+      "key": {
+        "root": 1,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cb",
+      "key": {
+        "root": 2,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cb",
+      "key": {
+        "root": 2,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cb",
+      "key": {
+        "root": 3,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cb",
+      "key": {
+        "root": 3,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cb",
+      "key": {
+        "root": 4,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cb",
+      "key": {
+        "root": 4,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cb",
+      "key": {
+        "root": 5,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cb",
+      "key": {
+        "root": 5,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cb",
+      "key": {
+        "root": 6,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cb",
+      "key": {
+        "root": 6,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cb",
+      "key": {
+        "root": 7,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cb",
+      "key": {
+        "root": 7,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cb",
+      "key": {
+        "root": 8,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cb",
+      "key": {
+        "root": 8,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cb",
+      "key": {
+        "root": 9,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cb",
+      "key": {
+        "root": 9,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cb",
+      "key": {
+        "root": 10,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cb",
+      "key": {
+        "root": 10,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "Cb",
+      "key": {
+        "root": 11,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "Cb",
+      "key": {
+        "root": 11,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "B#",
+      "key": {
+        "root": 0,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "B#",
+      "key": {
+        "root": 0,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "B#",
+      "key": {
+        "root": 1,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "B#",
+      "key": {
+        "root": 1,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "B#",
+      "key": {
+        "root": 2,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "B#",
+      "key": {
+        "root": 2,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "B#",
+      "key": {
+        "root": 3,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "B#",
+      "key": {
+        "root": 3,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "B#",
+      "key": {
+        "root": 4,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "B#",
+      "key": {
+        "root": 4,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "B#",
+      "key": {
+        "root": 5,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "B#",
+      "key": {
+        "root": 5,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "B#",
+      "key": {
+        "root": 6,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "B#",
+      "key": {
+        "root": 6,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "B#",
+      "key": {
+        "root": 7,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "B#",
+      "key": {
+        "root": 7,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "B#",
+      "key": {
+        "root": 8,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "B#",
+      "key": {
+        "root": 8,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "B#",
+      "key": {
+        "root": 9,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "B#",
+      "key": {
+        "root": 9,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "B#",
+      "key": {
+        "root": 10,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "B#",
+      "key": {
+        "root": 10,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "B#",
+      "key": {
+        "root": 11,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "B#",
+      "key": {
+        "root": 11,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "CM7",
+      "key": {
+        "root": 0,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "CM7",
+      "key": {
+        "root": 0,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "CM7",
+      "key": {
+        "root": 1,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "CM7",
+      "key": {
+        "root": 1,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "CM7",
+      "key": {
+        "root": 2,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "CM7",
+      "key": {
+        "root": 2,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "CM7",
+      "key": {
+        "root": 3,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "CM7",
+      "key": {
+        "root": 3,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "CM7",
+      "key": {
+        "root": 4,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "CM7",
+      "key": {
+        "root": 4,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "CM7",
+      "key": {
+        "root": 5,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "CM7",
+      "key": {
+        "root": 5,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "CM7",
+      "key": {
+        "root": 6,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "CM7",
+      "key": {
+        "root": 6,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "CM7",
+      "key": {
+        "root": 7,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "CM7",
+      "key": {
+        "root": 7,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "CM7",
+      "key": {
+        "root": 8,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "CM7",
+      "key": {
+        "root": 8,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "CM7",
+      "key": {
+        "root": 9,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "CM7",
+      "key": {
+        "root": 9,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "CM7",
+      "key": {
+        "root": 10,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "CM7",
+      "key": {
+        "root": 10,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "CM7",
+      "key": {
+        "root": 11,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "CM7",
+      "key": {
+        "root": 11,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "CMaj7",
+      "key": {
+        "root": 0,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "CMaj7",
+      "key": {
+        "root": 0,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "CMaj7",
+      "key": {
+        "root": 1,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "CMaj7",
+      "key": {
+        "root": 1,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "CMaj7",
+      "key": {
+        "root": 2,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "CMaj7",
+      "key": {
+        "root": 2,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "CMaj7",
+      "key": {
+        "root": 3,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "CMaj7",
+      "key": {
+        "root": 3,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "CMaj7",
+      "key": {
+        "root": 4,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "CMaj7",
+      "key": {
+        "root": 4,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "CMaj7",
+      "key": {
+        "root": 5,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "CMaj7",
+      "key": {
+        "root": 5,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "CMaj7",
+      "key": {
+        "root": 6,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "CMaj7",
+      "key": {
+        "root": 6,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "CMaj7",
+      "key": {
+        "root": 7,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "CMaj7",
+      "key": {
+        "root": 7,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "CMaj7",
+      "key": {
+        "root": 8,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "CMaj7",
+      "key": {
+        "root": 8,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "CMaj7",
+      "key": {
+        "root": 9,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "CMaj7",
+      "key": {
+        "root": 9,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "CMaj7",
+      "key": {
+        "root": 10,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "CMaj7",
+      "key": {
+        "root": 10,
+        "minor": true
+      }
+    },
+    {
+      "symbol": "CMaj7",
+      "key": {
+        "root": 11,
+        "minor": false
+      }
+    },
+    {
+      "symbol": "CMaj7",
+      "key": {
+        "root": 11,
+        "minor": true
+      }
+    }
+  ],
+  "keys": [
+    "C",
+    "Db",
+    "c#",
+    "D♭",
+    "f♯m",
+    "A minor",
+    "B 小调",
+    "E FLAT minor",
+    "F SHARPm",
+    "C major",
+    "Cmaj7",
+    "C#major",
+    "H",
+    "",
+    "N.C.",
+    "A M",
+    "A Minor",
+    "Cb",
+    "B#"
+  ],
+  "snapshots": [
+    {
+      "name": "demo",
+      "text": "c major 1 bars\na minor 2 bars\nf major 3 bars\ng 7 4 bars\nc major 5 bars 1 beats\na minor 5 bars 3 beats\nd minor 7 6 bars\ng 7 7 bars\nc major 8 bars\n",
+      "meter": 4,
+      "forcedKey": null,
+      "manualSections": []
+    },
+    {
+      "name": "minor",
+      "text": "a minor 1 bars\nd minor 2 bars\ne major 7 3 bars\na minor 4 bars",
+      "meter": 4,
+      "forcedKey": null,
+      "manualSections": []
+    },
+    {
+      "name": "c_to_d",
+      "text": "c major 1 bars\nf major 2 bars\ng major 7 3 bars\nc major 4 bars\nc major 5 bars\nf major 6 bars\ng major 7 7 bars\nc major 8 bars\nd major 9 bars\ng major 10 bars\na major 7 11 bars\nd major 12 bars\nd major 13 bars\ng major 14 bars\na major 7 15 bars\nd major 16 bars",
+      "meter": 4,
+      "forcedKey": null,
+      "manualSections": []
+    },
+    {
+      "name": "relative_minor",
+      "text": "c major 1 bars\nf major 2 bars\ng major 7 3 bars\nc major 4 bars\nc major 5 bars\nf major 6 bars\ng major 7 7 bars\nc major 8 bars\na minor 9 bars\nd minor 10 bars\ne major 7 11 bars\na minor 12 bars\na minor 13 bars\nd minor 14 bars\ne major 7 15 bars\na minor 16 bars",
+      "meter": 4,
+      "forcedKey": null,
+      "manualSections": []
+    },
+    {
+      "name": "short_tonicization",
+      "text": "c major 1 bars\nf major 2 bars\ng major 7 3 bars\nc major 4 bars\nc major 5 bars\nf major 6 bars\ng major 7 7 bars\nc major 8 bars\nd major 9 bars\ng major 10 bars\na major 7 11 bars\nc major 12 bars\nf major 13 bars\ng major 7 14 bars\nc major 15 bars\nc major 16 bars",
+      "meter": 4,
+      "forcedKey": null,
+      "manualSections": []
+    },
+    {
+      "name": "single_root_pedal",
+      "text": "c major 1 bars\nc major 2 bars\nc major 3 bars\nc major 4 bars\nc major 5 bars\nc major 6 bars\nc major 7 bars\nc major 8 bars\nc major 9 bars\nc major 10 bars\nc major 11 bars\nc major 12 bars\nc major 13 bars\nc major 14 bars\nc major 15 bars\nc major 16 bars",
+      "meter": 4,
+      "forcedKey": null,
+      "manualSections": []
+    },
+    {
+      "name": "empty",
+      "text": "",
+      "meter": 4,
+      "forcedKey": null,
+      "manualSections": []
+    },
+    {
+      "name": "no_chords",
+      "text": "No Chord 1 bars\nNo Chord 2 bars",
+      "meter": 4,
+      "forcedKey": null,
+      "manualSections": []
+    },
+    {
+      "name": "forced",
+      "text": "c major 1 bars\nf major 2 bars\ng major 7 3 bars\nc major 4 bars\nc major 5 bars\nf major 6 bars\ng major 7 7 bars\nc major 8 bars\nd major 9 bars\ng major 10 bars\na major 7 11 bars\nd major 12 bars\nd major 13 bars\ng major 14 bars\na major 7 15 bars\nd major 16 bars",
+      "meter": 4,
+      "forcedKey": {
+        "root": 6,
+        "minor": false
+      },
+      "manualSections": [
+        {
+          "bar": 12,
+          "key": {
+            "root": 3,
+            "minor": true
+          }
+        }
+      ]
+    },
+    {
+      "name": "manual_start",
+      "text": "c major 1 bars\nf major 2 bars\ng major 7 3 bars\nc major 4 bars\nc major 5 bars\nf major 6 bars\ng major 7 7 bars\nc major 8 bars\nd major 9 bars\ng major 10 bars\na major 7 11 bars\nd major 12 bars\nd major 13 bars\ng major 14 bars\na major 7 15 bars\nd major 16 bars",
+      "meter": 4,
+      "forcedKey": {
+        "root": 6,
+        "minor": false
+      },
+      "manualSections": [
+        {
+          "bar": 1,
+          "key": {
+            "root": 9,
+            "minor": true
+          }
+        },
+        {
+          "bar": 5,
+          "key": {
+            "root": 4,
+            "minor": false
+          }
+        }
+      ]
+    },
+    {
+      "name": "manual_replaces_auto",
+      "text": "c major 1 bars\nf major 2 bars\ng major 7 3 bars\nc major 4 bars\nc major 5 bars\nf major 6 bars\ng major 7 7 bars\nc major 8 bars\nd major 9 bars\ng major 10 bars\na major 7 11 bars\nd major 12 bars\nd major 13 bars\ng major 14 bars\na major 7 15 bars\nd major 16 bars",
+      "meter": 4,
+      "forcedKey": null,
+      "manualSections": [
+        {
+          "bar": 12,
+          "key": {
+            "root": 5,
+            "minor": false
+          }
+        }
+      ]
+    },
+    {
+      "name": "meter_3_fractional",
+      "text": "Host noise\nEXPORT|c major/e 1 bars 1 beats 2 divisions 37 ticks\nEXPORT|f major/a 2 bars 2 beats 4 divisions 239 ticks\nEXPORT|g major 7/b 3 bars\nc major 4 bars\n",
+      "meter": 3,
+      "forcedKey": null,
+      "manualSections": []
+    },
+    {
+      "name": "meter_7",
+      "text": "c major 1 bars\ng major 7/b 2 bars 7 beats 4 divisions 23 ticks\nc major/e 3 bars",
+      "meter": 7,
+      "forcedKey": null,
+      "manualSections": []
+    },
+    {
+      "name": "silence_gap",
+      "text": "c major 1 bars\nNo Chord 2 bars\nf major 3 bars\ng major 7 4 bars\nc major 5 bars",
+      "meter": 4,
+      "forcedKey": null,
+      "manualSections": []
+    },
+    {
+      "name": "quality_map",
+      "text": "c major 1 bars\nc major 7 2 bars\nc major major 7 3 bars\nc major 6 4 bars\nc minor 5 bars\nc minor 7 6 bars\nb minor 7 flat 5 7 bars\nb half diminished 8 bars\nb half diminished 7 9 bars\nc minor 6 10 bars\nc minor major 7 11 bars\nc major 9 12 bars\nc major major 9 13 bars\nc minor 9 14 bars\nc diminished 15 bars\nc diminished 7 16 bars\nc augmented 17 bars\nc suspended 2 18 bars\nc suspended 4 19 bars\nc augmented 7 20 bars\nc 5 21 bars\ng 7 22 bars\nf sharp minor/a flat 23 bars",
+      "meter": 4,
+      "forcedKey": null,
+      "manualSections": []
+    },
+    {
+      "name": "chord_extensions",
+      "text": "C 1 bars\nDb 2 bars\nD♭maj7 3 bars\nD#9 4 bars\nE♭m7 5 bars\nF#m7(b5)/B 6 bars\nBb7/F 7 bars\nCmaj7/E 8 bars\nAm(maj7) 9 bars\nG13(b9)/B 10 bars\nC7#9 11 bars\nF7#11 12 bars\nC7#5 13 bars\nCdim7 14 bars\nCø7 15 bars\nCaug7 16 bars\nC+7 17 bars\nCsus2 18 bars\nCsus4 19 bars\nC5 20 bars\nCadd9 21 bars\nC6 22 bars\nCm6 23 bars\nC11 24 bars\nCm13 25 bars\nC/nope 26 bars\nC/ 27 bars\nC/E/G 28 bars\nN.C. 29 bars\nunknown 30 bars\ng 7 31 bars\nCb 32 bars\nB# 33 bars\nCM7 34 bars\nCMaj7 35 bars",
+      "meter": 4,
+      "forcedKey": null,
+      "manualSections": []
+    }
+  ]
+}

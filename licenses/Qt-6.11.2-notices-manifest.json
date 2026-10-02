@@ -1,0 +1,2735 @@
+{
+  "aggregate": {
+    "bytes": 1655258,
+    "file": "Qt-6.11.2-THIRD-PARTY-NOTICES.txt",
+    "sha256": "6168748aa1e24bdfbfd237c9c1d9e3fcca46075d47fb8cd6a0a94a222b2faa11"
+  },
+  "indexes": [
+    {
+      "preformattedLicenseBlocks": 0,
+      "sourceSha256": "22527567a5432951bc76438b77962ff90cd7bc09797dd8e0929fa70f2cb125cf",
+      "textBytes": 21630,
+      "textSha256": "86fb47f99c4fc1eb75b70e001577f8c52ea6ed801241bc12be2af2e21cf5b2f4",
+      "title": "Third-Party Code Used in Qt | Qt 6.11",
+      "url": "https://doc.qt.io/qt-6/licenses-used-in-qt.html",
+      "versionEvidence": "patch version explicitly stated by umbrella index"
+    },
+    {
+      "preformattedLicenseBlocks": 0,
+      "sourceSha256": "dc3fc4a73cce79c1070d9b5f752907e629ddb3f1b5b828103a01dbc9ab99d1e7",
+      "textBytes": 1880,
+      "textSha256": "72b19e3cff0e75cb08670d71c4e367e72d97b70b352a5ec7b1b7ab79f33e7033",
+      "title": "Qt WebEngine Licensing | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-licensing.html",
+      "versionEvidence": "patch version in page title"
+    }
+  ],
+  "noticeCount": 281,
+  "notices": [
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "547ba6a86087a404b5064b0a0dc10553a9cdba10e10c69ccbf66f44fb176e4b7",
+      "textBytes": 1799,
+      "textSha256": "884afaab291532616cfcb575c6b7c3bdd741f018d0789c8337807ca254b79706",
+      "title": "Macros for Building with CMake | Qt 6.11",
+      "url": "https://doc.qt.io/qt-6/qt-attribution-cmake-macros.html",
+      "versionEvidence": "minor version in page title; patch inherited from verified umbrella index"
+    },
+    {
+      "preformattedLicenseBlocks": 4,
+      "sourceSha256": "0d18cf0ddec59639e8e611e62cf5c2490325a4ea48323f3feabae0a7eb606d30",
+      "textBytes": 6119,
+      "textSha256": "0c61d866fe2f4c9f4a75fe58d2f4b77e9ee5201f51bfa8d1bf3156c0e18fafd6",
+      "title": "LLVM Attribution | Qt 6.11",
+      "url": "https://doc.qt.io/qt-6/qt-attribution-llvm.html",
+      "versionEvidence": "minor version in page title; patch inherited from verified umbrella index"
+    },
+    {
+      "preformattedLicenseBlocks": 4,
+      "sourceSha256": "81e68c4a33a7ed651785015760b04689bfbe4d789fb217cd92fd765fdb07a517",
+      "textBytes": 3901,
+      "textSha256": "429995edaaef881bacd1c433816373ac46aae5fde5cee09e69400a51a9d3b32e",
+      "title": "Mesa llvmpipe | Qt 6.11",
+      "url": "https://doc.qt.io/qt-6/qt-attribution-llvmpipe.html",
+      "versionEvidence": "minor version in page title; patch inherited from verified umbrella index"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "b7b79eb4a714f0819de9384d337c96d3f501be14e2575ed9437866fd021ed2ea",
+      "textBytes": 4156,
+      "textSha256": "7dc513beba737b4acbb6ea8c01b6427f80d7de40fb14226afe18686760c3801e",
+      "title": "Open Asset Import Library, version 6.0.5 | Qt 3D | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qt3d-attribution-assimp.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "ee213011f58f5175d2c505fa1dab576d24eae7dc3475a4fe30802c70d2fa0756",
+      "textBytes": 1354,
+      "textSha256": "839f0897d1bca26e0d7e7a651ba3f0b294de1b26ae87513912f36db2628feba1",
+      "title": "Dear ImGui - ProggyClean.ttf | Qt 3D | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qt3d-attribution-imgui-proggyclean.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "f4943eaa98d99f535fb5ce0f345d0a108124d3fbac1c911cc719d56fb633b0ea",
+      "textBytes": 3065,
+      "textSha256": "14359efd7564f076680852249c8f2905dbf38d0abfd168240791d02aa06c4afd",
+      "title": "Dear ImGui - stb | Qt 3D | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qt3d-attribution-imgui-stb.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "dcd87907f7b3a4afc116fbac95ca534ac0774572fbd3a382c275f63d553b0f37",
+      "textBytes": 1336,
+      "textSha256": "33a67238bc99602ff75febe68ba957dbff6f6aea76d9de4ea7ef5635d78d32b4",
+      "title": "Dear ImGui, version v1.91.0 | Qt 3D | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qt3d-attribution-imgui.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "47c277578f7b1ab3fc6d271ad69707c78afc8107a698ff59bfd78992fb7b0907",
+      "textBytes": 18793,
+      "textSha256": "80f02fdd85f497d6b7ca626b53d5235ce47627a68b421f3323b6475dd905fe88",
+      "title": "BlueZ | Qt Bluetooth | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtbluetooth-attribution-bluez.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "1d110f6df21fc85d3e1f6770b69394c47d57345ea290a5d69292a5fdf57141b1",
+      "textBytes": 1178,
+      "textSha256": "616faeb8e2b35960eca67afa3442854d6bc3b3a6d15a196831518382376ccf02",
+      "title": "NanoVG, version f93799c | Qt Canvas Painter | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtcanvaspainter-attribution-nanovg.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "a24fbf5ee3eeb54c08025bcdda1d9aa19abe55eecbe94c271b1cdf2e8a3c95a0",
+      "textBytes": 18497,
+      "textSha256": "aa656d1b9121b976f77ec0c7296eaf148299efb7614921f4b2f4f431ebd5a0c6",
+      "title": "BLAKE2 (reference implementation), version ed1974ea83433eba7b2d95c5dcd9ac33cb847913 | Qt Core | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtcore-attribution-blake2.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "23c545168e779f704dd77cdb6b1bee0af00d3592a251c928b533c0472fc000a7",
+      "textBytes": 1822,
+      "textSha256": "631655df910e94cc0dec23e0d77650692fe91202d47439a1c2fa14cf56f537c7",
+      "title": "Efficient Binary-Decimal and Decimal-Binary Conversion Routines for IEEE Doubles, version 3.4.0 | Qt Core | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtcore-attribution-doubleconversion.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "c16c616d04513c889e505a5e38a6618b1dc7b12582b3c881dc754166135b664e",
+      "textBytes": 1705,
+      "textSha256": "1fe86d27ef9e224061a78ccb0b9d9bac525244da921e3b6121de779c0a092145",
+      "title": "Easing Equations by Robert Penner | Qt Core | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtcore-attribution-easing.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "70abb2ef2f7aa7f7b62742888a5761e09328d8e50e1987fdb023b0d678f75e18",
+      "textBytes": 1479,
+      "textSha256": "2dbc96c2e52f5347062c62774871d51aa9e069c353a7c39d25bd02690321c38b",
+      "title": "forkfd | Qt Core | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtcore-attribution-forkfd.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "f564d268fcaa3c3423b3a97978fd354458d808121332b49b49362ba292282b70",
+      "textBytes": 7421,
+      "textSha256": "5ba96978a46a2687bf80412e3b9fc7b464b8189a3a5bec9026a7266fc830bbad",
+      "title": "MD4 | Qt Core | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtcore-attribution-md4.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "14da17da04d447ad429daa1ff2187003774301537742186eb10f833d10a05a62",
+      "textBytes": 7293,
+      "textSha256": "4cabf56be9ecad644e1dc983d3b8f0d0ab99e94c6d0bada7783dfc3132fdb7cf",
+      "title": "MD5 | Qt Core | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtcore-attribution-md5.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "63f37926b0bb1be66803032c9632f06c272822afb50a8615b1f24557d640ce88",
+      "textBytes": 1799,
+      "textSha256": "36d8996b56f07a1050da3a56eff5da73ea983f97b83fb8e4dc56315d7726319f",
+      "title": "PCRE2 - Stack-less Just-In-Time Compiler, version 10.47 | Qt Core | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtcore-attribution-pcre2-sljit.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "4e9171ce48dc19f45653e40fd46f33eb25650d7ccafd57b0293546e59af98546",
+      "textBytes": 4499,
+      "textSha256": "bc35d91423c0ed491ca3b69d8adef634988d894d3db81a79530fdc91720dbfe7",
+      "title": "PCRE2, version 10.47 | Qt Core | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtcore-attribution-pcre2.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "2a71e33918531424d9403e7fc515f48230a15355230197c16ca50d0546948be4",
+      "textBytes": 1748,
+      "textSha256": "9bfd571ea271dedca7baff05a268cf065b45dbdd4326ac00b5b26c834171a178",
+      "title": "QEventDispatcher on macOS | Qt Core | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtcore-attribution-qeventdispatcher-cf.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "7a5bec8769c2c3b1c7084310b330c319c3eb4a85fe281a2e9c2b2e36547d39ad",
+      "textBytes": 1883,
+      "textSha256": "c4d559a5c4309312e4c6782166b3b8e1acb0226b914d5aa355fc4b859143585e",
+      "title": "Secure Hash Algorithms SHA-384 and SHA-512 | Qt Core | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtcore-attribution-rfc6234.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "55247b30719a9532645108aa07c0055cfcef545ccc65d651c8084e14d260cacf",
+      "textBytes": 420,
+      "textSha256": "509f4991bc39ee7cd1d7cf3c462843db1bbe080dab45137aa3491756fa8c3987",
+      "title": "Secure Hash Algorithm SHA-1 | Qt Core | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtcore-attribution-sha1.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "d39dced83ff2b431465b85318ff4de95851297489b76ae5cbc66f3b064cb2378",
+      "textBytes": 966,
+      "textSha256": "9f6a80f557c598e493097046afc953c54a3b71e1de564ee7e64bcf0081092fa3",
+      "title": "Secure Hash Algorithm SHA-3 - brg_endian, version 1.0.0 | Qt Core | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtcore-attribution-sha3-endian.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "c39d36e7338d26c6e04beb0686724f8358ec357d37111b8cab378cdeb1cd3d8d",
+      "textBytes": 7966,
+      "textSha256": "e845cc2e000dabc5441818c948f3c3213fdb4b8805587f2bd81bfbd51cf1a0d7",
+      "title": "Secure Hash Algorithm SHA-3 - Keccak, version 3.2 | Qt Core | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtcore-attribution-sha3-keccak.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "7789420feb292ac0c6b2780dc9fc29bb473d6e88729a4314cc81aedd8b80306a",
+      "textBytes": 7385,
+      "textSha256": "1fe2441093c698ba792d2587cb31137c1188e84a6c35063a2da967a38d541d26",
+      "title": "SipHash Algorithm | Qt Core | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtcore-attribution-siphash.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "2f0ab49adf7ef53c12ee2331ff44a9034bb7955b10d1d909d79928070a76db8b",
+      "textBytes": 10883,
+      "textSha256": "e46e16d7b8c073904a4a23866adc5e8b25c804fb9ef6222eda16074c13319249",
+      "title": "Apache Tika MimeType Definitions, version c29724782854bb5a319f4a1940d0828a58ace3f9 | Qt Core | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtcore-attribution-tika-mimetypes.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "884f78234b699608d360e46f0a3057c7560a86e3e7adea1749660137a73330ed",
+      "textBytes": 1341,
+      "textSha256": "6fe5a42e8640c71bad908714525e0b5db2f254934e623dcda61078b1b0e7b5c6",
+      "title": "TinyCBOR, version 7.0 | Qt Core | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtcore-attribution-tinycbor.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "4f92bc26a0d0c1af6c19eadd200ad1819a374c3742167bac559c3334e3ec53e2",
+      "textBytes": 7542,
+      "textSha256": "47402660afeb39599d01042cadbd7f17effabc42ce21485db43508562aed2930",
+      "title": "tl::expected, version 41d3e1f48d682992a2230b2a715bca38b848b269 | Qt Core | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtcore-attribution-tlexpected.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "75101cd8625601ad712b818d8be2728bceb962b98301d8d60e75b8d8dc598119",
+      "textBytes": 2469,
+      "textSha256": "a6a2afc6f682f51234cfbf0c187eac72513910393671eb416bb5288765903f03",
+      "title": "Unicode Character Database (UCD), version 36 | Qt Core | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtcore-attribution-unicode-character-database.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "03e65411b485f2fa1682d51e12ae61ca88246569561a00e0c1517f1f861dd3f0",
+      "textBytes": 2700,
+      "textSha256": "6afc576f84577bc81cc0e99a2e1d8e9fcd4b45afe5e291f657a10fa0feb45a82",
+      "title": "Unicode Common Locale Data Repository (CLDR), version v48.2 | Qt Core | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtcore-attribution-unicode-cldr.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "49d610fd3e1397936d024de0499a2b8618685ce972185e84d7eb7438f594990c",
+      "textBytes": 1770,
+      "textSha256": "78fc58e0222df5ffa007fe209082b45bee0e922c3ab1c8e609af16420899ba94",
+      "title": "Data Compression Library (zlib), version 1.3.2 | Qt Core | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtcore-attribution-zlib.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "7f0425795055f04874c3cbb8c36a3f37b30e21fce486dadf34afd6183c676c5e",
+      "textBytes": 1900,
+      "textSha256": "376e0e6c76a1603d73fc087ef9fea8c5fab5971aff42139093e3f6d3108ffdeb",
+      "title": "Text Codecs: Big5, Big5-HKSCS | Qt 5 Core Compatibility APIs | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtcore5compat-attribution-qbig5codecs.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "bb7c1419cbe4a3074740b738a860d54ff3c1436407817f5d34cc6fa2701967e6",
+      "textBytes": 1923,
+      "textSha256": "70a10b9b292ee1950d78df8e485523e74ffd02e5682f651e66f5928ac5259574",
+      "title": "Text Codec: GBK | Qt 5 Core Compatibility APIs | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtcore5compat-attribution-qbkcodec.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "c9dc432ce8de8d281293a149694b28450a8cd982d196d9e1fc699ccff43288e7",
+      "textBytes": 1622,
+      "textSha256": "03fccace245470021a16d805e98b08bde64f2001db4e0facf451951ccfc48f39",
+      "title": "Text Codec: EUC-JP | Qt 5 Core Compatibility APIs | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtcore5compat-attribution-qeucjpcodec.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "3d1644fdd6c2350a4a5ae1f23ea861db7e2359e697b5ae3f427f4010181dcd89",
+      "textBytes": 1636,
+      "textSha256": "a0ae14c85cfbbf97a7f7632595b5bae37c342d87d9488f461353f4b4721acaac",
+      "title": "Text Codec: EUC-KR | Qt 5 Core Compatibility APIs | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtcore5compat-attribution-qeuckrcodec.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "51c519386e2373232258c2e265dff31eab5e763ef75446ec994190e3f1cc6bdd",
+      "textBytes": 1583,
+      "textSha256": "06677c2cbde8e8a083a85826ec175f1bee8d6e090ad2b7430645ab593b176980",
+      "title": "Text Codec: ISO 2022-JP (JIS) | Qt 5 Core Compatibility APIs | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtcore5compat-attribution-qjiscodec.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "06e42c8d61bf64ca50a55eec5a7ea56f5c316f7603ee3f5b3383efd8c2340019",
+      "textBytes": 1574,
+      "textSha256": "8af3241bb1794b4e12bbe06c32428226f2c51be33410de5146598ada648c05c2",
+      "title": "Text Codec: Shift-JIS | Qt 5 Core Compatibility APIs | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtcore5compat-attribution-qsjiscodec.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "b9419edbaa8b16941e074e342144eff20bdbeb943605761fe1877d621cd47ef8",
+      "textBytes": 1539,
+      "textSha256": "a261131a197b6b233bd94945c81e802d300a2d3f4118f7627108316e5198258e",
+      "title": "Text Codec: TSCII | Qt 5 Core Compatibility APIs | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtcore5compat-attribution-qtsciicodec.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "b2583fe6172108c66f89adebfa64e9d95bc38a82c25fe727d6f2415f4d43500b",
+      "textBytes": 27663,
+      "textSha256": "c8f9e35f22f15750cdda5e779a60ef5b3aa060434c586437f7d6398e823af146",
+      "title": "libdbus-1 headers, version 1.13.12 | Qt D-Bus | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtdbus-attribution-libdbus-1-headers.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "9a1452b799da27dc41104493db76d421e733bc360429c8a90441afef7fcea743",
+      "textBytes": 1807,
+      "textSha256": "d185a0a92630fa1ebf5e6efcaa298322e72b6c9b74ff471fbf9c77ec87b11762",
+      "title": "Adobe Glyph List For New Fonts, version 1.7 | Qt GUI | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtgui-attribution-aglfn.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "9b4e3e3c67d5b1de84c7fcac27fd009cd795cfd7159e865c2012a7100f82308f",
+      "textBytes": 694,
+      "textSha256": "d4dfc3dc99fcb62a1e2bf1fd595e9eda8d9ac772bba35f4b2dd059ff773f72f7",
+      "title": "Native Style for Android | Qt GUI | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtgui-attribution-android-native-style.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "8e4e4ff9c55d14f10561cc3fe34dab9c9e16f5642e487e6b27b971e95425b987",
+      "textBytes": 2266,
+      "textSha256": "1a8c27612a1a07155a8e30ff7941d27880d701b6b97137b38470600f292889e1",
+      "title": "Cocoa Platform Plugin | Qt GUI | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtgui-attribution-cocoa-platform-plugin.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "0f19e8c8bedf5872eae06e556cf99bacb3f02aa2ea5cb17722fd535fe3310b7c",
+      "textBytes": 1417,
+      "textSha256": "70cceda7cb2510e5149562100f79ed9a2a2036a571fe90e4dd9cd7c2d4f166e2",
+      "title": "D3D12 Memory Allocator, version f128d39b7a95b4235bd228d231646278dc6c24b2 | Qt GUI | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtgui-attribution-d3d12memoryallocator.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "7d4c078229b9117f3e8c9c44de2d12a8ccf47f566d6964e57b6144abd651dd36",
+      "textBytes": 9210,
+      "textSha256": "3ea73a3c77fb7dc9d05e0e3f9db1fdb80a33696fb0c4c712fa0dbea6934f22cb",
+      "title": "DejaVu Fonts, version 2.37 | Qt GUI | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtgui-attribution-dejayvu.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "719effac5c419ce29dea8d31d7d55b9275be98a628cd68ace2d1e5cf51a75134",
+      "textBytes": 10696,
+      "textSha256": "3e9a4c0121127fda5f85da7547de1d065a5e1af1cf38a7f4c52400a9496f187b",
+      "title": "Emoji Segmenter, version 0.4.0 | Qt GUI | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtgui-attribution-emoji-segmenter.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "b1172eebbea7d021dc110aa6625ff20f3f4179ba60abe93553e452175c783a56",
+      "textBytes": 2706,
+      "textSha256": "0d415d4fda311ff5baa9e58d6f4deb8fccc2ef153b8eef981673fc8fe1d3b3af",
+      "title": "Freetype 2 - Bitmap Distribution Format (BDF) support | Qt GUI | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtgui-attribution-freetype-bdf.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "44424d3c7de60aafbd0331bba0fcbb5a295afdcc1f92e7106a9bee7d983ee482",
+      "textBytes": 2694,
+      "textSha256": "d9089d7e9218f8fa56f96eb4690309c205374f5104343de449818e6193d0f2ab",
+      "title": "Freetype 2 - Portable Compiled Format (PCF) support | Qt GUI | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtgui-attribution-freetype-pcf.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "a361e3ed513c4a8e9676c316cfff3bc3fd90f743a5ee6f44731f13942feeb133",
+      "textBytes": 1300,
+      "textSha256": "7bfb9241d4df83988493d2e911975ec0038aa3e0e0868604e82a5d5382962f17",
+      "title": "Freetype 2 - zlib | Qt GUI | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtgui-attribution-freetype-zlib.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "e086da10883f00c768453f9af7d934b4665b56b45f270039867816ac9cba2894",
+      "textBytes": 28665,
+      "textSha256": "3292c280b914abd193c7660fd2e7b2cbe74a7336b69d013ac951afef1f8093e0",
+      "title": "Freetype 2, version 2.14.3 | Qt GUI | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtgui-attribution-freetype.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "79e8bb53806e8778cdff9a589b0e3a50eb18b9df052e98a8975e036844b528fe",
+      "textBytes": 26648,
+      "textSha256": "6e8d2f8538bf20da0cfcdfac1135dbcfbfd6f38c8348fb55b61d927e31549f41",
+      "title": "Anti-aliasing rasterizer from FreeType 2 | Qt GUI | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtgui-attribution-grayraster.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "b72ed7a114006b6b355bffbd3e4cf7aefb938b697bc2698ee32fa0bc39933b43",
+      "textBytes": 3096,
+      "textSha256": "15c18a73ccdf13c0143c7de1cb61f4cc1bd5c9d189bff467221d2fbdcaaf45ce",
+      "title": "HarfBuzz-NG, version 14.3.0 | Qt GUI | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtgui-attribution-harfbuzz-ng.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "59d72821fd583b7e593935dc04ca6764022e56f2e9bec47376a28f28369a09ba",
+      "textBytes": 781,
+      "textSha256": "f32bfe21000756e8eeca4265141529a6b098632c18fd4d5a01df5e643cdd76d9",
+      "title": "sRGB color profile icc file | Qt GUI | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtgui-attribution-icc-srgb-color-profile.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 3,
+      "sourceSha256": "22f255606d4352485968e4b7e347dea46b23b52ab0bcdea296f24a6d0bc6fb85",
+      "textBytes": 8815,
+      "textSha256": "990827666e7bd52d06c0c11e6a2069b8013cb64a6d63517519f702f31623dddb",
+      "title": "LibJPEG-turbo, version 3.2.0 | Qt GUI | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtgui-attribution-libjpeg.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "99ecc6605b320bb8f49b32b1906a3548f006399db7215635243a2034f5eecdd6",
+      "textBytes": 6525,
+      "textSha256": "dfd3c6dea16648b39509eeb5723f7ff7a5f2651c97aae70cc7ab3eede127e9cf",
+      "title": "LibPNG, version 1.6.58 | Qt GUI | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtgui-attribution-libpng.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "f059ffad4b606fcbdc8642ab79df5f35630f2a749d44a445303bfc5436330d60",
+      "textBytes": 1366,
+      "textSha256": "3a3706222b5ed2d87a38f5dbd34fc4e265b990f5b22c501ea73c16fdca4d69bf",
+      "title": "MD4C, version 0.5.3 | Qt GUI | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtgui-attribution-md4c.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "5aed663c872f72c5c910700fc36276a75f6475a25da1fb49c493f391484c5b3b",
+      "textBytes": 1424,
+      "textSha256": "be339484ce25a3b97b1a0d797dcc72a6f82ac6b94d52a361898aa611234a4b0b",
+      "title": "OpenGL ES 2 Headers, version Revision 27673 | Qt GUI | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtgui-attribution-opengl-es2-headers.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "aae16a41b0f8b759ca59c9c82f2be6efd11fb12ce6091448b6f65af9a8c4b160",
+      "textBytes": 1416,
+      "textSha256": "87d9df5f338ae1dc2d5b9e7a56e4262d4d894eac6b6115eaeda8a39c3fe46bf0",
+      "title": "OpenGL Headers, version Revision 27684 | Qt GUI | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtgui-attribution-opengl-headers.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "717a62976162e7246cae9ba3f0446c39a64c21668a70e9bb7f4d466d26b0fe3b",
+      "textBytes": 1408,
+      "textSha256": "45f6c89e364924c6af684d873c16dc1abb3b3ec005885c1a02c865cd256cc9ae",
+      "title": "Pixman, version 0.17.12 | Qt GUI | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtgui-attribution-pixman.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "c1ea8498d5da80fa586902381b2223f458b71381bdf8b011498eaff6b864a96a",
+      "textBytes": 1403,
+      "textSha256": "07cee2b02d661af4cc2877b1f63e49f23e00c63805814eaebbab87905fdb4871",
+      "title": "Mipmap generator for D3D12, version 0aa79bad78992da0b6a8279ddb9002c1753cb849 | Qt GUI | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtgui-attribution-rhi-miniengine-d3d12-mipmap.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "560c96917ef0581be92860c12196c7a292ca5f2bcdb447ab30f82309a27fdf28",
+      "textBytes": 3369,
+      "textSha256": "642377e29a76082050e0a8aba57933361a50dd8708c4b2d13b58f324cc82eef1",
+      "title": "Smooth Scaling Algorithm | Qt GUI | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtgui-attribution-smooth-scaling-algorithm.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "84dfd8b73949fac0d9ce42a8c309c2f5464c372fd48ee3f01223ddd0d6d3bd27",
+      "textBytes": 11775,
+      "textSha256": "8807cf77d9f7cac0f669c961c905d064c53f32f79d2c04b72e394f957e501412",
+      "title": "Vulkan API Registry, version 1.4.308 | Qt GUI | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtgui-attribution-vulkan-xml-spec.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "71cbbfe511fba1fbaa215af6ace32500be83f79a0132d20dd47857db12c264aa",
+      "textBytes": 1385,
+      "textSha256": "d4240aa05da17b4036a1e9604f50b9b7d591d2bf30fb7fa6404ff2e138d93414",
+      "title": "Vulkan Memory Allocator, version 3.2.1 | Qt GUI | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtgui-attribution-vulkanmemoryallocator.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "2baf0bb406728a55e8d95724ed29cc00f939e2084d8b5ccfeb449906b32d16f9",
+      "textBytes": 1307,
+      "textSha256": "dd95be73416ea2aeec55ae1417b9560cc9870f37368d339a77aa99a1248b7fb5",
+      "title": "WebGradients | Qt GUI | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtgui-attribution-webgradients.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "624dea0dd7f0c11033852bab829c65a02ed7c78abcad814d122e341a47a640b1",
+      "textBytes": 472,
+      "textSha256": "2af90ed3f338a38b69026e40c401c0460eb0dd14550c27c35c08546e53733a84",
+      "title": "Wintab API | Qt GUI | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtgui-attribution-wintab.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "18a951cc57978deda9cb7b43452df7fc3621636289df6f635729b1ed40a8bf97",
+      "textBytes": 1757,
+      "textSha256": "cf7af6b15016e80cfe05743e64ea5839fed58591a1def55e1cfb95a0a7c6b117",
+      "title": "XCB-XInput | Qt GUI | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtgui-attribution-xcb-xinput.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "16eb2317afb9e22b0715a36e0e509b97bd1be3585d3a45637ddd3435a5298cf9",
+      "textBytes": 2649,
+      "textSha256": "a3441a686d1fa57a9bcbe18696433bd19c6539064120fb3e38e2764df1bc9e8c",
+      "title": "X Server helper | Qt GUI | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtgui-attribution-xserverhelper.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "6ec58dee5979a654a4cebec3e472bf1e863323d07e7fded1c542588a7e21c9e6",
+      "textBytes": 1418,
+      "textSha256": "adecc3af00303e68d1b9e25a9126cb92c16e7c1c48809e1fba5bbf77f91a720d",
+      "title": "TIFF Software Distribution (libtiff), version 4.7.2 | Qt Image Formats | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtimageformats-attribution-libtiff.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "fcfa1257fd5144b0b9a73594d50940361c6639268cc00ab7df09f59353c76b46",
+      "textBytes": 1865,
+      "textSha256": "9082a51776a8effef2a678d3e4502398969b999ef6f5c7deeb1c17ddf2db17d6",
+      "title": "WebP (libwebp), version 1.6.0 | Qt Image Formats | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtimageformats-attribution-libwebp.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "a239c795f2243bc23973b38dd9996231da580ee6b4bd54f8caed4493e5e3e342",
+      "textBytes": 2852,
+      "textSha256": "7c24a445d2b41f08a70442137b49e56563b1b7fb5698856361ab43207a1f9c05",
+      "title": "DR Libs, version 0.14.5 | Qt Multimedia | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtmultimedia-attribution-dr-libs.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "7e6e598357cf0e1c4bdc5a321024805051441daf4acf9dee46afb315a195991f",
+      "textBytes": 1654,
+      "textSha256": "ea993747fc0f83da275089ef73b49f0cf63c9da46278162864f0ecfcdbd631e6",
+      "title": "boost | Qt Multimedia | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtmultimedia-attribution-ffmpeg-boost.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "0110cbab8d9cfaf43533fa75d190bf6512a02ce7944ac6810f58965a98375c01",
+      "textBytes": 4718,
+      "textSha256": "40d239abf912ee5b6492cf796a558ebdcc1612e5c578f7eb6eca9a42736b7caa",
+      "title": "libjpeg | Qt Multimedia | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtmultimedia-attribution-ffmpeg-libjpeg.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "f44c2d3fa76aa35144a90f7f69e10dd91b9754b5c602f1c13c0dcb4451fa3e4d",
+      "textBytes": 1116,
+      "textSha256": "06bc1a42d22b62ae920cf990363e07ccd6716be61c2996cf7ac4a031c8804d13",
+      "title": "zlib | Qt Multimedia | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtmultimedia-attribution-ffmpeg-zlib.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 8,
+      "sourceSha256": "0fe1bb976be22e11e06d0dbe48c14ba2c2a738334bb330cc3d30bfcc0c8007c6",
+      "textBytes": 49540,
+      "textSha256": "3192be8c6a3c01aeacda831dad593914d45cee3167d1b73b9d9b10583e62834d",
+      "title": "FFmpeg, version 7.1.3 | Qt Multimedia | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtmultimedia-attribution-ffmpeg.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "72d36dda6f4fdd2c9142fbd3da5560112232f1bbc41e315920730d398ac4e0a1",
+      "textBytes": 1439,
+      "textSha256": "438daca36c350c2733a113d5f8f3b140599858425f33b776bb799c4dc17a4a16",
+      "title": "Signalsmith Stretch, version 1.0.0 | Qt Multimedia | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtmultimedia-attribution-signalsmith-stretch.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "0734ba081864e648485aa20624e95e604d0e289c8030561f205a98ec71ab0896",
+      "textBytes": 1755,
+      "textSha256": "62fac20b0971b302b4698739aabb1ca15c26611bcf1f59470144ff996c2d8e81",
+      "title": "Two-Level Segregated Fit, version v3.1 | Qt Multimedia | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtmultimedia-attribution-tlfs.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "53e14c6ef25677c438f1675db83e4881638626865355f920f095ea5b77e2bcd7",
+      "textBytes": 2144,
+      "textSha256": "6ed87eaed47303d6583ccb65dfaeff803e39358de9d58dfe4f51abd851ad8c93",
+      "title": "libpsl - C library to handle the Public Suffix List, version 664f3dc85259ec65e30248a61fa1c45b7b0e4c3f | Qt Network | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtnetwork-attribution-libpsl.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "cf9e2b2938bfcd81466836ec9c6e2aace95207744f3f854871960f153ae0f911",
+      "textBytes": 17608,
+      "textSha256": "fb8099ab1ee3512c2ed8a9d998ce6c6f4776c6e0cddf25e8fd47e5fafbf1f36e",
+      "title": "The Public Suffix List, version 2026-05-14_08-35-31_UTC | Qt Network | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtnetwork-attribution-psl-data.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 7,
+      "sourceSha256": "7f738af7ae7e0d461ed4d8be5ce5e3b4bb87bf19a82bdecc2be0a0ad8963433c",
+      "textBytes": 58344,
+      "textSha256": "317d14a62462980aed7a01b022884c273735218f8bd3a31cc41c35e3a185a793",
+      "title": "Open62541, version 1.4.14 | Qt OPC UA | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtopcua-attribution-open62541.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "9a83efa7502c32f27d4298d0b0c25d25ed5345c1c1345c2cf6ce7798b5aec93a",
+      "textBytes": 10871,
+      "textSha256": "a8cff40a8f69e0753f6bb199c50c1f8468f567c1f1e3077a6cae923fa398dbba",
+      "title": "Abseil | Qt PDF | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtpdf-3rdparty-abseil.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "e6fd7aeed86828bacd9719862879feac88a3fbaa23d9aa38224006b982e06bcd",
+      "textBytes": 1098,
+      "textSha256": "41aafef6f52a188fa2186cc3638ef170986dce11be74642d2df8324429d82639",
+      "title": "fast_float | Qt PDF | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtpdf-3rdparty-fast-float.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "b7ab4211678a46c56a93c07c153ce7537d96d3ced66e747685f98efddcddcd8e",
+      "textBytes": 6757,
+      "textSha256": "3dc2c89bb96be2527156c6e09abaa80797fe3b04177b0a44021ac43fe0ce7112",
+      "title": "FreeType | Qt PDF | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtpdf-3rdparty-freetype.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "8854c69a0b657e2eae6fb659e8ee7c65dbac6982c7360c0ad1420e8c54c6131e",
+      "textBytes": 25206,
+      "textSha256": "eaaff51847f61a909c8528696815218ba619a6cce5f1fbc02fe02d8a6379b6e2",
+      "title": "icu | Qt PDF | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtpdf-3rdparty-icu.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "ab1e9ce5412c2bd6743f387339fb56a0230a3aa9e2e3efe022c389eae25edddb",
+      "textBytes": 5636,
+      "textSha256": "9e77b01f2550b94789a284a1d1c59666f4e6ea58f0a21de0a15f44575a154d02",
+      "title": "libjpeg-turbo | Qt PDF | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtpdf-3rdparty-libjpeg-turbo.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "0a20f5a96fca74ec9676993231a0c042a428d603d3dd7202ca7dd229b643e97c",
+      "textBytes": 5363,
+      "textSha256": "f0e878c9ed46f013865389fdecee5bb0ecfe3ed192a1696fd3572df14728f808",
+      "title": "libpng | Qt PDF | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtpdf-3rdparty-libpng.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "adf2dd0fa77c85423d7f3e2fe47069177a923ffbf8120c50ac571835cc1f3bc4",
+      "textBytes": 12914,
+      "textSha256": "f7fc0cbc0cdda6087fd65e597603181e5b1c0e542e76f725ccb525020e5d13ea",
+      "title": "PDFium | Qt PDF | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtpdf-3rdparty-pdfium.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "d89213f07fca2ac57be697dfc74b40a700609e20f6d7d9f9d164a01270fe2d0d",
+      "textBytes": 1555,
+      "textSha256": "196797ce0064e8178b7493cbbb526b46e7a35b3ed2c6a9e1abc8ca32574504eb",
+      "title": "The Chromium Project | Qt PDF | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtpdf-3rdparty-the-chromium-project.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "860ecdc367f740de53472ca70dde60eaed126b736ba828131afbbc87c5c42dea",
+      "textBytes": 929,
+      "textSha256": "cb678a75cbe5a9dca64fbab5d0990197baca35e28b4d74dbe8336fdfb4313ce3",
+      "title": "zlib | Qt PDF | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtpdf-3rdparty-zlib.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "594611718725ecc4546c2ac8bfef0cfd7d489693b05d56aa18c27fb1a3ff6dfd",
+      "textBytes": 1433,
+      "textSha256": "94e2d75ef4d24060a8837037c8a3b3971d03efc449a48e97390fae3fe7c1f624",
+      "title": "Clip2Tri Polygon Triangulation Library, version commit f62a734d22733814b8a970ed8a68a4d94c24fa5f | Qt Positioning | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtpositioning-attribution-clip2tri.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "8fa1497256c967ac2f26691e914bac36aba7a1562e5489d92e321399b9197418",
+      "textBytes": 2643,
+      "textSha256": "2ea5b4f029a910214e076948060c09649d62980c55525626daa551082ff62877",
+      "title": "Clipper Polygon Clipping Library, version 6.4.2 | Qt Positioning | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtpositioning-attribution-clipper.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "edf05c840e541d3844c3332b3282be307a3a33a363ccde11c16429b90e89344d",
+      "textBytes": 1928,
+      "textSha256": "e75f4fe050529699e1050c62918b114ebdee247f6a5c4e361b06cc03bcc5c448",
+      "title": "Poly2Tri Polygon Triangulation Library, version commit a922022da4c0d3a55b1d6b6d634219caea653053 | Qt Positioning | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtpositioning-attribution-poly2tri.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "c42bac1f728f3b815fca7c9c43c44dd72486dcc784c5666a405cfc2e1340ab80",
+      "textBytes": 2207,
+      "textSha256": "9b368fa85142075790283712698f6bee8752ebbf9026fc1c0855a54086f559be",
+      "title": "JavaScriptCore Macro Assembler | Qt Qml | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtqml-attribution-masm.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "da44084fc6ace9dd106d10a4ae0919ec9b3622c6489cdfad389c7386d3f1bbfa",
+      "textBytes": 1611,
+      "textSha256": "c3a2eaed6752525a32a2ed50704cf90234a28ff16de1c903856e66ec3d78c88a",
+      "title": "Yoga, version 2.0.1 | Qt Quick | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtquick-attribution-yoga.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "517ab0c6b1b60271624c0af8f6a0420b285a4957604dae8751bbefd1f4cb9982",
+      "textBytes": 1851,
+      "textSha256": "7d142c8d74cfce4862c84dbfa93241e4330503cf158177f0327d74149ded16c1",
+      "title": "Open Asset Import Library, version 6.0.5 | Qt Quick 3D | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtquick3d-attribution-assimp.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "efbe069b53b3a75a0e702babfb73cd79f1cd64820823ded3168e0f0b46116aec",
+      "textBytes": 7312,
+      "textSha256": "75f3766f0c9f24056f7c22396a22216caf2642db7811154b3d5e56e3658411a5",
+      "title": "Blue Noise Texture | Qt Quick 3D | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtquick3d-attribution-blue-noise-texture.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "216781df4c3430c1ea512f3743fe993726b0f0b7f8b3a853e3ec0588a367504a",
+      "textBytes": 10649,
+      "textSha256": "50b8fac84f321dae8b3cc75810b88e1343b79e9889bdeb0bc8e18b07a680c1c8",
+      "title": "closestPointOnTriangle | Qt Quick 3D | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtquick3d-attribution-closest-point-on-triangle.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "2d582b40def10cdfc40af972c7838b0495ec7af20ed3fb618cafa5c6bd869569",
+      "textBytes": 11722,
+      "textSha256": "9c400acc61dae4d725863d273bba424ead892871811564c18be4da38811b4af6",
+      "title": "Intel Embree, version 3.13.3 | Qt Quick 3D | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtquick3d-attribution-embree.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "b3633d0791221be1d0cb2cd05765be18ed9d0a8bf2dbe55a3ce8c9f8cbcbc593",
+      "textBytes": 1427,
+      "textSha256": "860d9db3a1375e029853e5aaa220cbde98cff11a4d4b487c44db736158193b88",
+      "title": "Godot Engine: Fog | Qt Quick 3D | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtquick3d-attribution-fog.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "c0c618e290b731d8230b76e7e25f95508f7094bfbfdca87ef232a7fcbae1735c",
+      "textBytes": 7176,
+      "textSha256": "3164bba8c35836d3f0ff6fdc44d0a5f4857495b597af268a4cca63e13aa7c992",
+      "title": "Cornell | Qt Quick 3D | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtquick3d-attribution-grid.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "d8ec17b953c4ef273b959fbed23af5320117bacf2dd67dbc982c9e7c817deb9d",
+      "textBytes": 1388,
+      "textSha256": "13a1a856bf52dfb169540a7272850483ab0f0afe9dce1d909c7dcd855c781461",
+      "title": "Java Native Interface for C++, version 1.0.0 | Qt Quick 3D | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtquick3d-attribution-jnipp.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "f5083c29f196faacb57e2d1cee6919c23515c89655335545432cf350a0ec634a",
+      "textBytes": 3146,
+      "textSha256": "e278c3bf95b2aa22f1a582b30b07ba930c78c56578b58e292994f03d4daef300",
+      "title": "JsonCpp, version 1.9.6 | Qt Quick 3D | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtquick3d-attribution-jsoncpp.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "09fa983b7dd8b34f1f8b71d429a827964c5dc12f552a01166bcd03e93bf9b8a4",
+      "textBytes": 1434,
+      "textSha256": "4e5dc211d854f72f3bceaf609b27badb35a4574e9f025991cbbe98565b5e5307",
+      "title": "meshoptimizer, version 1.0 | Qt Quick 3D | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtquick3d-attribution-meshoptimizer.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "43af5d92c0b52ed855fa4d1bfe73c950cab44bf8e8badc46b4c0fa549564c39a",
+      "textBytes": 11691,
+      "textSha256": "9c8c70ce3921d65553bb361f93e609a386a311c946fa8c22e7db00b7d7d5fcf0",
+      "title": "OpenXR SDK, version 1.1.54 | Qt Quick 3D | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtquick3d-attribution-openxr.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "cd8f6c664bf9134be861832a3d12ab2eb64c205fe06da33f2b45505a28798411",
+      "textBytes": 1435,
+      "textSha256": "04727456ebe7121f1d1b6c5b9d5471782c9930c698a1a5137db2102fe72904c3",
+      "title": "Godot Engine: ProceduralSky | Qt Quick 3D | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtquick3d-attribution-proceduralsky.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "85b27308e0193f424c4711ac1f48458b0946be9a2ad7702339ac9d8cf5aa882e",
+      "textBytes": 7187,
+      "textSha256": "012b577480ac0a5b9289014ea1053e147d7054202d26809762cab77e69e99720",
+      "title": "Bake | Qt Quick 3D | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtquick3d-attribution-svgrepo-baked.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "76812b9730c7d0c172ef7418178bae9cbd3e64a97621a458f5cf727fe5f8c4a5",
+      "textBytes": 1255,
+      "textSha256": "82227b5a69db5e2ad9413c2a8a58ea1f37a04b1818009b594d5f5e9650a32b6a",
+      "title": "Camera Viewfinder | Qt Quick 3D | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtquick3d-attribution-svgrepo-camera-viewfinder.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "8cb43cba4f6e496940afca45828b548a4a21ec43e7c256d9c1cefebe1ea2d613",
+      "textBytes": 7188,
+      "textSha256": "be81b2baf54afb9e7eb380bd94e07659b33f8b3e5b042f0a4f5e404078992798",
+      "title": "Colosseum | Qt Quick 3D | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtquick3d-attribution-svgrepo-colosseum.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "20e98de9166ec10d872636afb54055ebe432e24a8ef127cdc29816b9c6baea02",
+      "textBytes": 1250,
+      "textSha256": "4d4aa2bbcd137cde922ac45ae7bae57deddac70a6b3248fd13f432dfad7f94bc",
+      "title": "House Simple Bold | Qt Quick 3D | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtquick3d-attribution-svgrepo-house-simple-bold.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "ecc9e545ee2161f3d8cf3b1d05544b72284671cd793358efd95ff20d5ec7ccaa",
+      "textBytes": 7770,
+      "textSha256": "0b7f7d72f3ae8928d1e4761348712d2f5cf5d205c42828384c20369c42878b7a",
+      "title": "Night Light Disabled | Qt Quick 3D | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtquick3d-attribution-svgrepo-night-light-disabled.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "a96b40588487575fff28b519af12bea86d974fcfeffc0b87b7de02a46045d973",
+      "textBytes": 7193,
+      "textSha256": "c58b68a4e5653ac9c9d7b38a16966553379e22b372a7435f26f6a53167d02847",
+      "title": "Right Arrow Backup 2 SVG Vector | Qt Quick 3D | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtquick3d-attribution-svgrepo-right-arrow.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "71ab451d587b4c65801c553929f6292ffff1a1495ea688c45167cdf609b3dbdd",
+      "textBytes": 7771,
+      "textSha256": "e3308d5d30d9b307e2f976adb4e9f29bf131c327515113e48d8eaf043008cd98",
+      "title": "Screen Shared | Qt Quick 3D | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtquick3d-attribution-svgrepo-screen-shared.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "cbdf3bc5248bb5a0cd0b74d6720a0c7c170a3d211e13f94c4c33a15bf77e2c78",
+      "textBytes": 1904,
+      "textSha256": "a55447e0d8c57844f541840240e80cadb5a098aa86d725be13249b28c87a7cd5",
+      "title": "Tiny OpenEXR, version 1.0.13 | Qt Quick 3D | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtquick3d-attribution-tinyexr.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "0485e8f03eac07f62af7d30cacd3829d49fab0d88a79e8eeb6aa75e7d9740aa2",
+      "textBytes": 1482,
+      "textSha256": "2374f7fb47531257f4f2c28c3f7bbafddd1698b6b6cbd6ef4b755e92fbc8708b",
+      "title": "xatlas, version 16ace528acd2cf1f16a7c0dde99c42c486488dbe | Qt Quick 3D | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtquick3d-attribution-xatlas.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "0ea230345e4e05f416edec1fcb8ddcd1cf09a6dea9c781396fc7367c31dc8eca",
+      "textBytes": 1884,
+      "textSha256": "1e92426807905392431998c1cbf2cad97ed9290b48a0780463be03dc4ed838d8",
+      "title": "NVIDIA PhysX SDK, version PhysX_4.1.2.29882248 | Qt Quick 3D Physics | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtquick3dphysics-attribution-physx.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "b4cedc32c59dfa3b38c04dc32d6f499bfb141f74c00d757d2635eca71ae5656a",
+      "textBytes": 1344,
+      "textSha256": "0750a214854e6091048fd85adc990058a3f5e163371d9816366078ac16375a5a",
+      "title": "Shadow values from Angular Material | Qt Quick Controls | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtquickcontrols-attribution-shadow-angular-material.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "19b6a2e6d346966af60907b9e7168c5dc82d47c8f58b15f2e47224a127f59f50",
+      "textBytes": 10592,
+      "textSha256": "81e4e1e91de54f2e206295428cfb63f7593b85ff60f5bd5267672fe2a71f0f9f",
+      "title": "Android getRotationMatrix and getOrientation | Qt Sensors | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtsensors-attribution-android-compass.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "1ea54fc57349d623286d8ebd8a2ca4dfaee2944705f196584c2358ab6ddcd13a",
+      "textBytes": 55415,
+      "textSha256": "76c47d3011857e0c783259705fa6d45325ad0ca88545638728df0ded63771de9",
+      "title": "glslang, version 16.1.0 | Qt Shader Tools | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtshadertools-attribution-glslang.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 3,
+      "sourceSha256": "2b85cac6a9c7aea1b11e79a0d4a927b6abd407fbdd61907c72b1de9054be6ac5",
+      "textBytes": 12181,
+      "textSha256": "07c9c04e96f0bede4b88ea0cdb602ef5330e6a4a751ba13ab6feae01aee905e3",
+      "title": "SPIRV-Cross, version 998146d76fc5cbb2726f44c55e25fa28a573a782 | Qt Shader Tools | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtshadertools-attribution-spirvcross.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 5,
+      "sourceSha256": "2a86f62f6e1e25d5c25ada0bd0325b2636db4364bbdfa88c942ffdf661fe02ec",
+      "textBytes": 35062,
+      "textSha256": "4889cf7ab60b6ff74c2a1b029c041a8d051deaa237f3beb7071516e8cd0eae6c",
+      "title": "Eigen, version 5.1.0 | Qt Spatial Audio | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtspatialaudio-attribution-eigen.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "9a0d1b6c36546b1e95b4b4d22f895c989bb28e5502ad9db89b141d42210bcc0e",
+      "textBytes": 2294,
+      "textSha256": "c72fa7f570ca3c3fb59622667f5d4abe4cf94ba7e2ae5e7b1ac1635c00b74e2c",
+      "title": "pffft, version 02fe7715a5bf8bfd914681c53429600f94e0f536 | Qt Spatial Audio | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtspatialaudio-attribution-pffft.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "65611d96e6ad7d3c06173f864b4f519499e8045b708847b21a28783577f47fc8",
+      "textBytes": 11598,
+      "textSha256": "c86b53ff99ff117232214f6b9c11b9edab75870471cbe6f747c04816b5ed1190",
+      "title": "Resonance Audio, version e225aedb5ec76ca6a0fe7079c0b84dbcbb490553 | Qt Spatial Audio | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtspatialaudio-attribution-resonance-audio.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "021730d25e2563368d6d9c409613cb03000c114eb0b95e2141cac26c85e7ce28",
+      "textBytes": 668,
+      "textSha256": "6cc65bae32c036c3ed84db81dd1c3203345d65c62c05f9a24d782da62239467e",
+      "title": "SQLite, version 3.53.4 | Qt SQL | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtsql-attribution-sqlite.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "237388ef1841f4b164ab9dbdf454f4b5ae65662071913bf4418afdb44710ea14",
+      "textBytes": 1463,
+      "textSha256": "5fe4e5d17a3af2651b2ff5e767fb473996957e426ed45b9fe8461a90dece2ebd",
+      "title": "XSVG | Qt SVG | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtsvg-attribution-xsvg.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "48f11050b3bd5ddeb3d57957d622a07fe8e0f77e17568a97b29f322d3c771560",
+      "textBytes": 1647,
+      "textSha256": "1d7265311a17daf7c190e9955517d3cec8c89a4d3986ee8ff9fa61f7638bf186",
+      "title": "Catch2, version 2.13.10 | Qt Test | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qttestlib-attribution-catch2.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "006224c438d8ae4f473e2fc343b6aff25bb349c83f1ce55a134563b7b62ccc0e",
+      "textBytes": 1343,
+      "textSha256": "d681ff11d861ffb4173f0334363ad11872c3fdbb4e5c81ee5358203ded6af2e0",
+      "title": "Cycle, version 3.3.11 | Qt Test | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qttestlib-attribution-cycle.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "6f32fcc6f27d9f50e34aa5ec0eec156a4c7e7d99f89930c546d8f8e1fd014892",
+      "textBytes": 19042,
+      "textSha256": "3ead83a48d524cf8919a803c7c6eca77c9443a63d336d83b1fa41d697be9dcb5",
+      "title": "Linux Performance Events, version 6.13 | Qt Test | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qttestlib-attribution-linuxperf.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "a83bd7618e362d3e771232236b7a730604b813c6a0eade3a93b4bc6d5b84f0e1",
+      "textBytes": 2092,
+      "textSha256": "89d2a27955978c48d44d46f0e8d1324ec01d16338227a248dbacb2d21c7be3b1",
+      "title": "Valgrind, version 3.25.1 | Qt Test | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qttestlib-attribution-valgrind.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "9d23dd35a0da042ce860f96e82b1fca1d10a36026d18c3bf30619c70b4f08d18",
+      "textBytes": 10545,
+      "textSha256": "7128c86d4142a9f286ac308cf200112ca4fb1d42d96b12ddea3c40d07803b94c",
+      "title": "OpenWnn | Qt Virtual Keyboard | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtvirtualkeyboard-attribution-openwnn.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "2c209a1d4c0a3e6c8ef2b3e128955fc7fa5c3b54e01e967b3730937f9c77a915",
+      "textBytes": 12262,
+      "textSha256": "b31b45a7934c74f065d84a07f8b309dc646b41519103fc62fb6ed3906f5e9834",
+      "title": "PinyinIME | Qt Virtual Keyboard | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtvirtualkeyboard-attribution-pinyin.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "d640e556072a5c218b399b8b38dfb8f39c7b4679a993570914b7230e175daaf0",
+      "textBytes": 4925,
+      "textSha256": "ffb49fc107bbb8049aa637afc7ed8e8f9a74a9d1e231e6f1c6594f6db394d9a6",
+      "title": "Traditional Chinese IME (tcime) | Qt Virtual Keyboard | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtvirtualkeyboard-attribution-tcime.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "ed73acac7fdac4d689ddaadea9fa9bc8e7e85c186b58a2fa54281b427998bc85",
+      "textBytes": 26195,
+      "textSha256": "7f608e29740af0f6b73db926f6dd666382f56919b3bb82eaf5dcc36286ad6cc7",
+      "title": "Wayland KDE DBus Menu Protocol, version 1 | Qt Wayland Compositor | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwaylandcompositor-attribution-appmenu.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "530e50c2333ea4554b5c78d175b975cddb1acc6c9bd7030c5cfba95774470143",
+      "textBytes": 1345,
+      "textSha256": "039a74f5deb643cc02f59fe36539ed2cc7d7a3214af8c6e83d5fa6b2924babd6",
+      "title": "Wayland Fractional Scale Protocol, version 1 | Qt Wayland Compositor | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwaylandcompositor-attribution-fractional-scale-v1.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "e03fd00b2c6c03fc7f2d40441c6dea2cdf3a866971d235d0658993cdd35f3055",
+      "textBytes": 1378,
+      "textSha256": "7af6f48543a11cc8b0fb957853c0cf0c2fe2f59c582adf836740022884937170",
+      "title": "Presentation Time Protocol, version 1 | Qt Wayland Compositor | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwaylandcompositor-attribution-presentation-time-xml.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "b9efe0cbddbc835aa96eda3bd2556c1c87d8ece7e31301719731dd80bfc8f0b8",
+      "textBytes": 1494,
+      "textSha256": "897a269bf69564394f4c1740e09c5ab47df7f4745a1e0f4dda072611dc120014",
+      "title": "Wayland Color Management Protocol, version 1 | Qt Wayland Compositor | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwaylandcompositor-attribution-wayland-color-management-protocol.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "87e08022113eebc963310254f40d6c0501bcb1e6d1a9b7c416458fcd1740e169",
+      "textBytes": 1397,
+      "textSha256": "9b51b4857efe5b76f422fbe21dc6ef439a054a5ad1d35529ba5ad1a2f218e9d9",
+      "title": "Wayland EGLStream Controller Protocol, version 1.1.1 | Qt Wayland Compositor | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwaylandcompositor-attribution-wayland-eglstream-controller.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "400d2109abcd70027a63e60eb9dbf50904b4811d0663483fed83a631ad194460",
+      "textBytes": 1440,
+      "textSha256": "0b2a2904fa444ee60e8d63dffab49621d08a9bf9e97b8010d53520386083ec7c",
+      "title": "Wayland Fullscreen Shell Protocol, version unstable v1 | Qt Wayland Compositor | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwaylandcompositor-attribution-wayland-fullscreen-protocol.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "129084e0efd629da367a52798f794570ba929e38325f523b9caa7be2a0eb77e4",
+      "textBytes": 1648,
+      "textSha256": "ff7a8c5485b534c6278829169abd7670c455ce9ccdc9160e5d0a37fff58fc0a0",
+      "title": "Wayland IVI Extension Protocol, version 1.9.1 | Qt Wayland Compositor | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwaylandcompositor-attribution-wayland-ivi-extension-protocol.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "d5f88d333275655b7a136a18c285631626e70f58de64bc694bf622f378d4af80",
+      "textBytes": 1394,
+      "textSha256": "38dda9dff7471e0f9d443081a6b3640bba31908d1e1fe2a1c160bfd9ea58ad14",
+      "title": "Wayland Linux Dmabuf Unstable V1 Protocol, version unstable v1, version 3 | Qt Wayland Compositor | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwaylandcompositor-attribution-wayland-linux-dmabuf-unstable-v1.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "a0ab856979c79fc9e9c4dda22cc080d68126be69036b53b45a4aa7c60e3665b0",
+      "textBytes": 1328,
+      "textSha256": "03c16615485c7134fa7988c39ca8442db058cf45ca1bc48403b78d647c75647a",
+      "title": "Wayland Pointer Gestures Protocol, version unstable v1, version 2 | Qt Wayland Compositor | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwaylandcompositor-attribution-wayland-pointer-gestures-protocol.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "488d9580eb8b5e417de36f318e25bac0ea01dc670ff4bf17aecc5f0829849056",
+      "textBytes": 1392,
+      "textSha256": "0fee3c44d0a7c837c18a20a0a57dc44a01f44e0d0464874df62a005110044cf9",
+      "title": "Wayland Pointer Warp Protocol, version version 1 | Qt Wayland Compositor | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwaylandcompositor-attribution-wayland-pointer-warp-protocol.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "88c34e66c68cb633ab6a83163f6f4ee478ea7a4500206e3371d41112e9d78c48",
+      "textBytes": 1430,
+      "textSha256": "6df6f62744575d6121db939b8f09856daedf9e62f9b9e17f042242bcc8dcd3c7",
+      "title": "Wayland Primary Selection Protocol, version 1 | Qt Wayland Compositor | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwaylandcompositor-attribution-wayland-primary-selection-protocol.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "7f1e400d41ac8b4b81547fcec022a72c2039b498e3618a5ac9d4713f5c65e0f9",
+      "textBytes": 1469,
+      "textSha256": "a5c0797564f7ef967594eb0d2fc15781e47cab4ad22dccbf36b87426d98a18df",
+      "title": "Wayland Protocol, version 1.24.0 | Qt Wayland Compositor | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwaylandcompositor-attribution-wayland-protocol.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "10cfceee26a00a905f5c8997745c4d5639e5f0183e24a212f15500b86c4756be",
+      "textBytes": 1384,
+      "textSha256": "54d9d4d681b2d093d3a987a369a71bb9ac0f970816f48fe3418bb4fc7ddb55b0",
+      "title": "Wayland Scaler Protocol, version 2 | Qt Wayland Compositor | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwaylandcompositor-attribution-wayland-scaler-protocol.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "651a9e69f8ce3bd9fbbbc14b3b0f1fba749f9d88d8253831b4d0ac2317483825",
+      "textBytes": 1436,
+      "textSha256": "f5bbcc7206cff76b962a78ec2443b8393456f1ebb3edd5f2c0eb8ea68706853a",
+      "title": "Wayland Session Management Protocol, version experimental V1 | Qt Wayland Compositor | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwaylandcompositor-attribution-wayland-session-management-protocol.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "1b1141788352993fc2224e3662e493b66eccc937b5eae330f50c8a9e96a4e3ee",
+      "textBytes": 1361,
+      "textSha256": "c81d95ac408a4c724749cc8239ed4249b823a98410f179a31c22d7ebfff90976",
+      "title": "Wayland Tablet Protocol, version unstable v2, version 1 | Qt Wayland Compositor | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwaylandcompositor-attribution-wayland-tablet-protocol.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "3b086d9674b664281e8974f625ff9c9b88ab0db54eac57ee1459033bef5a1f93",
+      "textBytes": 1451,
+      "textSha256": "1823cb19ae34a50bbfd07fdec3ec186e86eeba90e9c0db83e73ea636ab26e2f8",
+      "title": "Wayland Text Input Protocol v1, version unstable v1 | Qt Wayland Compositor | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwaylandcompositor-attribution-wayland-text-input-unstable-v1.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "af7531d8cd82345915c00651530b0ac25d13719f818cf7efd4bad6407498fa9d",
+      "textBytes": 1498,
+      "textSha256": "feb20e22d584aecb695f7da2070484e5140f965fd5066c98e735d60e6b6fcfdb",
+      "title": "Wayland Text Input Protocol v2, version unstable v2 | Qt Wayland Compositor | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwaylandcompositor-attribution-wayland-text-input-unstable-v2.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "054da29b7403175ff70662e182c2264e69e3f58c7d556abf2680e9c9c66cc53d",
+      "textBytes": 1551,
+      "textSha256": "4a3b885a22e97b94a6ec9f64307da4a1ff39efa6c66c4dd0479e7c79c40034df",
+      "title": "Wayland Text Input Protocol, version unstable v3 | Qt Wayland Compositor | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwaylandcompositor-attribution-wayland-text-input-unstable-v3.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "3eb0db42134e931682a99cfa0cb0f7f76faba58c1b2bc559322e043b40d8d970",
+      "textBytes": 1396,
+      "textSha256": "44208bf0cef093689e1c47d1ab05775c749fd9996423648cbcf79e1c71eb7bed",
+      "title": "Wayland Viewporter Protocol, version 1 | Qt Wayland Compositor | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwaylandcompositor-attribution-wayland-viewporter-protocol.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "10dfdf7c44488c7e5f699a939672bb2b57f28315f4145bccb1ad7fc6ea43e6ef",
+      "textBytes": 1479,
+      "textSha256": "2ef8ccc8eb3f0d98b3b27c1639ee5211034cb016f1d7b64b7027619cdbe35d12",
+      "title": "Wayland xdg-activation Protocol, version unstable v1, version 1 | Qt Wayland Compositor | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwaylandcompositor-attribution-wayland-xdg-activation.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "0ad0576e9da276cd124e0b7f813c6c3e6aa23ac71d9560c4a4940c0d75c5699c",
+      "textBytes": 1455,
+      "textSha256": "e178f27b7de693170d63c58079d597eea9e4fd6a7207206d5fc5d400dc22b10e",
+      "title": "Wayland xdg-decoration Protocol, version unstable v1, version 1 | Qt Wayland Compositor | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwaylandcompositor-attribution-wayland-xdg-decoration-protocol.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "439cb80ba58f0e3b291d808923ce68cd07a47ce061efa178979d92eee08c4ae0",
+      "textBytes": 1437,
+      "textSha256": "ed1c02fe98f721588356f9dc7f5ff52091718b66f950d010d86b75ed3903e733",
+      "title": "Wayland XDG Output Protocol, version unstable v1, version 3 | Qt Wayland Compositor | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwaylandcompositor-attribution-wayland-xdg-output-protocol.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "726cc357f420bb5159fd950a69dd7454a2ddfeaa09e3201775f6c3bcdeb69b3f",
+      "textBytes": 1627,
+      "textSha256": "dddb498547209010c085bfce996656d84fab75256a4935055681b639e1018468",
+      "title": "Wayland XDG Shell Protocol, version 1.18 | Qt Wayland Compositor | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwaylandcompositor-attribution-wayland-xdg-shell-protocol.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "1d95bd7cf0072a975d793cf926cc2a03f66484ec6c51f776c220b5a63b941371",
+      "textBytes": 1456,
+      "textSha256": "8ba2aa424fa6ab71eb49e2a995eee3b83029a151b560349cc7a023b9a6c1769c",
+      "title": "Wayland XDG System Bell Protocol, version 1.18 | Qt Wayland Compositor | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwaylandcompositor-attribution-wayland-xdg-system-bell-protocol.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "22d18e1ce8663ed7c24fdf700c4208cd1460a51614ba14602db382953cf3d529",
+      "textBytes": 1458,
+      "textSha256": "33534dfefa4f54f11c3b1eb7037cca039422cbded0b59c749509dddf84f2d398",
+      "title": "Wayland xdg-toplevel-icon Protocol, version version 1 | Qt Wayland Compositor | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwaylandcompositor-attribution-wayland-xdg-toplevel-icon-protocol.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "13089d759c6f9b597601475cb1dc7bf597ea49499691c3dc90157892a6e2d61c",
+      "textBytes": 1408,
+      "textSha256": "1d1d2a1ea8a45f768a9a3d6b0275173ae89c6a390c3bc273965ef10ebd90a9b1",
+      "title": "Wlr Data Control Unstable V1 Protocol, version 2 | Qt Wayland Compositor | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwaylandcompositor-attribution-wlr-data-control-unstable-v1-protocol.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "78dd7879788ca119600cae5455bcff44181976775db293fc02350cca9a28c40d",
+      "textBytes": 1319,
+      "textSha256": "987432b7c2b91e0eacc0a4cad906971ed00cb79ffe04597f72fcb6bb8ff8c5f3",
+      "title": "Wayland Dialog Protocol, version 1 | Qt Wayland Compositor | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwaylandcompositor-attribution-xdg-dialog-v1.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 2,
+      "sourceSha256": "f160916f6d637399b7fa46827b4e418442cdde5706e7f70da8b3183c5817a947",
+      "textBytes": 1352,
+      "textSha256": "52ff683c4c5238fbfeca197de974d7ad07df101a18da3bd04059d8fb1f4c7c72",
+      "title": "Wayland XDG Foreign Protocol, version 1 | Qt Wayland Compositor | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwaylandcompositor-attribution-xdg-foreign-unstable-v2.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "2f3e26e89ea3a290e1d51863242981ddcc039ec678fd2bbe1213f9dfb69b773a",
+      "textBytes": 10871,
+      "textSha256": "a8cff40a8f69e0753f6bb199c50c1f8468f567c1f1e3077a6cae923fa398dbba",
+      "title": "Abseil | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-abseil.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "2318c515b032aca58ff5683f939c2c7b885d2e4eb52bcf56e0e46000c868e9fd",
+      "textBytes": 1118,
+      "textSha256": "40051d034aad6d8d55a9162e05db89067eff0918a9bb1abe96aab77013126e6c",
+      "title": "Acorn, a tiny, fast JavaScript parser written in JavaScript. | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-acorn-a-tiny-fast-javascript-parser-written-in-javascript.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "62bc8786e96653abd443370f1bcea49d4492b861774e291c5ffa1f1095566dc4",
+      "textBytes": 7035,
+      "textSha256": "3732955d881a95e6445b87c6be71a1d2bfbc5c039f11ad0f1d2af62c1c15350f",
+      "title": "Alliance for Open Media Video Codec | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-alliance-for-open-media-video-codec.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "53356e3676dc531bc4f38f3a1b4c9eaaec58f37db977636d5d97c3730331c00f",
+      "textBytes": 1662,
+      "textSha256": "b9ea92e7a92d0f4923f04cb70ce51c45fe94896f4f90d1f78c2466722177f110",
+      "title": "Almost Native Graphics Layer Engine | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-almost-native-graphics-layer-engine.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "1c33bea225650c2ba181a6493226080ddaaf20ecac144cf9462c5ef611149a87",
+      "textBytes": 10869,
+      "textSha256": "113a57d227fdd85fedf9186a27ab3681a60812039bdf0a56f8cd4ddc6efe819d",
+      "title": "Android Explicit Synchronization | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-android-explicit-synchronization.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "1f02c8c92f7d40bfc3d255cabf496be8d13a77372ed549f57286d08a9b7a8974",
+      "textBytes": 13132,
+      "textSha256": "00977ae0d225c10ccd195bab79a0b2e438e3c2f1273527848ae7315443b55c6e",
+      "title": "BoringSSL | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-boringssl.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "17075008539cd7545ae894fd216a3283b365953ddfd68ab0ceecd4ba4397fcc7",
+      "textBytes": 1103,
+      "textSha256": "a739345336150a180eabe7b18139e55c6b87e9a32d5eb3a0fcaab019952a66fe",
+      "title": "Brotli | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-brotli.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "ad97dde70701060021f574891b1630232ece34fc9395d45c0881d8ff088a7b68",
+      "textBytes": 281,
+      "textSha256": "577ee39ec3c3c6196bb3fb28d2beef7262ce1d4394a2fbac2dd2069a66d30891",
+      "title": "C++ Signal/Slot Library | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-c-signal-slot-library.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "b18e0775f61446ec6a831c56ab0329a2a8200d5dded4bcc7f5b57bfb1d5d5023",
+      "textBytes": 1611,
+      "textSha256": "071ec51c20b0b849081d3a9da9694ce2f6b092680d16d50f526c4f0b60fa7b8c",
+      "title": "Chromium License | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-chromium-global.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "161bbfc64528744b83710301c1e1ffb99145bf93561f52ab2a333b350ad2dace",
+      "textBytes": 1129,
+      "textSha256": "65ffe6005af4a81c4bd0d31f30edad3421ca750710252b2b3312f1757ced55de",
+      "title": "CityHash | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-cityhash.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "e73ee4b0e87eac4d8b6970268d86695c7683a323b3ab9059758be06d38918f40",
+      "textBytes": 1126,
+      "textSha256": "dde182e2aef85810f5d50d1437933bdb7abc8d5a225208a52facaf4ba87454a7",
+      "title": "CodeMirror 5 | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-codemirror-5.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "b2d5966d131b034f80ba606a74b11633be8242b28bb0a2dfabd067770267b266",
+      "textBytes": 1131,
+      "textSha256": "4922f7ef8442640d5ac08dfe1368b1c474843170fa10e26ab32b7efd89c481c9",
+      "title": "CodeMirror 6 | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-codemirror-6.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "aa1b640d6a9e585a5b98eb5e1fab44c8a4eedbbff3b2334127a177b9abc0baa1",
+      "textBytes": 10869,
+      "textSha256": "113a57d227fdd85fedf9186a27ab3681a60812039bdf0a56f8cd4ddc6efe819d",
+      "title": "Compact Encoding Detection | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-compact-encoding-detection.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "80a877bcd235f84aabdf3e803a9e26b1ddc1be206b2367d6026d767b1faafa07",
+      "textBytes": 11411,
+      "textSha256": "5b3018ba7d5eaebd95a33b7dd014c57ee2585b4c9e3c41f6470225c5e6a0744b",
+      "title": "Compact Language Detector v3 | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-compact-language-detector-v3.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "6de9004de35f3d41d24c16c1c2af8ea46cb3a72a8b5253a86fa8a2ab174ef190",
+      "textBytes": 1443,
+      "textSha256": "b9e74ff2addc28103bf8930a98a1e0b8768807ffa8be41646b509d67cdaf2d45",
+      "title": "cpuinfo | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-cpuinfo.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "1e4d9f45ff9efebb054c61ae2d6d5f410e254646c75bf16a8a280e0b2a8ae605",
+      "textBytes": 10869,
+      "textSha256": "113a57d227fdd85fedf9186a27ab3681a60812039bdf0a56f8cd4ddc6efe819d",
+      "title": "Crashpad | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-crashpad.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "7298795a48113e5e753f771e51275058179e2893db94c829c13186f6d63a8159",
+      "textBytes": 1479,
+      "textSha256": "1f42c0a589e2682352873da501f9c943129a90b179c04ba57f72d6452ac8c6ce",
+      "title": "CRC32C | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-crc32c.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "14800de84f6711c21e309a62dfdf37e66d7347a12a9a062583919e9b5e04d99e",
+      "textBytes": 10869,
+      "textSha256": "113a57d227fdd85fedf9186a27ab3681a60812039bdf0a56f8cd4ddc6efe819d",
+      "title": "CSP Evaluator Core Library, a tool that allows developers to check if a Content Security Policy (CSP) serves as mitigation against XSS attacks | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-csp-evaluator-core-library-a-tool-that-allows-developers-to-check-if-a-content-security-policy-csp-serves-as-mitigation-against-xss-attacks.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "076e2efdb2e4241d91ce035c82efd3dfa8d03259a94eeebf63f4c3e1576f1c02",
+      "textBytes": 750,
+      "textSha256": "735452cec40b4219e2b8ee9e6e5d2da09a872d1547259bff969ce22137f70614",
+      "title": "d3 | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-d3.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "011adbe73f1f4519f875935713bcb938d9ea45d23ba3662b0fcfa38144ee8c99",
+      "textBytes": 1331,
+      "textSha256": "95f683ad36770f4393f14d500a563fa54e0bc145a79bd56618fdc5bcbede4256",
+      "title": "dav1d is an AV1 decoder :) | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-dav1d-is-an-av1-decoder.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "f628f3f45a428527dabe2d9d22f444736986fbac47b3b0f16587a152e094f1b7",
+      "textBytes": 1580,
+      "textSha256": "a85432da040befa95b8ad1588c4d8ce6d948cae784bc00060bd02165126a5bad",
+      "title": "Dawn | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-dawn.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "9f0d9bcfc9d4b1d1f12833fa77cae19fd5c083d81da80ec34fef1f0fffd55761",
+      "textBytes": 1578,
+      "textSha256": "348ad57ec6a38bf8ccb0a0bce96153fe9dcea623b821c402255129e877e97dd5",
+      "title": "Devtools-Frontend | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-devtools-frontend.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "d9c02d82d6a0990afa5b7a2b9c55cab1868e7ee2baa85ce10809c20cd4a083d5",
+      "textBytes": 1357,
+      "textSha256": "c7fad902f4d08389803b626b63789ab5857fa76e85d815e9423377418e71606b",
+      "title": "dragonbox | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-dragonbox.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "904145e08628d696ee57c0ff49ae16290defdef60091fa3ce3525fc0a5875d1e",
+      "textBytes": 10869,
+      "textSha256": "113a57d227fdd85fedf9186a27ab3681a60812039bdf0a56f8cd4ddc6efe819d",
+      "title": "Emoji Segmenter | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-emoji-segmenter.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "bf17a8b73d97aeb8ff56e5936a2a805ca1ef7ee3167e42d82860808452a9beaf",
+      "textBytes": 1163,
+      "textSha256": "989c261b0af2bc64a05894d4fadcc400294d7a9f144bc275db588519a76b1f9f",
+      "title": "Expat XML Parser | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-expat-xml-parser.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "f79e532d959fbacda7fda0eb3ee3e1acd52c6d4c5e6598563d0f0aea609e7ad2",
+      "textBytes": 1098,
+      "textSha256": "41aafef6f52a188fa2186cc3638ef170986dce11be74642d2df8324429d82639",
+      "title": "fast_float | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-fast-float.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "9389d34d596d3a1e50e6a5b8981fe7d03ca2e34b5ae18c0f32941966a4e286b4",
+      "textBytes": 45047,
+      "textSha256": "56386cc4b2161ebffb11c7b0d8c7ec602722556461bbd6caadb2d6fa39507493",
+      "title": "ffmpeg | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-ffmpeg.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "4ab3bd6ee9988e8aebe32878d174c54d2c33f83b4ece593b455199550186ed86",
+      "textBytes": 1145,
+      "textSha256": "132d7fc594c8a5e5127e1f006fa9764728173ded53c83a0d31cbac5f4816b703",
+      "title": "fft | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-fft.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "b3ff72de57e23db2d1f5d3e1ead58fd463911f15a50f241e8dc5e79ff1b1a736",
+      "textBytes": 657,
+      "textSha256": "6749fac669e45d5c6d5f4cd0c172bec445425479d2c7382353cf51ae6d00415c",
+      "title": "Fiat-Crypto: Synthesizing Correct-by-Construction Code for Cryptographic Primitives | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-fiat-crypto-synthesizing-correct-by-construction-code-for-cryptographic-primitives.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "a15654a87bd299d502a5254b0306b13270b7c81bd9694a9c4e327864420f7400",
+      "textBytes": 1528,
+      "textSha256": "3592dc50bf16068a6233b124a3bcbbb59a905fd59c81e3a9379d891f48fdee58",
+      "title": "flac | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-flac.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "f437f1ea8c403baac6aa44dc84b07026b86daef7c5c8104e3f8e33c5dbea8d87",
+      "textBytes": 10853,
+      "textSha256": "999cb2737e693113c4e23d4d771d9513abbe800ad7c6caca89aedb6ec1355999",
+      "title": "FlatBuffers | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-flatbuffers.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "3e0f29bcf802c73e3be6136cdee358c4293e131eede96ed30d81be550d057aac",
+      "textBytes": 8643,
+      "textSha256": "ac7d1fefe986c6069ac0430f69a04d1d191c96e927f00c1d4acc686568dc022a",
+      "title": "fontconfig | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-fontconfig.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "bb47ddbc59645b81c55062b67391077872bde457b4c49e49f9186b207e5a077c",
+      "textBytes": 1176,
+      "textSha256": "d4ff3e29a2e3f435b60e923116dab451d054c0d3dac2dac7b1dcf533bf6b8c43",
+      "title": "FP16 | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-fp16.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "0d9165fa0ae0df2593a5f748be125cbd61badc7475eda76e810b502c685efc69",
+      "textBytes": 292,
+      "textSha256": "c7224b1369aed29e39bf5ff65cebd9461558d9e000ee35129b87ae28a863cbcd",
+      "title": "General Purpose FFT (Fast Fourier/Cosine/Sine Transform) Package | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-general-purpose-fft-fast-fourier-cosine-sine-transform-package.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "1e731f0d46c8e12d4e47273249160820669d1b9c79e4a889469662d2111aa7d0",
+      "textBytes": 1546,
+      "textSha256": "d4c7b057449a33f8dc083359599b1d3f75d823cf33cfa7999d7a858e519c69bc",
+      "title": "Google Double Conversion | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-google-double-conversion.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "70ccfed1813be1c76fdfd1edac62edaaeeaad1a6a4e5a85fa6981dd0a652f6ad",
+      "textBytes": 1579,
+      "textSha256": "5e9b19b2510a1b73e754b766a836c2c7474890d6cc42a4f06735118b57a0d689",
+      "title": "google-glog's symbolization library | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-google-glog-x27-s-symbolization-library.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "e9af3611b2e3a06d6f7293b67ae1177c256d23da621b7f50e3fa2f19dee4e6a8",
+      "textBytes": 1989,
+      "textSha256": "3fc63d01e1b785440c80518628bf08c5fea412b7dfe79a47269fc9d6987a62f9",
+      "title": "harfbuzz | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-harfbuzz.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "f40e67c843d5ff35e4a57fea1e524e5e3d7b863e06942af2d5a0a0fe87086ee9",
+      "textBytes": 1113,
+      "textSha256": "000872725c9552c89fb01568049acf89b7a0b6cbbe4160d48c02d16f6bbed4a7",
+      "title": "Headers for the Windows 10 WebAuthn API (webauthn.dll) | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-headers-for-the-windows-10-webauthn-api-webauthn-dll.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "7e6af93678ea636c5bf2df043f6362967b62ddf6f09102dea99e6945ccddc586",
+      "textBytes": 10869,
+      "textSha256": "113a57d227fdd85fedf9186a27ab3681a60812039bdf0a56f8cd4ddc6efe819d",
+      "title": "Highway: C++ library for SIMD | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-highway-c-library-for-simd.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "68aa2a66a3c5b8b9f958177e7af0c6a73cce17c3a2d6198ffc30f32824060a83",
+      "textBytes": 25773,
+      "textSha256": "cd0b88a98567449210eb0e1fa980c8911aab197356aed7676e7780fba4c0301f",
+      "title": "hunspell | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-hunspell.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "fc3f885c3af303fadb0e0e8f8f7b7758e2fd7f92ac9c54a51fe143064e9ce76e",
+      "textBytes": 25206,
+      "textSha256": "eaaff51847f61a909c8528696815218ba619a6cce5f1fbc02fe02d8a6379b6e2",
+      "title": "icu | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-icu.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "872d5ba4e178b96ba242d5ff1970c6c9e9f71b1f895ba4219252533d2f990366",
+      "textBytes": 10869,
+      "textSha256": "113a57d227fdd85fedf9186a27ab3681a60812039bdf0a56f8cd4ddc6efe819d",
+      "title": "Implementation of WebDriver BiDi standard | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-implementation-of-webdriver-bidi-standard.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "1e68ebcf9fa4dcdac4dd4a4b4e811fb670d430b7b5049d9637e6c8aa7371b76f",
+      "textBytes": 449,
+      "textSha256": "a71a1f0ff0c13a1575303b5f8cf5ff04ed1a42d4b17960a03c84235c56ef8f25",
+      "title": "In line A-law and u-law conversion routines | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-in-line-a-law-and-u-law-conversion-routines.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "d02590f55451d014add234315adfdcfdcd0b50fbb08165a3056c1d7f30b6afa8",
+      "textBytes": 10869,
+      "textSha256": "113a57d227fdd85fedf9186a27ab3681a60812039bdf0a56f8cd4ddc6efe819d",
+      "title": "Ink Stroke Modeler | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-ink-stroke-modeler.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "7012057d07c937e69da0354fc91df94d89bbdf31e5ae4c0ab4703e441c9b8782",
+      "textBytes": 10869,
+      "textSha256": "113a57d227fdd85fedf9186a27ab3681a60812039bdf0a56f8cd4ddc6efe819d",
+      "title": "Ink | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-ink.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "85593bfc00e58dde0b9f088de1c1ec084869dff3e20882f7c4908186c68ed21a",
+      "textBytes": 1578,
+      "textSha256": "70ac00f7e93385c542552789f2b6fe24fb4f41fb9333384934421390d93e167e",
+      "title": "inspector protocol | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-inspector-protocol.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "a940439c41df5ca19bc344b7ec39fcf135e6c74f7d93a16cccbbd1dc42249e2c",
+      "textBytes": 1579,
+      "textSha256": "581fe0289613dd18e6c1d600fa392d6cacf7fbd53b91b0c91fcfeb96cbb6d35d",
+      "title": "intl-messageformat | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-intl-messageformat.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "d90199b48db90ef613d04cb711c3a7b84244ebe5e5f275ec7ecaecacc63930d4",
+      "textBytes": 1555,
+      "textSha256": "08db9925db96c42d7be4a147a5b2d9f25544a92d983623a3272fa11156e8ebf7",
+      "title": "ipcz | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-ipcz.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "27f2b3a75d1a3eef908319eb87239314781774b4465a4d381587608a4f9f6402",
+      "textBytes": 1164,
+      "textSha256": "37827c13f3a5c7eb35b36558921a5c4b0f8248efd7a693283ced841830181791",
+      "title": "json5 | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-json5.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "91eba0c389e1b4bffb7547dc7b95a56a3ff2a9924fdbb29a63b4bbf87b67f10f",
+      "textBytes": 2675,
+      "textSha256": "1df6eadb1b54ffd102df7dc16d4bb3bea3dbcbd106f1ddabc04b4c3162468105",
+      "title": "jsoncpp | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-jsoncpp.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "756025fb451b0c263272768493f0e381aa3667b4e1aaa660efa359ed3ff067b3",
+      "textBytes": 10869,
+      "textSha256": "113a57d227fdd85fedf9186a27ab3681a60812039bdf0a56f8cd4ddc6efe819d",
+      "title": "legacy-javascript | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-legacy-javascript.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "2fdf87ac9b46c8ee5df752670500eb24beadd788204a2132464c383e6de7f6fc",
+      "textBytes": 1503,
+      "textSha256": "8d1b111ceee615c264943228153bf0a37c6d0aeb056f9457f93520a92ab045e6",
+      "title": "LevelDB: A Fast Persistent Key-Value Store | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-leveldb-a-fast-persistent-key-value-store.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "ed0368f8ee395ba681f5bb502136aeb1e29f29c188967535cb5bf76353261478",
+      "textBytes": 10869,
+      "textSha256": "113a57d227fdd85fedf9186a27ab3681a60812039bdf0a56f8cd4ddc6efe819d",
+      "title": "libaddressinput | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-libaddressinput.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "482daf4c726aee814b3b0f8c7452cf184021eaccc6a9dbdbc59e77fc6c2c3632",
+      "textBytes": 20432,
+      "textSha256": "c6515ff32c1ebe101b8da3214d2bd2fc33175682234a88bbd953a1c661129b91",
+      "title": "libavif - Library for encoding and decoding .avif files | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-libavif-library-for-encoding-and-decoding-avif-files.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "6a0b7be43d40328149f6619a60e7cb5901873fc0a0ce5147186d3e4759573eb2",
+      "textBytes": 10869,
+      "textSha256": "113a57d227fdd85fedf9186a27ab3681a60812039bdf0a56f8cd4ddc6efe819d",
+      "title": "libgav1 | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-libgav1.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "23347e420370eff501fd44299d768de44fe5a5134e600b851c625e750c96715f",
+      "textBytes": 5363,
+      "textSha256": "f0e878c9ed46f013865389fdecee5bb0ecfe3ed192a1696fd3572df14728f808",
+      "title": "libpng | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-libpng.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "5724350fc4b3ea060c461df85744cf08ffcab4742c55b1485114f5c580b63793",
+      "textBytes": 1628,
+      "textSha256": "f701669cb44a362252e0c3f23de217059c9ea79f5028405197e6e9ed8a35ad95",
+      "title": "libsrtp | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-libsrtp.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "18c9981f0cad07e49eb28a6e28826197d21bbd0055483228f7957fd7bb1d4bca",
+      "textBytes": 1592,
+      "textSha256": "6a58daac4a4ab41e544f8cb809f801b8423d6802adc761fac5ef217233134ff6",
+      "title": "Libtess2 | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-libtess2.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "3f7d2b866241bbb944769b10eb33f449da4d9c4a4d2e4aad786c7d69be3118ce",
+      "textBytes": 2992,
+      "textSha256": "0d64bee8c447a44e46ea6c31d1cfd517df6459f7f8ef07264b62af4cf4262a9e",
+      "title": "libvpx | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-libvpx.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "6f4c4409607591a4282060488efd0c26bdcad055ea81fc47181636f2d5285382",
+      "textBytes": 1333,
+      "textSha256": "557706a0af0704ceee6cca4866496d364fe3b143e0a1013f687c12d37fedff04",
+      "title": "libxml | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-libxml.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "f3077595439aa28727027ff0b5dcf83e0249c53aa11393a48149b0566b2bae53",
+      "textBytes": 2987,
+      "textSha256": "55399b70574422349873f51928a8ad411fba13e5c057cedc0d75ef4494bb2c19",
+      "title": "libxslt | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-libxslt.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "6a279fe3594ffbfe8a0f2dcc4fb304667ac79b3bb732de12c70e6d97e43817a6",
+      "textBytes": 1525,
+      "textSha256": "4f252157a61e70ec7af68e6b58d97f7125c079c57bba7b4e3b29277434badbb6",
+      "title": "libyuv | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-libyuv.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "d0840602dad1820e9b9f41bd30d100fde94425bbd2c94913fc5814919660a89d",
+      "textBytes": 10853,
+      "textSha256": "999cb2737e693113c4e23d4d771d9513abbe800ad7c6caca89aedb6ec1355999",
+      "title": "Lighthouse i18n.js | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-lighthouse-i18n-js.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "b21eda69b71deb8658d4fd78a91365d4c0840d09c8f5d7f5a9768c6e3d75ee78",
+      "textBytes": 10853,
+      "textSha256": "999cb2737e693113c4e23d4d771d9513abbe800ad7c6caca89aedb6ec1355999",
+      "title": "Lighthouse | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-lighthouse.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "ffb80a7d637a1bf26b7b77b3d7930aa8a3c18d96179223ba200410e7476197bb",
+      "textBytes": 1537,
+      "textSha256": "4546890684f8c88467af862be0e364ee8b154808b7832dfe55f06abb448a80c6",
+      "title": "Lit | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-lit.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "f22d086e3a2643b4ff1bd756aaf85f6b43358d519a524dbd3869c8b39b7bb6aa",
+      "textBytes": 281,
+      "textSha256": "ebdd4d062802bc21286afd6df47cb19960f6f94a2846b68fa3ee06d930ace587",
+      "title": "LZMA SDK | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-lzma-sdk.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "961b36c009b20d7db8d22f487ab2f7c35768ad5d9d250216b0faa4f13162cc46",
+      "textBytes": 2637,
+      "textSha256": "07ce789bf4fd4ea71671ae119df545f643a13473f07d4dc549c813070e49190c",
+      "title": "Marked | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-marked.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "d0fd782b1123548d1c258f795f1742ceff295a2dc11a1bf62b6aad65d5a4d2d5",
+      "textBytes": 10869,
+      "textSha256": "113a57d227fdd85fedf9186a27ab3681a60812039bdf0a56f8cd4ddc6efe819d",
+      "title": "Material color utilities | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-material-color-utilities.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "e0deb767f99cd6a683ff8a99b4821113210d0f1474bf3f770b58093d0d8d7a61",
+      "textBytes": 1556,
+      "textSha256": "1bd99fb9fe586c4a7334d02e6ae21c443f67df5011a6527774dbf538784a5549",
+      "title": "Metrics Protos | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-metrics-protos.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "e92dd865c85f8733ce5e6d9fa53e5be67a7f7979494e9c9ca4050d090074cae6",
+      "textBytes": 1581,
+      "textSha256": "1b2181b507f9ae70355d88c80087c831429c252ebfcb60638e58af2c72ba02e2",
+      "title": "minigbm | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-minigbm.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "8d992a8fb66453b57d6a1307f7341db1f185c12a3a9250b7e89ddc151c773928",
+      "textBytes": 1088,
+      "textSha256": "a1a348247eecdaef9e36f5faf1137cdf2879609b9f05d3e39b99effaa1145ea4",
+      "title": "mitt | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-mitt.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "b1ed70e16caaa86b618b87651c76ce17ef85cf4276b45be392b2871cec098e4a",
+      "textBytes": 1707,
+      "textSha256": "2310832e7a75c12a8544a3b7aac5a9c8587fbfe055eb08f1e2e13db0e3119591",
+      "title": "modp base64 decoder | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-modp-base64-decoder.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "b816b5cea66790efc3c62edf541d261d9a37c121f28f2a18cab6a149aa142657",
+      "textBytes": 1179,
+      "textSha256": "2a6890f6eab179264997e5d31034f4bde592519c29671a3a30f9b98a5370589b",
+      "title": "NVidia Control X Extension Library | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-nvidia-control-x-extension-library.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "a3e37fe1ccd4f94e7c16a9be0305aaa37742458aaeb4e9a0306265485281203d",
+      "textBytes": 1583,
+      "textSha256": "541bf685b4af80dbef9177dc91cf9814d01250395287b23729987b7c40875b87",
+      "title": "One Euro Filter | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-one-euro-filter.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "3b9ecc3141b5ff189a1a9d07dd8445e09633fcdffd61ad914fefc66d7d31629f",
+      "textBytes": 1964,
+      "textSha256": "444d528056e6baa14cfa19e3cd4178d6978205e181fdef5d7f73575296daf3a2",
+      "title": "opus | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-opus.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "ea0959e44e3a7d00ad255cfce5970be72e9b3bceb3f579c61a753c8f83e9b5a2",
+      "textBytes": 1504,
+      "textSha256": "bf4530c6a3179d3373a8b4d3fc1717b0a47830112f0b32bada6317461a401ade",
+      "title": "OTS (OpenType Sanitizer) | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-ots-opentype-sanitizer.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "f7f58aba801af279afe2fb505129a60044d64781ac5e67221e1a16538ce3603e",
+      "textBytes": 1546,
+      "textSha256": "c7a58f53fbca9f13dce88af0527fd47d49972ba8b84839ef1312faeb10d3a0b9",
+      "title": "Paul Hsieh's SuperFastHash | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-paul-hsieh-x27-s-superfasthash.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "c883f94be9979746c2287444e36e558c68b8aa7a178252dbdfe7b18c06166a03",
+      "textBytes": 12914,
+      "textSha256": "f7fc0cbc0cdda6087fd65e597603181e5b1c0e542e76f725ccb525020e5d13ea",
+      "title": "PDFium | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-pdfium.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "435b733d563201a6bd9375bc9ee6fd5e70dede3983d54402225017e7b5b47acd",
+      "textBytes": 14185,
+      "textSha256": "15e3ccaa38872928664ee3ac64c0c30098a8d507f72e0fe8edc53af8057bfec1",
+      "title": "Perfetto | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-perfetto.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "e6bc1ea15f45f2d55fdcf06e0b91186247a833ecaf1c06eddea8e96a25f50f68",
+      "textBytes": 1938,
+      "textSha256": "d889b56f404291af97d56148a9e64da3cccacd09535d70d745d9ecf4f0a374d9",
+      "title": "PFFFT: a pretty fast FFT. | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-pffft-a-pretty-fast-fft.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "48332ae7ae16a27d8ff0b9bce3dbb78bc1cbdd0a7631b846633ec53cae210c62",
+      "textBytes": 1581,
+      "textSha256": "4f42e78612285427c52f7c03b0620784c1c9a1157904560165aa2b0b3f908d2d",
+      "title": "Polymer | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-polymer.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "d5c09c56eb6c37af70ebac17f55f5214ab1284b408ef06b5c101ec8f3f20ba29",
+      "textBytes": 10869,
+      "textSha256": "113a57d227fdd85fedf9186a27ab3681a60812039bdf0a56f8cd4ddc6efe819d",
+      "title": "Private Join and Compute subset | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-private-join-and-compute-subset.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "59766af34ed8a85c53b51c75fda4d493ebafa8d4b0fddfb8bd99ec43de0cc903",
+      "textBytes": 1538,
+      "textSha256": "cbd4a5775687f2f8eeafafd851ed7cf093128f2fa9ce13f189045923a0e22790",
+      "title": "Protocol Buffers (javascript) | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-protocol-buffers-javascript.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "23c6924b3dc0e818cf03b5487c59bff46d8c1679977ce8cf6e744266f8a7a12f",
+      "textBytes": 1751,
+      "textSha256": "4d1c536d3f2a806552f4c8c543a6cd43df7efa709f2ca33efb002d96a66986cd",
+      "title": "Protocol Buffers | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-protocol-buffers.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "7b27fb495f02780adb16f7ebf327c9e48d674350441b39a90fdc2e3d3af79d5b",
+      "textBytes": 10855,
+      "textSha256": "6f1fdec6a8981304ee1bab5dc048f080bb97adb37f5f5fa062e63a8c5e607e84",
+      "title": "Puppeteer Core | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-puppeteer-core.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "6378d814ffd450bdff90fe0110527dd185659790f45967045f05ac9df6ed67f7",
+      "textBytes": 10869,
+      "textSha256": "113a57d227fdd85fedf9186a27ab3681a60812039bdf0a56f8cd4ddc6efe819d",
+      "title": "@puppeteer/replay | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-puppeteer-replay.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "fdc547a90ecda7b1be75788aa7cae8313f045eb99a58192078244906a0250bfa",
+      "textBytes": 1578,
+      "textSha256": "5abc73daa7788d476ce264d7eefa7d8d83b08a2193a2e6fc940b13e8905464dd",
+      "title": "QUICHE | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-quiche.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "bfc6e3fa03f389306c4054381f2edf2cb3ca4d523ddd838a9d4f642ba53dd8e2",
+      "textBytes": 1725,
+      "textSha256": "4f3300c7787596d91206c2ad2d4eacfa389f519b14d6a4268789d6b539c6fd11",
+      "title": "rapidhash | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-rapidhash.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "67edc34c19b712283e62a4ac6f9c407a21ed283b805686a703cf23e572aca476",
+      "textBytes": 1577,
+      "textSha256": "5730c4e406378d1c52ac9a7945c1ee8067eb5dfb4a5579ecc620799e5878c607",
+      "title": "re2 - an efficient, principled regular expression library | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-re2-an-efficient-principled-regular-expression-library.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "1d3214045c29b42a098909e0907a3dc37d31931f8b132e9d2cab7b36dcf9d6b4",
+      "textBytes": 1600,
+      "textSha256": "a03004bd05f2ce64c495fd00ad111e321f618f403ab6615c44a0bf2b3b3de8aa",
+      "title": "Recurrent neural network for audio noise reduction | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-recurrent-neural-network-for-audio-noise-reduction.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "9d4f3d8858c96dd1acdd0b6faf5477de972c6f57b5c4d06f6ed98f25cd3a3125",
+      "textBytes": 1555,
+      "textSha256": "196797ce0064e8178b7493cbbb526b46e7a35b3ed2c6a9e1abc8ca32574504eb",
+      "title": "Search Engines resources | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-search-engines-resources.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "032f2bcc326798d6f48256d38be3218b42f50de88990cb862176d3a6868cd897",
+      "textBytes": 10876,
+      "textSha256": "7ecbd87549f1650125f77474fc1c99e8999f9e310e65acafc6720e86f7c70e9e",
+      "title": "Selenium Atoms | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-selenium-atoms.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "63d15ff520874983241893c08cd47df89691f2f8716abecf7cae4520cab88889",
+      "textBytes": 1078,
+      "textSha256": "62dc457b2c8cfd4e39c1e8a7bd7e530be3e568f7f65c66b24d4bb269698a3c23",
+      "title": "simdutf unicode transcoder | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-simdutf-unicode-transcoder.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "7fe41b8d8532f9ceef574f387dc40f6a5ec99cb33ff8eb6d9a64b3c037822051",
+      "textBytes": 1091,
+      "textSha256": "1164414e322e5cf29d4bdcfcdd5c1f02e96345a87bebc2cdd603c95a8585a432",
+      "title": "Sizzle | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-sizzle.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "c4b5fe4713bd28b78693d653f297fa79116cd2142f56b87b709e527eb4f73da2",
+      "textBytes": 2664,
+      "textSha256": "584864285df4f0f06b4be0155176abc5b42b97517f906aaebffaab720ef47500",
+      "title": "Snappy: A fast compressor/decompressor | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-snappy-a-fast-compressor-decompressor.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "4f4e53b8272873456fa268a4703866d8aaae24c3f60dafdcea1301bb44299d4b",
+      "textBytes": 1499,
+      "textSha256": "e643ba25a0bd6fa563d73ccdb81fdee76552fc70ca37f84eb4886529c0d308c2",
+      "title": "source-map-scopes-codec | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-source-map-scopes-codec.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "6527a96407b324b515292d05240f98fb47fa548a6865a3e17dea97e68a2e355b",
+      "textBytes": 26540,
+      "textSha256": "c1d740990fc47492b963269e9fdfcf431960a44683262e5ddeb1219d13fbf2b6",
+      "title": "Speech Dispatcher | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-speech-dispatcher.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "ef2a2a36786298bc8881a2b7cbd6a51556c01a32455cd561bd2ea69c85608ad0",
+      "textBytes": 10869,
+      "textSha256": "113a57d227fdd85fedf9186a27ab3681a60812039bdf0a56f8cd4ddc6efe819d",
+      "title": "SPIR-V Headers | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-spir-v-headers.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "6ff47af396525c5bf8a78b13e2d8bfa7525416945fd104016d9a233d2f6c9a13",
+      "textBytes": 10869,
+      "textSha256": "113a57d227fdd85fedf9186a27ab3681a60812039bdf0a56f8cd4ddc6efe819d",
+      "title": "SPIR-V Tools | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-spir-v-tools.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "a095c8215c03a7f5a19c427c346eaf04d9f6b76c43a50d9786910e0bf3106909",
+      "textBytes": 935,
+      "textSha256": "62f28f2d7bf1822ce794b4382ba94d684c42b37c83744310d38da66adc66e1c5",
+      "title": "spl sqrt floor | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-spl-sqrt-floor.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "f09fd78dde48e76ed8002e42d5dd2ae2db9d3f3343019e0da50b9e75fbab5af5",
+      "textBytes": 273,
+      "textSha256": "ea3d7715aec2c3e3ea5809e0f886c78fe372b4bcb22e71d436ee121fd3181c37",
+      "title": "sqlite | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-sqlite.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "69bf9c6fd939aa40bbf04997f7c8b0bf7a1c54f4e7697e75a40325aec04d58c9",
+      "textBytes": 1555,
+      "textSha256": "196797ce0064e8178b7493cbbb526b46e7a35b3ed2c6a9e1abc8ca32574504eb",
+      "title": "The Chromium Project | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-the-chromium-project.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "99bc696a8fc19dd61560b57cd83eb47cfa4b14ab03f426750a9d789f3fb0c1e8",
+      "textBytes": 10869,
+      "textSha256": "113a57d227fdd85fedf9186a27ab3681a60812039bdf0a56f8cd4ddc6efe819d",
+      "title": "The Diff Match and Patch libraries offer robust algorithms to perform the operations required for synchronizing plain text. | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-the-diff-match-and-patch-libraries-offer-robust-algorithms-to-perform-the-operations-required-for-synchronizing-plain-text.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "4062500d83ae8f58225c024c1861d54efa0cbd98f3649731edb4bc9d5de743a3",
+      "textBytes": 631,
+      "textSha256": "044b81d1d6ba92daf49a05ce91a7b8fa972bb5b4d4b684c26a215f1408b845ad",
+      "title": "The ITU G.722 codec, encode and decode part. | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-the-itu-g-722-codec-encode-and-decode-part.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "cef279a11d236c3725477e449e2ebafd938f80c31357e4e9faf20ed928b7c16a",
+      "textBytes": 1098,
+      "textSha256": "fa6c809a67aa9012f04de5368c6b4f0507feaa95e79ef16b0f4b2acf0534f310",
+      "title": "third-party-web | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-third-party-web.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "ebbe1fc24398404a51c955f9dbc4a14e24747391716e611a712525800e1c431b",
+      "textBytes": 10869,
+      "textSha256": "113a57d227fdd85fedf9186a27ab3681a60812039bdf0a56f8cd4ddc6efe819d",
+      "title": "URI Template Parser | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-uri-template-parser.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "3693e0a6a0366e381c0e1b97c995dd2efcd4aad7ac8e5b405a19f61591b6ac99",
+      "textBytes": 1158,
+      "textSha256": "f100ee1ecd1c78644698a1a7d3e9bfa339d820ebd8995bf4d3b66e520a7d4024",
+      "title": "URL Pattern Library | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-url-pattern-library.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "33b7dfee897eac3e7fa3d3de63416c758e01e4d1dbc8dd41d1db90fc8ad68aa6",
+      "textBytes": 269,
+      "textSha256": "54b9c8713f7de8d2f639f0fdaeb7e0edd3773a8acd34793c80bdc5d08223c5e4",
+      "title": "V8 fork of fdlibm | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-v8-fork-of-fdlibm.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "78d64b06f0ee844c7f40273a4df818816370ca32e8712dd693e21dc35441028e",
+      "textBytes": 1085,
+      "textSha256": "3a7be667b5aded126d0483be260f38724f1c119633c5f5dc96a8c8867f52b0a4",
+      "title": "Volk Meta loader for Vulkan API | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-volk-meta-loader-for-vulkan-api.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "41e0ffafc009632e2a73025cc96fe3d70b44636daf9f8c2eb901d75b5efc4e9b",
+      "textBytes": 1092,
+      "textSha256": "456f71f930060dcb8d8ee5fba1a4ecf2125ebdf16b9c95d6c773946cadc3e240",
+      "title": "@vscode/web-custom-data | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-vscode-web-custom-data.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "b957a8bd35d63cc6929240914cf867f4a90cb804187febdaefe61e69fb6aff4f",
+      "textBytes": 10869,
+      "textSha256": "113a57d227fdd85fedf9186a27ab3681a60812039bdf0a56f8cd4ddc6efe819d",
+      "title": "Vulkan API headers | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-vulkan-api-headers.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "ec471cde781ab0a0aaaabf2cdb3e303a8c80d0f05e379c0e7efde155224dcd0e",
+      "textBytes": 11680,
+      "textSha256": "ec60dca0332e66d7bae2702e60144aa7396cbc743d553ce3c6fe68ead3677de2",
+      "title": "Vulkan Loader Components | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-vulkan-loader-components.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "d915c42378187d266ab8fec9dfa4e75747aea2cabef60a1d41b3353d6a24e571",
+      "textBytes": 1118,
+      "textSha256": "adf3ade574f228759f22a0df6bfa906f1eb177ec065dd376b54358a3da120171",
+      "title": "VulkanMemoryAllocator | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-vulkanmemoryallocator.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "4e5a0ccb2abaf5c71bdf4b60ccd918fd40f99ad6ce5711838b4d30a9e0e7f483",
+      "textBytes": 9742,
+      "textSha256": "7fb47afa672acbb6fd1adab31a50775cc37ccb6f71ebe415dd25aeb052295d46",
+      "title": "Wasmparser | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-wasmparser.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "cef00523c0e229765df22ec124a5ff57e3f87a548fa6f6db98e58ee3c47cb1cd",
+      "textBytes": 10853,
+      "textSha256": "97e72ba479f16475f4e28d056dd7fe0d6c90c6e82949ff29b9cfc90068561cc0",
+      "title": "Web Vitals | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-web-vitals.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "83cbbe47eb41ba29fa525be03089d7952496a1bc8fcbcb3839fef308ced95a60",
+      "textBytes": 51483,
+      "textSha256": "946a3047f6070970eaaaa814eb359bc071da1092f54fb6ca0b74719b52c5d9ff",
+      "title": "WebKit | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-webkit.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "6bb15e064aac35805866c346d41603eccd3107b684713f231a2bc9c5f1b32745",
+      "textBytes": 2951,
+      "textSha256": "ce57ff4ef645bfbfa9509418f6baf7e17553d9d3d2a16cc896351008d516b0bb",
+      "title": "WebM container parser and writer. | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-webm-container-parser-and-writer.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "fef7fbe0c9493956593b1a0ada4dda79530d2fcb096d4950b31c5754acbbd083",
+      "textBytes": 2951,
+      "textSha256": "ce57ff4ef645bfbfa9509418f6baf7e17553d9d3d2a16cc896351008d516b0bb",
+      "title": "WebP image encoder/decoder | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-webp-image-encoder-decoder.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "c10fcd0f962e0ea301e0ae11d793f848d3187b48758dacec46285435917143da",
+      "textBytes": 1530,
+      "textSha256": "23b30e8449a5502e810b4788794627a731f803b1fdf5eb8c9d0a1e02addaf4bd",
+      "title": "WebRTC | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-webrtc.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "65d85accea6708bf91444fe70a03fc0c8e5d5ad96ab72ae4535c0af6d640cb27",
+      "textBytes": 1128,
+      "textSha256": "85185c888aef0eafd4b97039839c373e1616ae73a7af9ea70f970629df8dc46e",
+      "title": "Wicked Good XPath | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-wicked-good-xpath.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "94a7cd1bb471d10f3c5a07d0a7e98a228ceedb662fe733a4687177f51fbc087d",
+      "textBytes": 1090,
+      "textSha256": "765d943e9f264c8f86e89d7f6563f006669f04f9fd5f82f021ed2540d7edf719",
+      "title": "woff2 | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-woff2.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "2221b32e11f7a86b6eeb80525d15eabbac3f922212f9c77b58cc8b124898cef6",
+      "textBytes": 10869,
+      "textSha256": "113a57d227fdd85fedf9186a27ab3681a60812039bdf0a56f8cd4ddc6efe819d",
+      "title": "Wuffs (Wrangling Untrusted File Formats Safely) | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-wuffs-wrangling-untrusted-file-formats-safely.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "1bd87cba7b729b773c3f2b5ecd748f7c97458417ba9ff3eafc1ecad2fea99a3c",
+      "textBytes": 1075,
+      "textSha256": "5f87fad2d61c6aab6560c04ed5f31c8eaccf5b2972acb71e6a4ad111ca8eb22e",
+      "title": "xdg-user-dirs | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-xdg-user-dirs.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "ca20b58a64fa9cf040725be87650f23041efe50e7f0ada8b9e96cf63a758cba0",
+      "textBytes": 929,
+      "textSha256": "cb678a75cbe5a9dca64fbab5d0990197baca35e28b4d74dbe8336fdfb4313ce3",
+      "title": "zlib | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-zlib.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "d2c8480102e3ed6a3272373750667bca9dfe3c85d58dd402ddc79c8137030b1f",
+      "textBytes": 1081,
+      "textSha256": "127383b4ea4bcb4cce2da844997f49e176236f172919d62eb68b61b5bf2570b2",
+      "title": "zod | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-zod.html",
+      "versionEvidence": "patch version in page title"
+    },
+    {
+      "preformattedLicenseBlocks": 1,
+      "sourceSha256": "393ccc79c45162c4782abb269f5db22a2b25b58e11efa20102498a4b3c15d148",
+      "textBytes": 1568,
+      "textSha256": "935f8184d86ea49c558190f7037c195c6a6d8556c0633957d9476e9d9916a3f9",
+      "title": "Zstandard | Qt WebEngine | Qt 6.11.2",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-3rdparty-zstandard.html",
+      "versionEvidence": "patch version in page title"
+    }
+  ],
+  "pysideSourceNotices": {
+    "aggregate": {
+      "bytes": 239145,
+      "file": "PySide6-6.11.2-NOTICES.txt",
+      "sha256": "b113734465fe193f846575815272d4d4742d7388f37f18eac991af111e56be41"
+    },
+    "canonicalDownloadUrl": "https://download.qt.io/official_releases/QtForPython/pyside6/PySide6-6.11.2-src/pyside-setup-everywhere-src-6.11.2.zip",
+    "files": [
+      {
+        "path": "pyside-setup-everywhere-src-6.11.2/LICENSES/Apache-2.0.txt",
+        "sourceSha256": "870e20c217d15bcfcbe53d7c5867cd8fac44a4ca0b41fc1eb843557e16063eba",
+        "textSha256": "e3ba223bb1423f0aad8c3dfce0fe3148db48926d41e6fbc3afbbf5ff9e1c89cb"
+      },
+      {
+        "path": "pyside-setup-everywhere-src-6.11.2/LICENSES/BSD-3-Clause.txt",
+        "sourceSha256": "a321a6283746a381899921d2d75ac4f6bf2d52df29a1b560a6f297cd706a8f80",
+        "textSha256": "62803a6fcceef9091a129d7293d2469ea332b35d30f5e1bc4c628a9f35f3d29c"
+      },
+      {
+        "path": "pyside-setup-everywhere-src-6.11.2/LICENSES/GFDL-1.3-no-invariants-only.txt",
+        "sourceSha256": "ad59b1b4ad0fb244d232a50c638d398784ea8668e963470da8d342263afb9ee7",
+        "textSha256": "110535522396708cea37c72a802c5e7e81391139f5f7985631c93ef242b206a4"
+      },
+      {
+        "path": "pyside-setup-everywhere-src-6.11.2/LICENSES/GPL-2.0-only.txt",
+        "sourceSha256": "189b1af95d661151e054cea10c91b3d754e4de4d3fecfb074c1fb29476f7167b",
+        "textSha256": "8177f97513213526df2cf6184d8ff986c675afb514d4e68a404010521b880643"
+      },
+      {
+        "path": "pyside-setup-everywhere-src-6.11.2/LICENSES/GPL-3.0-only.txt",
+        "sourceSha256": "0b383d5a63da644f628d99c33976ea6487ed89aaa59f0b3257992deac1171e6b",
+        "textSha256": "8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903"
+      },
+      {
+        "path": "pyside-setup-everywhere-src-6.11.2/LICENSES/LGPL-3.0-only.txt",
+        "sourceSha256": "ea7d049c7705dc13afc202dd18e1827f3484f8212fd3fa7b82fc4a0c363432c9",
+        "textSha256": "da7eabb7bafdf7d3ae5e9f223aa5bdc1eece45ac569dc21b3b037520b4464768"
+      },
+      {
+        "path": "pyside-setup-everywhere-src-6.11.2/LICENSES/LicenseRef-Qt-Commercial.txt",
+        "sourceSha256": "4f54763ac0fe2abd8f7f8d8fe370a94a08ebf84786aa0b91045bd6628deb08a3",
+        "textSha256": "9b1f50aae6267f9d5e0ceb6775ee86450262c25ec7c0573e151fe5d3f18a4700"
+      },
+      {
+        "path": "pyside-setup-everywhere-src-6.11.2/LICENSES/Qt-GPL-exception-1.0.txt",
+        "sourceSha256": "c7daae6dbde7cbc69a4873db880eb49e91acf41030e5d2653ca5d36f6c608d49",
+        "textSha256": "40678d338ce53cd93f8b22b281a2ecbcaa3ee65ce60b25ffb0c462b0530846b2"
+      },
+      {
+        "path": "pyside-setup-everywhere-src-6.11.2/examples/datavisualization/graphgallery/data/license.txt",
+        "sourceSha256": "4782bf751f46890e603b1ed0a0da3fab63b89d311122fda2ed52f77f71f448d6",
+        "textSha256": "fb5cbaf2315c9d953bd067b53c8359c6b0e420c05622f85bdb8802872bdf1d72"
+      },
+      {
+        "path": "pyside-setup-everywhere-src-6.11.2/examples/demos/colorpaletteclient/icons/qt_attribution.json",
+        "sourceSha256": "42aca70da03005ee817f49fb8ab3c0028cc3b100f26659a4c038a9d2fb33382b",
+        "textSha256": "0fc8a47af683b437b267e999508080e8cb1ed6fe0ae82c450bc702387694079e"
+      },
+      {
+        "path": "pyside-setup-everywhere-src-6.11.2/examples/graphs/3d/widgetgraphgallery/data/license.txt",
+        "sourceSha256": "4782bf751f46890e603b1ed0a0da3fab63b89d311122fda2ed52f77f71f448d6",
+        "textSha256": "fb5cbaf2315c9d953bd067b53c8359c6b0e420c05622f85bdb8802872bdf1d72"
+      },
+      {
+        "path": "pyside-setup-everywhere-src-6.11.2/examples/webenginequick/nanobrowser/icons/3rdparty/COPYING",
+        "sourceSha256": "78bc4536847ad98c676ae2a606cb821ed1b79b78b85df7ea7ec427a893eb6329",
+        "textSha256": "4f740497cf8ad0e564de90d3416a06c3d6b1d69d6883fe539925e3353d68a466"
+      },
+      {
+        "path": "pyside-setup-everywhere-src-6.11.2/examples/webenginewidgets/markdowneditor/resources/3rdparty/MARKDOWN-LICENSE.txt",
+        "sourceSha256": "a4b48847665323ecc0ab4f2ac1ea6faec27f06dfbd153adcbc8b93fc10af9956",
+        "textSha256": "a9a3a17d44f18663160f9ae9ccb630ebdf5c3995db59327601c44a09f48a6ffb"
+      },
+      {
+        "path": "pyside-setup-everywhere-src-6.11.2/examples/webenginewidgets/markdowneditor/resources/3rdparty/MARKED-LICENSE.txt",
+        "sourceSha256": "75d25e3bec0cfbb005449aab2dfb997072756f6c652908608e7d2de6831bf272",
+        "textSha256": "02aee34cd3742895297e26a81928e5af1d952d564c99eb8c04406b074ab584fb"
+      },
+      {
+        "path": "pyside-setup-everywhere-src-6.11.2/examples/webenginewidgets/markdowneditor/resources/3rdparty/qt_attribution.json",
+        "sourceSha256": "1371323ee7ea3b55eeb7cf1c68e9fe792115db1eea2f67e435d6a3e59b7f0c8f",
+        "textSha256": "be9cc206afd6d7f1a77daa7bb169a8f4734158789ccc5eeaf4fe276bff81cfa4"
+      },
+      {
+        "path": "pyside-setup-everywhere-src-6.11.2/examples/webenginewidgets/simplebrowser/data/3rdparty/COPYING",
+        "sourceSha256": "78bc4536847ad98c676ae2a606cb821ed1b79b78b85df7ea7ec427a893eb6329",
+        "textSha256": "4f740497cf8ad0e564de90d3416a06c3d6b1d69d6883fe539925e3353d68a466"
+      },
+      {
+        "path": "pyside-setup-everywhere-src-6.11.2/examples/webenginewidgets/simplebrowser/data/3rdparty/qt_attribution.json",
+        "sourceSha256": "b4d6129caf61612b64d439a63ffecdc5c2aed8e53b42a2a398619352c2e85ea7",
+        "textSha256": "0c8accf6a17da9b8eb3c046e836a197251e96fe56809d64a9116d5324978e8c1"
+      },
+      {
+        "path": "pyside-setup-everywhere-src-6.11.2/sources/pyside6/COPYING",
+        "sourceSha256": "d8b495827c803336351abdc0b449e1e8c96f26dd041964d2db31bc654f0a60b6",
+        "textSha256": "3700b1c56fae3813dfaaef1cba101b6ec108167f36b19f4b2cc8824cc829aa2b"
+      },
+      {
+        "path": "pyside-setup-everywhere-src-6.11.2/sources/pyside6/PySide6/licensecomment.txt",
+        "sourceSha256": "8f4f8278eef4d090dee27d4dbc38b64869adfe96b7325fd84ca2a3d0600282c8",
+        "textSha256": "dd6a83da77d0b6a113a574154c12cb009751c2b0dfe5c22e288cd86ebc2a1f13"
+      },
+      {
+        "path": "pyside-setup-everywhere-src-6.11.2/sources/shiboken6/COPYING",
+        "sourceSha256": "95c47f50805ef9d229e6189c62c95b22b7ab53da1db342382e54399931dca9bf",
+        "textSha256": "9bf82b3636570e28118ee558ddab479b8f183d3e20327b7685a7479df52d6493"
+      },
+      {
+        "path": "pyside-setup-everywhere-src-6.11.2/sources/shiboken6/COPYING.libsample",
+        "sourceSha256": "51be030ef11ae69e10fd420adb90d3d4713b6cd7538c15562a5a87c9dc53cf4b",
+        "textSha256": "902847d35abac99283b01c6bdd6f358d361de6bb1473c931756af8d68b890b2b"
+      },
+      {
+        "path": "pyside-setup-everywhere-src-6.11.2/sources/shiboken6/COPYING.libshiboken",
+        "sourceSha256": "51be030ef11ae69e10fd420adb90d3d4713b6cd7538c15562a5a87c9dc53cf4b",
+        "textSha256": "902847d35abac99283b01c6bdd6f358d361de6bb1473c931756af8d68b890b2b"
+      },
+      {
+        "path": "pyside-setup-everywhere-src-6.11.2/sources/shiboken6/libshiboken/bufferprocs_py37.h",
+        "sourceSha256": "730efc3f6b5b99a6aae8c6c7689e76ae00f7940b1bd128705c3544db3d5a4a9d",
+        "textSha256": "7717a874ab6a950ca55f6144efb934a086d16a7c9935d137eeb46afe96bd03fd"
+      },
+      {
+        "path": "pyside-setup-everywhere-src-6.11.2/sources/shiboken6/libshiboken/qt_attribution.json",
+        "sourceSha256": "7241dbe9518e1fce545bca75fa4ffc06cf295e692ac412a8d8b760fe5e44407d",
+        "textSha256": "1b643e281a9ccb592cfb5df7fc457b9b466f35de6e91ccce76589e85e047573c"
+      },
+      {
+        "path": "pyside-setup-everywhere-src-6.11.2/sources/shiboken6/shibokenmodule/files.dir/shibokensupport/signature/PSF-3.7.0.txt",
+        "sourceSha256": "96f7756ae0a7a06fe845e3c6431c49a8b66de55a62925ee319937e37a11bfb2d",
+        "textSha256": "e5bdc4b568f0016df16652c4769bafde76641b61409149100ee53b708c8f1219"
+      },
+      {
+        "path": "pyside-setup-everywhere-src-6.11.2/sources/shiboken6/shibokenmodule/files.dir/shibokensupport/signature/qt_attribution.json",
+        "sourceSha256": "325db5499ef5a3227170d271aa78161bf175b960b8a315d97be0d94734721256",
+        "textSha256": "6197e61575b0f1a65fc4a32647e48c6a4897aa104ad9e5e397cec8fecdcc2f59"
+      },
+      {
+        "path": "pyside-setup-everywhere-src-6.11.2/sources/shiboken6_generator/ApiExtractor/COPYING",
+        "sourceSha256": "95c47f50805ef9d229e6189c62c95b22b7ab53da1db342382e54399931dca9bf",
+        "textSha256": "9bf82b3636570e28118ee558ddab479b8f183d3e20327b7685a7479df52d6493"
+      }
+    ],
+    "noticeFileCount": 27,
+    "sourceArchiveBytes": 23134400,
+    "sourceArchiveSha256": "c0fdd62b91a1d36d5ee2e1fb71050a32fbc93fcdeef0fdcb41d29afaaf00d9b5",
+    "url": "https://master.qt.io/official_releases/QtForPython/pyside6/PySide6-6.11.2-src/pyside-setup-everywhere-src-6.11.2.zip",
+    "version": "6.11.2"
+  },
+  "qtVersion": "6.11.2",
+  "schemaVersion": 1,
+  "scope": "all-module and all-platform documentation superset; not an SBOM",
+  "supplementalFullTexts": [
+    {
+      "bytes": 17984,
+      "file": "GNU-GPL-2.0.txt",
+      "sha256": "edaef632cbb643e4e7a221717a6c441a4c1a7c918e6e4d56debc3d8739b233f6",
+      "sourceSha256": "edaef632cbb643e4e7a221717a6c441a4c1a7c918e6e4d56debc3d8739b233f6",
+      "url": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt"
+    },
+    {
+      "bytes": 25270,
+      "file": "GNU-LGPL-2.0.txt",
+      "sha256": "cc535c21133c895b56b374c8a1dc1eb948d99003ed2b47372069456b62f42b24",
+      "sourceSha256": "cc535c21133c895b56b374c8a1dc1eb948d99003ed2b47372069456b62f42b24",
+      "url": "https://www.gnu.org/licenses/old-licenses/lgpl-2.0.txt"
+    },
+    {
+      "bytes": 26419,
+      "file": "GNU-LGPL-2.1.txt",
+      "sha256": "20e50fe7aae3e56378ebf0417d9de904f55a0e61e4df315333e632a4d3555d95",
+      "sourceSha256": "20e50fe7aae3e56378ebf0417d9de904f55a0e61e4df315333e632a4d3555d95",
+      "url": "https://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt"
+    }
+  ]
+}
