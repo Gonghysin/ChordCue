@@ -45,6 +45,7 @@ button:disabled{opacity:.6;cursor:wait}
 const $=id=>document.getElementById(id), sharp=['C','C♯','D','D♯','E','F','F♯','G','G♯','A','A♯','B'],flat=['C','D♭','D','E♭','E','F','G♭','G','A♭','A','B♭','B'];
 let chart=null,sample=null,clockOffset=null,clockSamples=[],rtt=0,connected=false,lastReceived=0,lastBar=0,lastActive=null,cells=new Map(),sections=[],stream=null,clockBusy=false,session=null,clockController=null,page='chords';
 const mod=n=>(n%12+12)%12;
+const hostLabel=()=>window.ChordCueHostLabel||(sample?.playback?'主机':'Logic');
 function setting(id,fallback){try{return localStorage.getItem('chordcue-lan-'+id)||fallback}catch{return fallback}}
 function changePage(value){page=value;$('metronome').hidden=value!=='metronome';$('chart').hidden=value!=='chords';$('empty').hidden=value!=='chords'||!!chart?.events.length;document.querySelector('header .controls').hidden=value!=='chords';$('chordTab').classList.toggle('selected',value==='chords');$('metroTab').classList.toggle('selected',value==='metronome');}
 $('chordTab').addEventListener('click',()=>changePage('chords'));$('metroTab').addEventListener('click',()=>changePage('metronome'));
@@ -63,7 +64,7 @@ function keyLabel(section){let label='1='+note(section.family+shift());if(sectio
 function renderChart(){
  if(!chart)return;sections=chart.sections;$('name').textContent=chart.name;$('empty').hidden=page!=='chords'||chart.events.length>0;
  const root=$('chart');root.replaceChildren();cells.clear();lastBar=0;
- const count=Math.max(16,chart.events.at(-1)?.bar||1,sample?.bar||1);
+ const count=Number.isInteger(chart.bars)&&chart.bars>0?chart.bars:Math.max(16,chart.events.at(-1)?.bar||1,sample?.bar||1);
  let cursor=0,carry=null;
  for(let bar=1;bar<=count;bar++){
   const cell=document.createElement('section');cell.className='bar';const head=document.createElement('div');head.className='barhead';head.textContent=String(bar);
@@ -78,21 +79,21 @@ function renderChart(){
 }
 async function calibrate(){
  if(clockBusy)return;clockBusy=true;
- if(window.ChordCueNative){window.webkit.messageHandlers.clock.postMessage({t0:performance.now()});setTimeout(()=>{clockBusy=false},2500);return}
+ if(window.ChordCueNative){const t0=performance.now();if(window.ChordCueBridge)window.ChordCueBridge.clock(t0);else window.webkit?.messageHandlers?.clock?.postMessage({t0});setTimeout(()=>{clockBusy=false},2500);return}
  const controller=new AbortController();clockController=controller;const timeout=setTimeout(()=>controller.abort(),2500);
  try{const t0=performance.now(),response=await fetch('clock',{cache:'no-store',signal:controller.signal});if(!response.ok)throw Error('clock');const data=await response.json(),t3=performance.now();
   applyClock(data,t0,t3);
  }catch{}finally{clearTimeout(timeout);clockController=null;clockBusy=false}
 }
-function applyClock(data,t0,t3){if(session&&session!==data.session){clockSamples=[];clockOffset=null;window.ChordCueMetronome?.cancel()}session=data.session;const latency=Math.max(0,t3-t0-(data.sent-data.received));clockSamples.push({time:t3,offset:((data.received-t0)+(data.sent-t3))/2,rtt:latency});clockSamples=clockSamples.filter(v=>t3-v.time<60000).slice(-20);const best=clockSamples.reduce((a,b)=>a.rtt<b.rtt?a:b);if(clockOffset!==null&&Math.abs(best.offset-clockOffset)>10)window.ChordCueMetronome?.cancel();clockOffset=best.offset;rtt=best.rtt;}
+function applyClock(data,t0,t3){if(session&&session!==data.session){clockSamples=[];clockOffset=null;sample=null;window.ChordCueMetronome?.cancel()}session=data.session;const latency=Math.max(0,t3-t0-(data.sent-data.received));clockSamples.push({time:t3,offset:((data.received-t0)+(data.sent-t3))/2,rtt:latency});clockSamples=clockSamples.filter(v=>t3-v.time<60000).slice(-20);const best=clockSamples.reduce((a,b)=>a.rtt<b.rtt?a:b);if(clockOffset!==null&&Math.abs(best.offset-clockOffset)>10)window.ChordCueMetronome?.cancel();clockOffset=best.offset;rtt=best.rtt;}
 window.acceptNativeClock=(data,t0)=>{applyClock(data,t0,performance.now());clockBusy=false};
-function acceptTransport(next){window.ChordCueMetronome?.transportChanged(sample,next);sample=next;lastReceived=performance.now();}
-window.acceptNativeState=value=>{if(!chart||chart.name!==value.name){window.ChordCueMetronome?.cancel();chart={revision:1,name:value.name,meter:value.transport.meter,events:[],sections:[]};$('name').textContent=value.name;}connected=true;acceptTransport(value.transport);if(typeof value.audioEnabled==='boolean')window.ChordCueMetronome?.setEnabled(value.audioEnabled);};
+function acceptTransport(next){window.ChordCueMetronome?.transportChanged(sample,next);sample=next;lastReceived=performance.now();if(next.playback)document.querySelector('footer').textContent='显示设置仅影响你的浏览器。工程和播放位置跟随主机。每个和弦下方标注起拍；蓝线表示播放位置。网络往返和采样耗时不是总同步误差。';}
+window.acceptNativeState=value=>{if(!chart||chart.name!==value.name||chart.revision!==value.transport.revision){window.ChordCueMetronome?.cancel();chart={revision:value.transport.revision,name:value.name,meter:value.transport.meter,events:[],sections:[]};$('name').textContent=value.name;}connected=true;acceptTransport(value.transport);if(typeof value.audioEnabled==='boolean')window.ChordCueMetronome?.setEnabled(value.audioEnabled);};
 function connect(){
  stream=new EventSource('events');
  stream.onopen=()=>{connected=true;calibrate()};
  stream.onerror=()=>{connected=false;lastActive=null;$('current').textContent='—';window.ChordCueMetronome?.cancel()};
- stream.addEventListener('chart',event=>{try{const next=JSON.parse(event.data);if(chart?.name!==next.name)window.ChordCueMetronome?.cancel();chart=next;lastActive=null;renderChart()}catch{}});
+ stream.addEventListener('chart',event=>{try{const next=JSON.parse(event.data);if(chart?.name!==next.name||chart?.revision!==next.revision)window.ChordCueMetronome?.cancel();chart=next;lastActive=null;renderChart()}catch{}});
  stream.addEventListener('transport',event=>{try{acceptTransport(JSON.parse(event.data))}catch{}});
 }
 function frame(){
@@ -100,18 +101,18 @@ function frame(){
  const fresh=connected&&now-lastReceived<500&&sample?.valid&&sample?.revision===chart?.revision&&age<500;
  const predicting=fresh&&sample.precise&&age<200&&clockOffset!==null;
  if(sample){$('metadata').textContent=sample.meter+' · '+(sample.bpm>0?Number(sample.bpm.toFixed(2))+' BPM':'— BPM')}
- if(fresh&&chart){
+ if(fresh&&chart&&window.ChordCueTimeline){
   const beats=Number(sample.meter.split('/')[0])||4;
-  const predicted=Math.min(beats,offset(sample)+(predicting?sample.rate*Math.min(age,150)/1000:0));
-  const position={bar:sample.bar,beat:1,division:1,tick:predicted*960};
+  const visible=window.ChordCueTimeline.position(sample,sample.sampleTime+(predicting?Math.min(age,150):0),{clampToBar:true}),predicted=visible.offset;
+  const position={bar:visible.bar,beat:1,division:1,tick:predicted*960};
   const index=activeIndex(position),event=chart.events[index];
   if(index!==lastActive){$('current').textContent=event?formatted(event):'—';for(const {slots} of cells.values())for(const s of slots)s.el.classList.toggle('currentSlot',s.id!==null&&s.id===event?.id);lastActive=index}
-  if(lastBar!==sample.bar){cells.get(lastBar)?.cell.classList.remove('active');const current=cells.get(sample.bar);current?.cell.classList.add('active');if($('follow').checked&&current)current.cell.scrollIntoView({block:'center',behavior:'instant'});lastBar=sample.bar}
-  const cell=cells.get(sample.bar);if(cell)cell.line.style.left=(8+(cell.cell.clientWidth-16)*Math.min(1,predicted/beats))+'px';
-  $('position').textContent='第 '+sample.bar+' 小节 · 第 '+Math.min(beats,Math.floor(predicted)+1)+' 拍';
+  if(lastBar!==visible.bar){cells.get(lastBar)?.cell.classList.remove('active');const current=cells.get(visible.bar);current?.cell.classList.add('active');if($('follow').checked&&current)current.cell.scrollIntoView({block:'center',behavior:'instant'});lastBar=visible.bar}
+  const cell=cells.get(visible.bar);if(cell)cell.line.style.left=(8+(cell.cell.clientWidth-16)*Math.min(1,predicted/beats))+'px';
+  $('position').textContent='第 '+visible.bar+' 小节 · 第 '+Math.min(beats,Math.floor(predicted)+1)+' 拍';
  }
  else{if(lastBar)cells.get(lastBar)?.cell.classList.remove('active');lastBar=0;lastActive=null;$('current').textContent='—'}
- const state=!connected?'连接中断，正在重连…':!sample?.valid?'主机尚未读到 Logic 播放头':clockOffset===null?'正在校准时钟…':!fresh?'位置数据已过期，等待主机…':sample.rate>0?'跟随播放':'停止／定位中';
+ const state=!connected?'连接中断，正在重连…':!sample?.valid?'主机尚未读到 '+hostLabel()+' 播放头':clockOffset===null?'正在校准时钟…':!fresh?'位置数据已过期，等待主机…':sample.playing&&sample.rate>0?'跟随播放':'停止／定位中';
  $('status').textContent=state+(clockOffset!==null?' · 网络往返 '+rtt.toFixed(0)+' ms':'')+(sample?' · 读取耗时 '+sample.readMs.toFixed(0)+' ms':'')+(sample&&!sample.precise?' · 当前只能按拍同步':'');
  window.ChordCueMetronome?.visual();
  requestAnimationFrame(frame);

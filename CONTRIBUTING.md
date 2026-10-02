@@ -22,7 +22,7 @@ Swift UI 保持中文；文档和 Issue 可用中文或英文。尽量提交聚�
 
 ## 检查与 PR 内容
 
-项目暂没有自动测试套件，不要宣称未经实际测量的准确率或同步精度。
+Windows 独立版的开发、自动化测试和 MSI 构建见 [Windows 指南](windows/README.md)。功能分支推送会运行 Windows 测试／打包，以及 macOS 原构建和 Swift 乐理对照。不要宣称未经实际测量的准确率或同步精度；完整验收门槛见 [验证记录](windows/docs/VERIFICATION.md)。
 
 可做语法及构建检查：
 
@@ -42,7 +42,7 @@ PR 请说明改动目的、受影响的平台／宿主、验证步骤和结果�
 
 ## 可选调性对照工具
 
-`tools/KeyAnalysisSnapshot.swift` 读取辅助功能文本快照；`tools/CompareKeyAnalysis.py` 使用 music21 进行离线算法对照。应用本身不依赖 Python。
+`tools/KeyAnalysisSnapshot.swift` 读取辅助功能文本快照；`tools/CompareKeyAnalysis.py` 使用 music21 进行离线算法对照。macOS 应用本身不依赖 Python。
 
 ```bash
 xcrun swiftc -parse-as-library Sources/LogicReader.swift Sources/ChordTheory.swift tools/KeyAnalysisSnapshot.swift -o /tmp/chordcue-key-analysis

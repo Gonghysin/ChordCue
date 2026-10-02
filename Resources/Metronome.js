@@ -1,12 +1,40 @@
 // SPDX-License-Identifier: MIT
 // Scheduling reference: Chris Wilson's cwilso/metronome (MIT); see THIRD_PARTY_NOTICES.md.
+/* Quarter-note timeline shared by the display and the audio scheduler. Kept in
+ * this resource so existing WebKit bundles and LAN resource routes still work. */
+(()=>{
+'use strict';
+const beats=s=>Number(s.meter.split('/')[0])||4;
+const offset=s=>s.beat-1+(s.division-1)/4+s.tick/960;
+const absolute=s=>(s.bar-1)*beats(s)+offset(s);
+const loop=s=>s.playback?.loop||null;
+const length=s=>loop(s)?loop(s).endBeat-loop(s).startBeat:0;
+const base=s=>absolute(s)+(loop(s)?loop(s).iteration*length(s):0);
+const anchor=s=>s.playback&&Number.isFinite(s.playback.startTime)?Math.max(s.sampleTime,s.playback.startTime):s.sampleTime;
+function unwrapped(s,time){return base(s)+(s.playing&&s.rate>0?s.rate*Math.max(0,time-anchor(s))/1000:0)}
+function musical(s,value){if(!s.playing)return absolute(s);const l=loop(s);return l?l.startBeat+((value-l.startBeat)%length(s)+length(s))%length(s):s.playback?Math.min(value,s.playback.endBeat):value}
+function position(s,time,{clampToBar=false}={}){
+ const total=unwrapped(s,time),value=musical(s,total),count=beats(s);
+ if(clampToBar&&!s.playback)return {bar:s.bar,offset:Math.min(count,value-(s.bar-1)*count),unwrapped:total,ended:false};
+ return {bar:Math.floor(value/count)+1,offset:value%count,unwrapped:total,ended:!!s.playback&&!loop(s)&&value>=s.playback.endBeat};
+}
+function targetTime(s,unwrappedBeat){return anchor(s)+(unwrappedBeat-base(s))/s.rate*1000}
+function firstStep(s,time,subdivision){
+ const value=unwrapped(s,time)*subdivision;
+ // A future start is an explicit promise: include its first grid boundary.
+ return s.playback&&Number.isFinite(s.playback.startTime)&&time<=s.playback.startTime?Math.ceil(value-1e-8):Math.floor(value)+1;
+}
+function allows(s,value){return !s.playback||!!loop(s)||value<s.playback.endBeat}
+window.ChordCueTimeline={beats,offset,absolute,base,anchor,unwrapped,musical,position,targetTime,firstStep,allows};
+})();
 /* Local sound generation. AudioContext schedules notes; UI frames never trigger notes. */
 (()=>{
 'use strict';
-const el=id=>document.getElementById(id),sync=window.ChordCueSync;
+const el=id=>document.getElementById(id),sync=window.ChordCueSync,timeline=window.ChordCueTimeline;
 let context=null,master=null,noise=null,enabled=false,patterns={},pattern=[],patternKey='',scheduled=new Map(),message='',nextStepIndex=null;
-let starting=false,activation=0;
-function audioState(){el('headerAudio').textContent=enabled?'关闭节拍器':starting?'正在开启…':'开启节拍器';el('headerAudio').disabled=starting;window.webkit?.messageHandlers?.audioState?.postMessage(enabled)}
+let starting=false,activation=0,epoch=0,patternHost='';
+const host=()=>window.ChordCueHostLabel|| (sync.snapshot().sample?.playback?'主机':'Logic');
+function audioState(){el('headerAudio').textContent=enabled?'关闭节拍器':starting?'正在开启…':'开启节拍器';el('headerAudio').disabled=starting;if(window.ChordCueBridge)window.ChordCueBridge.audioState(enabled);else window.webkit?.messageHandlers?.audioState?.postMessage(enabled)}
 const diagnostics={scheduled:0,cancelled:0,late:0,stale:0};
 const read=(key,fallback)=>{try{return localStorage.getItem('chordcue-metro-'+key)||fallback}catch{return fallback}};
 const save=(key,value)=>{try{localStorage.setItem('chordcue-metro-'+key,String(value))}catch{}};
@@ -21,9 +49,9 @@ function defaults(beats){return Array.from({length:beats*divisions()},(_,i)=>({l
 function renderPattern(){
  const m=meter();if(!m.supported){el('patternDescription').textContent='当前 '+m.value+'；此版本声音支持 1–12 拍、四分音符为拍单位。';patternKey='';pattern=[];el('beatPattern').replaceChildren();el('beatLights').replaceChildren();return}
  const key=el('metroMode').value+'|'+m.value+'|'+el('metroSubdivision').value;
- if(key===patternKey)return;cancel();patternKey=key;
+ if(key===patternKey&&patternHost===host())return;if(key!==patternKey)cancel();patternKey=key;patternHost=host();
  const stored=patterns[key];pattern=Array.isArray(stored)&&stored.length===m.beats*divisions()?stored.map((p,i)=>({level:[0,1,2,3].includes(p?.level)?p.level:defaults(m.beats)[i].level,voice:['kick','snare','hat'].includes(p?.voice)?p.voice:defaults(m.beats)[i].voice})):defaults(m.beats);
- el('patternDescription').textContent='拍号 '+m.value+' 跟随 Logic · '+pattern.length+' 个'+(divisions()===2?'八分音符':'拍点')+'。0 格不响，1 格轻拍，2 格正常，3 格重拍。点击设置；再点最高亮格降低一档。'+(isDrums()?'每柱可独立选择鼓音色。':'');
+ el('patternDescription').textContent='拍号 '+m.value+' 跟随 '+host()+' · '+pattern.length+' 个'+(divisions()===2?'八分音符':'拍点')+'。0 格不响，1 格轻拍，2 格正常，3 格重拍。点击设置；再点最高亮格降低一档。'+(isDrums()?'每柱可独立选择鼓音色。':'');
  const root=el('beatPattern');root.replaceChildren();el('beatLights').replaceChildren();
  for(let beat=0;beat<m.beats;beat++){
   const light=document.createElement('span');light.className='beat-light';light.textContent=String(beat+1);el('beatLights').append(light);
@@ -60,7 +88,7 @@ el('audioPreview').addEventListener('click',()=>startAudio(true));
 el('headerAudio').addEventListener('click',()=>{if(enabled)disable();else startAudio()});
 function cancel(includePreview=false,futureOnly=false){
  for(const [key,value] of scheduled){if(!includePreview&&key.startsWith('preview-'))continue;if(futureOnly&&context&&value.at<=context.currentTime+0.04)continue;if(context){try{value.gain.gain.cancelScheduledValues(context.currentTime);value.gain.gain.setValueAtTime(0,context.currentTime)}catch{}for(const source of value.sources){try{source.stop(context.currentTime)}catch{}}}scheduled.delete(key);diagnostics.cancelled++}
- nextStepIndex=null;
+ nextStepIndex=null;if(!futureOnly)epoch++;
 }
 function disable(){activation++;starting=false;enabled=false;message='';cancel(true);el('audioEnable').disabled=false;el('audioPreview').disabled=false;el('audioEnable').textContent='开启声音';if(context)context.suspend().catch(()=>{});audioState()}
 function sound(step,at,key,performanceTime){
@@ -77,18 +105,19 @@ function outputTime(targetPerformance){
  return context.currentTime+(targetPerformance-performance.now())/1000-Math.min(0.15,latency);
 }
 function transportChanged(old,next){
- if(!old||!next.valid||!next.playing||old.discontinuity!==next.discontinuity||old.meter!==next.meter){cancel();return}
- // Cancel future sounds whose predicted boundaries shifted as Logic changed tempo/position.
- if(context&&old.rate>0&&next.rate>0){const oldOffset=old.beat-1+(old.division-1)/4+old.tick/960,nowOffset=next.beat-1+(next.division-1)/4+next.tick/960,beats=Number(next.meter.split('/')[0]),predicted=(next.bar-old.bar)*beats+nowOffset-oldOffset-old.rate*(next.sampleTime-old.sampleTime)/1000;if(Math.abs(predicted/next.rate)>0.045||Math.abs(next.rate-old.rate)>old.rate*0.03)cancel(false,true)}
+ const oldLoop=old?.playback?.loop,nextLoop=next.playback?.loop;
+ if(!old||!next.valid||!next.playing||old.revision!==next.revision||old.discontinuity!==next.discontinuity||old.meter!==next.meter||!!old.playback!==!!next.playback||oldLoop?.startBeat!==nextLoop?.startBeat||oldLoop?.endBeat!==nextLoop?.endBeat||old.playback?.startTime!==next.playback?.startTime){cancel();return}
+ // Compare unwrapped positions: a natural loop boundary never changes epoch.
+ if(context&&old.rate>0&&next.rate>0){const predicted=timeline.base(next)-timeline.unwrapped(old,next.sampleTime);if(Math.abs(predicted/next.rate)>0.045||Math.abs(next.rate-old.rate)>old.rate*0.03)cancel(false,true)}
 }
 function health(){
  const state=sync.snapshot(),s=state.sample,now=performance.now(),age=s&&state.clockOffset!==null?now+state.clockOffset-s.sampleTime:Infinity;
  if(!state.connected)return {state,reason:'连接中断，已停声'};
- if(!s?.valid||!s.precise)return {state,reason:'等待 Logic 精细播放头位置，已停声'};
+ if(!s?.valid||!s.precise)return {state,reason:'等待 '+host()+' 精细播放头位置，已停声'};
  if(state.clockOffset===null)return {state,reason:'正在校准时钟，暂不出声'};
  if(age< -30||age>350||now-state.lastReceived>350||state.chart?.revision!==s.revision)return {state,reason:'同步数据过期，已停声'};
  if(!meter().supported)return {state,reason:'当前拍号 '+s.meter+' 尚不支持音频排程'};
- if(!s.playing||!(s.rate>0))return {state,reason:'等待 Logic 播放；开始后从下一个拍点加入'};
+ if(!s.playing||!(s.rate>0))return {state,reason:'等待 '+host()+' 播放；开始后从下一个拍点加入'};
  if(document.hidden&&!window.ChordCueNative)return {state,reason:'页面在后台，已停声；返回后重新开启'};
  return {state,age:Math.max(0,age),reason:''};
 }
@@ -97,17 +126,18 @@ function schedule(){
  renderPattern();if(!enabled||context?.state!=='running')return;
  const h=health();if(h.reason){if(scheduled.size)diagnostics.stale++;cancel();return}
  const {sample:s,clockOffset}=h.state,m=meter(),rate=s.rate,sub=divisions(),now=performance.now();
- const phase=s.beat-1+(s.division-1)/4+s.tick/960+rate*h.age/1000;
- // Retain the next-note cursor (as in cwilso/metronome) while re-anchoring times to Logic.
- const total=(s.bar-1)*m.beats+phase;
- if(nextStepIndex===null)nextStepIndex=Math.floor(total*sub)+1;
+ const serverNow=now+clockOffset,total=timeline.unwrapped(s,serverNow);
+ // Unwrapped step identities survive natural wraps, including multiple loops
+ // inside one lookahead window. Manual transitions invalidate their epoch.
+ if(nextStepIndex===null)nextStepIndex=timeline.firstStep(s,serverNow,sub);
  const advance=Number(el('metroOffset').value),deviceLatency=Math.min(0.15,Math.max(0,context.currentTime-outputTime(now)));
  const horizon=0.1+deviceLatency+Math.max(0,advance/1000);
  const limit=Math.floor((total+horizon*rate+1)*sub);
  while(nextStepIndex<=limit){
   const i=nextStepIndex;
-  const musical=i/sub,bar=Math.floor(musical/m.beats)+1,step=Math.round((musical-(bar-1)*m.beats)*sub),key=bar+':'+step;
-  const targetPerformance=s.sampleTime-clockOffset+(musical-((s.bar-1)*m.beats+s.beat-1+(s.division-1)/4+s.tick/960))/rate*1000-advance;
+  const unwrapped=i/sub;if(!timeline.allows(s,unwrapped))break;
+  const musical=timeline.musical(s,unwrapped),step=Math.round((musical%m.beats)*sub),key=epoch+':'+i;
+  const targetPerformance=timeline.targetTime(s,unwrapped)-clockOffset-advance;
   const at=outputTime(targetPerformance);if(at>context.currentTime+0.14)break;
   nextStepIndex++;
   if(scheduled.has(key)||!pattern[step]?.level)continue;
@@ -120,11 +150,12 @@ function visual(){
  el('metroTempo').textContent=s?.bpm>0?Number(s.bpm.toFixed(2))+' BPM':'— BPM';
  const live=enabled&&context?.state==='running'&&!h.reason;
  el('metroState').textContent=message||(!enabled?'声音未开启；各人的拍点与音量独立设置。':h.reason||'同步播放 · '+s.meter+' · 网络／本机桥接往返 '+h.state.rtt.toFixed(0)+' ms');
- const phase=live?s.beat-1+(s.division-1)/4+s.tick/960+s.rate*h.age/1000:-1;
+ const position=live?timeline.position(s,performance.now()+h.state.clockOffset):null;
+ const phase=position&&!position.ended?position.offset:-1;
  [...el('beatLights').children].forEach((light,index)=>light.classList.toggle('lit',phase>=0&&Math.floor(phase)%meter().beats===index));
  if(context){const latency=Math.max(0,context.currentTime-outputTime(performance.now()));el('audioLatency').textContent='设备输出延迟估计 '+(latency*1000).toFixed(0)+' ms · '+(typeof context.getOutputTimestamp==='function'?'使用输出时钟映射':'使用浏览器延迟估计')+' · 仍需耳机实测校准'}
 }
-window.ChordCueMetronome={cancel,disable,setEnabled:value=>{if(value){if(!enabled&&!starting)startAudio()}else if(enabled||starting)disable()},transportChanged,visual,diagnostics:()=>({...diagnostics}),shutdown:()=>{disable();clearInterval(timer);if(context)context.close().catch(()=>{})}};
+window.ChordCueMetronome={cancel,disable,setEnabled:value=>{if(value){if(!enabled&&!starting)startAudio()}else disable()},transportChanged,visual,diagnostics:()=>({...diagnostics}),shutdown:()=>{disable();clearInterval(timer);if(context)context.close().catch(()=>{})}};
 window.addEventListener('pagehide',disable);
 const timer=setInterval(schedule,25);renderPattern();
 })();

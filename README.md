@@ -6,7 +6,7 @@
 
 ChordCue 是独立的 macOS 应用。读取 Logic Pro 已有和弦轨与播放位置，用大字和小节网格帮助边看边演奏；也能把同步谱面投放给局域网内的其他人。
 
-> 当前宿主仅支持 macOS 上的 Logic Pro。Windows、FL Studio、Cubase 和 iReal Pro HTML 导入是待实现计划，欢迎贡献 PR。
+> macOS 宿主支持 Logic Pro。新增 [Windows 10/11 x64 独立桌面版](windows/README.md)，使用手动谱面和本机播放时钟；MSI 仍需完成 [发布验收](windows/docs/VERIFICATION.md)，当前未发布正式 Windows Release。FL Studio、Cubase 和 iReal Pro HTML 导入继续独立规划。
 
 ## 功能
 
